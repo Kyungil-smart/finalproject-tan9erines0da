@@ -58,7 +58,7 @@ using UnityEngine.Networking;
             // 줄 분리
             string[] lines = csv.Split(new[] { "\r\n", "\n" }, System.StringSplitOptions.RemoveEmptyEntries);
 
-            for (int i = 1; i < lines.Length; i++) // 0번은 헤더
+            for (int i = 2; i < lines.Length; i++) // 0번은 헤더
             {
                 T temp = new T();
                 string[] values = lines[i].Split(',');
