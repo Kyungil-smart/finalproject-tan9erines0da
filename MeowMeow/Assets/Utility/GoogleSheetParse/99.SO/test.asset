@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5781858895801434097e25e4445166c2, type: 3}
+  m_Name: test
+  m_EditorClassIdentifier: Assembly-CSharp::Testtemp
+  url: https://docs.google.com/spreadsheets/d/1yTbxXas4Sx3wCDE94sTTpb66wceYbZ5j2zR6VH_0pXY/edit?gid=0#gid=0
+  gid: 0
+  genericType: QuestData
+  m_Data:
+  - <uniqueId>k__BackingField: 3
+    id: 1
+    Descritction: 2
