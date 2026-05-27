@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "897795581002",
+    "project_id": "meowmeowteam1",
+    "storage_bucket": "meowmeowteam1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897795581002:android:79ec2ee3edbbf8486532b3",
+        "android_client_info": {
+          "package_name": "com.team1.meowmeowstar"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6TLAVbjWQH-DduXRSuWvEW-eaP9iS4Qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

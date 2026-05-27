@@ -104,3 +104,7 @@ InitTestScene*.unity*
 
 # Ignore imported assets
 Assets/Imports/**
+
+# Firebase 관련 파일 및 폴더 제외
+/[Aa]ssets/Firebase/
+/[Aa]ssets/Firebase.meta
