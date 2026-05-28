@@ -12,4 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8aeed06460d8f408eac07d96dfa841, type: 3}
   m_Name: CGDB
   m_EditorClassIdentifier: 
-  _cgSprites: []
+  _cgSprites:
+  - {fileID: 21300000, guid: 4966456971680f24c8d6cf09b1376ed3, type: 3}
+  - {fileID: 21300000, guid: cf87d8620f918d2419eb6be6f514b321, type: 3}
+  - {fileID: 21300000, guid: e330f0c22a329d541b565ecb40943d7b, type: 3}
+  - {fileID: 21300000, guid: 425e43681acf98e4aab9d9005529bac6, type: 3}
+  - {fileID: 21300000, guid: 852accbd9b671d1479bb1ec1cc6b98aa, type: 3}
+  - {fileID: 21300000, guid: 2c14fa4a27839e641b9e0957b2442064, type: 3}
+  - {fileID: 21300000, guid: f60949de367c3be42a4dbabdff5c4083, type: 3}
+  - {fileID: 21300000, guid: dde170620c6b29f41bfadfa46ba1d51c, type: 3}
+  - {fileID: 21300000, guid: 628508260cf301f4f93fdcb284a70c7b, type: 3}
+  - {fileID: 21300000, guid: c7445fb20c280d346bf4a0df167600d8, type: 3}
+  - {fileID: 21300000, guid: b81c760574081dd4f973db1afb90490e, type: 3}
+  - {fileID: 21300000, guid: 58f8a1a7e741bd244b0b35cfd671e9cc, type: 3}
+  - {fileID: 21300000, guid: 1956c014b0b1d3a4098e5785c2cbf096, type: 3}
+  - {fileID: 21300000, guid: 533a945052e442b45966d21dd3287704, type: 3}

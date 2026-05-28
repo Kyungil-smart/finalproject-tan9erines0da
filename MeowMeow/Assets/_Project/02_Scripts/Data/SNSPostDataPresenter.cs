@@ -6,7 +6,22 @@ using UnityEngine;
 public class SNSPostDataPresenter : MonoBehaviour
 {
     // 관리할 데이터 원본
-    private SNSPostDTO _postModel;
+    private SNSPostDTO _postModel = new SNSPostDTO
+    {
+        ImageIndex = 0, // 첫 번째 CG 이미지 자동 타겟팅
+        Comment = string.Empty,
+
+        ShaderProperty = new UIShaderProperty
+        {
+            Brightness = 0f,    // 밝기 기본 (변화 없음)
+            Contrast = 1f,      // 대비 기본 (원본 유지)
+            Saturation = 1f,    // 채도 기본 (컬러 원본)
+            Temperature = 0.5f  // 온도 기본 (중립)
+        },
+
+        Stickers = new List<StickerTransformData>(),
+        Hashtags = new List<string>()
+    };
 
     private void Awake()
     {
@@ -26,6 +41,17 @@ public class SNSPostDataPresenter : MonoBehaviour
     {
         _postModel = new SNSPostDTO
         {
+            ImageIndex = 0, // 첫 번째 CG 이미지 자동 타겟팅
+            Comment = string.Empty,
+
+            ShaderProperty = new UIShaderProperty
+            {
+                Brightness = 0f,    // 밝기 기본 (변화 없음)
+                Contrast = 1f,      // 대비 기본 (원본 유지)
+                Saturation = 1f,    // 채도 기본 (컬러 원본)
+                Temperature = 0.5f  // 온도 기본 (중립)
+            },
+
             Stickers = new List<StickerTransformData>(),
             Hashtags = new List<string>()
         };
