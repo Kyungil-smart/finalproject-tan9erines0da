@@ -13,6 +13,11 @@ public class googleSheetManager : MonoBehaviour
      
     public async void DataLoad()
     {
+        await DataLoadAsync();
+    }
+
+    public async Task DataLoadAsync()
+    {
         List<Task> tasks = new List<Task>();
         foreach (var item in m_Listdata)
         {

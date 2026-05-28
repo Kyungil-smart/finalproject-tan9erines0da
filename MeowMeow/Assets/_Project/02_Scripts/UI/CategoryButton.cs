@@ -38,6 +38,9 @@ public class CategoryButton : MonoBehaviour
         _wordPanelGroup.alpha = 0f;
         _wordPanel.gameObject.SetActive(false);
 
+        // WordPanel이 1Button보다 먼저 렌더링되도록 고정
+        _wordPanel.SetAsFirstSibling();
+
         _button.onClick.AddListener(OnClick);
     }
 
@@ -119,8 +122,11 @@ public class CategoryButton : MonoBehaviour
     {
         _isExpanded = true;
 
+        // CategoryButtonUnit 전체를 마지막으로 이동 → 다른 유닛들 위에 렌더링
+        // WordPanel은 Awake에서 FirstSibling 고정이라 1Button보다 아래에 렌더링됨
+        transform.parent.SetAsLastSibling();
+
         _wordPanel.gameObject.SetActive(true);
-        _wordPanel.SetAsFirstSibling();
 
         if (_scrollRect != null && _scrollRect.content != null)
         {
