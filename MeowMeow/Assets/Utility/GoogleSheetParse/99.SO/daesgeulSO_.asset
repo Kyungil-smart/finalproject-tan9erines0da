@@ -1,0 +1,532 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6030a286122ccb145b907da1abae1e38, type: 3}
+  m_Name: daesgeulSO_
+  m_EditorClassIdentifier: 
+  url: https://docs.google.com/spreadsheets/d/1m973Tfpslb37-fdWmSR9Vr3Vrct86rK3FzmBYp2enQc/edit?gid=33201847#gid=33201847
+  gid: 33201847
+  genericType: daesgeul
+  m_Data:
+  - <uniqueId>k__BackingField: 70001
+    sentence: "\uC9C4\uC9DC\uB85C\u3160\u3160 \uB108\uBB34 \uACF5\uAC10\uB3FC\uC694\u3160\u3160\u3160!!!!<sprite
+      name=NYE_6><sprite name=NYE_6>"
+    atlas: 100001
+    dependent_ID: 60001
+  - <uniqueId>k__BackingField: 70002
+    sentence: "\u3139\u3147\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60001
+  - <uniqueId>k__BackingField: 70003
+    sentence: "\uCC38\uC73C\uB85C... \uACF5\uAC10\uC774... \uB418\uB294... \uAE00\uC785\uB2C8\uB2E4...<sprite
+      name=NYE_24>"
+    atlas: 100001
+    dependent_ID: 60001
+  - <uniqueId>k__BackingField: 70004
+    sentence: <sprite name=NYE_24><sprite name=NYE_24><sprite name=NYE_24>
+    atlas: 100001
+    dependent_ID: 60001
+  - <uniqueId>k__BackingField: 70005
+    sentence: <sprite name=NYE_15><sprite name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60001
+  - <uniqueId>k__BackingField: 70006
+    sentence: "\uB118\uBAA8 \uADC0\uC5EC\uC6CC\u3160\u3160<sprite name=NYE_15><sprite
+      name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60002
+  - <uniqueId>k__BackingField: 70007
+    sentence: "\uC640\u314B\u314B \uC6B8\uC9D1 \uACE0\uC591\uC774\uB791 \uC644\uC804
+      \uC3D9 \uBE7C\uB2EE\uC558\uB124\u314B\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60002
+  - <uniqueId>k__BackingField: 70008
+    sentence: "\uBA87\uB144 \uC804 \uB5A0\uB098\uBCF4\uB0B8 \uC800\uD76C \uACE0\uC591\uC774\uAC00
+      \uC0DD\uAC01\uB098\uB124\uC694.\uB9CE\uC774 \uADF8\uB9BD\uC2B5\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60002
+  - <uniqueId>k__BackingField: 70009
+    sentence: "\uC815\uB9D0 \uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60002
+  - <uniqueId>k__BackingField: 70010
+    sentence: <sprite name=100007><sprite name=NYE_5><sprite name=NYE_29><sprite
+      name=NYE_29><sprite name=NYE_29>
+    atlas: 100001
+    dependent_ID: 60002
+  - <uniqueId>k__BackingField: 70011
+    sentence: "\uBB49\uCE58 \uC774\uB984\uB3C4 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC694\u3160\u3160\u3160<sprite
+      name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60003
+  - <uniqueId>k__BackingField: 70012
+    sentence: "\u314B\u314B\u314B\uC9C4\uC9DC \uD138\uBB49\uCE58 \uAC19\uB124\u314B\u314B\u314B
+      \uADC0\uC5FD\uB2E4\u314B\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60003
+  - <uniqueId>k__BackingField: 70013
+    sentence: "\uBB49\uCE58\uB77C\uB294 \uC774\uB984\uC774 \uC5B4\uAC10\uBD80\uD130
+      \uCC38 \uADC0\uC5FD\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60003
+  - <uniqueId>k__BackingField: 70014
+    sentence: "\uC544\uC774\uAD6C~~ \uC800\uD76C \uC9D1\uC5D0\uB3C4 \uC774\uB7F0
+      \uD138\uBB49\uCE58 \uC788\uC73C\uBA74 \\n\uC544\uAE4C\uC6CC\uC11C \uCCAD\uC18C\uB3C4
+      \uC81C\uB300\uB85C \uBABB \uD558\uACA0\uB124\uC694~~\u314E\u314E<sprite name=NYE_15><sprite
+      name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60003
+  - <uniqueId>k__BackingField: 70015
+    sentence: <sprite name=NYE_26><sprite name=NYE_26><sprite name=100017><sprite
+      name=NYE_15><sprite name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60003
+  - <uniqueId>k__BackingField: 70016
+    sentence: "\uC124\uD0D5\uC774 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC694~!!<sprite
+      name=NYE_5> \uB354 \uB9CE\uC774 \uC62C\uB824\uC8FC\uC138\uC694!!!<sprite name=NYE_5>"
+    atlas: 100001
+    dependent_ID: 60004
+  - <uniqueId>k__BackingField: 70017
+    sentence: "\uC0C8\uD558\uC598\uC11C \uC9C4\uC9DC \uC124\uD0D5 \uAC19\uB124\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60004
+  - <uniqueId>k__BackingField: 70018
+    sentence: "\uC815\uB9D0 \uD558\uC597\uACE0 \uAE68\uB057\uD574 \uBCF4\uC774\uB294
+      \uACE0\uC591\uC774\uB124\uC694. \uAD00\uB9AC\uB97C \uC798 \uD574 \uC8FC\uC2DC\uB294
+      \uAC83 \uAC19\uC544 \uBCF4\uAE30 \uC88B\uC2B5\uB2C8\uB2E4. "
+    atlas: 100001
+    dependent_ID: 60004
+  - <uniqueId>k__BackingField: 70019
+    sentence: "\uC544\uC720~ \uC774\uBED0\uB77C~~ \uD138\uC774 \uBCF5\uC2AC\uBCF5\uC2AC\uD558\uB2C8
+      \uC19C\uC0AC\uD0D5 \uAC19\uAE30\uB3C4 \uD558\uB124\uC694~~<sprite name=NYE_34>"
+    atlas: 100001
+    dependent_ID: 60004
+  - <uniqueId>k__BackingField: 70020
+    sentence: <sprite name=NYE_27><sprite name=NYE_27><sprite name=NYE_29><sprite
+      name=NYE_29><sprite name=NYE_29>
+    atlas: 100001
+    dependent_ID: 60004
+  - <uniqueId>k__BackingField: 70021
+    sentence: "\uC640 \u3160\u3160\u3160 \uC9C4\uC9DC \uC88B\uACA0\uB2E4\u3160\u3160
+      \uB108\uBB34 \uBD80\uB7EC\uC6CC\uC694\u3160\u3160!!\\n\uCD95\uD558\uD574\uC694!!<sprite
+      name=NYE_23><sprite name=NYE_23>"
+    atlas: 100001
+    dependent_ID: 60005
+  - <uniqueId>k__BackingField: 70022
+    sentence: " \u314A\u314A\u314A\u314A\u314A\u314A<sprite name=NYE_23><sprite name=NYE_23><sprite
+      name=NYE_23>"
+    atlas: 100001
+    dependent_ID: 60005
+  - <uniqueId>k__BackingField: 70023
+    sentence: "\uC774\uC57C~~!! \uC815\uB9D0... \uBA4B\uC9D1\uB2C8\uB2E4~~!! \uC798
+      \uB410\uB124\uC694~~!! \uCD95\uD558 \uB4DC\uB9BD\uB2C8\uB2E4~~!!<sprite name=NYE_23><NYE_22>"
+    atlas: 100001
+    dependent_ID: 60005
+  - <uniqueId>k__BackingField: 70024
+    sentence: "\uC815\uB9D0 \uC798 \uB418\uC168\uB124\uC694. \uCD95\uD558\uB4DC\uB9BD\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60005
+  - <uniqueId>k__BackingField: 70025
+    sentence: <sprite name=NYE_32><sprite name=NYE_32><sprite name=NYE_23><sprite
+      name=NYE_23>
+    atlas: 100001
+    dependent_ID: 60005
+  - <uniqueId>k__BackingField: 70026
+    sentence: "\uC544\uC545\u3160\u3160\u3160\uADC0\uC5EC\uC6CC\uADC0\uC5EC\uC6CC
+      \uB108\uBB34 \uADC0\uC5EC\uC6CC\u3160\u3160\u3160\u3160<sprite name=NYE_15><sprite
+      name=NYE_15><sprite name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60006
+  - <uniqueId>k__BackingField: 70027
+    sentence: "\uC544\uB2C8 \uC774\uAC70 \uC664\uCF00 \uADC0\uC5FD\uB0D0?\u314B\u314B\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60006
+  - <uniqueId>k__BackingField: 70028
+    sentence: " \uC624. \uC815\uB9D0 \uADC0\uC5FD\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60006
+  - <uniqueId>k__BackingField: 70029
+    sentence: "\uC5B4\uBA38~~ \uADC0\uC5EC\uC6CC\uB77C~~<sprite name=NYE_15><sprite
+      name=NYE_15>\uC644\uC804 \uC2EC\uCFF5 \uD574\uBC84\uB838\uB124\uC694~~^^<sprite
+      name=NYE_34><sprite name=NYE_34> "
+    atlas: 100001
+    dependent_ID: 60006
+  - <uniqueId>k__BackingField: 70030
+    sentence: <sprite name=NYE_5><sprite name=NYE_5><sprite name=NYE_15><sprite name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60006
+  - <uniqueId>k__BackingField: 70031
+    sentence: "\uBCF4\uAE30\uB9CC \uD574\uB3C4 \uB108\uBB34 \uD589\uBCF5\uD574 \uBCF4\uC5EC\uC694...!!
+      \uBD80\uB7FD\uB2F9...!!<sprite name=NYE_6><sprite name=NYE_6>"
+    atlas: 100001
+    dependent_ID: 60007
+  - <uniqueId>k__BackingField: 70032
+    sentence: "\uCEAC~ \uC774\uAC8C \uD589\uBCF5\uC774\uC9C0!!\u314B\u314B\u314B<sprite
+      name=NYE_24>"
+    atlas: 100001
+    dependent_ID: 60007
+  - <uniqueId>k__BackingField: 70033
+    sentence: "\uB108\uBB34....\uD589\uBCF5\uD574... \uBCF4\uC774\uB2C8... \uBCF4\uAE30\uAC00...
+      \uCC38~~ \uC88B\uC2B5\uB2C8\uB2E4~~^^\\n\uB298 \uAC74\uAC15<sprite name=NYE_33>\uD558\uC2DC\uACE0~~\uD589\uBCF5\uD55C
+      \uC77C\uB9CC... \uAC00\uB4DD \uD558\uC2ED\uC1FC~~^^<spritename=NYE_28><sprite
+      name=NYE_28>"
+    atlas: 100001
+    dependent_ID: 60007
+  - <uniqueId>k__BackingField: 70034
+    sentence: "\uB108\uBB34 \uBCF4\uAE30 \uC88B\uB124\uC694. \uBCF4\uB294 \uC81C\uAC00
+      \uB2E4 \uAE30\uBD84\uC774 \uC88B\uC544\uC9D1\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60007
+  - <uniqueId>k__BackingField: 70035
+    sentence: <sprite name=NYE_5><sprite name=NYE_5><sprite name=NYE_32><sprite name=NYE_32>
+    atlas: 100001
+    dependent_ID: 60007
+  - <uniqueId>k__BackingField: 70036
+    sentence: "<sprite name=NYE_1><sprite name=NYE_1>\u3160\u3160\u3160\uC5B4\uB5A1\uD574\u3160\u3160\u3160
+      \uD798 \uB0B4\uC138\uC694\u3160\u3160\u3160"
+    atlas: 100001
+    dependent_ID: 60008
+  - <uniqueId>k__BackingField: 70037
+    sentence: "\uD798 \uB0B4...<sprite name=NYE_7>"
+    atlas: 100001
+    dependent_ID: 60008
+  - <uniqueId>k__BackingField: 70038
+    sentence: "\uB9C8\uC74C\uC774 \uB9CE\uC774 \uC0C1\uD558\uC168\uB098 \uBCF4\uAD70\uC694.
+      \uC800\uB3C4 \uB369\uB2EC\uC544 \uB9C8\uC74C\uC774 \uC548 \uC88B\uC544 \uC9D1\uB2C8\uB2E4.\\n\uBD80\uB514
+      \uB9C8\uC74C \uC798 \uCD94\uC2A4\uB974\uC2DC\uAE38 \uBC14\uB78D\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60008
+  - <uniqueId>k__BackingField: 70039
+    sentence: "\uC2AC\uD37C \uD558\uC2DC\uB294 \uBAA8\uC2B5\uC744 \uBCF4\uB2C8 \uB9C8\uC74C\uC774
+      \uB9CE\uC774 \uC548 \uC88B\uB124\uC694~~<sprite name=NYE_6><sprite name=NYE_6>\\n\uB9C8\uC74C
+      \uC798 \uCD94\uC2A4\uB974\uC2DC\uAE38 \uBC14\uB798\uC694... \uD654\uC774\uD305!!<sprite
+      name=NYE_28><sprite name=NYE_28>"
+    atlas: 100001
+    dependent_ID: 60008
+  - <uniqueId>k__BackingField: 70040
+    sentence: <sprite name=NYE_7><sprite name=NYE_7><sprite name=NYE_7>
+    atlas: 100001
+    dependent_ID: 60008
+  - <uniqueId>k__BackingField: 70041
+    sentence: "\uC544\uB2C8. \uC774\uAC70 \uC65C\uC774\uB807\uAC8C \uC774\uBED0\uC694?!?!<sprite
+      name=NYE_7>\uC644\uC804 \uC81C \uCDE8\uD5A5\uC774\uC5D0\uC694!!<sprite name=NYE_7>"
+    atlas: 100001
+    dependent_ID: 60009
+  - <uniqueId>k__BackingField: 70042
+    sentence: "\uC640\u314B\u314B \uC9C4\uC9DC \uAC81\uB098 \uC774\uC058\uB124\u314B\u314B\u314B<sprite
+      name=NYE_24>"
+    atlas: 100001
+    dependent_ID: 60009
+  - <uniqueId>k__BackingField: 70043
+    sentence: "\uD06C\uC544~~!! \uC815\uB9D0 \uB108\uBB34 \uC544\uB984\uB2F5\uC2B5\uB2C8\uB2E4~~!!<sprite
+      name=NYE_28><sprite name=NYE_28>"
+    atlas: 100001
+    dependent_ID: 60009
+  - <uniqueId>k__BackingField: 70044
+    sentence: "\uC640\uC6B0~~!! \uB108\uBB34 \uC608\uC058\uB124\uC694~~<sprite name=100034>
+      \uB450 \uB208\uC73C\uB85C \uC9C1\uC811 \uBCF4\uACE0\uC2F6\uC744 \uC815\uB3C4\uC5D0\uC694~~<sprite
+      name=NYE_22>"
+    atlas: 100001
+    dependent_ID: 60009
+  - <uniqueId>k__BackingField: 70045
+    sentence: <sprite name=NYE_32><sprite name=NYE_32><sprite name=NYE_24><sprite
+      name=NYE_24>
+    atlas: 100001
+    dependent_ID: 60009
+  - <uniqueId>k__BackingField: 70046
+    sentence: "<sprite name=NYE_14><sprite name=NYE_14>\uBB50\uC57C?! \uB204\uAC00
+      \uC774\uB807\uAC8C \uD654\uB098\uAC8C \uD574\uC368!! \uB9D0\uB9CC \uD574\uC694!! 
+      \uB0B4\uAC00 \uD655 \uD63C\uB0B4\uC8FC\uAED8!!<sprite name=NYE_9>"
+    atlas: 100001
+    dependent_ID: 60010
+  - <uniqueId>k__BackingField: 70047
+    sentence: "\uC640... \uC774\uAC74 \uC880 \uD654\uB0BC \uB9CC \uD558\uB124...<sprite
+      name=NYE_4>"
+    atlas: 100001
+    dependent_ID: 60010
+  - <uniqueId>k__BackingField: 70048
+    sentence: "\uC774\uB7F0~~ \uBAB9\uC4F8 \uC77C\uC774 \uC77C\uC5B4\uB098\uB2E4\uB2C8...
+      \uC815\uB9D0... \uACC4\uD0C4\uC2A4\uB7FD\uC2B5\uB2C8\uB2E4...!<sprite name=NYE_9>"
+    atlas: 100001
+    dependent_ID: 60010
+  - <uniqueId>k__BackingField: 70049
+    sentence: "\uC138\uC0C1\uC5D0...!! \uC5B4\uB5BB\uAC8C \uC774\uB7F0 \uC77C\uC774
+      \uC0DD\uAE38 \uC218\uAC00 \uC788\uB294\uC9C0~~!!<sprite name=NYE_9><sprite
+      name=NYE_9>\\n\uC815\uB9D0 \uD654\uAC00 \uB098\uB124\uC694~~!!<sprite name=NYE_4>"
+    atlas: 100001
+    dependent_ID: 60010
+  - <uniqueId>k__BackingField: 70050
+    sentence: <sprite name=NYE_4><sprite name=NYE_4><sprite name=NYE_9><sprite name=NYE_9>
+    atlas: 100001
+    dependent_ID: 60010
+  - <uniqueId>k__BackingField: 70051
+    sentence: "\uD798 \uB0B4\uC138\uC694\u3160\u3160\u3160<sprite name=NYE_10><sprite
+      name=NYE_10>"
+    atlas: 100001
+    dependent_ID: 60011
+  - <uniqueId>k__BackingField: 70052
+    sentence: "\uC774\uB7F4 \uB550 \uC26C\uB294 \uAC8C \uCD5C\uACE0\uC57C. \uBC16\uC5D0
+      \uB098\uAC00\uC11C \uB9DB\uC788\uB294 \uAC70\uB77C\uB3C4 \uBA39\uACE0 \uC640!<sprite
+      name=NYE_21>"
+    atlas: 100001
+    dependent_ID: 60011
+  - <uniqueId>k__BackingField: 70053
+    sentence: "\uB108\uBB34 \uC6B0\uC6B8\uD574 \uD558\uC2DC\uC9C0 \uB9C8\uC2DC\uACE0
+      \uD798 \uB0B4\uC138\uC694."
+    atlas: 100001
+    dependent_ID: 60011
+  - <uniqueId>k__BackingField: 70054
+    sentence: "\uC6B0\uC6B8\uD574 \uD558\uC2DC\uB294 \uBAA8\uC2B5\uC774 \uC2EC\uD788
+      \uC548\uD0C0\uAE5D\uC2B5\uB2C8\uB2E4.<sprite name=NYE_10>\\n\uD798 \uB0B4\uC2DC\uAE38
+      \uBC14\uB78D\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60011
+  - <uniqueId>k__BackingField: 70055
+    sentence: <sprite name=NYE_7><sprite name=NYE_5><sprite name=NYE_1><sprite name=NYE_1>
+    atlas: 100001
+    dependent_ID: 60011
+  - <uniqueId>k__BackingField: 70056
+    sentence: "\uC6B0\uC640\uC544\uC544\uC544\uC559!! \uB108\uBB34 \uD3ED\uC2E0\uD3ED\uC2E0\uD574
+      \uBCF4\uC5EC\uC694<sprite name=NYE_3>"
+    atlas: 100001
+    dependent_ID: 60012
+  - <uniqueId>k__BackingField: 70057
+    sentence: "\uC624... \uC9C4\uC9DC \uD3ED\uC2E0\uD574 \uBCF4\uC778\uB2E4...<sprite
+      name=NYE_3>"
+    atlas: 100001
+    dependent_ID: 60012
+  - <uniqueId>k__BackingField: 70058
+    sentence: "\uBCF4\uAE30\uB9CC \uD574\uB3C4 \uB9C8\uC74C\uC774 \uD3B8\uC548\uD574
+      \uC9C0\uB294 \uB290\uB08C\uC774 \uB4DC\uB294 \uD3EC\uADFC\uD568\uC774\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60012
+  - <uniqueId>k__BackingField: 70059
+    sentence: "\uC544\uC774\uACE0~~ \uB108\uBB34 \uD3ED\uC2E0\uD574 \uBCF4\uC774\uB124\uC694~<sprite
+      name=NYE_15><sprite name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60012
+  - <uniqueId>k__BackingField: 70060
+    sentence: <sprite name=NYE_26><sprite name=NYE_26><sprite name=NYE_24><sprite
+      name=NYE_24>
+    atlas: 100001
+    dependent_ID: 60012
+  - <uniqueId>k__BackingField: 70061
+    sentence: "\uBD80\uB7FD\uB2F9...!! \uC800\uB3C4 \uC4F0\uB2F4\uC4F0\uB2F4 \uD574
+      \uBCF4\uACE0 \uC2F6\uC5B4\uC694!!<sprite name=NYE_15><sprite name=NYE_15><sprite
+      name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60013
+  - <uniqueId>k__BackingField: 70062
+    sentence: "\uC4F0\uB2E4\uB4EC\uC5C8\uC744 \uB54C \uC5B4\uB5A4 \uAC10\uCD09\uC77C\uC9C0
+      \uAD81\uAE08\uD558\uAE34 \uD558\uB124\u314B\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60013
+  - <uniqueId>k__BackingField: 70063
+    sentence: "\uC5B4\uBA38\uB098~!! \uBCF4\uB4DC\uB77C\uC640 \uBCF4\uC774\uB294
+      \uAC83\uC774. \uC815\uB9D0 \uC4F0\uB2E4\uB4EC\uACE0 \uC2F6\uC5B4\uC9C0\uB124\uC694~~^^<sprite
+      name=NYE_15><sprite name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60013
+  - <uniqueId>k__BackingField: 70064
+    sentence: "\uC4F0\uB2E4\uB4EC\uC73C\uBA74 \uCC38 \uAE30\uBD84\uC774 \uC88B\uC544\uC9C8
+      \uAC83 \uAC19\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60013
+  - <uniqueId>k__BackingField: 70065
+    sentence: <sprite name=NYE_27><sprite name=NYE_26><sprite name=NYE_32>
+    atlas: 100001
+    dependent_ID: 60013
+  - <uniqueId>k__BackingField: 70066
+    sentence: "\uB098\uB978\uD55C \uD45C\uC815\uB3C4 \uC815\uB9D0 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC694!!<sprite
+      name=NYE_15><sprite name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60014
+  - <uniqueId>k__BackingField: 70067
+    sentence: "\uB098\uB978\uD55C \uBAA8\uC2B5\uC744 \uBCF4\uB2C8\uAE4C \uB098\uAE4C\uC9C0
+      \uC878\uB9BD\uB124\u314B\u314B<sprite name=NYE_11>"
+    atlas: 100001
+    dependent_ID: 60014
+  - <uniqueId>k__BackingField: 70068
+    sentence: "\uACE0\uC591\uC774\uB294 \uD558\uB8E8\uC5D0 12~16\uC2DC\uAC04 \uAE4C\uC9C0
+      \uC218\uBA74\uC744 \uD55C\uB2E4\uACE0 \uD569\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60014
+  - <uniqueId>k__BackingField: 70069
+    sentence: "\uC878\uB9B0 \uC5BC\uAD74\uB3C4 \uC815\uB9D0 \uCC9C\uC0AC\uAC19\uB124\uC694~~^^<sprite
+      name=NYE_29><sprite name=NYE_29>"
+    atlas: 100001
+    dependent_ID: 60014
+  - <uniqueId>k__BackingField: 70070
+    sentence: <sprite name=NYE_11><sprite name=NYE_11><sprite name=NYE_15><sprite
+      name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60014
+  - <uniqueId>k__BackingField: 70071
+    sentence: "\uC644\uC804 \uB530\uB73B\uD574 \uBCF4\uC5EC\uC694!! \uB108\uBB34
+      \uBCF4\uAE30 \uC88B\uC544\uC694!<sprite name=NYE_0><sprite name=NYE_0>"
+    atlas: 100001
+    dependent_ID: 60015
+  - <uniqueId>k__BackingField: 70072
+    sentence: "\uB0A0\uC528 \uD480\uB824\uC11C \uB9CE\uC774 \uB530\uB73B\uD55C\uB370...
+      \uACE0\uC591\uC774\uB294 \uC0B0\uCC45 \uC548 \uC88B\uC544\uD558\uB098?"
+    atlas: 100001
+    dependent_ID: 60015
+  - <uniqueId>k__BackingField: 70073
+    sentence: "\uACE0\uC591\uC774\uB3C4 \uB0A0\uC528\uAC00 \uB530\uB73B\uD574\uC11C
+      \uAE30\uBD84\uC774 \uC88B\uC544\uBCF4\uC774\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60015
+  - <uniqueId>k__BackingField: 70074
+    sentence: "\uC5B4\uBA38\uB098~ \uBCF4\uAE30\uB9CC \uD574\uB3C4 \uB9C8\uC74C\uC774
+      \uB530\uB73B\uD574 \uC9C0\uB294 \uAC83 \uAC19\uB124\uC694~~<sprite name=NYE_5>"
+    atlas: 100001
+    dependent_ID: 60015
+  - <uniqueId>k__BackingField: 70075
+    sentence: <sprite name=NYE_28><sprite name=NYE_5><sprite name=NYE_5>
+    atlas: 100001
+    dependent_ID: 60015
+  - <uniqueId>k__BackingField: 70076
+    sentence: "\uC5B4\uCA4C\uB2E4\uBCF4\uB2C8 \uC624\uB298\uB3C4 \uD558\uB8E8 \uC885\uC77C
+      \uB0E5\uB0E5\uC2A4\uD0C0 \uBCF4\uBA74\uC11C \uC6D4\uB8E8\uC911\uC774\uB124\uC5EC...<sprite
+      name=NYE_17><sprite name=NYE_17>"
+    atlas: 100001
+    dependent_ID: 60016
+  - <uniqueId>k__BackingField: 70077
+    sentence: "\uD558\uB098\uB9CC \uBCF4\uACE0 \uC790\uB824\uACE0 \uD588\uB294\uB370.
+      \uB610 \uB2E4\uB978 \uAE00\uC744 \uBCF4\uACE0 \uB9D0\uC558\uC5B4.<sprite name=NYE_16><sprite
+      name=NYE_16>"
+    atlas: 100001
+    dependent_ID: 60016
+  - <uniqueId>k__BackingField: 70078
+    sentence: "\uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB4E4 \uBCF4\uBA74\uC11C \uD790\uB9C1\uD569\uB2C8\uB2E4.\\nSNS\uB3C4
+      \uC801\uB2F9\uD788 \uBCF4\uBA74 \uC815\uB9D0 \uD070 \uB3C4\uC6C0\uC774 \uB418\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60016
+  - <uniqueId>k__BackingField: 70079
+    sentence: "\uC624\uB298 \uC62C\uB9AC\uC2E0 \uAE00\uB3C4 \uC798 \uBD24\uC5B4\uC694~~<spring
+      name=NYE_32><spring name=NYE_32>\\n\uB298 \uC88B\uC740 \uAE00 \uC62C\uB824
+      \uC8FC\uC154\uC11C \uACE0\uB9D9\uC2B5\uB2C8\uB2E4~~<sprite name=NYE_29><sprite
+      name=NYE_29>"
+    atlas: 100001
+    dependent_ID: 60016
+  - <uniqueId>k__BackingField: 70080
+    sentence: <sprite name=NYE_25><sprite name=NYE_25><sprite name=NYE_24><sprite
+      name=NYE_24>
+    atlas: 100001
+    dependent_ID: 60016
+  - <uniqueId>k__BackingField: 70081
+    sentence: "\uC73C\uC544\uC544\u3160\u3160\u3160\u3160 \uC800 \uBCF4\uB4E4\uBCF4\uB4E4\uD55C
+      \uD138\u3160\u3160\u3160\\n\uC9C4\uC9DC \uB108\uBB34 \uC0AC\uB791\uC2A4\uB7EC\uC6CC\uC694\u3160\u3160\u3160<sprite
+      name=NYE_1><sprite name=NYE_1><sprite name=NYE_29><sprite name=NYE_29>"
+    atlas: 100001
+    dependent_ID: 60017
+  - <uniqueId>k__BackingField: 70082
+    sentence: "\uC640\u314B\u314B\u314B \uC9C4\uC9DC \uBCF4\uB4E4\uBCF4\uB4E4\uD55C
+      \uC19C\uBB49\uCE58\uAC19\uB124\u314B\u314B\u314B "
+    atlas: 100001
+    dependent_ID: 60017
+  - <uniqueId>k__BackingField: 70083
+    sentence: "\uC561\uC815 \uB108\uBA38\uB85C \uD138\uC758 \uBCF4\uB4E4\uBCF4\uB4E4\uD568\uC774
+      \uB290\uAEF4\uC9D1\uB2C8\uB2E4.\\n\uD138 \uAD00\uB9AC\uB97C \uC815\uB9D0 \uD6CC\uB96D\uD558\uAC8C
+      \uD558\uC168\uB098 \uBCF4\uB124\uC694. "
+    atlas: 100001
+    dependent_ID: 60017
+  - <uniqueId>k__BackingField: 70084
+    sentence: "\uD138\uC774.. \uCC38\uC73C\uB85C... \uBCF4\uB4DC\uB78D\uACE0 \uC608\uBED0...
+      \uBCF4\uC785\uB2C8\uB2E4~~^^<sprite name=NYE_32><sprite name=NYE_24>"
+    atlas: 100001
+    dependent_ID: 60017
+  - <uniqueId>k__BackingField: 70085
+    sentence: <sprite name=NYE_26><sprite name=NYE_26><sprite name=NYE_32><sprite
+      name=NYE_29><sprite name=NYE_29>
+    atlas: 100001
+    dependent_ID: 60017
+  - <uniqueId>k__BackingField: 70086
+    sentence: "\uACE0\uC591\uC774\uB4E4\uB3C4 \uC544\uBB34 \uC0AC\uB8CC\uB098 \uBA39\uC9C0
+      \uC54A\uB294\uAD70\uC694?!<sprite name=NYE_13><sprite name=NYE_13>"
+    atlas: 100001
+    dependent_ID: 60018
+  - <uniqueId>k__BackingField: 70087
+    sentence: "\uC544\uBB34\uB9AC \uC0AC\uB8CC\uB77C\uB3C4 \uB9E4\uBC88 \uB611\uAC19\uC740
+      \uB9DB\uB9CC \uBA39\uC73C\uBA74 \\n\uACE0\uC591\uC774\uB3C4 \uC9C8\uB9AC\uAE34
+      \uD560 \uB4EF?\u314B\u314B\u314B<sprite name=NYE_21><sprite name=NYE_21>"
+    atlas: 100001
+    dependent_ID: 60018
+  - <uniqueId>k__BackingField: 70088
+    sentence: "\uACE0\uC591\uC774\uAC00 \uC0AC\uB8CC\uB97C \uC798 \uC548 \uBA39\uC744\uB54C\uC5D4\\n
+      \uC0B4\uC9DD \uB370\uC6CC\uC8FC\uBA74 \uC88B\uB2E4\uACE0 \uD569\uB2C8\uB2E4."
+    atlas: 100001
+    dependent_ID: 60018
+  - <uniqueId>k__BackingField: 70089
+    sentence: "\uB9DB\uC788\uAC8C \uC798~\uBA39\uACE0 \uD56D\uC0C1 \uAC74\uAC15\uD588\uC73C\uBA74
+      \uC88B\uACA0\uB124\uC694~~<sprite name=NYE_33><sprite name=NYE_33>"
+    atlas: 100001
+    dependent_ID: 60018
+  - <uniqueId>k__BackingField: 70090
+    sentence: <sprite name=NYE_27><sprite name=NYE_21><sprite name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60018
+  - <uniqueId>k__BackingField: 70091
+    sentence: "\uACE0\uC591\uC774\uB4E4\uC774 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC11C\\n\uC7A5\uB09C\uAC10\uC774\uB77C\uB3C4
+      \uC120\uBB3C \uD574 \uC8FC\uACE0 \uC2F6\uC5B4\uC694!!<sprite name=NYE_0><sprite
+      name=NYE_0>"
+    atlas: 100001
+    dependent_ID: 60019
+  - <uniqueId>k__BackingField: 70092
+    sentence: "\uACE0\uC591\uC774 \uC7A5\uB09C\uAC10\uB3C4 \uAF64 \uC885\uB958\uAC00
+      \uB9CE\uAD6C\uB098\u314B\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60019
+  - <uniqueId>k__BackingField: 70093
+    sentence: "\uACE0\uC591\uC774\uB3C4 \uC740\uADFC\uD788 \uC678\uB85C\uC6C0\uC744
+      \uC798 \uD0C4\uB2E4\uACE0 \uD558\uB354\uB77C\uACE0\uC694."
+    atlas: 100001
+    dependent_ID: 60019
+  - <uniqueId>k__BackingField: 70094
+    sentence: "\uC800\uB807\uAC8C \uC990\uAC81\uAC8C \uB178\uB294 \uBAA8\uC2B5\uC744
+      \uBCF4\uBA74. \uC7A5\uB09C\uAC10\uC744 \uC815\uB9D0\\n\uC794\uB729 \uC0AC \uC8FC\uACE0
+      \uC2F6\uB124\uC694!!<sprite name=NYE_5>"
+    atlas: 100001
+    dependent_ID: 60019
+  - <uniqueId>k__BackingField: 70095
+    sentence: <sprite name=NYE_30><sprite name=NYE_32><sprite name=NYE_15>
+    atlas: 100001
+    dependent_ID: 60019
+  - <uniqueId>k__BackingField: 70096
+    sentence: "\uC774\uB7F0 \uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB4E4 \uD0A4\uC6B8
+      \uC218 \uC788\uB2E4\uBA74...\\n\uC800\uB3C4 \uC9D1\uC0AC\uB178\uB987 \uC5F4\uC2EC\uD788
+      \uD560 \uC790\uC2E0 \uC788\uC5B4\uC694!! "
+    atlas: 100001
+    dependent_ID: 60020
+  - <uniqueId>k__BackingField: 70097
+    sentence: "\uC8FC\uC778\uC774 \uC544\uB2C8\uB77C \uC9D1\uC0AC\uB77C\uB2C8\u314B\u314B\u314B
+      \uAD00\uACC4\uAC00 \uC815 \uBC18\uB300\uC600\uB124\u314B\u314B"
+    atlas: 100001
+    dependent_ID: 60020
+  - <uniqueId>k__BackingField: 70098
+    sentence: "\uB204\uAD70\uAC00\uB97C \uB3CC\uBCF4\uB294 \uC77C\uC744 \uD55C\uB2E4\uB294
+      \uC810\uC5D0\uC11C \uBCFC \uB54C.\\n\uC8FC\uC778 \uBCF4\uB2E8 \uC9D1\uC0AC\uB77C\uB294
+      \uD45C\uD604\uC774 \uB354 \uC5B4\uC6B8\uB9AC\uAE34 \uD558\uB124\uC694."
+    atlas: 100001
+    dependent_ID: 60020
+  - <uniqueId>k__BackingField: 70099
+    sentence: "\uC800\uB3C4 \uC2A4\uC2A4\uB85C \uC9D1\uC0AC\uB77C\uACE0 \uB9D0 \uD558\uC9C0\uB9CC.\\n\uC0AC\uC2E4
+      \uC9D1\uC0AC \uBCF4\uB2E8 \uC5C4\uB9C8\uC758 \uB9C8\uC74C\uC73C\uB85C\\n\uC800\uD76C
+      \uC9D1 \uACE0\uC591\uC774\uB97C\uD0A4\uC6B0\uACE0 \uC788\uB2F5\uB2C8\uB2E4~<sprite
+      name=NYE_29><sprite name=NYE_29>"
+    atlas: 100001
+    dependent_ID: 60020
+  - <uniqueId>k__BackingField: 70100
+    sentence: "\uC8FC\uC778\uC774\uAC74 \uC9D1\uC0AC\uAC74. \uD45C\uD604\uC774 \uBB50\uAC00
+      \uC911\uC694\uD560\uAE4C\uC694.\\n\uC911\uC694\uD55C \uAC74 \uACE0\uC591\uC774\uAC00
+      \uADC0\uC5FD\uB2E4\uB294 \uAC81\uB2C8\uB2E4.<sprite name=NYE_15>"
+    atlas: 100001
+    dependent_ID: 60020
