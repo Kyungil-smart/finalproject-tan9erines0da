@@ -31,6 +31,30 @@ public enum SubscribeType
     DeSpawnObjectsComplete,
     //d
     dontDestroyBreak,
+    // ==========================================
+    // [SNS 콘텐츠 MVP 데이터 흐름 전용 라인]
+    // ==========================================
+
+    /// <summary>
+    /// UI 패널들이 현재까지 편집된 
+    /// 전체 SNSPostDTO 데이터를 요구할 때 발행 (콜백 인자 필수)
+    /// 인자 타입: Action<SNSPostDTO>
+    /// </summary>
+    Request_CurrentPostContext,
+
+    /// <summary>
+    /// 각 UI 패널이 편집을 완료하고 
+    /// 중앙 프레젠터에 가공된 DTO 데이터를 밀어 넣을 때 발행
+    /// 인자 타입: SNSPostDTO
+    /// </summary>
+    Update_PostModelData,
+
+    /// <summary>
+    /// 포스트 편집이 최종 완료되어 
+    /// 로컬 JSON 저장 및 업로드 루틴을 트리거할 때 발행
+    /// 인자 타입: 없음 (Action)
+    /// </summary>
+    On_SubmitPostProcess
 }
 public class SubscribeManager : MonoBehaviour
 {
