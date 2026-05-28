@@ -11,6 +11,7 @@ public class StickerEditor : MonoBehaviour
     [Header("해당 스티커 오브젝트 프리펩 참조")]
     [SerializeField] private GameObject _gameObject;
 
+    [Header("프리뷰 이미지를 참조")]
     [SerializeField] private Image _targetImage;
 
     private void Awake()
@@ -31,10 +32,12 @@ public class StickerEditor : MonoBehaviour
 
     private void OnClickSetSticker()
     {
-        GameObject obj = Instantiate(_image.gameObject, _targetImage.transform);
+        GameObject obj = Instantiate(_gameObject, _targetImage.transform);
 
-        RectTransform rect = obj.GetComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(190f, 150f); // 원하는 크기
-        rect.anchoredPosition = new Vector2(500f, 700f);
+        SpriteRenderer spriteRenderer = obj.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = _image.sprite;
+
+        obj.transform.localPosition = new Vector3(500f, 700f, 0f);
+        obj.transform.localScale = Vector3.one;
     }
 }
