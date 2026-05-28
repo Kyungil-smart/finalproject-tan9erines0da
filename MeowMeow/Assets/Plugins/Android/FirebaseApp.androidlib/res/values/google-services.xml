@@ -1,11 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
   <string name="gcm_defaultSenderId" translatable="false">897795581002</string>
   <string name="google_storage_bucket" translatable="false">meowmeowteam1.firebasestorage.app</string>
   <string name="project_id" translatable="false">meowmeowteam1</string>
   <string name="google_api_key" translatable="false">AIzaSyD6TLAVbjWQH-DduXRSuWvEW-eaP9iS4Qs</string>
   <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD6TLAVbjWQH-DduXRSuWvEW-eaP9iS4Qs</string>
   <string name="google_app_id" translatable="false">1:897795581002:android:79ec2ee3edbbf8486532b3</string>
-  <string name="default_android_client_id" translatable="false">897795581002-t1411bk9u3de0e2hams44si98359q6kp.apps.googleusercontent.com</string>
-  <string name="default_web_client_id" translatable="false">897795581002-qr7s38o0cpr5lcaa0ieepsr37futefh0.apps.googleusercontent.com</string>
 </resources>
