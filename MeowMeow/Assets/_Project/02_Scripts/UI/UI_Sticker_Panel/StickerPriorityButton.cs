@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class StickerPriorityButton : MonoBehaviour
 {
     private Button _button;
-    private StickerStateSingleton.StickerPair _pair;
 
     private void Awake()
     {
@@ -23,13 +22,19 @@ public class StickerPriorityButton : MonoBehaviour
         _button.onClick.RemoveListener(OnClickSelectSticker);
     }
 
-     public void SetPair(StickerStateSingleton.StickerPair pair)
-    {
-        _pair = pair;
-    }
-
     private void OnClickSelectSticker()
     {
-        if (_pair == null) return;
+        if (StickerStateSingleton.Instance == null) return;
+
+        List<StickerStateSingleton.StickerPair> list = StickerStateSingleton.Instance.stickers;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].button == gameObject)
+            {
+                ObjectPinchScaler.Instance.OnSelect(list[i].sticker.GetComponent<TouchInteractor>());
+                return;
+            }
+        }
     }
 }

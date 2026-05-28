@@ -5,8 +5,10 @@ using UnityEngine.InputSystem.Controls;
 
 public class ObjectPinchScaler : MonoBehaviour
 {
+    public static ObjectPinchScaler Instance { get; private set; }
+
     [Header("스티커 이동 관련")]
-    [SerializeField] private float _moveSpeed = 1f;
+    [SerializeField] private float _moveSpeed = 1.5f;
 
     [Header("스티커 확대 관련")]
     [SerializeField] private float _scaleSpeed = 0.005f;
@@ -24,18 +26,29 @@ public class ObjectPinchScaler : MonoBehaviour
     // 이전 터치 방향 저장
     private Vector2 _previousDirection;
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
+
     private void OnEnable()
     {
-        TouchInputHandler.Instance.OnObjectSelected += OnSelect;
-        TouchInputHandler.Instance.OnSelectionCleared += OnUnselect;
+        //TouchInputHandler.Instance.OnObjectSelected += OnSelect;
+        //TouchInputHandler.Instance.OnSelectionCleared += OnUnselect;
         TouchInputHandler.Instance.OnDragDelta += OnDrag;
         TouchInputHandler.Instance.OnPinchDelta += OnPinch;
     }
 
     private void OnDisable()
     {
-        TouchInputHandler.Instance.OnObjectSelected -= OnSelect;
-        TouchInputHandler.Instance.OnSelectionCleared -= OnUnselect;
+        //TouchInputHandler.Instance.OnObjectSelected -= OnSelect;
+        //TouchInputHandler.Instance.OnSelectionCleared -= OnUnselect;
         TouchInputHandler.Instance.OnDragDelta -= OnDrag;
         TouchInputHandler.Instance.OnPinchDelta -= OnPinch;
     }
@@ -45,16 +58,16 @@ public class ObjectPinchScaler : MonoBehaviour
         RotateTarget();
     }
 
-    private void OnSelect(TouchInteractor obj)
+    public void OnSelect(TouchInteractor obj)
     {
         _target = obj.GetComponent<RectTransform>();
         _parent = _target.parent as RectTransform;
     }
 
-    private void OnUnselect()
-    {
-        _target = null;
-    }
+    //private void OnUnselect()
+    //{
+    //    _target = null;
+    //}
 
     #region 스티커 이동 함수
     private void OnDrag(Vector2 delta)

@@ -60,6 +60,8 @@ public class StickerEditor : MonoBehaviour
 
         StickerStateSingleton.Instance.stickers.Add(pair);
 
+        ObjectPinchScaler.Instance.OnSelect(pair.sticker.GetComponent<TouchInteractor>());
+
         StickerStateSingleton.Instance.CurrentCount++;
         StickerStateSingleton.Instance.StickerCountUpload();
     }
