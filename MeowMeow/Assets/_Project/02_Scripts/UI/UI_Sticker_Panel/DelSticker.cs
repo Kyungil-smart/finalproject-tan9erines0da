@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,24 +16,33 @@ public class DelSticker : MonoBehaviour
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(OnClickDelSuicker);
+        _button.onClick.AddListener(OnClickDelSticker);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OnClickDelSuicker);
+        _button.onClick.RemoveListener(OnClickDelSticker);
     }
 
-    private void OnClickDelSuicker()
+    private void OnClickDelSticker()
     {
         if (StickerStateSingleton.Instance == null) return;
-        StickerStateSingleton.Instance.CurrentCount--;
 
-        StickerStateSingleton.StickerPair pair = StickerStateSingleton.Instance.stickers[0];
-        Destroy(pair.sticker);
-        Destroy(pair.button);
-        StickerStateSingleton.Instance.stickers.RemoveAt(0);
+        List<StickerStateSingleton.StickerPair> list = StickerStateSingleton.Instance.stickers;
 
-        StickerStateSingleton.Instance.StickerCountUpload();
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].sticker == _stickerObject)
+            {
+                Destroy(list[i].sticker);
+                Destroy(list[i].button);
+
+                list.RemoveAt(i);
+
+                StickerStateSingleton.Instance.CurrentCount--;
+                StickerStateSingleton.Instance.StickerCountUpload();
+                return;
+            }
+        }
     }
 }

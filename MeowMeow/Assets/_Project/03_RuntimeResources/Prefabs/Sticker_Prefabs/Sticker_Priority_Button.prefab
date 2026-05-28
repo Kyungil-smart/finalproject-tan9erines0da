@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9122840264208081266}
   - component: {fileID: 9023672508528281970}
   - component: {fileID: 6975138348703288645}
+  - component: {fileID: 756515126292371465}
   m_Layer: 5
   m_Name: Sticker_Priority_Button
   m_TagString: Untagged
@@ -121,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &756515126292371465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6432515598495325941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d3d64750422ee47b50c0201e735bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7208920022545857978
 GameObject:
   m_ObjectHideFlags: 0
