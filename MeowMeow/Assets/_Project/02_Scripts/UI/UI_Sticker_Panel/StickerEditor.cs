@@ -26,10 +26,20 @@ public class StickerEditor : MonoBehaviour
     [Header("StickerDB(SO)파일과 매칭시킬 자신의 번호를 설정")]
     [SerializeField] private int _myIndex;
 
+    public int MyIndex
+    {
+        get => _myIndex;
+        set => _myIndex = value;
+    }
+
     private void Awake()
     {
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
+    }
+
+    private void Start()
+    {
         _image.sprite = _stickerDB.GetSprite(_myIndex);
     }
 
