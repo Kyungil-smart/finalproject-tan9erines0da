@@ -35,6 +35,7 @@ public class StickerStateSingleton : MonoBehaviour
     {
         public GameObject sticker;
         public GameObject button;
+        public int stickerIndex;
     }
 
     public List<StickerPair> stickers = new List<StickerPair>();

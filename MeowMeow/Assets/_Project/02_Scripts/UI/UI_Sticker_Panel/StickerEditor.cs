@@ -19,10 +19,18 @@ public class StickerEditor : MonoBehaviour
     [Header("Sticker_Priority_Button 프리펩을 참조")]
     [SerializeField] private Button _priorityButton;
 
+    // 인덱스 기반으로 이미지 데이터를 넘겨주기 위해서
+    [Header("StickerDB(SO)파일을 참조")]
+    [SerializeField] private StickerImageDatabase _stickerDB;
+
+    [Header("StickerDB(SO)파일과 매칭시킬 자신의 번호를 설정")]
+    [SerializeField] private int _myIndex;
+
     private void Awake()
     {
         _button = GetComponent<Button>();
         _image = GetComponent<Image>();
+        _image.sprite = _stickerDB.GetSprite(_myIndex);
     }
 
     private void OnEnable()
@@ -44,7 +52,9 @@ public class StickerEditor : MonoBehaviour
         GameObject obj = Instantiate(_stickerImage.gameObject, _targetImage.transform);
 
         Image image = obj.GetComponent<Image>();
-        image.sprite = _image.sprite;
+        image.sprite = _stickerDB.GetSprite(_myIndex);
+
+        pair.stickerIndex = _myIndex;
 
         RectTransform rect = obj.GetComponent<RectTransform>();
         rect.anchoredPosition = Vector2.zero;

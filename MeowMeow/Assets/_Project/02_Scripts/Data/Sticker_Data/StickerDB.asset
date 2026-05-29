@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08771f437f4f9146a91b611322d8312, type: 3}
+  m_Name: StickerDB
+  m_EditorClassIdentifier: 
+  _stickerSprites:
+  - {fileID: -1186687208367231518, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 2426364253943060760, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 3612981505660099867, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 4964157935855061337, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -4488651720437378039, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -4830372966712193099, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -4822518077062503383, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 1610775387232055823, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 8471209926698074038, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 3402255790161777984, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -1282117594502120364, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -1722296019242439936, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: -6644146154516457118, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 6978742490378257732, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
+  - {fileID: 1172330544521407116, guid: 617d470be022a8f419b1aeb1c5b03bbb, type: 3}
