@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 /// <summary>
 /// 터치 입력을 수신하고, UI 판별/오브젝트 선택/카메라 조작 입력을 분배한다.
@@ -128,8 +130,8 @@ public class TouchInputHandler : MonoBehaviour
     // 터치 입력 처리----------------------
     private void OnPrimaryTouchStart(InputAction.CallbackContext context)
     {
-        _isPrimaryOnUI = IsPointerOverUI();
-        if (_isPrimaryOnUI) return;
+        //_isPrimaryOnUI = IsPointerOverUI();
+        //if (_isPrimaryOnUI) return;
 
         _isPrimaryTouching = true;
         _isDragConfirmed = false;
@@ -233,17 +235,22 @@ public class TouchInputHandler : MonoBehaviour
     // 오브젝트 선택---------------------------------
     private void TrySelectObject(Vector2 screenPos)
     {
-        Vector2 worldPos = ScreenToWorld(screenPos);
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = screenPos;
 
-        if (hit.collider != null)
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        for (int i = 0; i < results.Count; i++)
         {
-            TouchInteractor obj = hit.collider.GetComponent<TouchInteractor>();
+            TouchInteractor obj = results[i].gameObject.GetComponent<TouchInteractor>();
 
-            if (obj == null) return;
-            OnObjectSelected?.Invoke(obj);
-            _onObjectSelected?.Invoke(obj);
-            return;
+            if (obj != null)
+            {
+                OnObjectSelected?.Invoke(obj);
+                _onObjectSelected?.Invoke(obj);
+                return;
+            }
         }
 
         OnSelectionCleared?.Invoke();
@@ -261,11 +268,11 @@ public class TouchInputHandler : MonoBehaviour
         return !EventSystem.current.IsPointerOverGameObject();
     }
 
-    private bool IsPointerOverUI()
-    {
-        if (EventSystem.current == null) return false;
-        return EventSystem.current.IsPointerOverGameObject();
-    }
+    //private bool IsPointerOverUI()
+    //{
+    //    if (EventSystem.current == null) return false;
+    //    return EventSystem.current.IsPointerOverGameObject();
+    //}
 
     private Vector3 ScreenToWorld(Vector2 screenPos)
     {
