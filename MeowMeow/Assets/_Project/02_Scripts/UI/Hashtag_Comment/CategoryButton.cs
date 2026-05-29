@@ -95,6 +95,13 @@ public class CategoryButton : MonoBehaviour
             var btn = go.AddComponent<Button>();
             btn.targetGraphic = img;
 
+            string capturedWord = word;
+            btn.onClick.AddListener(() =>
+            {
+                CommentZoneManager.Instance?.DeselectAll();
+                CommentZoneManager.Instance?.TryAddWord(capturedWord);
+            });
+
             var textGO = new GameObject("Text", typeof(RectTransform));
             textGO.transform.SetParent(go.transform, false);
 
@@ -114,6 +121,7 @@ public class CategoryButton : MonoBehaviour
 
     private void OnClick()
     {
+        CommentZoneManager.Instance?.DeselectAll();
         if (_isExpanded) Collapse();
         else Expand();
     }
