@@ -1,17 +1,20 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StickerStateSingleton : MonoBehaviour
 {
     public static StickerStateSingleton Instance { get; private set; }
 
-    #region 스티커 개수 제한 변수들
+    #region 스티커 개수 제한 관련 변수들
+    // 개수 제한을 표시할 TMP
     [Header("Sticker_Count_Text를 참조")]
     [SerializeField] private TextMeshProUGUI _stickerCountText;
 
+    // 현재 스티커 개수
     private int _currentCount;
-
     public int CurrentCount
     {
         get => _currentCount;
@@ -21,27 +24,100 @@ public class StickerStateSingleton : MonoBehaviour
         }
     }
 
+    // 스티커 제한 개수
     private int _maxStickerCount = 5;
-
     public int MaxStickerCount
     {
         get => _maxStickerCount;
     }
     #endregion
 
-    #region 스티커와 스티커 우선순위 버튼 묶음
-    [System.Serializable]
-    public class StickerPair
+    #region 스티커 생성 관련 참조할 변수들
+    [Header("생성할 스티커 프리펩 참조")]
+    [SerializeField] private Image _stickerImage;
+
+    // 스티커가 생성될 부모 오브젝트
+    [Header("프리뷰 이미지를 참조")]
+    [SerializeField] private Image _targetImage;
+
+    // 인덱스 기반으로 이미지 데이터를 넘겨주기 위해서
+    [Header("StickerDB(SO)파일을 참조")]
+    [SerializeField] private StickerImageDatabase _stickerDB;
+    public StickerImageDatabase StickerDB
     {
-        public GameObject sticker;
-        public GameObject button;
-        public int stickerIndex;
+        get => _stickerDB;
+        set => _stickerDB = value;
     }
 
-    public List<StickerPair> stickers = new List<StickerPair>();
+    [Header("생성할 스티커 생선순 토글버튼 참조")]
+    [SerializeField] private Toggle _stickerToggle;
+
+    // 스티커 생선순 토글버튼 생성 위치
+    [Header("Sticker_Priority_Scroll View의 자식 Content를 참조")]
+    [SerializeField] private RectTransform _content;
+
+    // 스티커 생선순 토글버튼 Toggle Group 컴포넌트 참조를 위해(한번에 토글 제어용)
+    [Header("Sticker_Priority_Scroll View의 Content를 참조")]
+    [SerializeField] private ToggleGroup _priorityToggleGroup;
+    public ToggleGroup PriorityToggleGroup
+    {
+        get => _priorityToggleGroup;
+        set => _priorityToggleGroup = value;
+    }
+
+    [Header("스티커 생성 버튼들을 모두 참조")]
+    [SerializeField] private List<StickerEditor> _stickerEditors = new List<StickerEditor>();
     #endregion
 
+    #region 스티커 생성 관련 자료구조들
+    // 스티커의 이미지 인덱스를 저장하는 딕셔너리
+    private Dictionary<GameObject, int> _stickerIndexes = new Dictionary<GameObject, int>();
+    public Dictionary<GameObject, int> StickerIndexes
+    {
+        get => _stickerIndexes;
+        set => _stickerIndexes = value;
+    }
+
+    // 스티커 생선순 토글버튼이 선택되면 스티커가 선택되게 하기위한 의도의 딕셔너리 
+    private Dictionary<Toggle, GameObject> _toggleToSticker = new Dictionary<Toggle, GameObject>();
+    public Dictionary<Toggle, GameObject> ToggleToSticker
+    {
+        get => _toggleToSticker;
+        set => _toggleToSticker = value;
+    }
+
+    // 스티커 삭제하면 토글도 같이 삭제되게 하기위한 의도의 딕셔너리 
+    private Dictionary<GameObject, Toggle> _stickerToToggle = new Dictionary<GameObject, Toggle>();
+    public Dictionary<GameObject, Toggle> StickerToToggle
+    {
+        get => _stickerToToggle;
+        set => _stickerToToggle = value;
+    }
+
+    // 스티커 생선순 토글버튼을 담을 리스트(숫자표시를 바꾸기 위한 용도)
+    private List<Toggle> _toggleList = new List<Toggle>();
+    public List<Toggle> ToggleList
+    {
+        get => _toggleList;
+        set => _toggleList = value;
+    }
+    #endregion
+
+    // 스티커 생선순 토글버튼 숫자표시를 바꾸기 위한 이벤트 액션
+    public event Action StickerPriorityButtonChanged;
+    // 스티커 삭제버튼을 켜기 위한 이벤트 액션
+    public event Action<GameObject> StickerDelButtonOn;
+    // 스티커 삭제버튼을 끄기 위한 이벤트 액션
+    public event Action StickerDelButtonOff;
+
+
     private void Awake()
+    {
+        Init();
+    }
+
+    #region 초기화 함수
+    public void Init()
     {
         if (Instance != null && Instance != this)
         {
@@ -50,9 +126,104 @@ public class StickerStateSingleton : MonoBehaviour
         }
 
         Instance = this;
+
+        // 등록된 버튼에 버튼 자신의 인덱스 부여
+        for (int i = 0; i < _stickerEditors.Count; i++)
+        {
+            _stickerEditors[i].MyIndex = i;
+        }
+    }
+    #endregion
+
+    #region 스티커 생성 함수
+    /// <summary>
+    /// 버튼에서 스티커를 생성할 함수입니다.
+    /// </summary>
+    /// <param name="stickerIndex">해당 버튼 자신의 인덱스를 넣어주세요.</param>
+    public void SetSticker(int stickerIndex)
+    {
+        if (CurrentCount >= MaxStickerCount)
+        {
+            // 최대 개수 초과 시 마지막 스티커 선택 유지
+            if (_toggleList.Count > 0)
+            {
+                Toggle lastToggle = _toggleList[_toggleList.Count - 1];
+
+                lastToggle.isOn = false;
+                lastToggle.isOn = true;
+            }
+
+            return;
+        }
+        // 스티커 생성
+        GameObject sticker = Instantiate(_stickerImage.gameObject, _targetImage.transform);
+
+        // 스티커에 현재 선택한 이미지 넣기
+        sticker.GetComponent<Image>().sprite = _stickerDB.GetSprite(stickerIndex);
+
+        // 스티커 위치 조정
+        RectTransform rect = sticker.GetComponent<RectTransform>();
+        rect.anchoredPosition = Vector2.zero;
+        rect.localScale = Vector3.one;
+
+        // 스티커에 들어간 이미지 정보를 저장할 딕셔너리에 데이터 넣기
+        _stickerIndexes.Add(sticker, stickerIndex);
+
+        // 스티커 생선순 토글버튼 생성 
+        Toggle priorityToggle = Instantiate(_stickerToggle, _content);
+        // 토글 그룹에 추가(전체 제어를 위해)
+        priorityToggle.group = _priorityToggleGroup;
+
+        // 각 자료구조에 데이터 저장
+        _toggleList.Add(priorityToggle);
+        _toggleToSticker.Add(priorityToggle, sticker);
+        _stickerToToggle.Add(sticker, priorityToggle);
+
+        // 스티커 생선순 토글버튼 번호 갱신
+        RefreshPriorityButtons();
+
+        // 터치로 움직이기 위해 타겟에 넣기
+        ObjectPinchScaler.Instance.OnSelectForToggle(sticker.GetComponent<TouchInteractor>());
+
+        // 스티커 제한 개수 증가 및 TMP 갱신
+        CurrentCount++;
+        StickerCountUpload();
+    }
+    #endregion
+
+    #region 스티커 생선순 토글버튼 숫자표시를 바꾸기 위한 함수
+    /// <summary>
+    /// 스티커 생선순 토글버튼 숫자표시 갱신용 함수입니다.
+    /// </summary>
+    public void RefreshPriorityButtons()
+    {
+        StickerPriorityButtonChanged?.Invoke();
+    }
+    #endregion
+
+    #region 스티커 삭제버튼 On/Off 함수
+    /// <summary>
+    /// 스티커 삭제버튼을 On/Off 하는 함수입니다.
+    /// </summary>
+    /// <param name="target">삭제버튼을 On/Off할 현재 오브젝트</param>
+    public void StickerDelButtonSetOn(GameObject target)
+    {
+        StickerDelButtonOn?.Invoke(target);
     }
 
-    #region 스티커 개수 출력 함수
+    /// <summary>
+    /// 스티커 삭제버튼을 Off 하는 합수입니다.
+    /// </summary>
+    public void StickerDelButtonSetOff()
+    {
+        StickerDelButtonOff?.Invoke();
+    }
+    #endregion
+
+    #region 스티커 개수제한 출력 함수
+    /// <summary>
+    /// 스티커 개수제한 TMP를 갱신하기 위한 함수입니다.
+    /// </summary>
     public void StickerCountUpload()
     {
         _stickerCountText.text = $"{_currentCount}/{_maxStickerCount}";

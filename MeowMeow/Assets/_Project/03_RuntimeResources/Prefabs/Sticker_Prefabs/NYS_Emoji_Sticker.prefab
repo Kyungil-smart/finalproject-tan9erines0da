@@ -38,7 +38,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 178.7, y: 152.8}
+  m_AnchoredPosition: {x: 110, y: 155}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1588917401966881091
@@ -224,6 +224,7 @@ GameObject:
   - component: {fileID: 5265829354778795079}
   - component: {fileID: 1561013435075237236}
   - component: {fileID: 134976811293226217}
+  - component: {fileID: 5164308623203811752}
   m_Layer: 5
   m_Name: NYS_Emoji_Sticker
   m_TagString: Untagged
@@ -346,6 +347,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcf4d16400a5f6a4abade828df49bad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5164308623203811752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761812659917474261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bcaccd8eb54f8344bcf56ac29e6221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delButton: {fileID: 132126800393319396}
 --- !u!1 &6125532156961471624
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ObjectPinchScaler : MonoBehaviour
 {
@@ -39,16 +40,16 @@ public class ObjectPinchScaler : MonoBehaviour
 
     private void OnEnable()
     {
-        //TouchInputHandler.Instance.OnObjectSelected += OnSelect;
-        //TouchInputHandler.Instance.OnSelectionCleared += OnUnselect;
+        TouchInputHandler.Instance.OnObjectSelected += OnSelect;
+        TouchInputHandler.Instance.OnSelectionCleared += OnUnselect;
         TouchInputHandler.Instance.OnDragDelta += OnDrag;
         TouchInputHandler.Instance.OnPinchDelta += OnPinch;
     }
 
     private void OnDisable()
     {
-        //TouchInputHandler.Instance.OnObjectSelected -= OnSelect;
-        //TouchInputHandler.Instance.OnSelectionCleared -= OnUnselect;
+        TouchInputHandler.Instance.OnObjectSelected -= OnSelect;
+        TouchInputHandler.Instance.OnSelectionCleared -= OnUnselect;
         TouchInputHandler.Instance.OnDragDelta -= OnDrag;
         TouchInputHandler.Instance.OnPinchDelta -= OnPinch;
     }
@@ -62,12 +63,35 @@ public class ObjectPinchScaler : MonoBehaviour
     {
         _target = obj.GetComponent<RectTransform>();
         _parent = _target.parent as RectTransform;
+
+        GameObject sticker = obj.gameObject;
+
+        StickerStateSingleton.Instance.StickerDelButtonSetOn(sticker);
+
+        if (StickerStateSingleton.Instance.StickerToToggle.TryGetValue(sticker, out Toggle toggle))
+        {
+            toggle.isOn = true;
+        }
     }
 
-    //private void OnUnselect()
-    //{
-    //    _target = null;
-    //}
+    public void OnSelectForToggle(TouchInteractor obj)
+    {
+        _target = obj.GetComponent<RectTransform>();
+        _parent = _target.parent as RectTransform;
+        StickerStateSingleton.Instance.StickerDelButtonSetOn(obj.gameObject);
+    }
+
+    public void OnUnselect()
+    {
+        StickerStateSingleton.Instance.PriorityToggleGroup.SetAllTogglesOff();
+
+        // 현재 이 함수 관련해서 해결 방법을 고민중 입니다.
+        // 삭제 버튼 누를시에 OnUnselect() 함수가 호출되어 삭제버튼이 사라집니다.
+        // 딜레이를 넣어봤더니 이제는 토글 버튼을 누를때도 삭제버튼이 사라집니다.
+        //StickerStateSingleton.Instance.StickerDelButtonSetOff();
+
+        _target = null;
+    }
 
     #region 스티커 이동 함수
     private void OnDrag(Vector2 delta)

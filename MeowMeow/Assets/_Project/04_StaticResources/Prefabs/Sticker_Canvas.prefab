@@ -133,10 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &505560433560081336
@@ -272,10 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &719114930358789738
@@ -411,10 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1183607335754810602
@@ -550,10 +538,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1199835369510386009
@@ -779,10 +763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1260402503210760277
@@ -918,10 +898,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1476589282262059999
@@ -1057,10 +1033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1823427515404590730
@@ -1256,10 +1228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &2169689502823653129
@@ -1395,10 +1363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &2977329460387057906
@@ -1534,10 +1498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3008948689075588821
@@ -1673,10 +1633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3456660058207027478
@@ -1887,10 +1843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3914838964210831967
@@ -2116,10 +2068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4281173774463631814
@@ -2255,10 +2203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4492227852398824698
@@ -2472,10 +2416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4739423933622232502
@@ -2745,10 +2685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4917891896880654501
@@ -2884,10 +2820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4926370356218647089
@@ -3023,10 +2955,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5122094745717087279
@@ -3373,10 +3301,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5822172102822951627
@@ -3512,10 +3436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5837674879877828606
@@ -3651,10 +3571,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5855724543602254743
@@ -4005,10 +3921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &6274334707002501084
@@ -4278,10 +4190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &6693130340235439742
@@ -4527,10 +4435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7110597137102188926
@@ -4547,7 +4451,6 @@ GameObject:
   - component: {fileID: 4991176581112499778}
   - component: {fileID: 5347137270458712636}
   - component: {fileID: 437992403925178075}
-  - component: {fileID: 4807845523633914514}
   m_Layer: 5
   m_Name: Sticker_Canvas
   m_TagString: Untagged
@@ -4667,55 +4570,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stickerCountText: {fileID: 981035818290795126}
-  stickers: []
---- !u!114 &4807845523633914514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110597137102188926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671308205a3ac8f4090df84bb5ab4a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stickerEditors:
-  - {fileID: 487334711800370615}
-  - {fileID: 3051836938790058033}
-  - {fileID: 1327313859222736846}
-  - {fileID: 2864045030851313135}
-  - {fileID: 5413898460036901961}
-  - {fileID: 3040044872592860984}
-  - {fileID: 1511755141574578821}
-  - {fileID: 4655882095317149521}
-  - {fileID: 5338488529009476344}
-  - {fileID: 3254877568893567520}
-  - {fileID: 2362238631629325659}
-  - {fileID: 6312616992675459498}
-  - {fileID: 8386683608996756860}
-  - {fileID: 5818557255103130092}
-  - {fileID: 3503142201312420646}
-  - {fileID: 8329703195820297769}
-  - {fileID: 6779943588247917012}
-  - {fileID: 4912215487313671638}
-  - {fileID: 927827859131714352}
-  - {fileID: 2797462086846491101}
-  - {fileID: 5166422397116615589}
-  - {fileID: 5208763935743957880}
-  - {fileID: 6952771702904287918}
-  - {fileID: 471341690050681820}
-  - {fileID: 5478415748201081562}
-  - {fileID: 1158766703390706458}
-  - {fileID: 1599248956206688173}
-  - {fileID: 1185679528158180992}
-  - {fileID: 6758308931153745470}
-  - {fileID: 6021767788052726499}
-  - {fileID: 4368704743662712659}
-  - {fileID: 5911927004991186645}
-  - {fileID: 7397911116603101154}
-  - {fileID: 2821970844297907636}
-  - {fileID: 4390236982530900239}
+  _stickerImage: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _stickerDB: {fileID: 0}
+  _stickerToggle: {fileID: 0}
+  _content: {fileID: 0}
+  _stickerEditors: []
 --- !u!1 &7137588863212314885
 GameObject:
   m_ObjectHideFlags: 0
@@ -4849,10 +4709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7239647496811018009
@@ -4988,10 +4844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7516686697829367759
@@ -5293,10 +5145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7944688387481124843
@@ -5507,10 +5355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7983767887975969341
@@ -5646,10 +5490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8018668454488438445
@@ -5785,10 +5625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8276766257641920544
@@ -5924,10 +5760,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8452806009548761548
@@ -6063,10 +5895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8497286295978349724
@@ -6335,10 +6163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &9027684857561938143
@@ -6474,10 +6298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &9154955984765904205
@@ -6613,9 +6433,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
   _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
