@@ -1,4 +1,4 @@
-﻿using Firebase.Extensions;
+using Firebase.Extensions;
 using Firebase.Firestore;
 using System;
 using System.Collections.Generic;
@@ -32,8 +32,18 @@ public  class BaseFireStore : ScriptableObject
         db = database;
         //m_documents  = Auth.uid 넣기
         //첫번째 경로는 컬렉션 Users  / 문서 :userUID 넣을 예정
-        currentRef = db.Collection(m_collections[0]).Document(m_documents[0]);
-        currentCollection = db.Collection(m_collections[0]);
+        if(YouserID != null)
+        {
+            currentRef = db.Collection("Users").Document(YouserID);
+            currentCollection = db.Collection("Users");
+        }
+        else
+        {
+            currentRef = db.Collection(m_collections[0]).Document(m_documents[0]);
+            currentCollection = db.Collection(m_collections[0]);
+        }
+      
+      
         for (int i = 1; i < m_documents.Count; i++)
         {
             currentCollection = currentRef.Collection(m_collections[i]);

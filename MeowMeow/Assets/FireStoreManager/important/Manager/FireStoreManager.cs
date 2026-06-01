@@ -16,8 +16,8 @@ public enum DataType
 public class FireStoreManager : MonoBehaviour
 {
     
-    public SNSPostDTO m_data=new();
-    public List<SNSPostDTO> TestList = new List<SNSPostDTO>();  
+    public SNSPostDTO2 m_data=new();
+    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();  
     private  static FirebaseFirestore m_db;
     public static FireStoreManager Instance { get; private set; }
     [SerializeField] private List<BaseFireStore> m_Data;
@@ -166,7 +166,7 @@ public class FireStoreManager : MonoBehaviour
     public async void get()
     {
         m_data = await FireStoreManager.DocumentType(DataType.Test).
-            GetAsync<SNSPostDTO>();
+            GetAsync<SNSPostDTO2>();
     }
     [ContextMenu("update")]
     public async void dateUpdate()
