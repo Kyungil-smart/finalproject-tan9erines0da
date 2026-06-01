@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SNS_UI_Controller : BaseScreenController
@@ -12,6 +13,9 @@ public class SNS_UI_Controller : BaseScreenController
 
     // 2깊이에서 원래 화면으로 빠져나올 때 돌아갈 1깊이 백업 변수
     private UIPanel _lastActiveDepth1Panel;
+
+    // 편집 패널 추적용 스택
+    private Stack<UIPanel> _depth2History = new Stack<UIPanel>();
 
     // OpenController()가 실행되자마자 가장 먼저 호출됨
     protected override void OnBeforeOpen()
@@ -82,16 +86,65 @@ public class SNS_UI_Controller : BaseScreenController
 
     protected override void ExecuteScreenSwap(UIPanel targetPanel)
     {
-        // [정밀 분기 처리 1] 목표 화면이 1깊이(수평 탭 전환)인 경우
+        // 1깊이 수평 이동일 때는 히스토리를 초기화합니다.
         if (targetPanel.PanelDepth == UIPanel.UIDepth.Depth1)
         {
+            _depth2History.Clear();
             ProcessNavigateToDepth1(targetPanel);
         }
-        // [정밀 분기 처리 2] 목표 화면이 2깊이(화면 덮기)인 경우
         else
         {
+            // 2깊이로 새로 진입하거나 전진할 때만 
+            // 현재 패널의 데이터를 '확정 세이브(Submit)'하고 스택에 넣습니다.
+            ISNSPanelPresenter oldPresenter =
+                CurrentActivePanel.GetComponent<ISNSPanelPresenter>();
+            if (oldPresenter != null)
+            {
+                oldPresenter.SubmitContext();
+            }
+
+            // 내가 '어디서' 출발했는지 기록을 남깁니다.
+            _depth2History.Push(CurrentActivePanel);
+
             ProcessNavigateToDepth2(targetPanel);
         }
+    }
+
+    /// <summary>
+    /// 2깊이 편집 단계에서 '이전 단계로' 버튼을 눌렀을 때 
+    /// 데이터를 저장하지 않고 완벽하게 직전 단계로 롤백하는 후진 함수
+    /// </summary>
+    public void ClickNavigateBackDepth2Button()
+    {
+        // 스택에 돌아갈 기록이 남아있는지 검사
+        if (_depth2History == null || _depth2History.Count == 0)
+        {
+            // 더 이상 돌아갈 2깊이가 없다면 최초 1깊이 피드로 탈출
+            ClickCloseDepth2Button();
+            return;
+        }
+
+        if (CurrentActivePanel == null || CurrentActivePanel.IsTransitioning) return;
+
+        // 현재 패널의 SubmitContext()를 호출하지 않고 화면을 닫음으로써
+        // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.
+        CurrentActivePanel.Close(() =>
+        {
+            // 스택에서 직전에 보았던 패널을 꺼내어 타겟으로 지정
+            UIPanel previousPanel = _depth2History.Pop();
+            CurrentActivePanel = previousPanel;
+
+            // 만약 꺼낸 패널이 1깊이였다면 백업 변수와 싱크
+            if (previousPanel.PanelDepth == UIPanel.UIDepth.Depth1)
+            {
+                _lastActiveDepth1Panel = previousPanel;
+            }
+
+            // 오염되지 않은 메인 원본 데이터를 직전 패널에 수혈
+            RefreshPanelData(CurrentActivePanel);
+
+            CurrentActivePanel.OpenWithTabChangeAnimation(null);
+        });
     }
 
     // 1깊이 타겟으로의 화면 전환 연산을 전담하는 내부 함수
@@ -134,6 +187,7 @@ public class SNS_UI_Controller : BaseScreenController
             // 보던 1깊이를 끄지(Close) 않고 대피만 시킨 후 2깊이를 위에 얹음
             _lastActiveDepth1Panel = CurrentActivePanel;
             CurrentActivePanel = targetPanel;
+            RefreshPanelData(CurrentActivePanel);
             CurrentActivePanel.OpenWithEnterAnimation(null);
         }
         // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
@@ -142,6 +196,7 @@ public class SNS_UI_Controller : BaseScreenController
             CurrentActivePanel.Close(() =>
             {
                 CurrentActivePanel = targetPanel;
+                RefreshPanelData(CurrentActivePanel);
                 CurrentActivePanel.OpenWithTabChangeAnimation(null);
             });
         }
@@ -168,6 +223,21 @@ public class SNS_UI_Controller : BaseScreenController
                 // 수평 전환용 연출만 산뜻하게 얹어줌
                 CurrentActivePanel.OpenWithTabChangeAnimation(null);
             });
+        }
+    }
+
+    /// <summary>
+    /// 타겟 패널의 인터페이스를 탐색하여 안전하게 데이터를 동기화하는 함수
+    /// </summary>
+    private void RefreshPanelData(UIPanel panel)
+    {
+        if (panel == null) return;
+
+        var newPresenter = panel.GetComponent<ISNSPanelPresenter>();
+        if (newPresenter != null)
+        {
+            newPresenter.RequestContext();
+            Debug.Log($"[{panel.name}] 스왑 타임라인 내부에서 데이터 사전 동기화 완료.");
         }
     }
 }
