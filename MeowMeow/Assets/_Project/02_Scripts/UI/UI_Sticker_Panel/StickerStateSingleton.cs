@@ -36,6 +36,13 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("생성할 스티커 프리펩 참조")]
     [SerializeField] private Image _stickerImage;
 
+    [Header("생성할 스티커 삭제버튼 프리펩 참조")]
+    [SerializeField] private Button _stickerDelButton;
+
+    // 스티커 삭제버튼을 위한 캔버스(이후 Sticker_Canvas와 StickerDelButton_Canvas는 같이 켜고, 꺼져야 합니다.)
+    [Header("StickerDelButton_Canvas를 참조")]
+    [SerializeField] private Canvas _stickerDelButtonCanvas;
+
     // 스티커가 생성될 부모 오브젝트
     [Header("프리뷰 이미지를 참조")]
     [SerializeField] private Image _targetImage;
@@ -101,6 +108,14 @@ public class StickerStateSingleton : MonoBehaviour
         get => _toggleList;
         set => _toggleList = value;
     }
+
+    // 스티커를 키로 삭제버튼을 담을 딕셔너리(삭제버튼 On/Off를 위한 용도)
+    private Dictionary<GameObject, GameObject> _stickerToDelButton = new Dictionary<GameObject, GameObject>();
+    public Dictionary<GameObject, GameObject> StickerToDelButton
+    {
+        get => _stickerToDelButton;
+        set => _stickerToDelButton = value;
+    }
     #endregion
 
     // 스티커 생선순 토글버튼 숫자표시를 바꾸기 위한 이벤트 액션
@@ -157,14 +172,24 @@ public class StickerStateSingleton : MonoBehaviour
         }
         // 스티커 생성
         GameObject sticker = Instantiate(_stickerImage.gameObject, _targetImage.transform);
+        StickerDelOff stickerDelOff = sticker.GetComponent<StickerDelOff>();
+
+        // 스티커 삭제버튼 생성
+        GameObject stickerDel = Instantiate(_stickerDelButton.gameObject, _stickerDelButtonCanvas.transform);
+        DelSticker delSticker = stickerDel.GetComponent<DelSticker>();
+
+        // StickerDelOff 스크립트에 삭제버튼 초기화
+        stickerDelOff.InitStickerDelOff(stickerDel);
+        // delSticker 스크립트에 스티커 초기화
+        delSticker.InitDelSticker(sticker);
 
         // 스티커에 현재 선택한 이미지 넣기
         sticker.GetComponent<Image>().sprite = _stickerDB.GetSprite(stickerIndex);
 
         // 스티커 위치 조정
-        RectTransform rect = sticker.GetComponent<RectTransform>();
-        rect.anchoredPosition = Vector2.zero;
-        rect.localScale = Vector3.one;
+        RectTransform stickerRect = sticker.GetComponent<RectTransform>();
+        stickerRect.anchoredPosition = Vector2.zero;
+        stickerRect.localScale = Vector3.one;
 
         // 스티커에 들어간 이미지 정보를 저장할 딕셔너리에 데이터 넣기
         _stickerIndexes.Add(sticker, stickerIndex);
@@ -178,6 +203,11 @@ public class StickerStateSingleton : MonoBehaviour
         _toggleList.Add(priorityToggle);
         _toggleToSticker.Add(priorityToggle, sticker);
         _stickerToToggle.Add(sticker, priorityToggle);
+        _stickerToDelButton.Add(sticker, stickerDel);
+
+        // 삭제버튼이 스티커를 따라가게 하기위해 StickerDelFollow 스크립트 초기화
+        StickerDelFollow stickerDelFollow = stickerDel.GetComponent<StickerDelFollow>();
+        stickerDelFollow.InitStickerDelFollow(stickerRect);
 
         // 스티커 생선순 토글버튼 번호 갱신
         RefreshPriorityButtons();

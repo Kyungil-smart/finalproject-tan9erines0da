@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3721678347536441893}
   - component: {fileID: 8322922361161710703}
   m_Layer: 5
-  m_Name: NYS_Emoji_Sticker
+  m_Name: NYS_Emoji_StickerSticker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class DelSticker : MonoBehaviour
 {
-    [Header("스티커 프리펩을 참조")]
-    [SerializeField] private GameObject _stickerObject;
+    private GameObject _stickerObject;
 
     private Button _button;
 
@@ -23,6 +22,15 @@ public class DelSticker : MonoBehaviour
         _button.onClick.RemoveListener(OnClickDelSticker);
     }
 
+    /// <summary>
+    /// 외부에서 DelSticker 스크립트를 초기화 하기위해 만든 함수입니다.
+    /// </summary>
+    /// <param name="delButton">생성된 스티커를 넣어줄 인자입니다.</param>
+    public void InitDelSticker(GameObject stickerObject)
+    {
+        _stickerObject = stickerObject;
+    }
+
     // 스티커 삭제 버튼에 구독시킬 함수(스티커 삭제)
     private void OnClickDelSticker()
     {
@@ -36,6 +44,7 @@ public class DelSticker : MonoBehaviour
         StickerStateSingleton.Instance.StickerToToggle.Remove(_stickerObject);
         StickerStateSingleton.Instance.ToggleToSticker.Remove(toggle);
         StickerStateSingleton.Instance.StickerIndexes.Remove(_stickerObject);
+        StickerStateSingleton.Instance.StickerToDelButton.Remove(_stickerObject);
 
         // 토글 버튼 삭제
         Destroy(toggle.gameObject);
@@ -48,5 +57,10 @@ public class DelSticker : MonoBehaviour
         // 스티커 제한개수 감소 및 갱신
         StickerStateSingleton.Instance.CurrentCount--;
         StickerStateSingleton.Instance.StickerCountUpload();
+
+        ObjectPinchScaler.Instance.OnUnselect();
+
+        // 스티커 삭제버튼 삭제
+        Destroy(gameObject);
     }
 }

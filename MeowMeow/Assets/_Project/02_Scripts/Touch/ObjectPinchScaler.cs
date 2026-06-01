@@ -65,8 +65,9 @@ public class ObjectPinchScaler : MonoBehaviour
         _parent = _target.parent as RectTransform;
 
         GameObject sticker = obj.gameObject;
+        GameObject delButton = StickerStateSingleton.Instance.StickerToDelButton[sticker];
 
-        StickerStateSingleton.Instance.StickerDelButtonSetOn(sticker);
+        StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
 
         if (StickerStateSingleton.Instance.StickerToToggle.TryGetValue(sticker, out Toggle toggle))
         {
@@ -78,7 +79,11 @@ public class ObjectPinchScaler : MonoBehaviour
     {
         _target = obj.GetComponent<RectTransform>();
         _parent = _target.parent as RectTransform;
-        StickerStateSingleton.Instance.StickerDelButtonSetOn(obj.gameObject);
+
+        GameObject sticker = obj.gameObject;
+        GameObject delButton = StickerStateSingleton.Instance.StickerToDelButton[sticker];
+
+        StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
     }
 
     public void OnUnselect()

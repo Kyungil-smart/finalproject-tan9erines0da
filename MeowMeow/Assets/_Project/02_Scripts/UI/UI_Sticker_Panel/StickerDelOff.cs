@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class StickerDelOff : MonoBehaviour
 {
-    [Header("자신의 삭제 버튼을 참조")]
-    [SerializeField] private GameObject _delButton;
+    private GameObject _delButton;
 
     private void OnEnable()
     {
@@ -17,8 +16,18 @@ public class StickerDelOff : MonoBehaviour
         StickerStateSingleton.Instance.StickerDelButtonOff -= DelButtonOffAction;
     }
 
+    /// <summary>
+    /// 외부에서 StickerDelOff 스크립트를 초기화 하기위해 만든 함수입니다.
+    /// </summary>
+    /// <param name="delButton">생성된 스티커 삭제버튼을 넣어줄 인자입니다.</param>
+    public void InitStickerDelOff(GameObject delButton)
+    {
+        _delButton = delButton;
+    }
+
+
     // 자신의 삭제버튼을 키는 함수(나머지는 다 꺼짐)
-    private void DelButtonOn(GameObject target) => _delButton.SetActive(target == gameObject);
+    private void DelButtonOn(GameObject target) => _delButton.SetActive(target == _delButton);
 
     // 삭제 버튼 누를때 타겟 푸는 함수랑 우선순위 문제로 딜레이 넣는 함수 
     private void DelButtonOffAction()
@@ -32,5 +41,4 @@ public class StickerDelOff : MonoBehaviour
     {
         _delButton.SetActive(false);
     }
-
 }
