@@ -22,6 +22,10 @@ public class UIImageShaderController : MonoBehaviour
 
     private void Awake()
     {
+        if(_clonedMaterial == null ) Init();
+    }
+    private void Init()
+    {
         _targetImage = GetComponent<Image>();
 
         // 원본 머터리얼이 존재할 때만 런타임 인스턴스 복제 진행
@@ -32,7 +36,6 @@ public class UIImageShaderController : MonoBehaviour
             _targetImage.material = _clonedMaterial;
         }
     }
-
     private void OnDestroy()
     {
         // 런타임에 동적 생성한 머터리얼은 메모리 누수 방지를 위해 
@@ -56,6 +59,7 @@ public class UIImageShaderController : MonoBehaviour
         float brightness, float contrast,
         float saturation, float temperature)
     {
+        if (_clonedMaterial == null) Init();
         if (_clonedMaterial == null) return;
 
         // 캐싱된 Property ID를 활용하여 셰이더 내부 변수 값 교체
