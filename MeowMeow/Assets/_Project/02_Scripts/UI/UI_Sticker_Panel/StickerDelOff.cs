@@ -7,13 +7,13 @@ public class StickerDelOff : MonoBehaviour
     private void OnEnable()
     {
         StickerStateSingleton.Instance.StickerDelButtonOn += DelButtonOn;
-        StickerStateSingleton.Instance.StickerDelButtonOff += DelButtonOffAction;
+        StickerStateSingleton.Instance.StickerDelButtonOff += DelButtonOff;
     }
 
     private void OnDisable()
     {
         StickerStateSingleton.Instance.StickerDelButtonOn -= DelButtonOn;
-        StickerStateSingleton.Instance.StickerDelButtonOff -= DelButtonOffAction;
+        StickerStateSingleton.Instance.StickerDelButtonOff -= DelButtonOff;
     }
 
     /// <summary>
@@ -24,7 +24,6 @@ public class StickerDelOff : MonoBehaviour
     {
         _delButton = delButton;
     }
-
 
     // 자신의 삭제버튼을 키는 함수(나머지는 다 꺼짐)
     private void DelButtonOn(GameObject target) => _delButton.SetActive(target == _delButton);

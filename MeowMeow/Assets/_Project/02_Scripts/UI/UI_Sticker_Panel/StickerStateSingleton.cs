@@ -196,8 +196,6 @@ public class StickerStateSingleton : MonoBehaviour
 
         // 스티커 생선순 토글버튼 생성 
         Toggle priorityToggle = Instantiate(_stickerToggle, _content);
-        // 토글 그룹에 추가(전체 제어를 위해)
-        priorityToggle.group = _priorityToggleGroup;
 
         // 각 자료구조에 데이터 저장
         _toggleList.Add(priorityToggle);

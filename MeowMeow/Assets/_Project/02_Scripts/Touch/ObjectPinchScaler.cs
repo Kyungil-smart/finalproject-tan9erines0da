@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class ObjectPinchScaler : MonoBehaviour
 {
@@ -75,6 +74,7 @@ public class ObjectPinchScaler : MonoBehaviour
         }
     }
 
+    // 토글 전용 스티커 선택 함수
     public void OnSelectForToggle(TouchInteractor obj)
     {
         _target = obj.GetComponent<RectTransform>();
@@ -86,14 +86,13 @@ public class ObjectPinchScaler : MonoBehaviour
         StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
     }
 
+    // 선택 해제
     public void OnUnselect()
     {
-        StickerStateSingleton.Instance.PriorityToggleGroup.SetAllTogglesOff();
-
-        // 현재 이 함수 관련해서 해결 방법을 고민중 입니다.
-        // 삭제 버튼 누를시에 OnUnselect() 함수가 호출되어 삭제버튼이 사라집니다.
-        // 딜레이를 넣어봤더니 이제는 토글 버튼을 누를때도 삭제버튼이 사라집니다.
-        //StickerStateSingleton.Instance.StickerDelButtonSetOff();
+        foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
+        {
+            toggle.isOn = false;
+        }
 
         _target = null;
     }
