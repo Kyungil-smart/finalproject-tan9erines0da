@@ -943,12 +943,9 @@ MonoBehaviour:
   _tagColor: {r: 1, g: 1, b: 1, a: 0}
   _tagTextColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
   _tagFontSize: 28
-  _xButtonColor: {r: 0.53, g: 0.29, b: 0.76, a: 1}
-  _xTextColor: {r: 1, g: 1, b: 1, a: 1}
-  _xButtonFontSize: 18
+  _xButtonSprite: {fileID: 21300000, guid: 700986f8fcfe718459cc1569a2e35b87, type: 3}
   _xButtonOffset: {x: 10, y: 10}
   _xButtonSize: {x: 26, y: 26}
-  _xButtonSymbol: "×"
   _maxTags: 5
 --- !u!1 &500000003
 GameObject:
@@ -2577,15 +2574,12 @@ MonoBehaviour:
   _content: {fileID: 1699388242}
   _countText: {fileID: 1952363787}
   _font: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
-  _buttonColor: {r: 1, g: 1, b: 1, a: 1}
+  _buttonColor: {r: 1, g: 1, b: 1, a: 0}
   _textColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
   _buttonFontSize: 28
-  _xButtonColor: {r: 0.53, g: 0.29, b: 0.76, a: 1}
-  _xTextColor: {r: 1, g: 1, b: 1, a: 1}
-  _xButtonFontSize: 18
+  _xButtonSprite: {fileID: 21300000, guid: 700986f8fcfe718459cc1569a2e35b87, type: 3}
   _xButtonOffset: {x: 10, y: 10}
   _xButtonSize: {x: 26, y: 26}
-  _xButtonSymbol: "×"
   _maxChars: 50
 --- !u!114 &1112008216
 MonoBehaviour:

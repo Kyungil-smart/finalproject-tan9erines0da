@@ -19,12 +19,9 @@ public class CommentZoneManager : MonoBehaviour
     [SerializeField] private float _buttonFontSize;
 
     [Header("X Button Style")]
-    [SerializeField] private Color _xButtonColor;
-    [SerializeField] private Color _xTextColor;
-    [SerializeField] private float _xButtonFontSize;
+    [SerializeField] private Sprite _xButtonSprite;
     [SerializeField] private Vector2 _xButtonOffset;
     [SerializeField] private Vector2 _xButtonSize;
-    [SerializeField] private string _xButtonSymbol = "×";
 
     [Header("Settings")]
     [SerializeField] private int _maxChars;
@@ -117,24 +114,10 @@ public class CommentZoneManager : MonoBehaviour
         xRt.sizeDelta = _xButtonSize;
 
         var xImg = xGO.AddComponent<Image>();
-        xImg.color = _xButtonColor;
+        xImg.sprite = _xButtonSprite;
 
         var xBtn = xGO.AddComponent<Button>();
         xBtn.targetGraphic = xImg;
-
-        var xTextGO = new GameObject("Text", typeof(RectTransform));
-        xTextGO.transform.SetParent(xGO.transform, false);
-        var xTextRt = xTextGO.GetComponent<RectTransform>();
-        xTextRt.anchorMin = Vector2.zero;
-        xTextRt.anchorMax = Vector2.one;
-        xTextRt.offsetMin = Vector2.zero;
-        xTextRt.offsetMax = Vector2.zero;
-        var xTmp = xTextGO.AddComponent<TextMeshProUGUI>();
-        xTmp.text = _xButtonSymbol;
-        xTmp.alignment = TextAlignmentOptions.Center;
-        xTmp.fontSize = _xButtonFontSize;
-        xTmp.color = _xTextColor;
-        if (_font != null) xTmp.font = _font;
 
         return xGO;
     }
