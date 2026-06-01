@@ -18,6 +18,11 @@ public class CategoryButton : MonoBehaviour
     [Header("Category")]
     [SerializeField] private CommentType _commentType;
 
+    [Header("Button Style")]
+    [SerializeField] private Color _buttonColor = Color.white;
+    [SerializeField] private Color _textColor = new Color(0.27f, 0.16f, 0.39f);
+    [SerializeField] private float _fontSize = 36f;
+
     [Header("Animation")]
     [SerializeField] private float _animDuration = 0.3f;
     [SerializeField] private Vector2 _selectedPosition = new Vector2(0f, 60f);
@@ -90,7 +95,7 @@ public class CategoryButton : MonoBehaviour
             go.transform.SetParent(_content, false);
 
             var img = go.AddComponent<Image>();
-            img.color = Color.white;
+            img.color = _buttonColor;
 
             var btn = go.AddComponent<Button>();
             btn.targetGraphic = img;
@@ -113,8 +118,9 @@ public class CategoryButton : MonoBehaviour
 
             var tmp = textGO.AddComponent<TextMeshProUGUI>();
             tmp.text = word;
+            tmp.fontSize = _fontSize;
             tmp.alignment = TextAlignmentOptions.Center;
-            tmp.color = new Color(0.27f, 0.16f, 0.39f);
+            tmp.color = _textColor;
             if (_font != null) tmp.font = _font;
         }
     }

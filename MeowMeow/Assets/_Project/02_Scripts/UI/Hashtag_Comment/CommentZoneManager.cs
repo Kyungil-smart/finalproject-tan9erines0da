@@ -24,6 +24,7 @@ public class CommentZoneManager : MonoBehaviour
     [SerializeField] private float _xButtonFontSize;
     [SerializeField] private Vector2 _xButtonOffset;
     [SerializeField] private Vector2 _xButtonSize;
+    [SerializeField] private string _xButtonSymbol = "×";
 
     [Header("Settings")]
     [SerializeField] private int _maxChars;
@@ -129,7 +130,7 @@ public class CommentZoneManager : MonoBehaviour
         xTextRt.offsetMin = Vector2.zero;
         xTextRt.offsetMax = Vector2.zero;
         var xTmp = xTextGO.AddComponent<TextMeshProUGUI>();
-        xTmp.text = "×";
+        xTmp.text = _xButtonSymbol;
         xTmp.alignment = TextAlignmentOptions.Center;
         xTmp.fontSize = _xButtonFontSize;
         xTmp.color = _xTextColor;

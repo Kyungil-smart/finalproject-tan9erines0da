@@ -948,6 +948,7 @@ MonoBehaviour:
   _xButtonFontSize: 18
   _xButtonOffset: {x: 10, y: 10}
   _xButtonSize: {x: 26, y: 26}
+  _xButtonSymbol: "×"
   _maxTags: 5
 --- !u!1 &500000003
 GameObject:
@@ -2584,6 +2585,7 @@ MonoBehaviour:
   _xButtonFontSize: 18
   _xButtonOffset: {x: 10, y: 10}
   _xButtonSize: {x: 26, y: 26}
+  _xButtonSymbol: "×"
   _maxChars: 50
 --- !u!114 &1112008216
 MonoBehaviour:
