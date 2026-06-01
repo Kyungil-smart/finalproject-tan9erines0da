@@ -86,6 +86,14 @@ public class CommentZoneManager : MonoBehaviour
         Destroy(wordGO);
     }
 
+    public List<string> GetWords()
+    {
+        var words = new List<string>();
+        foreach (Transform child in _content)
+            words.Add(child.name);
+        return words;
+    }
+
     private void UpdateCountText()
     {
         if (_countText != null)

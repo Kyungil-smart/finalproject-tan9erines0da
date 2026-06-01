@@ -76,6 +76,14 @@ public class HashtagZoneManager : MonoBehaviour
         _selectedItem = null;
     }
 
+    public List<string> GetSelectedTagNames()
+    {
+        var names = new List<string>();
+        foreach (var go in _tagObjects.Values)
+            names.Add(go.name);
+        return names;
+    }
+
     private void UpdateCountText()
     {
         if (_countText != null)

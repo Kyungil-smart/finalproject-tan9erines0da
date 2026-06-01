@@ -53,12 +53,12 @@ public class CategoryButton : MonoBehaviour
     {
         if (_sheetManager == null)
         {
-            Debug.LogError("[CategoryButton] Sheet Manager가 인스펙터에 연결되지 않았습니다.");
+            Debug.LogError("Sheet Manager가 연결되지 않았습니다.");
             return;
         }
         if (_content == null)
         {
-            Debug.LogError("[CategoryButton] Content가 인스펙터에 연결되지 않았습니다.");
+            Debug.LogError("Content가 연결되지 않았습니다.");
             return;
         }
 
@@ -74,7 +74,7 @@ public class CategoryButton : MonoBehaviour
         var so = _sheetManager.GetClassData<comment>();
         if (so == null)
         {
-            Debug.LogError("[CategoryButton] comment SO를 찾을 수 없습니다.");
+            Debug.LogError("comment SO가 없습니다.");
             return;
         }
 
