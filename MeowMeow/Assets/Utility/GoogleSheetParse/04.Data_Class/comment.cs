@@ -24,9 +24,9 @@ public class comment : Basedata
     public override void ApplyRowData(string[] Data)
     {
 
-        this.uniqueId = Data[0];
-        this.word = Data[1];
-        SetType(Data[2]);
+        this.uniqueId = Data[0].Trim();
+        this.word = Data[1].Trim();
+        SetType(Data[2].Trim());
 
     }
     public void SetType(string type)

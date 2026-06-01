@@ -4,19 +4,20 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class CommentZoneManager : MonoBehaviour
+public class HashtagZoneManager : MonoBehaviour
 {
-    public static CommentZoneManager Instance { get; private set; }
+    public static HashtagZoneManager Instance { get; private set; }
+    public static event System.Action OnSelectionChanged;
 
     [Header("References")]
     [SerializeField] private Transform _content;
     [SerializeField] private TextMeshProUGUI _countText;
     [SerializeField] private TMP_FontAsset _font;
 
-    [Header("Button Style")]
-    [SerializeField] private Color _buttonColor;
-    [SerializeField] private Color _textColor;
-    [SerializeField] private float _buttonFontSize;
+    [Header("Tag Style")]
+    [SerializeField] private Color _tagColor;
+    [SerializeField] private Color _tagTextColor;
+    [SerializeField] private float _tagFontSize;
 
     [Header("X Button Style")]
     [SerializeField] private Color _xButtonColor;
@@ -26,60 +27,56 @@ public class CommentZoneManager : MonoBehaviour
     [SerializeField] private Vector2 _xButtonSize;
 
     [Header("Settings")]
-    [SerializeField] private int _maxChars;
+    [SerializeField] private int _maxTags;
 
-    private int _totalChars = 0;
-    private GameObject _selectedItem = null;
+    private readonly Dictionary<string, GameObject> _tagObjects = new Dictionary<string, GameObject>();
+    private GameObject _selectedItem;
 
-    private void Awake()
+    private void Awake() => Instance = this;
+
+    private void Start() => UpdateCountText();
+
+    public bool IsSelected(string id) => _tagObjects.ContainsKey(id);
+
+    public bool TryAddHashtag(string id, string tagName)
     {
-        Instance = this;
-    }
+        if (_tagObjects.ContainsKey(id)) return false;
+        if (_tagObjects.Count >= _maxTags) return false;
 
-    private void Start()
-    {
+        CreateTagButton(id, tagName);
         UpdateCountText();
-    }
-
-    private void Update()
-    {
-        if (_selectedItem == null) return;
-        if (!Input.GetMouseButtonDown(0)) return;
-
-        var results = new List<RaycastResult>();
-        var eventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
-        EventSystem.current.RaycastAll(eventData, results);
-
-        foreach (var r in results)
-        {
-            if (r.gameObject.transform.IsChildOf(_content))
-                return;
-        }
-
-        DeselectAll();
-    }
-
-    public bool TryAddWord(string word)
-    {
-        word = word.Trim();
-        if (_totalChars + word.Length > _maxChars) return false;
-
-        _totalChars += word.Length;
-        UpdateCountText();
-        CreateWordButton(word);
+        OnSelectionChanged?.Invoke();
         return true;
     }
 
-    private void CreateWordButton(string word)
+    public void RemoveHashtag(string id)
     {
-        var go = new GameObject(word, typeof(RectTransform));
+        if (!_tagObjects.TryGetValue(id, out var go)) return;
+        if (_selectedItem == go) _selectedItem = null;
+        _tagObjects.Remove(id);
+        Destroy(go);
+        UpdateCountText();
+        OnSelectionChanged?.Invoke();
+    }
+
+    private void UpdateCountText()
+    {
+        if (_countText != null)
+            _countText.text = $"{_tagObjects.Count}/{_maxTags}";
+    }
+
+    private void CreateTagButton(string id, string tagName)
+    {
+        var go = new GameObject(tagName, typeof(RectTransform));
         go.transform.SetParent(_content, false);
+        _tagObjects[id] = go;
 
         var img = go.AddComponent<Image>();
-        img.color = _buttonColor;
+        img.color = _tagColor;
 
         var btn = go.AddComponent<Button>();
         btn.targetGraphic = img;
+        btn.onClick.AddListener(() => OnTagButtonClick(go));
 
         var textGO = new GameObject("Text", typeof(RectTransform));
         textGO.transform.SetParent(go.transform, false);
@@ -89,18 +86,17 @@ public class CommentZoneManager : MonoBehaviour
         textRt.offsetMin = Vector2.zero;
         textRt.offsetMax = Vector2.zero;
         var tmp = textGO.AddComponent<TextMeshProUGUI>();
-        tmp.text = word;
-        tmp.fontSize = _buttonFontSize;
+        tmp.text = tagName;
+        tmp.fontSize = _tagFontSize;
         tmp.alignment = TextAlignmentOptions.Center;
-        tmp.color = _textColor;
+        tmp.color = _tagTextColor;
         if (_font != null) tmp.font = _font;
 
         var xGO = CreateXButton(go.transform);
         xGO.SetActive(false);
 
-        string capturedWord = word;
-        btn.onClick.AddListener(() => OnWordButtonClick(go, xGO));
-        xGO.GetComponent<Button>().onClick.AddListener(() => RemoveWord(go, capturedWord));
+        string capturedId = id;
+        xGO.GetComponent<Button>().onClick.AddListener(() => RemoveHashtag(capturedId));
     }
 
     private GameObject CreateXButton(Transform parent)
@@ -138,39 +134,34 @@ public class CommentZoneManager : MonoBehaviour
         return xGO;
     }
 
-    private void OnWordButtonClick(GameObject wordGO, GameObject xGO)
+    private void OnTagButtonClick(GameObject tagGO)
     {
-        if (_selectedItem == wordGO)
-        {
-            DeselectAll();
-            return;
-        }
-
+        if (_selectedItem == tagGO) { DeselectAll(); return; }
         DeselectAll();
-        _selectedItem = wordGO;
-        xGO.SetActive(true);
+        _selectedItem = tagGO;
+        tagGO.transform.Find("X")?.gameObject.SetActive(true);
     }
 
     public void DeselectAll()
     {
         if (_selectedItem == null) return;
-        var x = _selectedItem.transform.Find("X");
-        if (x != null) x.gameObject.SetActive(false);
+        _selectedItem.transform.Find("X")?.gameObject.SetActive(false);
         _selectedItem = null;
     }
 
-    private void RemoveWord(GameObject wordGO, string word)
+    private void Update()
     {
-        _totalChars -= word.Length;
-        if (_totalChars < 0) _totalChars = 0;
-        UpdateCountText();
-        if (_selectedItem == wordGO) _selectedItem = null;
-        Destroy(wordGO);
-    }
+        if (_selectedItem == null || !Input.GetMouseButtonDown(0)) return;
 
-    private void UpdateCountText()
-    {
-        if (_countText != null)
-            _countText.text = $"{_totalChars}/{_maxChars}";
+        var results = new List<RaycastResult>();
+        var eventData = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (var r in results)
+        {
+            if (r.gameObject.transform.IsChildOf(_content)) return;
+        }
+
+        DeselectAll();
     }
 }
