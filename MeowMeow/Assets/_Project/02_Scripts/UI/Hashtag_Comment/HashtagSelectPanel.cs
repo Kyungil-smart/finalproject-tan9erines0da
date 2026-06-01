@@ -8,13 +8,11 @@ public class HashtagSelectPanel : MonoBehaviour
     [Header("References")]
     [SerializeField] private googleSheetManager _sheetManager;
     [SerializeField] private Transform _content;
-    [SerializeField] private TMP_FontAsset _font;
+    [SerializeField] private GameObject _buttonPrefab;
 
     [Header("Button Style")]
     [SerializeField] private Color _normalColor;
     [SerializeField] private Color _selectedColor;
-    [SerializeField] private Color _textColor;
-    [SerializeField] private float _fontSize;
 
     private readonly Dictionary<string, Image> _buttonImages = new Dictionary<string, Image>();
 
@@ -51,38 +49,21 @@ public class HashtagSelectPanel : MonoBehaviour
         foreach (var item in so.m_Data)
         {
             if (string.IsNullOrWhiteSpace(item.TagName) || item.TagName == "(Null)") continue;
-            string capturedId = item.uniqueId;
-            string capturedName = item.TagName;
-            CreateButton(capturedId, capturedName);
+            CreateButton(item.uniqueId, item.TagName);
         }
     }
 
     private void CreateButton(string id, string tagName)
     {
-        var go = new GameObject(tagName, typeof(RectTransform));
-        go.transform.SetParent(_content, false);
+        var go = Instantiate(_buttonPrefab, _content);
+        go.name = tagName;
 
-        var img = go.AddComponent<Image>();
+        var img = go.GetComponent<Image>();
         img.color = _normalColor;
         _buttonImages[id] = img;
 
-        var btn = go.AddComponent<Button>();
-        btn.targetGraphic = img;
-        btn.onClick.AddListener(() => OnButtonClick(id, tagName));
-
-        var textGO = new GameObject("Text", typeof(RectTransform));
-        textGO.transform.SetParent(go.transform, false);
-        var textRt = textGO.GetComponent<RectTransform>();
-        textRt.anchorMin = Vector2.zero;
-        textRt.anchorMax = Vector2.one;
-        textRt.offsetMin = Vector2.zero;
-        textRt.offsetMax = Vector2.zero;
-        var tmp = textGO.AddComponent<TextMeshProUGUI>();
-        tmp.text = tagName;
-        tmp.fontSize = _fontSize;
-        tmp.alignment = TextAlignmentOptions.Center;
-        tmp.color = _textColor;
-        if (_font != null) tmp.font = _font;
+        go.GetComponentInChildren<TextMeshProUGUI>().text = tagName;
+        go.GetComponent<Button>().onClick.AddListener(() => OnButtonClick(id, tagName));
     }
 
     private void OnButtonClick(string id, string tagName)
@@ -101,8 +82,9 @@ public class HashtagSelectPanel : MonoBehaviour
 
         foreach (var kvp in _buttonImages)
         {
-            bool selected = HashtagZoneManager.Instance.IsSelected(kvp.Key);
-            kvp.Value.color = selected ? _selectedColor : _normalColor;
+            kvp.Value.color = HashtagZoneManager.Instance.IsSelected(kvp.Key)
+                ? _selectedColor
+                : _normalColor;
         }
     }
 }

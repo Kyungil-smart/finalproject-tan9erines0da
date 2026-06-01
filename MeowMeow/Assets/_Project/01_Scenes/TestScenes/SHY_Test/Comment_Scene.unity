@@ -939,13 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 500000009}
   _countText: {fileID: 500000042}
-  _font: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
-  _tagColor: {r: 1, g: 1, b: 1, a: 0}
-  _tagTextColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
-  _tagFontSize: 28
-  _xButtonSprite: {fileID: 21300000, guid: 700986f8fcfe718459cc1569a2e35b87, type: 3}
-  _xButtonOffset: {x: 10, y: 10}
-  _xButtonSize: {x: 26, y: 26}
+  _tagButtonPrefab: {fileID: 2222222222222222001, guid: 12345678901234567890123456789012, type: 3}
   _maxTags: 5
 --- !u!1 &500000003
 GameObject:
@@ -1156,11 +1150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sheetManager: {fileID: 1083369376}
   _content: {fileID: 500000029}
-  _font: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
+  _buttonPrefab: {fileID: 3333333333333333001, guid: fedcba9876543210fedcba9876543210, type: 3}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 0.816, g: 0.631, b: 0.766, a: 1}
-  _textColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
-  _fontSize: 28
 --- !u!1 &500000023
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,13 +2565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _content: {fileID: 1699388242}
   _countText: {fileID: 1952363787}
-  _font: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
-  _buttonColor: {r: 1, g: 1, b: 1, a: 0}
-  _textColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
-  _buttonFontSize: 28
-  _xButtonSprite: {fileID: 21300000, guid: 700986f8fcfe718459cc1569a2e35b87, type: 3}
-  _xButtonOffset: {x: 10, y: 10}
-  _xButtonSize: {x: 26, y: 26}
+  _wordButtonPrefab: {fileID: 1111111111111111001, guid: abcdef1234567890abcdef1234567890, type: 3}
   _maxChars: 50
 --- !u!114 &1112008216
 MonoBehaviour:

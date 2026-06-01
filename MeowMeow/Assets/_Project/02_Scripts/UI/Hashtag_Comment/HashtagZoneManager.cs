@@ -12,17 +12,7 @@ public class HashtagZoneManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform _content;
     [SerializeField] private TextMeshProUGUI _countText;
-    [SerializeField] private TMP_FontAsset _font;
-
-    [Header("Tag Style")]
-    [SerializeField] private Color _tagColor;
-    [SerializeField] private Color _tagTextColor;
-    [SerializeField] private float _tagFontSize;
-
-    [Header("X Button Style")]
-    [SerializeField] private Sprite _xButtonSprite;
-    [SerializeField] private Vector2 _xButtonOffset;
-    [SerializeField] private Vector2 _xButtonSize;
+    [SerializeField] private GameObject _tagButtonPrefab;
 
     [Header("Settings")]
     [SerializeField] private int _maxTags;
@@ -57,65 +47,18 @@ public class HashtagZoneManager : MonoBehaviour
         OnSelectionChanged?.Invoke();
     }
 
-    private void UpdateCountText()
-    {
-        if (_countText != null)
-            _countText.text = $"{_tagObjects.Count}/{_maxTags}";
-    }
-
     private void CreateTagButton(string id, string tagName)
     {
-        var go = new GameObject(tagName, typeof(RectTransform));
-        go.transform.SetParent(_content, false);
+        var go = Instantiate(_tagButtonPrefab, _content);
+        go.name = tagName;
         _tagObjects[id] = go;
 
-        var img = go.AddComponent<Image>();
-        img.color = _tagColor;
+        go.GetComponentInChildren<TextMeshProUGUI>().text = tagName;
 
-        var btn = go.AddComponent<Button>();
-        btn.targetGraphic = img;
-        btn.onClick.AddListener(() => OnTagButtonClick(go));
-
-        var textGO = new GameObject("Text", typeof(RectTransform));
-        textGO.transform.SetParent(go.transform, false);
-        var textRt = textGO.GetComponent<RectTransform>();
-        textRt.anchorMin = Vector2.zero;
-        textRt.anchorMax = Vector2.one;
-        textRt.offsetMin = Vector2.zero;
-        textRt.offsetMax = Vector2.zero;
-        var tmp = textGO.AddComponent<TextMeshProUGUI>();
-        tmp.text = tagName;
-        tmp.fontSize = _tagFontSize;
-        tmp.alignment = TextAlignmentOptions.Center;
-        tmp.color = _tagTextColor;
-        if (_font != null) tmp.font = _font;
-
-        var xGO = CreateXButton(go.transform);
-        xGO.SetActive(false);
-
+        var xGO = go.transform.Find("X").gameObject;
         string capturedId = id;
+        go.GetComponent<Button>().onClick.AddListener(() => OnTagButtonClick(go));
         xGO.GetComponent<Button>().onClick.AddListener(() => RemoveHashtag(capturedId));
-    }
-
-    private GameObject CreateXButton(Transform parent)
-    {
-        var xGO = new GameObject("X", typeof(RectTransform));
-        xGO.transform.SetParent(parent, false);
-
-        var xRt = xGO.GetComponent<RectTransform>();
-        xRt.anchorMin = new Vector2(1f, 1f);
-        xRt.anchorMax = new Vector2(1f, 1f);
-        xRt.pivot = new Vector2(0.5f, 0.5f);
-        xRt.anchoredPosition = _xButtonOffset;
-        xRt.sizeDelta = _xButtonSize;
-
-        var xImg = xGO.AddComponent<Image>();
-        xImg.sprite = _xButtonSprite;
-
-        var xBtn = xGO.AddComponent<Button>();
-        xBtn.targetGraphic = xImg;
-
-        return xGO;
     }
 
     private void OnTagButtonClick(GameObject tagGO)
@@ -131,6 +74,12 @@ public class HashtagZoneManager : MonoBehaviour
         if (_selectedItem == null) return;
         _selectedItem.transform.Find("X")?.gameObject.SetActive(false);
         _selectedItem = null;
+    }
+
+    private void UpdateCountText()
+    {
+        if (_countText != null)
+            _countText.text = $"{_tagObjects.Count}/{_maxTags}";
     }
 
     private void Update()
