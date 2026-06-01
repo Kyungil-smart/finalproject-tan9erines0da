@@ -45,6 +45,7 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
         }
     }
 
+    #region 토글버튼으로 스티커 선택 함수
     // 스티커 생선순 토글버튼에 구독할 스티커 선택 함수
     private void OnClickSelectSticker(bool isOn)
     {
@@ -55,7 +56,7 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
         if (isOn)
         {
             // 해당 토글의 스티커를 선택 (TouchInteractor 스크립트가 붙어있어야 합니다.)
-            ObjectPinchScaler.Instance.OnSelectForToggle(sticker.GetComponent<TouchInteractor>());
+            TouchInputHandler.Instance.CallObjectSelectedForToggle(sticker.GetComponent<TouchInteractor>());
 
             // 토글 리스트를 순회하며 현재 눌린 토글이 아닌 버튼은 전부 끄는 코드
             foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
@@ -69,11 +70,13 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
         // 토글이 꺼지면 선택해제 및 삭제버튼 숨기기
         else
         {
-            ObjectPinchScaler.Instance.OnUnselect();
+            TouchInputHandler.Instance.CallSelectionCleared();
             StickerStateSingleton.Instance.StickerDelButtonSetOff();
         }
     }
+    #endregion
 
+    #region 토글버튼 인덱스 갱신(TMP)
     // 스티커 생선순 토글버튼 인덱스 갱신
     private void StickerPriorityIndexUpdate()
     {
@@ -82,4 +85,5 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
         int index = StickerStateSingleton.Instance.ToggleList.IndexOf(_toggle);
         _stickerToggleNumberText.text = $"{index + 1}";
     }
+    #endregion
 }

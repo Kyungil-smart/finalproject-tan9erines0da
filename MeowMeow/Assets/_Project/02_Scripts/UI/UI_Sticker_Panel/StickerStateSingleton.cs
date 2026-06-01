@@ -125,7 +125,6 @@ public class StickerStateSingleton : MonoBehaviour
     // 스티커 삭제버튼을 끄기 위한 이벤트 액션
     public event Action StickerDelButtonOff;
 
-
     private void Awake()
     {
         Init();
@@ -211,7 +210,7 @@ public class StickerStateSingleton : MonoBehaviour
         RefreshPriorityButtons();
 
         // 터치로 움직이기 위해 타겟에 넣기
-        ObjectPinchScaler.Instance.OnSelectForToggle(sticker.GetComponent<TouchInteractor>());
+        TouchInputHandler.Instance.CallObjectSelectedForToggle(sticker.GetComponent<TouchInteractor>());
 
         // 스티커 제한 개수 증가 및 TMP 갱신
         CurrentCount++;

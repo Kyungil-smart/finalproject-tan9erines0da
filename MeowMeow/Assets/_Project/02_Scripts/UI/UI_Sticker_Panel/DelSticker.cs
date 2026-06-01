@@ -31,6 +31,7 @@ public class DelSticker : MonoBehaviour
         _stickerObject = stickerObject;
     }
 
+    #region 스티커 삭제 함수
     // 스티커 삭제 버튼에 구독시킬 함수(스티커 삭제)
     private void OnClickDelSticker()
     {
@@ -58,9 +59,11 @@ public class DelSticker : MonoBehaviour
         StickerStateSingleton.Instance.CurrentCount--;
         StickerStateSingleton.Instance.StickerCountUpload();
 
-        ObjectPinchScaler.Instance.OnUnselect();
+        // 타겟을 null로 만들기 위해서 호출
+        TouchInputHandler.Instance.CallSelectionCleared();
 
         // 스티커 삭제버튼 삭제
         Destroy(gameObject);
     }
+    #endregion
 }

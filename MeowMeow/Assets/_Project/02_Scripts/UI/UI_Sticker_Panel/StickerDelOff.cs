@@ -25,15 +25,8 @@ public class StickerDelOff : MonoBehaviour
         _delButton = delButton;
     }
 
-    // 자신의 삭제버튼을 키는 함수(나머지는 다 꺼짐)
+    // 자신의 삭제버튼을 키는 함수
     private void DelButtonOn(GameObject target) => _delButton.SetActive(target == _delButton);
-
-    // 삭제 버튼 누를때 타겟 푸는 함수랑 우선순위 문제로 딜레이 넣는 함수 
-    private void DelButtonOffAction()
-    {
-        CancelInvoke(nameof(DelButtonOff));
-        Invoke(nameof(DelButtonOff), 0.001f);
-    }
 
     // 자신의 삭제버튼은 끄는 함수
     private void DelButtonOff()

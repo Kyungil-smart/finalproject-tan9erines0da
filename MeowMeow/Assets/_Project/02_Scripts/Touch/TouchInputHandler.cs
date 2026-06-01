@@ -54,11 +54,14 @@ public class TouchInputHandler : MonoBehaviour
     private float _initialPinchDistance;
     private bool _isPinchConfirmed;
 
+    public bool _isTouchingSticker;
+
     // 디버그 마커
     private GameObject _debugFirstMarker;
     private GameObject _debugSecondMarker;
 
     public event Action<TouchInteractor> OnObjectSelected;
+    public event Action<TouchInteractor> OnObjectSelectedForToggle;
     public event Action OnSelectionCleared;
     public event Action OnDragStarted;
     public event Action<Vector2> OnDragDelta;
@@ -132,6 +135,25 @@ public class TouchInputHandler : MonoBehaviour
     {
         //_isPrimaryOnUI = IsPointerOverUI();
         //if (_isPrimaryOnUI) return;
+        
+        _isTouchingSticker = false;
+
+        Vector2 touchPos = _inputActions.Touch.PrimaryTouchPosition.ReadValue<Vector2>();
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = touchPos;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.GetComponent<TouchInteractor>() != null)
+            {
+                _isTouchingSticker = true;
+                break;
+            }
+        }
 
         _isPrimaryTouching = true;
         _isDragConfirmed = false;
@@ -361,4 +383,31 @@ public class TouchInputHandler : MonoBehaviour
         Destroy(_debugSecondMarker);
         _debugSecondMarker = null;
     }
+
+    #region ObjectPinchScaler에서 구독한 이벤트 호출용
+    /// <summary>
+    /// 터치로 스티커 선택시 사용하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj">TouchInteractor 스크립트가 컴포넌트된 오브젝트</param>
+    public void CallObjectSelected(TouchInteractor obj)
+    {
+        OnObjectSelected?.Invoke(obj);
+    }
+    /// <summary>
+    /// 토글버튼으로 스티커 선택시 사용하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj">TouchInteractor 스크립트가 컴포넌트된 오브젝트</param>
+    public void CallSelectionCleared()
+    {
+        OnSelectionCleared?.Invoke();
+    }
+    /// <summary>
+    /// 스티커 선택 취소하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj"></param>
+    public void CallObjectSelectedForToggle(TouchInteractor obj)
+    {
+        OnObjectSelectedForToggle?.Invoke(obj);
+    }
+    #endregion
 }
