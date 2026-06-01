@@ -15,6 +15,7 @@ public enum DataType
 }
 public class FireStoreManager : MonoBehaviour
 {
+    
     public SNSPostDTO m_data=new();
     public List<SNSPostDTO> TestList = new List<SNSPostDTO>();  
     private  static FirebaseFirestore m_db;
@@ -27,7 +28,6 @@ public class FireStoreManager : MonoBehaviour
     {
         InitSingleton();
         InitFirebaseAsync();
-       
     }
 
     private void InitSingleton()
@@ -65,7 +65,16 @@ public class FireStoreManager : MonoBehaviour
     {
         foreach (BaseFireStore item in m_Data)
         {
-            item.InitDataBase(m_db);
+            if(BackendManager.Instance !=null)
+            {
+                var UID = BackendManager.Auth.CurrentUser.UserId;
+                item.InitDataBase(m_db, UID);
+            }
+            else
+            {
+                item.InitDataBase(m_db);
+            }
+            
             Debug.Log("BindClass");
         }
         
