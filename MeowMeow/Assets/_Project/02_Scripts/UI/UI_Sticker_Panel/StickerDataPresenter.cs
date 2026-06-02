@@ -50,6 +50,8 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
                 savedProperty.Saturation,
                 savedProperty.Temperature);
         }
+
+        RestoreRuntimeStickers();
     }
 
     public void RequestContext()
@@ -59,39 +61,71 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
 
     public void SubmitContext()
     {
-        if(_stickerState == null || _bgRect == null) return;
+        if (_stickerState == null || _bgRect == null) return;
 
-        // 스냅샷에 담을 스티커 변수 리스트
-        List<StickerTransformData> currentStickers = new List<StickerTransformData>();
+        List<StickerTransformData> currentStickers =
+            new List<StickerTransformData>();
 
-        var runtimeStickers = _stickerState.stickers;
+        // 싱글톤이 안전하게 격리 보관 중인 
+        // _stickerIndexes 딕셔너리의 키셋(KeyCollection)을 순회합니다.
+        var activeStickers = _stickerState.StickerIndexes;
 
-        for(int i = 0; i < runtimeStickers.Count; i++)
+        foreach (var kvp in activeStickers)
         {
-            if(runtimeStickers[i] == null) continue;
+            GameObject stickerObj = kvp.Key;
+            int stickerIndex = kvp.Value;
 
-            RectTransform stickerRect = runtimeStickers[i].sticker.GetComponent<RectTransform>();
+            if (stickerObj == null) continue;
 
-            // 상대적인 포지션과 스케일 계산
+            RectTransform stickerRect = stickerObj.GetComponent<RectTransform>();
+
+            // 대수학 기반 부모 Rect 비례 상대 좌표 연산
             Vector2 relPos = stickerRect.ToRelPos(_bgRect);
             float relScale = stickerRect.ToRelScale(_bgRect);
 
-            // 데이터 구조체 생성 및 리스트에 추가
+            // 타입 변환 오차 제어를 염두에 둔 값 주입 (double 디바이스 호환)
             StickerTransformData data = new StickerTransformData
             {
-                StickerId = runtimeStickers[i].stickerIndex,
-                RelativeX = relPos.x,
-                RelativeY = relPos.y,
-                RelativeScale = relScale,
-                Rotation = stickerRect.localEulerAngles.z
+                StickerId = stickerIndex,
+                RelativeX = System.Math.Round((double)relPos.x, 2),
+                RelativeY = System.Math.Round((double)relPos.y, 2),
+                RelativeScale = System.Math.Round((double)relScale, 2),
+                Rotation = System.Math.Round((double)stickerRect.localEulerAngles.z, 2)
             };
 
             currentStickers.Add(data);
         }
 
-        //스냅샷 수정 및 저장
         _snapshot.Stickers = currentStickers;
-        SubscribeManager.instance.Publish<SNSPostDTO>(SubscribeType.Update_PostModelData, _snapshot);
+        SubscribeManager.instance.Publish<SNSPostDTO>(
+            SubscribeType.Update_PostModelData, _snapshot);
+    }
 
+    private void RestoreRuntimeStickers()
+    {
+        if (_snapshot.Stickers == null || _snapshot.Stickers.Count == 0) return;
+        if (_stickerState == null) return;
+
+        // 싱글톤 내부의 기존 하이어라키 찌꺼기가 있다면 청소 후 재생성하는 것이 안전합니다.
+        // (프로젝트 구조에 맞춰 필요 시 청소 로직 연동)
+
+        foreach (var data in _snapshot.Stickers)
+        {
+            // 1. 싱글톤의 생성 파이프라인 그대로 컴포넌트들을 스폰합니다.
+            _stickerState.SetSticker(data.StickerId);
+
+            // 2. 방금 생성되어 리스트 끝자락에 등록된 스티커 객체를 확보합니다.
+            int lastIndex = _stickerState.ToggleList.Count - 1;
+            Toggle lastToggle = _stickerState.ToggleList[lastIndex];
+            GameObject spawnedSticker = _stickerState.ToggleToSticker[lastToggle];
+
+            // 3. 생성된 스티커의 트랜스폼을 스냅샷 저장 수치로 재배치합니다.
+            RectTransform rect = spawnedSticker.GetComponent<RectTransform>();
+            Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
+
+            rect.RestorePos(savedPos, _bgRect);
+            rect.RestoreScale((float)data.RelativeScale, _bgRect);
+            rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
+        }
     }
 }
