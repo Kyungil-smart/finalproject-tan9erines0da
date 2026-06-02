@@ -1,0 +1,18 @@
+# 최상위 설정 파일임을 명시
+root = true
+
+# 모든 파일에 적용되는 기본 설정
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# C# 스크립트 전용 설정 (BOM 없는 UTF-8 강제)
+[*.cs]
+charset = utf-8
+
+# XML, JSON, YAML 등 데이터 파일 설정
+[*.{xml,json,yaml,yml}]
+indent_size = 2

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "897795581002",
+    "project_id": "meowmeowteam1",
+    "storage_bucket": "meowmeowteam1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897795581002:android:79ec2ee3edbbf8486532b3",
+        "android_client_info": {
+          "package_name": "com.team1.meowmeowstar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897795581002-t1411bk9u3de0e2hams44si98359q6kp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.team1.meowmeowstar",
+            "certificate_hash": "a22fb796120d9163049ea73226b6fa3f058ba1fa"
+          }
+        },
+        {
+          "client_id": "897795581002-upjq06blsjekdpn8l8vs0gu6bts6nhbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.team1.meowmeowstar",
+            "certificate_hash": "cc4c8056a53c35d0ccad3b86842e84d68b19b7db"
+          }
+        },
+        {
+          "client_id": "897795581002-qr7s38o0cpr5lcaa0ieepsr37futefh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6TLAVbjWQH-DduXRSuWvEW-eaP9iS4Qs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "897795581002-qr7s38o0cpr5lcaa0ieepsr37futefh0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
