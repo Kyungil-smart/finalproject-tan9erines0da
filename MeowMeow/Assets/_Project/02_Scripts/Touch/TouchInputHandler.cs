@@ -54,6 +54,7 @@ public class TouchInputHandler : MonoBehaviour
     private float _initialPinchDistance;
     private bool _isPinchConfirmed;
 
+    // 스티커 위를 터치 했는지 판별을 위해 개인적으로 추가(스티커 드래그, 확대/축소, 회전용)
     public bool _isTouchingSticker;
 
     // 디버그 마커
@@ -61,6 +62,7 @@ public class TouchInputHandler : MonoBehaviour
     private GameObject _debugSecondMarker;
 
     public event Action<TouchInteractor> OnObjectSelected;
+    // 토글버튼 선택으로 스티커 선택되게 개인적으로 추가
     public event Action<TouchInteractor> OnObjectSelectedForToggle;
     public event Action OnSelectionCleared;
     public event Action OnDragStarted;
@@ -311,6 +313,8 @@ public class TouchInputHandler : MonoBehaviour
         return _mainCamera.ScreenToWorldPoint(pos);
     }
 
+    #region 디버그 마커용 함수들(터치 및 두손가락 터치시 마커 표시용, 현재 UI위에서는 마커 표시가 되지 않습니다.)
+    // 실제 게임빌드시 표시되면 안되기 때문에 꺼놓는게 좋습니다.
     // 디버그 마커-----------------------------------------
     private void BindDebugActions()
     {
@@ -383,6 +387,7 @@ public class TouchInputHandler : MonoBehaviour
         Destroy(_debugSecondMarker);
         _debugSecondMarker = null;
     }
+    #endregion
 
     #region ObjectPinchScaler에서 구독한 이벤트 호출용
     /// <summary>
