@@ -54,11 +54,16 @@ public class TouchInputHandler : MonoBehaviour
     private float _initialPinchDistance;
     private bool _isPinchConfirmed;
 
+    // 스티커 위를 터치 했는지 판별을 위해 개인적으로 추가(스티커 드래그, 확대/축소, 회전용)
+    public bool _isTouchingSticker;
+
     // 디버그 마커
     private GameObject _debugFirstMarker;
     private GameObject _debugSecondMarker;
 
     public event Action<TouchInteractor> OnObjectSelected;
+    // 토글버튼 선택으로 스티커 선택되게 개인적으로 추가
+    public event Action<TouchInteractor> OnObjectSelectedForToggle;
     public event Action OnSelectionCleared;
     public event Action OnDragStarted;
     public event Action<Vector2> OnDragDelta;
@@ -132,6 +137,25 @@ public class TouchInputHandler : MonoBehaviour
     {
         //_isPrimaryOnUI = IsPointerOverUI();
         //if (_isPrimaryOnUI) return;
+        
+        _isTouchingSticker = false;
+
+        Vector2 touchPos = _inputActions.Touch.PrimaryTouchPosition.ReadValue<Vector2>();
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = touchPos;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.GetComponent<TouchInteractor>() != null)
+            {
+                _isTouchingSticker = true;
+                break;
+            }
+        }
 
         _isPrimaryTouching = true;
         _isDragConfirmed = false;
@@ -241,6 +265,15 @@ public class TouchInputHandler : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
+        // 스티커 삭제 버튼 우선 처리
+        for (int i = 0; i < results.Count; i++)
+        {
+            if (results[i].gameObject.GetComponent<DelSticker>() != null)
+            {
+                return;
+            }
+        }
+
         for (int i = 0; i < results.Count; i++)
         {
             TouchInteractor obj = results[i].gameObject.GetComponent<TouchInteractor>();
@@ -280,6 +313,8 @@ public class TouchInputHandler : MonoBehaviour
         return _mainCamera.ScreenToWorldPoint(pos);
     }
 
+    #region 디버그 마커용 함수들(터치 및 두손가락 터치시 마커 표시용, 현재 UI위에서는 마커 표시가 되지 않습니다.)
+    // 실제 게임빌드시 표시되면 안되기 때문에 꺼놓는게 좋습니다.
     // 디버그 마커-----------------------------------------
     private void BindDebugActions()
     {
@@ -352,4 +387,32 @@ public class TouchInputHandler : MonoBehaviour
         Destroy(_debugSecondMarker);
         _debugSecondMarker = null;
     }
+    #endregion
+
+    #region ObjectPinchScaler에서 구독한 이벤트 호출용
+    /// <summary>
+    /// 터치로 스티커 선택시 사용하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj">TouchInteractor 스크립트가 컴포넌트된 오브젝트</param>
+    public void CallObjectSelected(TouchInteractor obj)
+    {
+        OnObjectSelected?.Invoke(obj);
+    }
+    /// <summary>
+    /// 토글버튼으로 스티커 선택시 사용하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj">TouchInteractor 스크립트가 컴포넌트된 오브젝트</param>
+    public void CallSelectionCleared()
+    {
+        OnSelectionCleared?.Invoke();
+    }
+    /// <summary>
+    /// 스티커 선택 취소하는 이벤트 함수
+    /// </summary>
+    /// <param name="obj"></param>
+    public void CallObjectSelectedForToggle(TouchInteractor obj)
+    {
+        OnObjectSelectedForToggle?.Invoke(obj);
+    }
+    #endregion
 }
