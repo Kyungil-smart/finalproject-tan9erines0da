@@ -34,10 +34,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -975}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3991868016347195320
 CanvasRenderer:
@@ -133,11 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &505560433560081336
 GameObject:
@@ -173,10 +168,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -435}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1535123639347384659
 CanvasRenderer:
@@ -272,11 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &719114930358789738
 GameObject:
@@ -312,10 +302,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -435}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6397727354955543076
 CanvasRenderer:
@@ -411,11 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1183607335754810602
 GameObject:
@@ -451,10 +436,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -435}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2303355819364007913
 CanvasRenderer:
@@ -550,11 +535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1199835369510386009
 GameObject:
@@ -680,10 +660,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -1155}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &905040467254437389
 CanvasRenderer:
@@ -779,11 +759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1260402503210760277
 GameObject:
@@ -819,10 +794,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -615}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5657103496334895485
 CanvasRenderer:
@@ -918,11 +893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1476589282262059999
 GameObject:
@@ -958,10 +928,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -255}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8319951137365140792
 CanvasRenderer:
@@ -1057,11 +1027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &1823427515404590730
 GameObject:
@@ -1096,8 +1061,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
-  m_SizeDelta: {x: 0, y: -25.000015}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &3664915907992126470
 MonoBehaviour:
@@ -1119,8 +1084,8 @@ MonoBehaviour:
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 80, y: 56}
-  m_Spacing: {x: 10, y: 0}
+  m_CellSize: {x: 110, y: 74}
+  m_Spacing: {x: 25, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
 --- !u!1 &1895769454324253483
@@ -1157,10 +1122,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -795}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8750626532644400553
 CanvasRenderer:
@@ -1256,11 +1221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &2169689502823653129
 GameObject:
@@ -1296,10 +1256,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -615}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1832038864240913232
 CanvasRenderer:
@@ -1395,11 +1355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &2977329460387057906
 GameObject:
@@ -1435,10 +1390,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -975}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6413522125489097014
 CanvasRenderer:
@@ -1534,11 +1489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3008948689075588821
 GameObject:
@@ -1574,10 +1524,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -255}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3868415329529918393
 CanvasRenderer:
@@ -1673,11 +1623,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3456660058207027478
 GameObject:
@@ -1788,10 +1733,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -75}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7076280970653602445
 CanvasRenderer:
@@ -1887,11 +1832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &3914838964210831967
 GameObject:
@@ -2017,10 +1957,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -75}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &97944609050582162
 CanvasRenderer:
@@ -2116,11 +2056,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4281173774463631814
 GameObject:
@@ -2156,10 +2091,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -255}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5407765957946967914
 CanvasRenderer:
@@ -2255,11 +2190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4492227852398824698
 GameObject:
@@ -2373,10 +2303,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -615}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2006323421661012576
 CanvasRenderer:
@@ -2472,11 +2402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4739423933622232502
 GameObject:
@@ -2646,10 +2571,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -975}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8686495369680669500
 CanvasRenderer:
@@ -2745,11 +2670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4917891896880654501
 GameObject:
@@ -2785,10 +2705,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -255}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &12350715234296456
 CanvasRenderer:
@@ -2884,11 +2804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &4926370356218647089
 GameObject:
@@ -2924,10 +2839,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -75}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &614485712833290363
 CanvasRenderer:
@@ -3023,11 +2938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5122094745717087279
 GameObject:
@@ -3274,10 +3184,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -795}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5281283822944631499
 CanvasRenderer:
@@ -3373,11 +3283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5822172102822951627
 GameObject:
@@ -3413,10 +3318,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -795}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3493893448668007538
 CanvasRenderer:
@@ -3512,11 +3417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5837674879877828606
 GameObject:
@@ -3552,10 +3452,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -795}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5018338471065069109
 CanvasRenderer:
@@ -3651,11 +3551,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &5855724543602254743
 GameObject:
@@ -3801,7 +3696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 55}
+  m_AnchoredPosition: {x: 0, y: 60}
   m_SizeDelta: {x: 955, y: 97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8429466783741529745
@@ -3906,10 +3801,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -435}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2666181027979666421
 CanvasRenderer:
@@ -4005,11 +3900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &6274334707002501084
 GameObject:
@@ -4179,10 +4069,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -615}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7819637785305346705
 CanvasRenderer:
@@ -4278,11 +4168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &6693130340235439742
 GameObject:
@@ -4428,10 +4313,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -1155}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2965875283484589019
 CanvasRenderer:
@@ -4527,11 +4412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7110597137102188926
 GameObject:
@@ -4547,7 +4427,6 @@ GameObject:
   - component: {fileID: 4991176581112499778}
   - component: {fileID: 5347137270458712636}
   - component: {fileID: 437992403925178075}
-  - component: {fileID: 4807845523633914514}
   m_Layer: 5
   m_Name: Sticker_Canvas
   m_TagString: Untagged
@@ -4667,19 +4546,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stickerCountText: {fileID: 981035818290795126}
-  stickers: []
---- !u!114 &4807845523633914514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7110597137102188926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 671308205a3ac8f4090df84bb5ab4a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _stickerImage: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
+  _stickerDelButton: {fileID: 4325929371341541913, guid: 06d1322387545f34abe5150dafa464da, type: 3}
+  _stickerDelButtonCanvas: {fileID: 0}
+  _targetImage: {fileID: 3050095752315278361}
+  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
+  _stickerToggle: {fileID: 6086020296912325917, guid: ecaf0e8da4bf0624ebbea287be57f537, type: 3}
+  _content: {fileID: 749434847232430092}
+  _priorityToggleGroup: {fileID: 0}
   _stickerEditors:
   - {fileID: 487334711800370615}
   - {fileID: 3051836938790058033}
@@ -4750,10 +4624,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -975}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &117474933048809004
 CanvasRenderer:
@@ -4849,11 +4723,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7239647496811018009
 GameObject:
@@ -4889,10 +4758,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -615}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7606007469734337257
 CanvasRenderer:
@@ -4988,11 +4857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7516686697829367759
 GameObject:
@@ -5194,10 +5058,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -1155}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1612181096734664015
 CanvasRenderer:
@@ -5293,11 +5157,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7944688387481124843
 GameObject:
@@ -5408,10 +5267,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 875, y: -1155}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8399459502517121485
 CanvasRenderer:
@@ -5507,11 +5366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &7983767887975969341
 GameObject:
@@ -5547,10 +5401,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -435}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8245847266417761676
 CanvasRenderer:
@@ -5646,11 +5500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8018668454488438445
 GameObject:
@@ -5686,10 +5535,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -255}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6217335561495650618
 CanvasRenderer:
@@ -5785,11 +5634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8276766257641920544
 GameObject:
@@ -5825,10 +5669,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 95, y: -795}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2213077119788357764
 CanvasRenderer:
@@ -5924,11 +5768,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8452806009548761548
 GameObject:
@@ -5964,10 +5803,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 290, y: -75}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5166061821847287400
 CanvasRenderer:
@@ -6063,11 +5902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &8497286295978349724
 GameObject:
@@ -6236,10 +6070,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -75}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &797083085482326828
 CanvasRenderer:
@@ -6335,11 +6169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &9027684857561938143
 GameObject:
@@ -6375,10 +6204,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 485, y: -1155}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2614334977412108184
 CanvasRenderer:
@@ -6474,11 +6303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0
 --- !u!1 &9154955984765904205
 GameObject:
@@ -6514,10 +6338,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3750455359617450428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 680, y: -975}
+  m_SizeDelta: {x: 190, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &119882662485954896
 CanvasRenderer:
@@ -6613,9 +6437,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 307b4f6c1376a434588f561b3f72dbe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerImage: {fileID: 5265829354778795079, guid: b22dbfe2cad64ca4bae0d43f998f783f, type: 3}
-  _targetImage: {fileID: 3050095752315278361}
-  _content: {fileID: 749434847232430092}
-  _priorityButton: {fileID: 6975138348703288645, guid: 8098c50c22e868a47b9d93e19391f99c, type: 3}
-  _stickerDB: {fileID: 11400000, guid: 2a789bc644e3c5a4797a5957645ef82f, type: 2}
   _myIndex: 0

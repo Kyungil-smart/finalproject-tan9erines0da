@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class DelSticker : MonoBehaviour
 {
-    [Header("스티커 프리펩을 참조")]
-    [SerializeField] private GameObject _stickerObject;
+    private GameObject _stickerObject;
 
     private Button _button;
 
@@ -24,25 +22,48 @@ public class DelSticker : MonoBehaviour
         _button.onClick.RemoveListener(OnClickDelSticker);
     }
 
+    /// <summary>
+    /// 외부에서 DelSticker 스크립트를 초기화 하기위해 만든 함수입니다.
+    /// </summary>
+    /// <param name="delButton">생성된 스티커를 넣어줄 인자입니다.</param>
+    public void InitDelSticker(GameObject stickerObject)
+    {
+        _stickerObject = stickerObject;
+    }
+
+    #region 스티커 삭제 함수
+    // 스티커 삭제 버튼에 구독시킬 함수(스티커 삭제)
     private void OnClickDelSticker()
     {
         if (StickerStateSingleton.Instance == null) return;
 
-        List<StickerStateSingleton.StickerPair> list = StickerStateSingleton.Instance.stickers;
+        // 해당 스티커에 연결된 토글 가져오기
+        Toggle toggle = StickerStateSingleton.Instance.StickerToToggle[_stickerObject];
 
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (list[i].sticker == _stickerObject)
-            {
-                Destroy(list[i].sticker);
-                Destroy(list[i].button);
+        // 각 자료구조에서 해당 스티커 및 토글버튼 삭제
+        StickerStateSingleton.Instance.ToggleList.Remove(toggle);
+        StickerStateSingleton.Instance.StickerToToggle.Remove(_stickerObject);
+        StickerStateSingleton.Instance.ToggleToSticker.Remove(toggle);
+        StickerStateSingleton.Instance.StickerIndexes.Remove(_stickerObject);
+        StickerStateSingleton.Instance.StickerToDelButton.Remove(_stickerObject);
 
-                list.RemoveAt(i);
+        // 토글 버튼 삭제
+        Destroy(toggle.gameObject);
+        // 스티커 오브젝트 삭제
+        Destroy(_stickerObject);
 
-                StickerStateSingleton.Instance.CurrentCount--;
-                StickerStateSingleton.Instance.StickerCountUpload();
-                return;
-            }
-        }
+        // 스티커 생선순 토글버튼 번호 갱신
+        StickerStateSingleton.Instance.RefreshPriorityButtons();
+
+        // 스티커 제한개수 감소 및 갱신
+        StickerStateSingleton.Instance.CurrentCount--;
+        StickerStateSingleton.Instance.StickerCountUpload();
+
+        // 타겟을 null로 만들기 위해서 호출
+        TouchInputHandler.Instance.CallSelectionCleared();
+
+        // 스티커 삭제버튼 삭제
+        Destroy(gameObject);
     }
+    #endregion
 }
