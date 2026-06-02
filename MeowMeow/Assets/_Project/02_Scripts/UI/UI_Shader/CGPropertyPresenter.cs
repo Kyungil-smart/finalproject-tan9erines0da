@@ -31,6 +31,8 @@ public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter
     void OnDisable()
     {
         UnbindSlider();
+
+        // ResetSliderComponentsToDefault();
     }
 
     /// <summary>
@@ -82,6 +84,21 @@ public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter
         UpdateShaderRendering(savedShader);
     }
 
+    private void ResetSliderComponentsToDefault()
+    {
+        _sliderBrightness.value  = 0f;
+        _sliderContrast.value    = 1f;
+        _sliderSaturation.value  = 1f;
+        _sliderTemperature.value = 0.5f;
+
+        UpdateShaderRendering(new UIShaderProperty
+        {
+            Brightness  = 0f,
+            Contrast    = 1f,
+            Saturation  = 1f,
+            Temperature = 0.5f
+        });
+    }
     // 스냅샷(SNSPostDTO)을 기준으로 프리뷰 이미지를 설정하는 함수
     private void SetPreviewImage()
     {

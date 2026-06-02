@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,8 +16,7 @@ public class SNS_UI_Controller : BaseScreenController
     private UIPanel _lastActiveDepth1Panel;
 
     // 편집 패널 추적용 스택
-    private Stack<UIPanel> _depth2History = new Stack<UIPanel>();
-
+    private Stack<UIHistorySnapshot> _uiHistory = new Stack<UIHistorySnapshot>();
     // OpenController()가 실행되자마자 가장 먼저 호출됨
     protected override void OnBeforeOpen()
     {
@@ -89,7 +89,7 @@ public class SNS_UI_Controller : BaseScreenController
         // 1깊이 수평 이동일 때는 히스토리를 초기화합니다.
         if (targetPanel.PanelDepth == UIPanel.UIDepth.Depth1)
         {
-            _depth2History.Clear();
+            _uiHistory.Clear();
             ProcessNavigateToDepth1(targetPanel);
         }
         else
@@ -103,8 +103,16 @@ public class SNS_UI_Controller : BaseScreenController
                 oldPresenter.SubmitContext();
             }
 
-            // 내가 '어디서' 출발했는지 기록을 남깁니다.
-            _depth2History.Push(CurrentActivePanel);
+            SubscribeManager.instance.Publish<Action<SNSPostDTO>>(
+                SubscribeType.Request_CurrentPostContext, (pureMasterData) =>
+                {
+                    UIHistorySnapshot history = new UIHistorySnapshot
+                    {
+                        Panel = CurrentActivePanel,
+                        DataContext = pureMasterData 
+                    };
+                    _uiHistory.Push(history);
+                });
 
             ProcessNavigateToDepth2(targetPanel);
         }
@@ -117,7 +125,7 @@ public class SNS_UI_Controller : BaseScreenController
     public void ClickNavigateBackDepth2Button()
     {
         // 스택에 돌아갈 기록이 남아있는지 검사
-        if (_depth2History == null || _depth2History.Count == 0)
+        if (_uiHistory == null || _uiHistory.Count == 0)
         {
             // 더 이상 돌아갈 2깊이가 없다면 최초 1깊이 피드로 탈출
             ClickCloseDepth2Button();
@@ -130,17 +138,19 @@ public class SNS_UI_Controller : BaseScreenController
         // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.
         CurrentActivePanel.Close(() =>
         {
-            // 스택에서 직전에 보았던 패널을 꺼내어 타겟으로 지정
-            UIPanel previousPanel = _depth2History.Pop();
-            CurrentActivePanel = previousPanel;
+            // 스택에서 직전 화면 기록과 '당시의 순수 데이터'를 팝합니다.
+            UIHistorySnapshot previousHistory = _uiHistory.Pop();
+            CurrentActivePanel = previousHistory.Panel;
 
-            // 만약 꺼낸 패널이 1깊이였다면 백업 변수와 싱크
-            if (previousPanel.PanelDepth == UIPanel.UIDepth.Depth1)
+            if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
             {
-                _lastActiveDepth1Panel = previousPanel;
+                _lastActiveDepth1Panel = CurrentActivePanel;
             }
 
-            // 오염되지 않은 메인 원본 데이터를 직전 패널에 수혈
+            SubscribeManager.instance.Publish<SNSPostDTO>(
+                SubscribeType.Update_PostModelData, previousHistory.DataContext);
+
+            // 원복된 데이터를 기반으로 컴포넌트 눈금 재배치 호출
             RefreshPanelData(CurrentActivePanel);
 
             CurrentActivePanel.OpenWithTabChangeAnimation(null);
@@ -240,4 +250,9 @@ public class SNS_UI_Controller : BaseScreenController
             Debug.Log($"[{panel.name}] 스왑 타임라인 내부에서 데이터 사전 동기화 완료.");
         }
     }
+}
+public struct UIHistorySnapshot
+{
+    public UIPanel Panel;         // 돌아갈 직전 패널
+    public SNSPostDTO DataContext; // 그 직전 패널 시절의 순수 데이터 원본
 }
