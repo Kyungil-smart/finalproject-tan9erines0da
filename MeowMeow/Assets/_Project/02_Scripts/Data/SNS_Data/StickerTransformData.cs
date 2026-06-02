@@ -14,6 +14,11 @@ public struct StickerTransformData
     public float RelativeY;     // 상대적인y좌표 (0.0 ~1.0)
     public float RelativeScale; // 상대적인 크기 비율
     public float Rotation;      // z축 회전 값
+
+    public Vector2 RelativePos()
+    {
+        return new Vector2(RelativeX, RelativeY);
+    }
 }
 
 public struct UIShaderProperty

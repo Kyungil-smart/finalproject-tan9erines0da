@@ -7,10 +7,23 @@ using UnityEditor;
 #endif
 public class googleSheetManager : MonoBehaviour
 {
-    public List<BaseDataSO> m_Listdata = new List<BaseDataSO>();
-     
+    public   List<BaseDataSO> m_Listdata = new List<BaseDataSO>();
 
-     
+    public static googleSheetManager instance { get; private set; }
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
     public async void DataLoad()
     {
         await DataLoadAsync();
@@ -26,7 +39,7 @@ public class googleSheetManager : MonoBehaviour
         await Task.WhenAll(tasks);
     }
 
-    public SheetDataSO<T> GetClassData<T>() where T : class, IIdentifiable, ISheetParsable, new()
+    public   SheetDataSO<T> GetClassData<T>() where T : class, IIdentifiable, ISheetParsable, new()
     {
         foreach (var item in m_Listdata)
         {
