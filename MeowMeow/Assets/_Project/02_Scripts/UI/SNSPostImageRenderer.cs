@@ -61,10 +61,10 @@ public class SNSPostPreviewRenderer : MonoBehaviour
 
             RectTransform rect = obj.GetComponent<RectTransform>();
 
-            Vector2 savedPos = new Vector2(data.RelativeX, data.RelativeY);
+            Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
             rect.RestorePos(savedPos, bgRect);
-            rect.RestoreScale(data.RelativeScale, bgRect);
-            rect.localEulerAngles = new Vector3(0f, 0f, data.Rotation);
+            rect.RestoreScale((float)data.RelativeScale, bgRect);
+            rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
 
             _spawnedStickers.Add(obj);
         }

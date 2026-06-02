@@ -27,7 +27,7 @@ public class FireStoreManager : MonoBehaviour
     private   void Awake()
     {
         InitSingleton();
-        InitFirebaseAsync();
+        // InitFirebaseAsync();
     }
 
     private void InitSingleton()
@@ -42,6 +42,27 @@ public class FireStoreManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    async void Start()
+    {
+        // 백엔드 매니져에서 초기화 완료 대기
+        bool isBackendReady = await BackendManager.ReadyTask;
+
+        if(!isBackendReady)
+        {
+            Debug.LogError("[Firestore] 백엔드 초기화 실패");
+            return;
+        }
+
+        // Firebase 초기화 성공 시
+        m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
+        m_db = FirebaseFirestore.DefaultInstance;
+
+        BindClass();
+        InitDictionary();
+
+    }
+    // 초기화는 백엔드 매니져에서 진행 
     private  void InitFirebaseAsync()
     {
           FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
@@ -65,7 +86,7 @@ public class FireStoreManager : MonoBehaviour
     {
         foreach (BaseFireStore item in m_Data)
         {
-            if(BackendManager.Instance !=null)
+            if(BackendManager.Auth !=null && BackendManager.Auth.CurrentUser != null)
             {
                 var UID = BackendManager.Auth.CurrentUser.UserId;
                 item.InitDataBase(m_db, UID);
@@ -186,7 +207,7 @@ public class FireStoreManager : MonoBehaviour
     [ContextMenu("확장메소드 체크")]
     public   async void  Extens()
     {
-        var data= await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO>();
+        var data= await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
         TestList = data;
     }
     private async Task Test()
