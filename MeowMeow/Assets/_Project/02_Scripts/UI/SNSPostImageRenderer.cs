@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,15 +14,15 @@ public class SNSPostImageRenderer : MonoBehaviour
     [Header("스티커 프리팹")]
     [SerializeField] private Image _rawStickerPrefab;
 
-    private UIImageShaderController _shaderController;
-
-    private Image _bgImage;
+    [Header("생명주기 문제로 인한 Null 해결을 위한 직접 참조")]
+    [SerializeField] private Image _bgImage;
+    [SerializeField] private UIImageShaderController _shaderController;
     private List<GameObject> _spawnedStickers = new List<GameObject>();
 
     private void Awake()
     {
-        _bgImage = GetComponent<Image>();
-        _shaderController = GetComponent<UIImageShaderController>();
+        if(_bgImage == null) _bgImage = GetComponent<Image>();
+        if(_shaderController == null) _shaderController = GetComponent<UIImageShaderController>();
     }
 
     /// <summary>
@@ -29,22 +30,14 @@ public class SNSPostImageRenderer : MonoBehaviour
     /// </summary>
     public void RenderPreview(SNSPostDTO snapshot)
     {
+
         // 1. 기본 이미지 복원
         if (_cgDatabase != null)
         {
             _bgImage.sprite = _cgDatabase.GetSprite(snapshot.ImageIndex);
         }
 
-        // 2. 셰이더 프로퍼티 복원
-        if (_shaderController != null)
-        {
-            UIShaderProperty prop = snapshot.ShaderProperty;
-            _shaderController.UpdateShaderProperties(
-                prop.Brightness, prop.Contrast,
-                prop.Saturation, prop.Temperature);
-        }
-
-        // 3. 스티커 레이어 청소 및 복원
+        // 2. 스티커 레이어 청소 및 복원
         ClearStickers();
 
         if (snapshot.Stickers == null) return;
@@ -67,6 +60,15 @@ public class SNSPostImageRenderer : MonoBehaviour
             rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
 
             _spawnedStickers.Add(obj);
+        }
+
+        // 3. 셰이더 복원
+        if (_shaderController != null)
+        {
+            UIShaderProperty prop = snapshot.ShaderProperty;
+            _shaderController.UpdateShaderProperties(
+                prop.Brightness, prop.Contrast,
+                prop.Saturation, prop.Temperature);
         }
     }
 
