@@ -11,6 +11,9 @@ public class SelectImageUpload : MonoBehaviour
     private Button _button;
     private Image _Image;
 
+    [Header("버튼 자신의 자식 Post_Icon_Image를 참조")]
+    [SerializeField] private GameObject _postIconImage;
+
     private void Awake()
     {
         _getImageList = GetComponentInParent<GetImageList>();
@@ -21,6 +24,11 @@ public class SelectImageUpload : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(OnClickImage);
+
+        if (_getImageList.UploadImage.Image.sprite == null)
+        {
+            _postIconImage.SetActive(false);
+        }
     }
 
     private void OnDisable()
@@ -30,6 +38,16 @@ public class SelectImageUpload : MonoBehaviour
 
     private void OnClickImage()
     {
+        _getImageList.OnPostIconImage(this);
         _getImageList.UpLoadImage(_Image.sprite);
+    }
+
+    /// <summary>
+    /// OnPostIconImage()함수와 연동하기 위한 함수 `이미 게시한 게시물 아이콘`을 켜고/끄는 역활
+    /// </summary>
+    /// <param name="selected">true/false로 `이미 게시한 게시물 아이콘` 켜고/끄는 인자</param>
+    public void SetSelected(bool selected)
+    {
+        _postIconImage.SetActive(selected);
     }
 }
