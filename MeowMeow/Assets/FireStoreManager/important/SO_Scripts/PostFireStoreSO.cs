@@ -17,6 +17,7 @@ public class PostFireStoreSO : BaseFireStore
         if (data is FirestoreSNSPostDoc doc)
         {
             await currentRef.SetAsync(doc);
+            await currentCollection.AddAsync(doc);
             Debug.Log($"[Firestore] {currentRef.Path}에 문서 업로드 성공");
         }
         else

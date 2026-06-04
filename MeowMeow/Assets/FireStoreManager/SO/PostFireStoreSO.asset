@@ -16,6 +16,6 @@ MonoBehaviour:
   - default
   - SNS_Posts
   m_documents:
-  - Post_default
-  - Post_default
+  - default
+  - Users_Post
   m_EnumType: 2

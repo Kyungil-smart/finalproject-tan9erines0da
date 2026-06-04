@@ -52,6 +52,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
         {
             _commentText.text = _snapshot.Comment;
         }
+
+        _uploadButton.onClick.AddListener(ExecuteUploadAndReturn);
     }
 
     public void RequestContext()
@@ -73,6 +75,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     /// </summary>
     public void SubmitContext()
     {
+        _uploadButton?.onClick.RemoveAllListeners();
+
         if (_snapshot.Equals(default(SNSPostDTO))) return;
 
         // 추후 이 구역 또는 우측 하단 [최종 등록] 버튼 콜백 함수 내부에 
@@ -100,6 +104,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
                 .UploadAndCachePostAsync(_snapshot);
 
             Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
+
+            _snapshot = default(SNSPostDTO);
 
             // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
             if (_uiController != null && _profilePanel != null)

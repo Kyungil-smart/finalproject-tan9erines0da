@@ -57,6 +57,15 @@ public class SNSPostManager : MonoBehaviour
     /// </summary>
     public async Task UploadAndCachePostAsync(SNSPostDTO data)
     {
+        // 현재 로그인된 내 UID 주입
+        data.WriterId = CurrentUID;
+
+        // 무작위 6개 추출 쿼리 연산을 위한 난수 인덱스 부여
+        data.RandomIndex = UnityEngine.Random.value;
+
+        // 최신순 정렬을 위한 현재 UTC 시간 주입 (밀리초)
+        data.Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
         // 1. 작성 시기 순서(최신순)를 위해 리스트의 맨 앞(0번)에 삽입합니다.
         MyPostHistory.Insert(0, data);
 
