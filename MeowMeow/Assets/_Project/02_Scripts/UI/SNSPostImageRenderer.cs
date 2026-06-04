@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(UIImageShaderController))]
-public class SNSPostPreviewRenderer : MonoBehaviour
+public class SNSPostImageRenderer : MonoBehaviour
 {
     [Header("이미지 데이터 베이스")]
     [SerializeField] private CGImageDatabase _cgDatabase;

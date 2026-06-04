@@ -82,6 +82,13 @@ public class ObjectPinchScaler : MonoBehaviour
     // 스티커 선택해제 함수
     public void OnUnselect()
     {
+
+        if (StickerStateSingleton.Instance == null ||
+            StickerStateSingleton.Instance.gameObject == null ||
+            StickerStateSingleton.Instance.ToggleList == null)
+        {
+            return;
+        }
         // 토글 버든 모두 해제
         foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
         {
