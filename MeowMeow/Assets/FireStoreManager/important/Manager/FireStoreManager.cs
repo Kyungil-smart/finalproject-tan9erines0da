@@ -12,6 +12,7 @@ public enum DataType
 {
     None,
     Test,
+    Posts,
 }
 public class FireStoreManager : MonoBehaviour
 {
