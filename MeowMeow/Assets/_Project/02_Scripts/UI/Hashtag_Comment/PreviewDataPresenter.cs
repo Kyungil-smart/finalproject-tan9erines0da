@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
 {
@@ -11,6 +12,11 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     [Header("작업자 텍스트 UI 참조")]
     [SerializeField] private TextMeshProUGUI _hashtagText;
     [SerializeField] private TextMeshProUGUI _commentText;
+
+    [Header("UI 컨트롤러 및 타겟 패널 직접 참조")]
+    [SerializeField] private BaseScreenController _uiController;
+    [SerializeField] private UIPanel _profilePanel;
+    [SerializeField] private Button _uploadButton;
 
     private SNSPostDTO _snapshot;
 
@@ -74,5 +80,46 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+    }
+
+    /// <summary>
+    /// [★통합 업로드 및 패널 전환 관제]
+    /// 에디터 인스펙터 참조를 통해 다이렉트로 타겟 패널을 호출합니다.
+    /// </summary>
+    public async void ExecuteUploadAndReturn()
+    {
+        if (_snapshot.Equals(default(SNSPostDTO))) return;
+
+        // 1. 중복 클릭 방지
+        if (_uploadButton != null) _uploadButton.interactable = false;
+
+        try
+        {
+            // 2. 매니저에 업로드 지시 후 완료될 때까지 대기
+            await SNSPostManager.Instance
+                .UploadAndCachePostAsync(_snapshot);
+
+            Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
+
+            // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
+            if (_uiController != null && _profilePanel != null)
+            {
+                _uiController.RequestScreenChange(_profilePanel);
+            }
+            else
+            {
+                Debug.LogWarning("컨트롤러나 타겟 참조가 누락되었습니다.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // 4. 업로드 실패 시 패널을 닫지 않고 대기
+            Debug.LogError($"업로드 실패. 전환 중단: {ex.Message}");
+        }
+        finally
+        {
+            // 5. 버튼 상태 복구
+            if (_uploadButton != null) _uploadButton.interactable = true;
+        }
     }
 }
