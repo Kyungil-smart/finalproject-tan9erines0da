@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: PostFireStoreSO
   m_EditorClassIdentifier: 
   m_collections:
+  - default
   - SNS_Posts
   m_documents:
+  - Post_default
   - Post_default
   m_EnumType: 2
