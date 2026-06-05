@@ -10,6 +10,8 @@ public class SNSPostManager : MonoBehaviour
 {
     public static SNSPostManager Instance { get; private set; }
 
+    public SNSPostDTO CurrentSelectedFeed { get; private set; }
+
     public List<SNSPostDTO> CachedFeeds { get; private set; }
         = new List<SNSPostDTO>();
 
@@ -18,6 +20,7 @@ public class SNSPostManager : MonoBehaviour
 
     public event Action OnFeedUpdated;
     public event Action OnMyPostHistoryUpdated;
+    
 
     // 현재 로그인된 유저의 UID를 안전하게 가져오는 프로퍼티
     private string CurrentUID
@@ -81,7 +84,7 @@ public class SNSPostManager : MonoBehaviour
         try
         {
             await FireStoreManager.DocumentType(DataType.Posts)
-                                  .SetAsync(doc);
+                                  .AddAsync(doc);
         }
         catch (Exception ex)
         {
@@ -155,5 +158,10 @@ public class SNSPostManager : MonoBehaviour
         }
 
         OnMyPostHistoryUpdated?.Invoke();
+    }
+
+    public void SelectFeed(SNSPostDTO dto)
+    {
+        CurrentSelectedFeed = dto;
     }
 }
