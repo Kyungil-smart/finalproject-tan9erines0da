@@ -99,6 +99,18 @@ public class CommentZoneManager : MonoBehaviour
         button.transform.SetSiblingIndex(targetIndex);
     }
 
+    // Comment_Zone의 모든 단어 버튼을 한 번에 제거한다.
+    public void ClearAll()
+    {
+        foreach (Transform child in _content)
+            Destroy(child.gameObject);
+
+        _totalChars = 0;
+        _selectedButton = null;
+        OnSelectionChanged?.Invoke();
+        UpdateCountText();
+    }
+
     private void CreateWordButton(string word)
     {
         var go = Instantiate(_wordButtonPrefab, _content);

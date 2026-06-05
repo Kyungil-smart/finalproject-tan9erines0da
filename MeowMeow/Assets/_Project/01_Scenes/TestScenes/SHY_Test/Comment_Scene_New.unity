@@ -362,17 +362,6 @@ MonoBehaviour:
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
   m_ScrollDeltaPerTick: 6
---- !u!114 &8888000000000003 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4525584674547104716, guid: f10b7f1b0ac034647847d7b64e91c791, type: 3}
-  m_PrefabInstance: {fileID: 2820104279345184703}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 186f192cfe6c78e49828ad5d55d30b70, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
 --- !u!114 &5555000000000002 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5555000000000001, guid: f10b7f1b0ac034647847d7b64e91c791, type: 3}
@@ -382,8 +371,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1bbf09483b232645ba03297693a4894, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8888000000000003 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4525584674547104716, guid: f10b7f1b0ac034647847d7b64e91c791, type: 3}
+  m_PrefabInstance: {fileID: 2820104279345184703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186f192cfe6c78e49828ad5d55d30b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1789942724251899367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -406,23 +406,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value:
+      value: 
       objectReference: {fileID: 8888000000000003}
+    - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5555000000000002}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SubmitContext
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CommentPanelPresenter, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value:
-      objectReference: {fileID: 5555000000000002}
-    - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CommentPanelPresenter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

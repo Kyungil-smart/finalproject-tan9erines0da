@@ -43,6 +43,13 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
             _postImageRenderer.RenderPreview(_snapshot);
     }
 
+    // Comment_Zone과 Hashtag_Zone을 동시에 초기화한다.
+    public void ResetAll()
+    {
+        _commentZoneManager?.ClearAll();
+        _hashtagZoneManager?.ClearAll();
+    }
+
     /// <summary>
     /// 완료 버튼에 연결한다.
     /// Comment_Zone / Hashtag_Zone 의 현재 값을 DTO 에 기록하고 중앙 저장소를 갱신한다.

@@ -63,6 +63,17 @@ public class HashtagZoneManager : MonoBehaviour
     // 호환성 유지용. Hashtag 는 선택 상태가 없으므로 아무 것도 하지 않는다.
     public void DeselectAll() { }
 
+    // Hashtag_Zone의 모든 태그를 한 번에 제거한다.
+    public void ClearAll()
+    {
+        foreach (var go in _tagObjects.Values)
+            Destroy(go);
+
+        _tagObjects.Clear();
+        OnSelectionChanged?.Invoke();
+        UpdateCountText();
+    }
+
     // 현재 추가된 태그 이름 목록을 반환한다.
     public List<string> GetSelectedTagNames()
     {
