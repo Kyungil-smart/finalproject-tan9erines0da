@@ -27,7 +27,7 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
     {
         if (SubscribeManager.instance == null)
         {
-            Debug.LogWarning("[CommentPanelPresenter] SubscribeManager가 없습니다.");
+            Debug.LogWarning("SubscribeManager가 없습니다.");
             return;
         }
 

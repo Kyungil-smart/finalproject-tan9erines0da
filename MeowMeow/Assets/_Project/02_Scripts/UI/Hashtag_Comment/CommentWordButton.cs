@@ -39,7 +39,7 @@ public class CommentWordButton : MonoBehaviour
         _deleteBtn.onClick.AddListener(OnDeleteClicked);
     }
 
-    /// <summary>버튼 생성 직후 한 번만 호출. word와 manager를 바인딩한다.</summary>
+    // <summary>버튼 생성 직후 한 번만 호출. word와 manager를 바인딩한다.</summary>
     public void Init(string word, CommentZoneManager manager)
     {
         _word = word;
@@ -48,7 +48,7 @@ public class CommentWordButton : MonoBehaviour
         SetSelected(false);
     }
 
-    /// <summary>선택 상태를 갱신한다. CommentZoneManager에서만 호출한다.</summary>
+    // <summary>선택 상태를 갱신한다. CommentZoneManager에서만 호출한다.</summary>
     public void SetSelected(bool selected)
     {
         _isSelected = selected;
