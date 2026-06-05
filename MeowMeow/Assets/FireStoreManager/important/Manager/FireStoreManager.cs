@@ -28,7 +28,7 @@ public class FireStoreManager : MonoBehaviour
     private   void Awake()
     {
         InitSingleton();
-        // InitFirebaseAsync();
+         InitFirebaseAsync();
     }
 
     private void InitSingleton()
@@ -230,6 +230,14 @@ public class FireStoreManager : MonoBehaviour
     {
         var data= await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
         TestList = data;
+    }
+
+    [ContextMenu("확장메소드 _AddAsync ")]
+    public async void Extens__AddAsync()
+    {
+         var testdata = new SNSPostDTO2();
+          await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
+         
     }
     private async Task Test()
     {
