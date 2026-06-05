@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestSO
   m_collections:
   - Userssssssss
+  - Userssssssss
   m_documents:
+  - t10
   - t10
   m_EnumType: 1
