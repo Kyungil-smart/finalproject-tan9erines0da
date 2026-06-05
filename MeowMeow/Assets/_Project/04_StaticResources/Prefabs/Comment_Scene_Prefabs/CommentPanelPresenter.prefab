@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3921993606936184833
+--- !u!1 &1983360957181228065
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4569008698187817847}
-  - component: {fileID: 6112102078349626927}
-  - component: {fileID: 462025249410995749}
+  - component: {fileID: 9014312783988334060}
+  - component: {fileID: 4525584674547104716}
+  - component: {fileID: 5555000000000001}
   m_Layer: 0
-  m_Name: CommentScenePublisher
+  m_Name: CommentPanelPresenter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4569008698187817847
+--- !u!4 &9014312783988334060
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921993606936184833}
+  m_GameObject: {fileID: 1983360957181228065}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,30 +33,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6112102078349626927
+--- !u!114 &4525584674547104716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921993606936184833}
+  m_GameObject: {fileID: 1983360957181228065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee68e315f483c9645abc9218e893bf9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 186f192cfe6c78e49828ad5d55d30b70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _commentZoneManager: {fileID: 0}
   _hashtagZoneManager: {fileID: 0}
---- !u!114 &462025249410995749
+  _postImageRenderer: {fileID: 0}
+--- !u!114 &5555000000000001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3921993606936184833}
+  m_GameObject: {fileID: 1983360957181228065}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1bbf09483b232645ba03297693a4894, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   _sceneName: Preview_Scene
+  _sceneIndex: 0

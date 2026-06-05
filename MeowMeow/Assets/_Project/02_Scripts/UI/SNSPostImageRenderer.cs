@@ -30,6 +30,8 @@ public class SNSPostImageRenderer : MonoBehaviour
     /// </summary>
     public void RenderPreview(SNSPostDTO snapshot)
     {
+        if (_bgImage == null) _bgImage = GetComponent<Image>();
+        if (_shaderController == null) _shaderController = GetComponent<UIImageShaderController>();
 
         // 1. 기본 이미지 복원
         if (_cgDatabase != null)
