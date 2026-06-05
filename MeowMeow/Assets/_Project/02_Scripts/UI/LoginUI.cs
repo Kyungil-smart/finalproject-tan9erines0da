@@ -64,6 +64,11 @@ public class LoginUI : MonoBehaviour
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
+
+        if (SNSPostManager.Instance != null)
+        {
+            SNSPostManager.Instance.LoadLocalData();
+        }
     }
 
     private async void OnLoginClicked()
@@ -100,6 +105,11 @@ public class LoginUI : MonoBehaviour
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
 
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
+
+        if(SNSPostManager.Instance != null)
+        {
+            SNSPostManager.Instance.LoadLocalData();
+        }
     }
 
     private void OnLogoutClicked()

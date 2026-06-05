@@ -52,7 +52,7 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
         {
             _commentText.text = _snapshot.Comment;
         }
-
+        _uploadButton?.onClick.RemoveAllListeners();
         _uploadButton.onClick.AddListener(ExecuteUploadAndReturn);
     }
 

@@ -42,7 +42,7 @@ public class ProfileUIPresenter : MonoBehaviour
         foreach (var postDto in myPosts)
         {
             // 프리팹 생성 및 리스트 등록
-            SNSPostImageRenderer spawned = Instantiate(_prefab, _gridLayoutGroup.transform);
+            SNSPostImageRenderer spawned = Instantiate(_prefab, _gridLayoutGroup.transform, false);
             _spawnedItem.Add(spawned.gameObject);
 
             // 이미지 복원

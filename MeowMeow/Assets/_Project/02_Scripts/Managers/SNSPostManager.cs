@@ -46,10 +46,10 @@ public class SNSPostManager : MonoBehaviour
     public void LoadLocalData()
     {
         MyPostHistory = LocalFeedStorage.LoadPosts(
-            CurrentUID, "MyPosts");
+            CurrentUID, "MyPosts") ?? new();
 
         CachedFeeds = LocalFeedStorage.LoadPosts(
-            CurrentUID, "RandomFeeds");
+            CurrentUID, "RandomFeeds") ?? new();
 
         Debug.Log($"[Manager] 로컬 데이터 복원 완료. " +
             $"내 글: {MyPostHistory.Count}개, 피드: {CachedFeeds.Count}개");
@@ -128,16 +128,14 @@ public class SNSPostManager : MonoBehaviour
     public async Task LoadLocalDataAsync()
     {
         // 1. 선제적인 로컬 스토리지 JSON 탐색
-        MyPostHistory = LocalFeedStorage.LoadPosts(CurrentUID, "MyPosts");
-        CachedFeeds = LocalFeedStorage.LoadPosts(CurrentUID, "RandomFeeds");
+        MyPostHistory = LocalFeedStorage.LoadPosts(CurrentUID, "MyPosts") ?? new List<SNSPostDTO>();
+        CachedFeeds = LocalFeedStorage.LoadPosts(CurrentUID, "RandomFeeds") ?? new List<SNSPostDTO>(); ;
 
         // 2. 로컬 캐시가 완전히 비어있을 때 크로스 디바이스 동기화 발동
         if (MyPostHistory.Count == 0)
         {
             Debug.Log("[Manager] 로컬 데이터 전무. 서버 동기화 가동...");
 
-            // [★일관성 확보] GetRandomSixData와 완벽하게 대칭을 이루는 
-            // 콤팩트한 확장 메서드 호출 파이프라인이 완성되었습니다.
             List<FirestoreSNSPostDoc> serverDocs = await FireStoreManager
                 .DocumentType(DataType.Posts)
                 .SyncMyHistoryData<FirestoreSNSPostDoc>(CurrentUID);
