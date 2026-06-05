@@ -247,4 +247,39 @@ public class StickerStateSingleton : MonoBehaviour
         _stickerCountText.text = $"{_currentCount}/{_maxStickerCount}";
     }
     #endregion
+
+    #region 스티커 초기화 함수
+    public void AllClearSticker()
+    {
+        foreach (Toggle toggle in _toggleList)
+        {
+            if (toggle != null)
+            {
+                Destroy(toggle.gameObject);
+            }
+        }
+
+        foreach (KeyValuePair<GameObject, GameObject> pair in _stickerToDelButton)
+        {
+            if (pair.Value != null)
+            {
+                Destroy(pair.Value);
+            }
+        }
+
+        foreach (KeyValuePair<Toggle, GameObject> pair in _toggleToSticker)
+        {
+            if (pair.Value != null)
+            {
+                Destroy(pair.Value);
+            }
+        }
+
+        _stickerIndexes.Clear();
+        _toggleToSticker.Clear();
+        _stickerToToggle.Clear();
+        _toggleList.Clear();
+        _stickerToDelButton.Clear();
+    }
+    #endregion
 }
