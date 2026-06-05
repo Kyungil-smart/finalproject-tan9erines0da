@@ -1,10 +1,11 @@
-using Firebase.Firestore;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
+using Firebase.Firestore;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 
 public struct SNSPostDTO
@@ -12,6 +13,7 @@ public struct SNSPostDTO
     // firestore 업로드에 필요한 uid나 피드의 고유 id, 인덱싱 필드 등
     public string WriterId;
     public double RandomIndex;
+    public long Timestamp;
 
     // sns 콘텐츠 요소 필드
     public int ImageIndex;
@@ -26,6 +28,7 @@ public class FirestoreSNSPostDoc
 {
     [FirestoreProperty] public string WriterId { get; set; }
     [FirestoreProperty] public double RandomIndex { get; set; }
+    [FirestoreProperty] public long Timestamp { get; set; }
     [FirestoreProperty] public int ImageIndex { get; set; }
     [FirestoreProperty] public UIShaderProperty ShaderProperty { get; set; }
     [FirestoreProperty] public string Comment { get; set; }
@@ -42,6 +45,7 @@ public class FirestoreSNSPostDoc
     {
         WriterId = structData.WriterId;
         RandomIndex = structData.RandomIndex;
+        Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
         ImageIndex = structData.ImageIndex;
         ShaderProperty = structData.ShaderProperty;
         Comment = structData.Comment;
