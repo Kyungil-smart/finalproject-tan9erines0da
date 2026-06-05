@@ -13,6 +13,7 @@ public enum DataType
     None,
     Test,
     Posts,
+    CurrencyData,
 }
 public class FireStoreManager : MonoBehaviour
 {
@@ -282,4 +283,11 @@ public struct SNSPostDTO2
     [field: SerializeField][FirestoreProperty] public List<string> Hashtags { get; set; }
     [field: SerializeField][FirestoreProperty] public double RandomId { get; set; }
 
+}
+
+[System.Serializable]
+[FirestoreData]
+public struct CurrencyDTO
+{
+    [field: SerializeField][FirestoreProperty]  public int NyangNyangStone { get; set; }
 }
