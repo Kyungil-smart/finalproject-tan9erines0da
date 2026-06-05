@@ -63,15 +63,6 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("Sticker_Priority_Scroll View의 자식 Content를 참조")]
     [SerializeField] private RectTransform _content;
 
-    // 스티커 생선순 토글버튼 Toggle Group 컴포넌트 참조를 위해(한번에 토글 제어용)
-    [Header("Sticker_Priority_Scroll View의 Content를 참조")]
-    [SerializeField] private ToggleGroup _priorityToggleGroup;
-    public ToggleGroup PriorityToggleGroup
-    {
-        get => _priorityToggleGroup;
-        set => _priorityToggleGroup = value;
-    }
-
     [Header("스티커 생성 버튼들을 모두 참조")]
     [SerializeField] private List<StickerEditor> _stickerEditors = new List<StickerEditor>();
     #endregion
