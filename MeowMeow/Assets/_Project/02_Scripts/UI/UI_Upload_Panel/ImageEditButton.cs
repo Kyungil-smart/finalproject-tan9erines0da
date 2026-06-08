@@ -7,9 +7,6 @@ public class ImageEditButton : MonoBehaviour
     [Header("냥냥스톤 부족 팝업 참조")]
     [SerializeField]private GameObject _nyangStoneEmptyImage;
 
-    // 냥스톤 임시 변수(추후 삭제 요망)
-    private int _tempNyangStone = 0;
-
     private void Awake()
     {
         _button = GetComponent<Button>();
@@ -27,10 +24,11 @@ public class ImageEditButton : MonoBehaviour
 
     private void OnClickEditButton()
     {
-        if (_tempNyangStone <= 0)
+        if (LocalDataManager.Instance == null) return;
+
+        if (LocalDataManager.Instance.NyangNyangStone <= 0)
         {
-            if (_nyangStoneEmptyImage.activeSelf)
-                return;
+            if (_nyangStoneEmptyImage.activeSelf) return;
 
             _nyangStoneEmptyImage.SetActive(true);
             Invoke(nameof(CloseNyangStonePopup), 0.5f);

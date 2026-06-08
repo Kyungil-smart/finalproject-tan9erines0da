@@ -65,10 +65,8 @@ public class LoginUI : MonoBehaviour
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
-        if (SNSPostManager.Instance != null)
-        {
-            SNSPostManager.Instance.LoadLocalData();
-        }
+        // 로그인시 유저 데이터를 얻어오는 함수
+        await InitUserData();
     }
 
     private async void OnLoginClicked()
@@ -106,10 +104,8 @@ public class LoginUI : MonoBehaviour
 
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
-        if(SNSPostManager.Instance != null)
-        {
-            SNSPostManager.Instance.LoadLocalData();
-        }
+        // 로그인시 유저 데이터를 얻어오는 함수
+        await InitUserData();
     }
 
     private void OnLogoutClicked()
@@ -130,5 +126,19 @@ public class LoginUI : MonoBehaviour
     {
         _loginButton.interactable = interactable;
         _logoutButton.interactable = interactable;
+    }
+
+    // 로그인시 유저 데이터를 얻어오는 함수
+    private async Task InitUserData()
+    {
+        if (SNSPostManager.Instance != null)
+        {
+            SNSPostManager.Instance.LoadLocalData();
+        }
+
+        if (LocalDataManager.Instance != null)
+        {
+            await LocalDataManager.Instance.LoadNyangNyangStone();
+        }
     }
 }
