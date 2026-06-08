@@ -17,24 +17,24 @@ public enum DataType
 }
 public class FireStoreManager : MonoBehaviour
 {
-    
-    public SNSPostDTO2 m_data=new();
-    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();  
-    private  static FirebaseFirestore m_db;
+
+    public SNSPostDTO2 m_data = new();
+    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();
+    private static FirebaseFirestore m_db;
     public static FireStoreManager Instance { get; private set; }
     [SerializeField] private List<BaseFireStore> m_Data;
     private static Dictionary<DataType, BaseFireStore> m_DataDictionary;
     private static FireStoreNullSO m_NullSO;
-     
-    private   void Awake()
+
+    private void Awake()
     {
         InitSingleton();
-         InitFirebaseAsync();
+        InitFirebaseAsync();
     }
 
     private void InitSingleton()
     {
-      
+
         if (Instance == null)
         {
             Instance = this;
@@ -50,7 +50,7 @@ public class FireStoreManager : MonoBehaviour
         // 백엔드 매니져에서 초기화 완료 대기
         bool isBackendReady = await BackendManager.ReadyTask;
 
-        if(!isBackendReady)
+        if (!isBackendReady)
         {
             Debug.LogError("[Firestore] 백엔드 초기화 실패");
             return;
@@ -62,18 +62,17 @@ public class FireStoreManager : MonoBehaviour
 
         BindClass();
         InitDictionary();
-
     }
     // 초기화는 백엔드 매니져에서 진행 
-    private  void InitFirebaseAsync()
+    private void InitFirebaseAsync()
     {
-          FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
-          {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
+        {
             DependencyStatus status = task.Result;
             if (status == DependencyStatus.Available)
             {
                 Debug.Log("Firebase 초기화 성공");
-                m_NullSO= ScriptableObject.CreateInstance<FireStoreNullSO>();
+                m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
                 m_db = FirebaseFirestore.DefaultInstance;
                 BindClass();
                 InitDictionary();
@@ -82,7 +81,7 @@ public class FireStoreManager : MonoBehaviour
             {
                 Debug.LogError($"Firebase 초기화 실패: {status}");
             }
-          });
+        });
     }
     private void BindClass()
     {
@@ -128,10 +127,10 @@ public class FireStoreManager : MonoBehaviour
         m_DataDictionary = new Dictionary<DataType, BaseFireStore>();
         m_DataDictionary = m_Data.ToDictionary(x => x.EnumType, x => x);
     }
-  
+
     public static FirestoreRequestContext DocumentType(DataType type)
     {
-        if(!m_DataDictionary.ContainsKey(type))
+        if (!m_DataDictionary.ContainsKey(type))
         {
             return new FirestoreRequestContext(m_NullSO);
         }
@@ -142,7 +141,7 @@ public class FireStoreManager : MonoBehaviour
         }
     }
 
-    public static FirebaseFirestore  db => m_db;
+    public static FirebaseFirestore db => m_db;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     [ContextMenu("Test")]
@@ -218,7 +217,7 @@ public class FireStoreManager : MonoBehaviour
         {
           { "Comment", "zzzz" } //  
         };
-         
+
         await FireStoreManager.DocumentType(DataType.Test).UpdateAsync<SNSPostDTO>(updates);
     }
     [ContextMenu("delete")]
@@ -227,28 +226,59 @@ public class FireStoreManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.Test).DeleteAsync();
     }
     [ContextMenu("확장메소드 체크")]
-    public   async void  Extens()
+    public async void Extens()
     {
-        var data= await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
+        var data = await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
         TestList = data;
     }
 
     [ContextMenu("확장메소드 _AddAsync ")]
     public async void Extens__AddAsync()
     {
-         var testdata = new SNSPostDTO2();
-          await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
-         
+        var testdata = new SNSPostDTO2();
+        await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
+
     }
     private async Task Test()
     {
-       
+
         Dictionary<string, object> updates = new Dictionary<string, object>
         {
           { "Comment", "zzzz" } //  
         };
-       await  FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
+        await FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
     }
+
+    #region CurrencyDTO 관련 함수(재화)
+    //--- 냥냥스톤
+    [ContextMenu("Get_CurrencyDTO")]
+    public async Task<CurrencyDTO> GetCurrencyAsync()
+    {
+        return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
+    }
+
+    [ContextMenu("Set_CurrencyDTO")]
+    public async Task SetCurrencyAsync(int nyangStone)
+    {
+        CurrencyDTO currencyDTO = new CurrencyDTO
+        {
+            NyangNyangStone = nyangStone
+        };
+
+        await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
+    }
+
+    [ContextMenu("Update_NyangNyangStone")]
+    public async Task UpdateCurrencyAsync(int nyangStone)
+    {
+        Dictionary<string, object> updates = new Dictionary<string, object>
+      {
+            { "NyangNyangStone", nyangStone }
+      };
+
+        await FireStoreManager.DocumentType(DataType.CurrencyData).UpdateAsync<CurrencyDTO>(updates);
+    }
+    #endregion
 }
 [System.Serializable][FirestoreData] // 👈 파이어스토어 변환기 활성화
 public struct StickerTransformData2
@@ -285,9 +315,10 @@ public struct SNSPostDTO2
 
 }
 
+// 재화 관련 DTO(냥냥스톤)
 [System.Serializable]
 [FirestoreData]
 public struct CurrencyDTO
 {
-    [field: SerializeField][FirestoreProperty]  public int NyangNyangStone { get; set; }
+    [field: SerializeField] [FirestoreProperty]  public int NyangNyangStone { get; set; }
 }

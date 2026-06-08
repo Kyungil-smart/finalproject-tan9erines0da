@@ -1,25 +1,30 @@
-using System;
 using UnityEngine;
+using System.Threading.Tasks;
+using TMPro;
 
 public class LocalDataManager : MonoBehaviour
 {
     public static LocalDataManager Instance { get; private set; }
 
-    [Header("FireStoreCurrencyDataManager 오브젝트를 참조")]
-    public FireStoreCurrencyDataManager FireStoreCurrencyDataManager;
+    [Header("냥냥스톤 재화를 출력할 TMP를 참조")]
+    public TextMeshProUGUI NyangNyangStoneTMP;
 
+    // 냥냥스톤 재화
     private int _nyangNyangStone;
     public int NyangNyangStone
     {
         get => _nyangNyangStone;
         set
         {
-            _nyangNyangStone = Mathf.Max(0, value);
-            OnNyangNyangStoneChanged?.Invoke(_nyangNyangStone);
+            int newValue = Mathf.Max(0, value);
+
+            if (_nyangNyangStone == newValue)
+                return;
+
+            _nyangNyangStone = newValue;
+            UpdateNyangNyangTMP();
         }
     }
-
-    public event Action<int> OnNyangNyangStoneChanged;
 
     private void Awake()
     {
@@ -34,19 +39,51 @@ public class LocalDataManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        else
+        {
+            Destroy(this.gameObject);
+        }
 
         Instance = this;
+
+        //DontDestroyOnLoad(gameObject);
+
+        UpdateNyangNyangTMP();
     }
     #endregion
 
-    public async void SaveCurrency()
+    #region FireStore 관련 함수(냥냥스톤)
+    public async Task LoadCurrency()
     {
-        CurrencyDTO data = new CurrencyDTO
-        {
-            NyangNyangStone = this.NyangNyangStone
-        };
-
-        await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(data);
+        CurrencyDTO currencyDTO = await FireStoreManager.Instance.GetCurrencyAsync();
+        NyangNyangStone = currencyDTO.NyangNyangStone;
     }
+
+    public async Task UpdateCurrency()
+    {
+        await FireStoreManager.Instance.UpdateCurrencyAsync(NyangNyangStone);
+    }
+
+    public async Task AddNyangNyangStone(int amount)
+    {
+        NyangNyangStone += amount;
+        await UpdateCurrency();
+    }
+
+    public async Task SubNyangNyangStone(int amount)
+    {
+        NyangNyangStone -= amount;
+        await UpdateCurrency();
+    }
+    #endregion
+
+    #region 냥냥스톤 재화 TMP 출력
+    private void UpdateNyangNyangTMP()
+    {
+        if (NyangNyangStoneTMP == null) return;
+
+        NyangNyangStoneTMP.text = NyangNyangStone.ToString();
+    }
+    #endregion
 }
 
