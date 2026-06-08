@@ -251,12 +251,14 @@ public class FireStoreManager : MonoBehaviour
 
     #region CurrencyDTO 관련 함수(재화)
     //--- 냥냥스톤
+    // FireStore에서 재화 전체 데이터를 조회합니다.
     [ContextMenu("Get_CurrencyDTO")]
     public async Task<CurrencyDTO> GetCurrencyAsync()
     {
         return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
     }
 
+    // FireStore에 재화 데이터를 저장합니다.
     [ContextMenu("Set_CurrencyDTO")]
     public async Task SetCurrencyAsync(int nyangStone)
     {
@@ -268,6 +270,7 @@ public class FireStoreManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
     }
 
+    // FireStore에서 재화의 특정 필드만 갱신합니다.
     [ContextMenu("Update_NyangNyangStone")]
     public async Task UpdateCurrencyAsync(int nyangStone)
     {

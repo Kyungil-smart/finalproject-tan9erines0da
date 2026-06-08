@@ -39,10 +39,6 @@ public class LocalDataManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
 
         Instance = this;
 
@@ -53,23 +49,27 @@ public class LocalDataManager : MonoBehaviour
     #endregion
 
     #region FireStore 관련 함수(냥냥스톤)
+    // FireStore에서 재화 데이터 로드
     public async Task LoadCurrency()
     {
         CurrencyDTO currencyDTO = await FireStoreManager.Instance.GetCurrencyAsync();
         NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 
+    // FireStore에 현재 재화 값 저장
     public async Task UpdateCurrency()
     {
         await FireStoreManager.Instance.UpdateCurrencyAsync(NyangNyangStone);
     }
 
+    // 재화 증가 + 서버 저장
     public async Task AddNyangNyangStone(int amount)
     {
         NyangNyangStone += amount;
         await UpdateCurrency();
     }
 
+    // 재화 감소 + 서버 저장
     public async Task SubNyangNyangStone(int amount)
     {
         NyangNyangStone -= amount;
