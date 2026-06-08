@@ -65,10 +65,6 @@ public class LocalDataManager : MonoBehaviour
     /// <returns></returns>
     public async Task SetCurrencyAsync()
     {
-        CurrencyDTO existing = await GetCurrencyAsync();
-
-        if (existing != null) return;
-
         CurrencyDTO currencyDTO = new CurrencyDTO
         {
             NyangNyangStone = 10
