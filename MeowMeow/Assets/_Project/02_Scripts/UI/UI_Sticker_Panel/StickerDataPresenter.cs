@@ -25,6 +25,11 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
         _bgImage = _bgRect.GetComponent<Image>();
         _shaderController = _bgRect.GetComponent<UIImageShaderController>();
     }
+    void OnDisable()
+    {
+        // 기존 스티커 초기화
+        _stickerState.AllClearSticker();
+    }
 
     public void ReceiveSnapshot(SNSPostDTO snapshot)
     {
@@ -66,8 +71,7 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
         List<StickerTransformData> currentStickers =
             new List<StickerTransformData>();
 
-        // 싱글톤이 안전하게 격리 보관 중인 
-        // _stickerIndexes 딕셔너리의 키셋(KeyCollection)을 순회합니다.
+        // _stickerIndexes 딕셔너리 순회
         var activeStickers = _stickerState.StickerIndexes;
 
         foreach (var kvp in activeStickers)
@@ -79,7 +83,7 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
 
             RectTransform stickerRect = stickerObj.GetComponent<RectTransform>();
 
-            // 대수학 기반 부모 Rect 비례 상대 좌표 연산
+            // 부모 Rect 비례 상대 좌표 연산
             Vector2 relPos = stickerRect.ToRelPos(_bgRect);
             float relScale = stickerRect.ToRelScale(_bgRect);
 
@@ -106,8 +110,8 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
         if (_snapshot.Stickers == null || _snapshot.Stickers.Count == 0) return;
         if (_stickerState == null) return;
 
-        // 싱글톤 내부의 기존 하이어라키 찌꺼기가 있다면 청소 후 재생성하는 것이 안전합니다.
-        // (프로젝트 구조에 맞춰 필요 시 청소 로직 연동)
+        // 기존 스티커 초기화
+        _stickerState.AllClearSticker();
 
         foreach (var data in _snapshot.Stickers)
         {
