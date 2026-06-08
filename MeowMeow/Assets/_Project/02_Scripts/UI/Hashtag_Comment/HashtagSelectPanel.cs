@@ -34,7 +34,7 @@ public class HashtagSelectPanel : MonoBehaviour
         var so = googleSheetManager.instance.GetClassData<Hashtag>();
         if (so == null)
         {
-            Debug.LogError("[HashtagSelectPanel] HashtagSO를 찾을 수 없습니다.");
+            Debug.LogError("HashtagSO를 찾을 수 없습니다.");
             return;
         }
 

@@ -29,7 +29,7 @@ public class SelectImageUpload : MonoBehaviour
         {
             _postIconImage.SetActive(false);
         }
-    }
+    } 
 
     private void OnDisable()
     {

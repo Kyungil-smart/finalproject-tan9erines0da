@@ -30,6 +30,8 @@ public class SNSPostImageRenderer : MonoBehaviour
     /// </summary>
     public void RenderPreview(SNSPostDTO snapshot)
     {
+        if (_bgImage == null) _bgImage = GetComponent<Image>();
+        if (_shaderController == null) _shaderController = GetComponent<UIImageShaderController>();
 
         // 1. 기본 이미지 복원
         if (_cgDatabase != null)
@@ -40,14 +42,14 @@ public class SNSPostImageRenderer : MonoBehaviour
         // 2. 스티커 레이어 청소 및 복원
         ClearStickers();
 
-        if (snapshot.Stickers == null) return;
+        if (snapshot.Stickers == null || snapshot.Stickers.Count == 0) return;
 
         RectTransform bgRect = _bgImage.rectTransform;
 
         foreach (var data in snapshot.Stickers)
         {
             GameObject obj = Instantiate(
-                _rawStickerPrefab.gameObject, transform);
+                _rawStickerPrefab.gameObject, transform, false);
 
             Image img = obj.GetComponent<Image>();
             img.sprite = _stickerDB.GetSprite(data.StickerId);
