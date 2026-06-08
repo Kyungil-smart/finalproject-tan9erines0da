@@ -1,5 +1,6 @@
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class LocalFeedStorage
@@ -8,7 +9,7 @@ public static class LocalFeedStorage
     /// JsonUtility의 리스트 직렬화 한계를 우회하기 위한 포장지 클래스
     /// </summary>
     [System.Serializable]
-    private class PostWrapper
+    public class PostWrapper
     {
         public List<SNSPostDTO> Data = new List<SNSPostDTO>();
     }
@@ -35,20 +36,55 @@ public static class LocalFeedStorage
     {
         string path = GetPath(uid, key);
 
+        // 1. 파일이 아예 없다면 안전하게 빈 리스트 반환
         if (!File.Exists(path))
+        {
+            string msg = "파일이 없습니다";
+            SubscribeManager.instance.Publish<string>(
+                SubscribeType.Log_Write, msg);
+
+
             return new List<SNSPostDTO>();
+        }
 
-        string json = File.ReadAllText(path);
-        var wrapper = JsonUtility.FromJson<PostWrapper>(json);
+        try
+        {
+            // 2. 텍스트를 읽고 포장지 클래스로 변환 시도
+            string json = File.ReadAllText(path);
+            var wrapper = JsonUtility.FromJson<PostWrapper>(json);
 
-        return wrapper != null ? wrapper.Data : new List<SNSPostDTO>();
+            // 3. 포장지뿐만 아니라, Data까지이중으로 검증해야만 합니다.
+            if (wrapper != null && wrapper.Data != null)
+            {
+                return wrapper.Data;
+            }
+
+            string warnMsg = $"[Storage Warning] {key} 알맹이 누락.\n" +
+                         $"JSON 원본: {json}";
+
+            SubscribeManager.instance.Publish<string>(
+                SubscribeType.Log_Write, warnMsg);
+
+            return new List<SNSPostDTO>();
+        }
+        catch (System.Exception ex)
+        {
+            // 파일 잠김, 권한 없음, JSON 문법 파괴 등 모든 에러 캐치
+            string errMsg = $"[Storage Error] {key} 로드 실패.\n" +
+                        $"사유: {ex.Message}";
+
+            SubscribeManager.instance.Publish<string>(
+                SubscribeType.Log_Write, errMsg);
+
+            return new List<SNSPostDTO>();
+        }
     }
 
     /// <summary>
     /// 계정별로 다른 파일을 가지도록 UID를 조합합니다.
     /// 예: MyPosts_user123uid.json
     /// </summary>
-    private static string GetPath(string uid, string key)
+    public static string GetPath(string uid, string key)
     {
         return Path.Combine(Application.persistentDataPath,
             $"{key}_{uid}.json");
