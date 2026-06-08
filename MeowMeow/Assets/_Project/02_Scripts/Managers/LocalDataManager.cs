@@ -47,6 +47,8 @@ public class LocalDataManager : MonoBehaviour
             return;
         }
 
+        DontDestroyOnLoad(gameObject);
+
         Instance = this;
     }
     #endregion
@@ -85,7 +87,11 @@ public class LocalDataManager : MonoBehaviour
     }
 
     // FireStore 재화 로컬에 반영
-    private async Task LoadNyangNyangStone()
+    /// <summary>
+    /// FireStore에서 NyangNyangStone 데이터를 얻어오기 위한 함수 입니다.
+    /// </summary>
+    /// <returns></returns>
+    public async Task LoadNyangNyangStone()
     {
         CurrencyDTO currencyDTO = await GetCurrencyAsync();
         NyangNyangStone = currencyDTO.NyangNyangStone;
