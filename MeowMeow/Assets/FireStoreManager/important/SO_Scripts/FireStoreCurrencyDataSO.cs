@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Firestore/FireStoreCurrencyDataSO")]
+[CreateAssetMenu(fileName = "FireStoreCurrencyDataSO", menuName = "Firestore/FireStoreCurrencyDataSO")]
 public class FireStoreCurrencyDataSO : BaseFireStore
 {
    

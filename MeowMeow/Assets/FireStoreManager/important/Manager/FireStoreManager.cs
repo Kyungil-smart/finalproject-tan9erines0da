@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
- 
 using UnityEngine;
 
 public enum DataType
@@ -248,42 +247,10 @@ public class FireStoreManager : MonoBehaviour
         };
         await FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
     }
-
-    #region CurrencyDTO 관련 함수(재화)
-    //--- 냥냥스톤
-    // FireStore에서 재화 전체 데이터를 조회합니다.
-    [ContextMenu("Get_CurrencyDTO")]
-    public async Task<CurrencyDTO> GetCurrencyAsync()
-    {
-        return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
-    }
-
-    // FireStore에 재화 데이터를 저장합니다.
-    [ContextMenu("Set_CurrencyDTO")]
-    public async Task SetCurrencyAsync(int nyangStone)
-    {
-        CurrencyDTO currencyDTO = new CurrencyDTO
-        {
-            NyangNyangStone = nyangStone
-        };
-
-        await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
-    }
-
-    // FireStore에서 재화의 특정 필드만 갱신합니다.
-    [ContextMenu("Update_NyangNyangStone")]
-    public async Task UpdateCurrencyAsync(int nyangStone)
-    {
-        Dictionary<string, object> updates = new Dictionary<string, object>
-      {
-            { "NyangNyangStone", nyangStone }
-      };
-
-        await FireStoreManager.DocumentType(DataType.CurrencyData).UpdateAsync<CurrencyDTO>(updates);
-    }
-    #endregion
 }
-[System.Serializable][FirestoreData] // 👈 파이어스토어 변환기 활성화
+
+[System.Serializable]
+[FirestoreData] // 👈 파이어스토어 변환기 활성화
 public struct StickerTransformData2
 {
     [field: SerializeField][FirestoreProperty] public int StickerId { get; set; }
@@ -297,9 +264,9 @@ public struct StickerTransformData2
 [FirestoreData] //  파이어스토어 변환기 활성화
 public struct UIShaderProperty2
 {
-   [field: SerializeField] [FirestoreProperty] public double Brightness { get; set; }
-   [field: SerializeField] [FirestoreProperty] public double Contrast { get; set; }
-   [field: SerializeField] [FirestoreProperty] public double Saturation { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Brightness { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Contrast { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Saturation { get; set; }
     [field: SerializeField][FirestoreProperty] public double Temperature { get; set; }
 }
 
@@ -309,19 +276,12 @@ public struct SNSPostDTO2
 {
     // 만약 uid나 id 필드가 있다면 여기에 추가하고 [FirestoreProperty]를 붙이세요.
 
-   [field: SerializeField] [FirestoreProperty] public int ImageIndex { get; set; }
-   [field: SerializeField] [FirestoreProperty] public UIShaderProperty2 ShaderProperty { get; set; }
-   [field: SerializeField] [FirestoreProperty] public string Comment { get; set; }
-   [field: SerializeField] [FirestoreProperty] public List<StickerTransformData2> Stickers { get; set; }
+    [field: SerializeField][FirestoreProperty] public int ImageIndex { get; set; }
+    [field: SerializeField][FirestoreProperty] public UIShaderProperty2 ShaderProperty { get; set; }
+    [field: SerializeField][FirestoreProperty] public string Comment { get; set; }
+    [field: SerializeField][FirestoreProperty] public List<StickerTransformData2> Stickers { get; set; }
     [field: SerializeField][FirestoreProperty] public List<string> Hashtags { get; set; }
     [field: SerializeField][FirestoreProperty] public double RandomId { get; set; }
 
 }
 
-// 재화 관련 DTO(냥냥스톤)
-[System.Serializable]
-[FirestoreData]
-public struct CurrencyDTO
-{
-    [field: SerializeField] [FirestoreProperty]  public int NyangNyangStone { get; set; }
-}
