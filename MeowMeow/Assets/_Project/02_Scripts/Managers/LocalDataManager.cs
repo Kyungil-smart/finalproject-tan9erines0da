@@ -50,7 +50,7 @@ public class LocalDataManager : MonoBehaviour
 
     #region FireStore 관련 함수(냥냥스톤)
     // FireStore에서 CurrencyDTO 데이터를 얻어옵니다.
-    private async Task<CurrencyDTO?> GetCurrencyAsync()
+    private async Task<CurrencyDTO> GetCurrencyAsync()
     {
         return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
     }
@@ -88,7 +88,7 @@ public class LocalDataManager : MonoBehaviour
     /// <returns></returns>
     public async Task LoadNyangNyangStone()
     {
-        CurrencyDTO? currencyDTO = await GetCurrencyAsync();
+        CurrencyDTO currencyDTO = await GetCurrencyAsync();
 
         if (currencyDTO == null)
         {
@@ -96,7 +96,7 @@ public class LocalDataManager : MonoBehaviour
             currencyDTO = await GetCurrencyAsync();
         }
 
-        NyangNyangStone = currencyDTO!.Value.NyangNyangStone;
+        NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 
     // 재화 증가 + 서버 저장
