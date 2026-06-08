@@ -3,7 +3,7 @@ using UnityEngine;
 
 [System.Serializable]
 [FirestoreData]
-public struct CurrencyDTO
+public class CurrencyDTO
 {
     [field: SerializeField][FirestoreProperty] public int NyangNyangStone { get; set; }
 }
