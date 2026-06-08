@@ -65,6 +65,10 @@ public class LocalDataManager : MonoBehaviour
     /// <returns></returns>
     public async Task SetCurrencyAsync()
     {
+        CurrencyDTO existing = await GetCurrencyAsync();
+
+        if (existing != null) return;
+
         CurrencyDTO currencyDTO = new CurrencyDTO
         {
             NyangNyangStone = 10
@@ -124,6 +128,20 @@ public class LocalDataManager : MonoBehaviour
         if (NyangNyangStoneTMP == null) return;
 
         NyangNyangStoneTMP.text = NyangNyangStone.ToString();
+    }
+    #endregion
+
+    #region FireStore 테스트용
+    [ContextMenu("테스트용 더하기(+2)")]
+    public async Task TAddNyangNyangStone()
+    {
+        await AddNyangNyangStone(2);
+    }
+
+    [ContextMenu("테스트용 빼기(+2)")]
+    public async Task TSubNyangNyangStone()
+    {
+        await SubNyangNyangStone(-2);
     }
     #endregion
 }
