@@ -82,6 +82,9 @@ crashlytics-build.properties
 # TestRunner generated files
 InitTestScene*.unity*
 
+# Google Version Handler 프로젝트 설정 파일 제외
+ProjectSettings/GvhProjectSettings.xml
+
 # Addressables default ignores, before user customizations
 /ServerData
 /[Aa]ssets/StreamingAssets/aa*
