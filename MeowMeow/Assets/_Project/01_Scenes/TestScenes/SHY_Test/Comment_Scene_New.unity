@@ -394,11 +394,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1453085389071820707, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2297120242964219558, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_Name
