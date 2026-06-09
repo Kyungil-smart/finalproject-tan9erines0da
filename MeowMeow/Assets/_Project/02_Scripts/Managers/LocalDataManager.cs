@@ -85,9 +85,16 @@ public class LocalDataManager : MonoBehaviour
     }
 
     // FireStore 재화 로컬에 반영
-    private async Task LoadNyangNyangStone()
+    public async Task LoadNyangNyangStone()
     {
         CurrencyDTO currencyDTO = await GetCurrencyAsync();
+
+        if (currencyDTO == null)
+        {
+            await SetCurrencyAsync();
+            NyangNyangStone = currencyDTO.NyangNyangStone;
+        }
+
         NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 
