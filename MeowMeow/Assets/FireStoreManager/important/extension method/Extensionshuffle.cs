@@ -11,14 +11,14 @@ public static class Extensionshuffle
         List<T> resultList = new List<T>();
 
         // 1. 컬렉션 참조를 가져옵니다.
-        var collectionRef = context.TargetStore.GetCollection();
+        var collectionRef = context.TargetStore.DB.Collection("SNSPostGroups");
 
         // 2.  클라이언트에서 무작위 기준점(0.0 ~ 1.0)을 하나 생성합니다.
         double randomTarget = UnityEngine.Random.value;
 
         // 3. 서버에 요청: "RandomId 필드 값이 방금 만든 기준점보다 큰 문서 중 상위 6개만 줘!"
         //  중요: 이렇게 하면 10만 개가 있어도 서버는 딱 6개만 찾아서 보내줍니다. (비용 극적인 절감)
-        var query = collectionRef.WhereGreaterThanOrEqualTo("RandomId", randomTarget)
+        var query = collectionRef.WhereGreaterThanOrEqualTo("RandomIndex", randomTarget)
                                  .Limit(6);
 
         var snapshot = await query.GetSnapshotAsync();
@@ -38,7 +38,7 @@ public static class Extensionshuffle
             int neededCount = 6 - resultList.Count;
 
             // 반대 방향(기준점보다 작은 쪽)에서 모자란 개수만큼 쿼리해서 채워줍니다.
-            var fallbackQuery = collectionRef.WhereLessThan("RandomId", randomTarget)
+            var fallbackQuery = collectionRef.WhereLessThan("RandomIndex", randomTarget)
                                              .Limit(neededCount);
 
             var fallbackSnapshot = await fallbackQuery.GetSnapshotAsync();

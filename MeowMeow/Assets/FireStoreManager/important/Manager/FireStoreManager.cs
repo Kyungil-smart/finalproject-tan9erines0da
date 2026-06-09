@@ -18,8 +18,9 @@ public class FireStoreManager : MonoBehaviour
 {
 
     public SNSPostDTO2 m_data = new();
-    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();
+    public List<SNSPostDTO> TestList = new List<SNSPostDTO>();
     private static FirebaseFirestore m_db;
+    public static FirebaseFirestore db => m_db;
     public static FireStoreManager Instance { get; private set; }
     [SerializeField] private List<BaseFireStore> m_Data;
     private static Dictionary<DataType, BaseFireStore> m_DataDictionary;
@@ -140,7 +141,7 @@ public class FireStoreManager : MonoBehaviour
         }
     }
 
-    public static FirebaseFirestore db => m_db;
+   
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     [ContextMenu("Test")]
@@ -227,8 +228,12 @@ public class FireStoreManager : MonoBehaviour
     [ContextMenu("확장메소드 체크")]
     public async void Extens()
     {
-        var data = await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
-        TestList = data;
+        var data = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
+        foreach (var doc in data)
+        {
+            TestList.Add(doc.ToStruct());
+        }
+        LocalFeedStorage.SavePosts("testuid", "feed", TestList);
     }
 
     [ContextMenu("확장메소드 _AddAsync ")]
@@ -246,6 +251,14 @@ public class FireStoreManager : MonoBehaviour
           { "Comment", "zzzz" } //  
         };
         await FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
+    }
+    [ContextMenu("Extensions_SNSData_SAVE")]
+    public async void Extensions_SNSData_SAVE()
+    {
+        var data = new FirestoreSNSPostDoc();
+        data.RandomIndex = UnityEngine.Random.value;
+        await FireStoreManager.DocumentType(DataType.Posts).SaveSNSPostData(data);
+
     }
 }
 

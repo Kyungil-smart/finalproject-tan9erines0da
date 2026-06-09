@@ -23,7 +23,7 @@ public  class BaseFireStore : ScriptableObject
 
    
     protected FirebaseFirestore db;
-
+    public FirebaseFirestore  DB => db;
     protected static readonly Dictionary<Type, Dictionary<string, PropertyInfo>> propertyCache =
     new Dictionary<Type, Dictionary<string, PropertyInfo>>();
 
