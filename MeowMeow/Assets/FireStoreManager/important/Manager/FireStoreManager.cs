@@ -29,7 +29,6 @@ public class FireStoreManager : MonoBehaviour
     private void Awake()
     {
         InitSingleton();
-        InitFirebaseAsync();
     }
 
     private void InitSingleton()

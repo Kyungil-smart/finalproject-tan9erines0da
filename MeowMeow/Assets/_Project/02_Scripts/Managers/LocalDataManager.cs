@@ -1,4 +1,5 @@
 using Firebase.Firestore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -33,11 +34,6 @@ public class LocalDataManager : MonoBehaviour
         Init();
     }
 
-    private async void Start()
-    {
-        await LoadNyangNyangStone();
-    }
-
     #region 초기화 함수
     private void Init()
     {
@@ -55,7 +51,18 @@ public class LocalDataManager : MonoBehaviour
     // FireStore에서 CurrencyDTO 데이터를 얻어옵니다.
     private async Task<CurrencyDTO> GetCurrencyAsync()
     {
-        return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
+        CurrencyDTO currency;
+
+        currency = await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
+
+        // 데이터가 없을때 예외처리 추가
+        if(currency == null)
+        {
+            await SetCurrencyAsync();
+            return new CurrencyDTO { NyangNyangStone = 10 };
+        }
+
+        return currency;
     }
 
     // FireStore에 CurrencyDTO 데이터를 생성/저장합니다.
@@ -87,14 +94,8 @@ public class LocalDataManager : MonoBehaviour
     // FireStore 재화 로컬에 반영
     public async Task LoadNyangNyangStone()
     {
-        CurrencyDTO currencyDTO = await GetCurrencyAsync();
-
-        if (currencyDTO == null)
-        {
-            await SetCurrencyAsync();
-            NyangNyangStone = currencyDTO.NyangNyangStone;
-        }
-
+        CurrencyDTO currencyDTO;
+        currencyDTO = await GetCurrencyAsync(); 
         NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 

@@ -84,7 +84,7 @@ public class SNSPostManager : MonoBehaviour
         try
         {
             await FireStoreManager.DocumentType(DataType.Posts)
-                                  .AddAsync(doc);
+                                  .SaveSNSPostData(doc);
         }
         catch (Exception ex)
         {
