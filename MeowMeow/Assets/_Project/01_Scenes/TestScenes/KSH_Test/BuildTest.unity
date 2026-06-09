@@ -281,7 +281,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8256844785750171202, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
   m_PrefabInstance: {fileID: 5093116972551601554}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1619188943}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c806c3ba947c97468fea9628bfefec2, type: 3}
@@ -462,6 +462,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
+--- !u!1 &925122278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7110597137102188926, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
+  m_PrefabInstance: {fileID: 2939198872549327819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &960872176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1040,12 +1045,29 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6391545890943782053, guid: 18db34de4dba8174d81eb052383c701c, type: 3}
   m_PrefabInstance: {fileID: 4516926781724086001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1619188943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+  m_PrefabInstance: {fileID: 5093116972551601554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1619188948
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619188943}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &1663840750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5347137270458712636, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
   m_PrefabInstance: {fileID: 2939198872549327819}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 925122278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c806c3ba947c97468fea9628bfefec2, type: 3}
@@ -1056,6 +1078,18 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2879747076644771608, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
   m_PrefabInstance: {fileID: 2939198872549327819}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &1663840762
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925122278}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1977089070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,6 +1240,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019702246}
   m_CullTransparentMesh: 1
+--- !u!1 &2120450589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8691177184288509388, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+  m_PrefabInstance: {fileID: 1597050194731031689}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2139906852
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,7 +3248,7 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
@@ -3591,6 +3630,7 @@ GameObject:
   - component: {fileID: 2399778688557170794}
   - component: {fileID: 418694526831613680}
   - component: {fileID: 5158011104154602145}
+  - component: {fileID: 8437453857413019282}
   m_Layer: 5
   m_Name: CGEditor_Canvas
   m_TagString: Untagged
@@ -3849,6 +3889,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4791391483441628719}
     m_Modifications:
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseController
+      objectReference: {fileID: 0}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BaseScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 753844129232500557, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1452565250385736332, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1
@@ -3893,6 +3961,10 @@ PrefabInstance:
       propertyPath: _uiController
       value: 
       objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 6023636711154545180, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7424523195560838338, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4001,7 +4073,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 697454016570982430, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8691177184288509388, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8596093122635220071}
   m_SourcePrefab: {fileID: 100100000, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
 --- !u!224 &1604299684714341906
 RectTransform:
@@ -4246,7 +4321,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8461272977621116369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: RequestScreenChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 811320279397729311}
+          m_ObjectArgumentAssemblyTypeName: UIPanel, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1786024913546248515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4488,6 +4575,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: RequestScreenChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UIPanel, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 389156666477936609}
         m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
         m_MethodName: RequestScreenChange
@@ -6222,7 +6321,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4197038408607079460}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: RequestScreenChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8391734649787077452}
+          m_ObjectArgumentAssemblyTypeName: UIPanel, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2844782436826316976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7423,7 +7534,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2879747076644771608, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1403741560}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7110597137102188926, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1663840762}
   m_SourcePrefab: {fileID: 100100000, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
 --- !u!114 &2960525499029756146
 MonoBehaviour:
@@ -7597,7 +7711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10550,11 +10664,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1453085389071820707, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2297120242964219558, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2689811737154646038, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BaseScreenController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3835398596051005562, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_Name
@@ -10633,6 +10779,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8088943711256263664, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088943711256263664, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088943711256263664, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088943711256263664, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -10683,7 +10841,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1619188948}
   m_SourcePrefab: {fileID: 100100000, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
 --- !u!224 &5095330899073517153
 RectTransform:
@@ -11570,7 +11731,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8968428113119406972}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: RequestScreenChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 707485922}
+          m_ObjectArgumentAssemblyTypeName: UIPanel, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!223 &5527390335589416385
 Canvas:
   m_ObjectHideFlags: 0
@@ -13498,7 +13671,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7315916471862206044}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: RequestScreenChange
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 735825518191764962}
+          m_ObjectArgumentAssemblyTypeName: UIPanel, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &6784992774080743984
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16418,8 +16603,20 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!225 &8437453857413019282
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1385744917785080824}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8439635518516948133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16674,12 +16871,24 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1147597182920276819, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
   m_PrefabInstance: {fileID: 1597050194731031689}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2120450589}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c806c3ba947c97468fea9628bfefec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &8596093122635220071
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120450589}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8621411078112688739
 GameObject:
   m_ObjectHideFlags: 0

@@ -103,6 +103,8 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
         _snapshot.Stickers = currentStickers;
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+
+        _stickerState.AllClearSticker();
     }
 
     private void RestoreRuntimeStickers()

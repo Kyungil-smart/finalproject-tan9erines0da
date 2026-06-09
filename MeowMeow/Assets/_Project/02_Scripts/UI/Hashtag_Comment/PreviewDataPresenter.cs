@@ -88,8 +88,6 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     /// </summary>
     public async void ExecuteUploadAndReturn()
     {
-        if (_snapshot.Equals(default(SNSPostDTO))) return;
-
         // 1. 중복 클릭 방지
         if (_uploadButton != null) _uploadButton.interactable = false;
 
@@ -101,7 +99,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
 
             Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
 
-            _snapshot = default(SNSPostDTO);
+            _snapshot = SNSPostDTO.CreateEmpty();
+            
             SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
 

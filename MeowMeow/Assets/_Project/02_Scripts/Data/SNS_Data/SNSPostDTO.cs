@@ -22,6 +22,27 @@ public struct SNSPostDTO
     public string Comment;
     public List<StickerTransformData> Stickers;
     public List<string> Hashtags;
+
+    public static SNSPostDTO CreateEmpty()
+    {
+        return new SNSPostDTO
+        {
+            WriterId = "GuestUID",
+            ImageIndex = 0,
+            Comment = string.Empty,
+            Stickers = new List<StickerTransformData>(),
+            Hashtags = new List<string>(),
+
+            // 0이 되면 안 되는 필터 값들을 1.0f로 보정
+            ShaderProperty = new UIShaderProperty
+            {
+                Brightness = 0f,
+                Contrast = 1f,    
+                Saturation = 1f,  
+                Temperature = 0.5f
+            }
+        };
+    }
 }
 
 [System.Serializable]

@@ -144,26 +144,26 @@ public class LoginUI : MonoBehaviour
         }
         
 
-        // FirebaseUser user = BackendManager.Auth.CurrentUser;
-        // 
-        // var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "UserLocalSnsFolder");
-        // 
-        // // 유저 로컬 데이터에 랜덤피드 6개 확보
-        // if (localFeedStorage.Count > 1)
-        // {
-        //     //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, localFeedStorage);
-        // }
-        // else
-        // {
-        //     // 로컬에 데이터가 존재하지 않을 때
-        //     var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
-        //     var SNSList = new List<SNSPostDTO>();
-        //     foreach (var item in Listdata)
-        //     {
-        //         SNSList.Add(item.ToStruct());
-        //     }
-        //     LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
-        //     //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
-        // }
+        FirebaseUser user = BackendManager.Auth.CurrentUser;
+        
+        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
+        
+        // 유저 로컬 데이터에 랜덤피드 6개 확보
+        if (localFeedStorage.Count > 1)
+        {
+            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, localFeedStorage);
+        }
+        else
+        {
+            // 로컬에 데이터가 존재하지 않을 때
+            var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
+            var SNSList = new List<SNSPostDTO>();
+            foreach (var item in Listdata)
+            {
+                SNSList.Add(item.ToStruct());
+            }
+            LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
+            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
+        }
     }
 }

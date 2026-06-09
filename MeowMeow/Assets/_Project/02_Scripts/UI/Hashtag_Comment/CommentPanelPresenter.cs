@@ -65,5 +65,7 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+
+        ResetAll();
     }
 }

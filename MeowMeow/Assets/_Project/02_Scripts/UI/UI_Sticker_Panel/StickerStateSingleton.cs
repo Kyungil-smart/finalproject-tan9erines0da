@@ -251,6 +251,9 @@ public class StickerStateSingleton : MonoBehaviour
     #region 스티커 초기화 함수
     public void AllClearSticker()
     {
+        _currentCount = 0;
+        StickerCountUpload();
+
         foreach (Toggle toggle in _toggleList)
         {
             if (toggle != null)
