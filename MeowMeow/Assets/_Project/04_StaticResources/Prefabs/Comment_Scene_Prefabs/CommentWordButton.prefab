@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 1111111111111111004}
   - component: {fileID: 1111111111111111005}
   - component: {fileID: 1111111111111111006}
-  - component: {fileID: 7325652252656093836}
-  - component: {fileID: 9155011750679892568}
+  - component: {fileID: 481134595144317336}
+  - component: {fileID: 6620918346438577013}
   m_Layer: 5
   m_Name: CommentWordButton
   m_TagString: Untagged
@@ -143,7 +143,19 @@ MonoBehaviour:
   _deleteBtnRoot: {fileID: 1111111111111111021}
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _selectedColor: {r: 0.85, g: 0.85, b: 1, a: 1}
---- !u!114 &7325652252656093836
+--- !u!225 &481134595144317336
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111111111111111001}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &6620918346438577013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,18 +165,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cf3b95702470d24f844946ee968efd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &9155011750679892568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111111111111111001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f6c3cf308270c546ac027b5ee2b3de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1111111111111111011
