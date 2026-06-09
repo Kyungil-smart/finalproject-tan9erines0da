@@ -2493,6 +2493,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Preview_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8691177184288509388, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8769149916040325834, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
