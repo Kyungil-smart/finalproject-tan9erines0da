@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
@@ -32,7 +33,7 @@ public class BackendManager : MonoBehaviour
     //firebase 초기화 함수자동 로그인 반영
     private void CheckAndFixDependencies()
     {
-        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
         {
             bool isAvailable = task.Result == DependencyStatus.Available;
 
