@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
- 
 using UnityEngine;
 
 public enum DataType
@@ -13,27 +12,28 @@ public enum DataType
     None,
     Test,
     Posts,
+    CurrencyData,
 }
 public class FireStoreManager : MonoBehaviour
 {
-    
-    public SNSPostDTO2 m_data=new();
-    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();  
-    private  static FirebaseFirestore m_db;
+
+    public SNSPostDTO2 m_data = new();
+    public List<SNSPostDTO2> TestList = new List<SNSPostDTO2>();
+    private static FirebaseFirestore m_db;
     public static FireStoreManager Instance { get; private set; }
     [SerializeField] private List<BaseFireStore> m_Data;
     private static Dictionary<DataType, BaseFireStore> m_DataDictionary;
     private static FireStoreNullSO m_NullSO;
-     
-    private   void Awake()
+
+    private void Awake()
     {
         InitSingleton();
-         InitFirebaseAsync();
+        InitFirebaseAsync();
     }
 
     private void InitSingleton()
     {
-      
+
         if (Instance == null)
         {
             Instance = this;
@@ -49,7 +49,7 @@ public class FireStoreManager : MonoBehaviour
         // 백엔드 매니져에서 초기화 완료 대기
         bool isBackendReady = await BackendManager.ReadyTask;
 
-        if(!isBackendReady)
+        if (!isBackendReady)
         {
             Debug.LogError("[Firestore] 백엔드 초기화 실패");
             return;
@@ -61,18 +61,17 @@ public class FireStoreManager : MonoBehaviour
 
         BindClass();
         InitDictionary();
-
     }
     // 초기화는 백엔드 매니져에서 진행 
-    private  void InitFirebaseAsync()
+    private void InitFirebaseAsync()
     {
-          FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
-          {
+        FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(async task =>
+        {
             DependencyStatus status = task.Result;
             if (status == DependencyStatus.Available)
             {
                 Debug.Log("Firebase 초기화 성공");
-                m_NullSO= ScriptableObject.CreateInstance<FireStoreNullSO>();
+                m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
                 m_db = FirebaseFirestore.DefaultInstance;
                 BindClass();
                 InitDictionary();
@@ -81,7 +80,7 @@ public class FireStoreManager : MonoBehaviour
             {
                 Debug.LogError($"Firebase 초기화 실패: {status}");
             }
-          });
+        });
     }
     private void BindClass()
     {
@@ -127,10 +126,10 @@ public class FireStoreManager : MonoBehaviour
         m_DataDictionary = new Dictionary<DataType, BaseFireStore>();
         m_DataDictionary = m_Data.ToDictionary(x => x.EnumType, x => x);
     }
-  
+
     public static FirestoreRequestContext DocumentType(DataType type)
     {
-        if(!m_DataDictionary.ContainsKey(type))
+        if (!m_DataDictionary.ContainsKey(type))
         {
             return new FirestoreRequestContext(m_NullSO);
         }
@@ -141,7 +140,7 @@ public class FireStoreManager : MonoBehaviour
         }
     }
 
-    public static FirebaseFirestore  db => m_db;
+    public static FirebaseFirestore db => m_db;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     [ContextMenu("Test")]
@@ -217,7 +216,7 @@ public class FireStoreManager : MonoBehaviour
         {
           { "Comment", "zzzz" } //  
         };
-         
+
         await FireStoreManager.DocumentType(DataType.Test).UpdateAsync<SNSPostDTO>(updates);
     }
     [ContextMenu("delete")]
@@ -226,30 +225,32 @@ public class FireStoreManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.Test).DeleteAsync();
     }
     [ContextMenu("확장메소드 체크")]
-    public   async void  Extens()
+    public async void Extens()
     {
-        var data= await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
+        var data = await FireStoreManager.DocumentType(DataType.Test).GetRandomSixData<SNSPostDTO2>();
         TestList = data;
     }
 
     [ContextMenu("확장메소드 _AddAsync ")]
     public async void Extens__AddAsync()
     {
-         var testdata = new SNSPostDTO2();
-          await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
-         
+        var testdata = new SNSPostDTO2();
+        await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
+
     }
     private async Task Test()
     {
-       
+
         Dictionary<string, object> updates = new Dictionary<string, object>
         {
           { "Comment", "zzzz" } //  
         };
-       await  FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
+        await FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
     }
 }
-[System.Serializable][FirestoreData] // 👈 파이어스토어 변환기 활성화
+
+[System.Serializable]
+[FirestoreData] // 👈 파이어스토어 변환기 활성화
 public struct StickerTransformData2
 {
     [field: SerializeField][FirestoreProperty] public int StickerId { get; set; }
@@ -263,9 +264,9 @@ public struct StickerTransformData2
 [FirestoreData] //  파이어스토어 변환기 활성화
 public struct UIShaderProperty2
 {
-   [field: SerializeField] [FirestoreProperty] public double Brightness { get; set; }
-   [field: SerializeField] [FirestoreProperty] public double Contrast { get; set; }
-   [field: SerializeField] [FirestoreProperty] public double Saturation { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Brightness { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Contrast { get; set; }
+    [field: SerializeField][FirestoreProperty] public double Saturation { get; set; }
     [field: SerializeField][FirestoreProperty] public double Temperature { get; set; }
 }
 
@@ -275,11 +276,12 @@ public struct SNSPostDTO2
 {
     // 만약 uid나 id 필드가 있다면 여기에 추가하고 [FirestoreProperty]를 붙이세요.
 
-   [field: SerializeField] [FirestoreProperty] public int ImageIndex { get; set; }
-   [field: SerializeField] [FirestoreProperty] public UIShaderProperty2 ShaderProperty { get; set; }
-   [field: SerializeField] [FirestoreProperty] public string Comment { get; set; }
-   [field: SerializeField] [FirestoreProperty] public List<StickerTransformData2> Stickers { get; set; }
+    [field: SerializeField][FirestoreProperty] public int ImageIndex { get; set; }
+    [field: SerializeField][FirestoreProperty] public UIShaderProperty2 ShaderProperty { get; set; }
+    [field: SerializeField][FirestoreProperty] public string Comment { get; set; }
+    [field: SerializeField][FirestoreProperty] public List<StickerTransformData2> Stickers { get; set; }
     [field: SerializeField][FirestoreProperty] public List<string> Hashtags { get; set; }
     [field: SerializeField][FirestoreProperty] public double RandomId { get; set; }
 
 }
+
