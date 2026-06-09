@@ -79,16 +79,12 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
 
         if (_snapshot.Equals(default(SNSPostDTO))) return;
 
-        // 추후 이 구역 또는 우측 하단 [최종 등록] 버튼 콜백 함수 내부에 
-        // FirestoreSNSPostDoc 클래스 포장지를 씌워 업로드하는 로직이 들어갈 예정입니다.
-
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
     }
 
     /// <summary>
-    /// [★통합 업로드 및 패널 전환 관제]
-    /// 에디터 인스펙터 참조를 통해 다이렉트로 타겟 패널을 호출합니다.
+    /// 업로드를 진행하고, 다음 패널을 호출합니다
     /// </summary>
     public async void ExecuteUploadAndReturn()
     {
@@ -106,6 +102,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
             Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
 
             _snapshot = default(SNSPostDTO);
+            SubscribeManager.instance.Publish<SNSPostDTO>(
+            SubscribeType.Update_PostModelData, _snapshot);
 
             // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
             if (_uiController != null && _profilePanel != null)
