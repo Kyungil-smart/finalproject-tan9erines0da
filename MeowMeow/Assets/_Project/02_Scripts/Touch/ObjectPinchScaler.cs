@@ -47,8 +47,8 @@ public class ObjectPinchScaler : MonoBehaviour
         RotateTarget();
     }
 
-    // 터치로 스티커 선택시 사용
-    public void OnSelect(TouchInteractor obj)
+    // 스티커 선택 함수
+    private void SelectSticker(TouchInteractor obj)
     {
         _target = obj.GetComponent<RectTransform>();
         _parent = _target.parent as RectTransform;
@@ -59,36 +59,40 @@ public class ObjectPinchScaler : MonoBehaviour
         // 삭제 버튼 활성화
         StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
 
+        StickerStateSingleton.Instance.OnToggleCheck = false;
+    }
+
+    // 터치로 스티커 선택
+    public void OnSelect(TouchInteractor obj)
+    {
+        if (StickerStateSingleton.Instance.OnToggleCheck == true) return;
+
+        GameObject sticker = obj.gameObject;
+        StickerPriorityButton stickerPriorityButton = StickerStateSingleton.Instance.StickerToToggle[sticker].GetComponent<StickerPriorityButton>();
+
         // 스티커 터치로 선택시 해당 토글버튼 눌림처리
-        if (StickerStateSingleton.Instance.StickerToToggle.TryGetValue(sticker, out Toggle toggle))
+        if (!stickerPriorityButton.Toggle.isOn)
         {
-            toggle.isOn = true;
+            stickerPriorityButton.Toggle.isOn = true;
         }
     }
 
-    // 토글버튼으로 스티커 선택시 사용
+    // 토글버튼으로 스티커 선택시 SelectSticker() 호출
     public void OnSelectForToggle(TouchInteractor obj)
     {
-        _target = obj.GetComponent<RectTransform>();
-        _parent = _target.parent as RectTransform;
+        StickerStateSingleton.Instance.OnToggleCheck = true;
 
-        GameObject sticker = obj.gameObject;
-        GameObject delButton = StickerStateSingleton.Instance.StickerToDelButton[sticker];
-
-        // 삭제 버튼 활성화
-        StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
+        SelectSticker(obj);
     }
 
     // 스티커 선택해제 함수
     public void OnUnselect()
     {
-
-        if (StickerStateSingleton.Instance == null ||
-            StickerStateSingleton.Instance.gameObject == null ||
-            StickerStateSingleton.Instance.ToggleList == null)
+        if (StickerStateSingleton.Instance == null || StickerStateSingleton.Instance.ToggleList == null)
         {
             return;
         }
+
         // 토글 버든 모두 해제
         foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
         {
