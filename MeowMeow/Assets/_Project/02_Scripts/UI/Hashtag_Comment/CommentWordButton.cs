@@ -19,13 +19,13 @@ public class CommentWordButton : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI _label;
-    [SerializeField] private Image _background;
+    [SerializeField] private Image _buttonImage;
     [SerializeField] private Button _deleteBtn;
     [SerializeField] private GameObject _deleteBtnRoot;
 
     [Header("Appearance")]
-    [SerializeField] private Color _normalColor = Color.white;
-    [SerializeField] private Color _selectedColor = new Color(0.85f, 0.85f, 1f, 1f);
+    [SerializeField] private Sprite _normalSprite;
+    [SerializeField] private Sprite _selectedSprite;
 
     private string _word;
     private CommentZoneManager _manager;
@@ -53,8 +53,8 @@ public class CommentWordButton : MonoBehaviour
     {
         _isSelected = selected;
         _deleteBtnRoot.SetActive(selected);
-        if (_background != null)
-            _background.color = selected ? _selectedColor : _normalColor;
+        if (_buttonImage != null)
+            _buttonImage.sprite = selected ? _selectedSprite : _normalSprite;
     }
 
     private void OnClick()
