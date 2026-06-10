@@ -64,8 +64,12 @@ public enum SubscribeType
     /// 로컬 JSON 저장 및 업로드 루틴을 트리거할 때 발행
     /// 인자 타입: 없음 (Action)
     /// </summary>
-    On_SubmitPostProcess
+    On_SubmitPostProcess,
 
+    /// <summary>
+    /// 
+    /// </summary>
+    RandomSixData,
 
 }
 public class SubscribeManager : MonoBehaviour

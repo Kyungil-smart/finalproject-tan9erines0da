@@ -1,4 +1,5 @@
 using Firebase.Firestore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -42,8 +43,6 @@ public class LocalDataManager : MonoBehaviour
             return;
         }
 
-        DontDestroyOnLoad(gameObject);
-
         Instance = this;
     }
     #endregion
@@ -52,7 +51,18 @@ public class LocalDataManager : MonoBehaviour
     // FireStore에서 CurrencyDTO 데이터를 얻어옵니다.
     private async Task<CurrencyDTO> GetCurrencyAsync()
     {
-        return await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
+        CurrencyDTO currency;
+
+        currency = await FireStoreManager.DocumentType(DataType.CurrencyData).GetAsync<CurrencyDTO>();
+
+        // 데이터가 없을때 예외처리 추가
+        if(currency == null)
+        {
+            await SetCurrencyAsync();
+            return new CurrencyDTO { NyangNyangStone = 10 };
+        }
+
+        return currency;
     }
 
     // FireStore에 CurrencyDTO 데이터를 생성/저장합니다.
@@ -82,20 +92,10 @@ public class LocalDataManager : MonoBehaviour
     }
 
     // FireStore 재화 로컬에 반영
-    /// <summary>
-    /// FireStore에서 NyangNyangStone 데이터를 얻어오기 위한 함수 입니다.
-    /// </summary>
-    /// <returns></returns>
     public async Task LoadNyangNyangStone()
     {
-        CurrencyDTO currencyDTO = await GetCurrencyAsync();
-
-        if (currencyDTO == null)
-        {
-            await SetCurrencyAsync();
-            currencyDTO = await GetCurrencyAsync();
-        }
-
+        CurrencyDTO currencyDTO;
+        currencyDTO = await GetCurrencyAsync(); 
         NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 

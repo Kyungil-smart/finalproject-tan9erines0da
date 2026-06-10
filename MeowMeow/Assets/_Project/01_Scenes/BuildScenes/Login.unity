@@ -214,6 +214,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debug_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6555002089535990838, guid: fbf31b712ae25d744a6953716a2809f6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8958419818819361937, guid: fbf31b712ae25d744a6953716a2809f6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 950
+      objectReference: {fileID: 0}
     - target: {fileID: 8995180449988229445, guid: fbf31b712ae25d744a6953716a2809f6, type: 3}
       propertyPath: m_MatchWidthOrHeight
       value: 1
@@ -475,7 +483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -195}
+  m_AnchoredPosition: {x: 0, y: -779}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &658269867
@@ -596,7 +604,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -584}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &820922096
@@ -851,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 773}
+  m_AnchoredPosition: {x: 0, y: 189}
   m_SizeDelta: {x: 720, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &974226562
@@ -890,7 +898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -415}
+  m_AnchoredPosition: {x: 0, y: -999}
   m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &974226564
@@ -939,7 +947,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1754946088}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadSceneIfLoggedIn
+        m_MethodName: LoadSceneIndex
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1396,7 +1404,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1482382646753724639, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
   m_PrefabInstance: {fileID: 4216050224417395141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4216050224417395142}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d1bbf09483b232645ba03297693a4894, type: 3}
@@ -1549,8 +1557,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7948890395797757019, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4216050224417395143}
   m_SourcePrefab: {fileID: 100100000, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
+--- !u!1 &4216050224417395142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7948890395797757019, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
+  m_PrefabInstance: {fileID: 4216050224417395141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4216050224417395143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4216050224417395142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e79af9a3a4e4a04b9fbe6042bb3caa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NyangNyangStoneTMP: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

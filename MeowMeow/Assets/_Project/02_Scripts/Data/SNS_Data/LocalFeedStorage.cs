@@ -39,11 +39,6 @@ public static class LocalFeedStorage
         // 1. 파일이 아예 없다면 안전하게 빈 리스트 반환
         if (!File.Exists(path))
         {
-            string msg = "파일이 없습니다";
-            SubscribeManager.instance.Publish<string>(
-                SubscribeType.Log_Write, msg);
-
-
             return new List<SNSPostDTO>();
         }
 
@@ -62,8 +57,7 @@ public static class LocalFeedStorage
             string warnMsg = $"[Storage Warning] {key} 알맹이 누락.\n" +
                          $"JSON 원본: {json}";
 
-            SubscribeManager.instance.Publish<string>(
-                SubscribeType.Log_Write, warnMsg);
+            SubscribeManager.instance.Publish<string>(SubscribeType.Log_Write, warnMsg);
 
             return new List<SNSPostDTO>();
         }

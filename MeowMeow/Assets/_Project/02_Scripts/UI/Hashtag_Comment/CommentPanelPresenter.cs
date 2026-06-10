@@ -20,6 +20,7 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
     private SNSPostDTO _snapshot;
 
     private void OnEnable() => RequestContext();
+    private void OnDisable() => ResetAll();
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
 
@@ -64,5 +65,7 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+
+        ResetAll();
     }
 }

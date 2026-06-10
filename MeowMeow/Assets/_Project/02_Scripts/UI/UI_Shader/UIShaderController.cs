@@ -29,11 +29,16 @@ public class UIImageShaderController : MonoBehaviour
         _targetImage = GetComponent<Image>();
 
         // 원본 머터리얼이 존재할 때만 런타임 인스턴스 복제 진행
-        if (_targetImage.material != null)
+        if (_targetImage != null && _targetImage.material != null)
         {
             // 인스턴스화를 통해 이 오브젝트만의 독립된 머터리얼 생성
             _clonedMaterial = new Material(_targetImage.material);
             _targetImage.material = _clonedMaterial;
+
+            _clonedMaterial.SetFloat(IdBrightness, 0f);
+            _clonedMaterial.SetFloat(IdContrast, 1f); 
+            _clonedMaterial.SetFloat(IdSaturation, 1f); 
+            _clonedMaterial.SetFloat(IdTemperature, 0.5f);
         }
     }
     private void OnDestroy()
@@ -67,5 +72,10 @@ public class UIImageShaderController : MonoBehaviour
         _clonedMaterial.SetFloat(IdContrast, contrast);
         _clonedMaterial.SetFloat(IdSaturation, saturation);
         _clonedMaterial.SetFloat(IdTemperature, temperature);
+
+        if (_targetImage != null)
+        {
+            _targetImage.SetMaterialDirty();
+        }
     }
 }
