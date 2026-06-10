@@ -394,7 +394,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4380820803836356998, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
   m_PrefabInstance: {fileID: 960872176}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1519959285}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c806c3ba947c97468fea9628bfefec2, type: 3}
@@ -538,6 +538,10 @@ PrefabInstance:
     - target: {fileID: 1951356911061041329, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UIPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112335554352347632, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2112335554352347632, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: m_OverrideSorting
@@ -854,7 +858,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1746700015347052596, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1519959290}
   m_SourcePrefab: {fileID: 100100000, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
 --- !u!1001 &1049695027
 PrefabInstance:
@@ -1045,6 +1052,23 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6391545890943782053, guid: 18db34de4dba8174d81eb052383c701c, type: 3}
   m_PrefabInstance: {fileID: 4516926781724086001}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1519959285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1746700015347052596, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
+  m_PrefabInstance: {fileID: 960872176}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1519959290
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519959285}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1619188943 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
@@ -5548,7 +5572,7 @@ GameObject:
   - component: {fileID: 5848109703210608557}
   - component: {fileID: 7467557152040688497}
   - component: {fileID: 710883747382242997}
-  - component: {fileID: 2760253139698827740}
+  - component: {fileID: 7467557152040688498}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -6115,19 +6139,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 287381271534985990}
   m_CullTransparentMesh: 1
---- !u!114 &2760253139698827740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2416028707520830958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!224 &2785785713225883685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6426,7 +6437,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2521715933135901273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 389156666477936609}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: CloseController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2911024965485767247
 GameObject:
   m_ObjectHideFlags: 0
@@ -9299,7 +9322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
+    m_Left: 15
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
@@ -9307,7 +9330,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 310, y: 310}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 15, y: 15}
   m_Constraint: 1
   m_ConstraintCount: 3
 --- !u!1 &4351495938602531697
@@ -10664,7 +10687,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1453085389071820707, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 12
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2297120242964219558, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
@@ -10702,6 +10725,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4693969265376981276, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_Spacing.x
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693969265376981276, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_Spacing.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693969265376981276, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_CellSize.x
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693969265376981276, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4693969265376981276, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6453104242370286200, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_Name
       value: Comment_Canvas
@@ -10737,6 +10780,10 @@ PrefabInstance:
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UIPanel, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7217225550253396868, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7811517364398605696, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SortingOrder
@@ -14903,6 +14950,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2416028707520830958}
   m_CullTransparentMesh: 1
+--- !u!114 &7467557152040688498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2416028707520830958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!114 &7499050087103016224
 MonoBehaviour:
   m_ObjectHideFlags: 0
