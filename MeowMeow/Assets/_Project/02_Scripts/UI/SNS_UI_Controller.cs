@@ -237,6 +237,9 @@ public class SNS_UI_Controller : BaseScreenController
             CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2 &&
             _lastActiveDepth1Panel != null)
         {
+            var clearable = CurrentActivePanel.GetComponent<ISNSPanelClearable>();
+            clearable.ClearPanelContext();
+
             // 2깊이 장막을 걷어내는 무조건적인 클로즈 연출 실행
             CurrentActivePanel.Close(() =>
             {
