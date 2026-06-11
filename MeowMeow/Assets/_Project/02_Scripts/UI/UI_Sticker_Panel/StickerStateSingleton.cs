@@ -116,9 +116,6 @@ public class StickerStateSingleton : MonoBehaviour
     // 스티커 삭제버튼을 끄기 위한 이벤트 액션
     public event Action StickerDelButtonOff;
 
-    // StickerPriorityButton, ObjectPinchScaler 스크립트 관련 토클버튼이 켜져있는지 체크할 변수
-    public bool OnToggleCheck = false;
-
     private void Awake()
     {
         Init();

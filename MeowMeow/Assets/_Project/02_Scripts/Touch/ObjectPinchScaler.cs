@@ -58,15 +58,11 @@ public class ObjectPinchScaler : MonoBehaviour
 
         // 삭제 버튼 활성화
         StickerStateSingleton.Instance.StickerDelButtonSetOn(delButton);
-
-        StickerStateSingleton.Instance.OnToggleCheck = false;
     }
 
     // 터치로 스티커 선택
     public void OnSelect(TouchInteractor obj)
     {
-        if (StickerStateSingleton.Instance.OnToggleCheck == true) return;
-
         GameObject sticker = obj.gameObject;
         StickerPriorityButton stickerPriorityButton = StickerStateSingleton.Instance.StickerToToggle[sticker].GetComponent<StickerPriorityButton>();
 
@@ -80,8 +76,6 @@ public class ObjectPinchScaler : MonoBehaviour
     // 토글버튼으로 스티커 선택시 SelectSticker() 호출
     public void OnSelectForToggle(TouchInteractor obj)
     {
-        StickerStateSingleton.Instance.OnToggleCheck = true;
-
         SelectSticker(obj);
     }
 
