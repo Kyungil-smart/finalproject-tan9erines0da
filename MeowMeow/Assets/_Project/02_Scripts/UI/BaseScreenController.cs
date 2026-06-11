@@ -70,9 +70,19 @@ public abstract class BaseScreenController : MonoBehaviour
     /// <param name="targetPanel">새로 교체하고자 하는 타겟 판넬</param>
     public void RequestScreenChange(UIPanel targetPanel)
     {
-        if (targetPanel == null || targetPanel == CurrentActivePanel) return;
-        if (CurrentActivePanel != null && CurrentActivePanel.IsTransitioning) return;
-        if (targetPanel.IsTransitioning) return;
+        SubscribeManager.instance.Publish<string>(SubscribeType.Log_Write, $"{targetPanel} 전환 요청");
+        if (targetPanel == null || targetPanel == CurrentActivePanel)
+        {
+            return;
+        }
+        if (CurrentActivePanel != null && CurrentActivePanel.IsTransitioning)
+        {
+            return;
+        }
+        if (targetPanel.IsTransitioning)
+        {
+            return;
+        }
 
         SetGlobalInputBlock(true);
         OnBeforeScreenChange(targetPanel);

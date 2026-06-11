@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter
+public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("CG SO")]
     [SerializeField] CGImageDatabase _cgDatabase;

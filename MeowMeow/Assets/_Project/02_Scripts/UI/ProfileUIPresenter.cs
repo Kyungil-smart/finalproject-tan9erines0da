@@ -17,6 +17,15 @@ public class ProfileUIPresenter : MonoBehaviour
 
     private List<GameObject> _spawnedItem = new();
 
+    private void Start()
+    {
+        if (SNSPostManager.Instance != null)
+        {
+            RefreshGrid();
+            SNSPostManager.Instance.OnMyPostHistoryUpdated -= RefreshGrid;
+            SNSPostManager.Instance.OnMyPostHistoryUpdated += RefreshGrid;
+        }
+    }
     private void OnEnable()
     {
         RefreshGrid();
@@ -54,6 +63,7 @@ public class ProfileUIPresenter : MonoBehaviour
             {
                 SNSPostDTO buttonDto = postDto;
                 // 람다식을 통한 dto 바인딩
+                btn.onClick.RemoveAllListeners();
                 btn.onClick.AddListener(() => OnFeedClicked(buttonDto));
             }
         }

@@ -1,3 +1,5 @@
+using System.ComponentModel.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +8,9 @@ public class ImageEditButton : MonoBehaviour
     private Button _button;
     [Header("냥냥스톤 부족 팝업 참조")]
     [SerializeField]private GameObject _nyangStoneEmptyImage;
+    [Header("화면전환 참조")]
+    [SerializeField]private BaseScreenController _baseScreenController;
+    [SerializeField]private UIPanel _panel;
 
     private void Awake()
     {
@@ -34,6 +39,8 @@ public class ImageEditButton : MonoBehaviour
             Invoke(nameof(CloseNyangStonePopup), 0.5f);
             return;
         }
+
+        _baseScreenController.RequestScreenChange(_panel);
     }
 
     private void CloseNyangStonePopup()
