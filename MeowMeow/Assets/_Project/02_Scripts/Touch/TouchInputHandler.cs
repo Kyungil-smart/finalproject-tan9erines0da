@@ -265,30 +265,24 @@ public class TouchInputHandler : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
-        // 토글 버튼 우선 처리
         for (int i = 0; i < results.Count; i++)
         {
-            Toggle toggle = results[i].gameObject.GetComponentInParent<Toggle>();
+            GameObject gameObject = results[i].gameObject;
 
-            if (toggle != null)
+            // 1. Toggle 위면 무시
+            if (gameObject.GetComponent<Toggle>() != null)
             {
                 return;
             }
-        }
 
-        // 스티커 삭제 버튼 우선 처리
-        for (int i = 0; i < results.Count; i++)
-        {
-            if (results[i].gameObject.GetComponent<DelSticker>() != null)
+            // 2. 삭제 버튼이면 무시
+            if (gameObject.GetComponent<DelSticker>() != null)
             {
                 return;
             }
-        }
 
-        for (int i = 0; i < results.Count; i++)
-        {
-            TouchInteractor obj = results[i].gameObject.GetComponent<TouchInteractor>();
-
+            // 3. 실제 선택
+            TouchInteractor obj = gameObject.GetComponent<TouchInteractor>();
             if (obj != null)
             {
                 OnObjectSelected?.Invoke(obj);
