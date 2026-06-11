@@ -270,7 +270,7 @@ public class TouchInputHandler : MonoBehaviour
             GameObject gameObject = results[i].gameObject;
 
             // 1. Toggle 위면 무시
-            if (gameObject.GetComponent<Toggle>() != null)
+            if (gameObject.GetComponentInParent<Toggle>() != null)
             {
                 return;
             }
