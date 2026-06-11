@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
+public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("시각적 이미지/스티커 최종 복원 렌더러")]
     [SerializeField] private SNSPostImageRenderer _postImageRenderer;
@@ -76,8 +76,6 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     public void SubmitContext()
     {
         _uploadButton?.onClick.RemoveAllListeners();
-
-        if (_snapshot.Equals(default(SNSPostDTO))) return;
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);

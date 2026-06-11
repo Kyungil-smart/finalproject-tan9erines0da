@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter
+public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("스티커 싱글톤")]
     [SerializeField] private StickerStateSingleton _stickerState;

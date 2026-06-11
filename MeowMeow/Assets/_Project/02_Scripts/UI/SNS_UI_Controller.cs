@@ -60,9 +60,23 @@ public class SNS_UI_Controller : BaseScreenController
 
     protected override void ExecuteClose()
     {
+        // 현재 클릭된 UI 오브젝트 추적
+        var clickedObj = UnityEngine.EventSystems.EventSystem
+            .current.currentSelectedGameObject;
+
+        // DTO 초기화
+        SubscribeManager.instance.Publish<SNSPostDTO>(SubscribeType.Update_PostModelData, SNSPostDTO.CreateEmpty());
+
         // 현재 열려있는 화면을 끄면서 퇴장 연출 재생
         if (CurrentActivePanel != null)
         {
+            var clearable = CurrentActivePanel.GetComponent<ISNSPanelClearable>();
+
+            if(clearable != null)
+            {
+                clearable.ClearPanelContext();
+            }
+
             CurrentActivePanel.Close(null);
         }
 
@@ -243,11 +257,10 @@ public class SNS_UI_Controller : BaseScreenController
     {
         if (panel == null) return;
 
-        var newPresenter = panel.GetComponent<ISNSPanelPresenter>();
+        var newPresenter = panel.GetComponent<ISNSContextReceiver>();
         if (newPresenter != null)
         {
             newPresenter.RequestContext();
-            Debug.Log($"[{panel.name}] 스왑 타임라인 내부에서 데이터 사전 동기화 완료.");
         }
     }
 }

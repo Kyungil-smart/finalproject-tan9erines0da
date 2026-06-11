@@ -358,7 +358,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCF54\uBA58\uD2B8"
+  m_text: <sprite name=NYE_24><sprite name=NYE_24><sprite name=NYE_24>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
   m_sharedMaterial: {fileID: 8459353301060225919, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
@@ -377,7 +377,7 @@ MonoBehaviour:
     bottomLeft: {r: 1, g: 1, b: 1, a: 1}
     bottomRight: {r: 1, g: 1, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
+  m_spriteAsset: {fileID: 11400000, guid: bdb424494759de143a18313d9d7bb4bc, type: 2}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
   m_TextStyleHashCode: -1183493901
@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 8753659162260635287}
   - component: {fileID: 8012224166791516607}
   - component: {fileID: 8846813931454954604}
+  - component: {fileID: 6608824393249792887}
   m_Layer: 5
   m_Name: Feed_Canvas
   m_TagString: Untagged
@@ -918,9 +919,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c806c3ba947c97468fea9628bfefec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelDepth: 0
+  _panelDepth: 1
   _enterAnimationEffect: {fileID: 0}
   _tabChangeAnimationEffect: {fileID: 0}
+--- !u!114 &6608824393249792887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196883919798071886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97867fc9d85a4924e8706899eba04d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imageRenderer: {fileID: 2815481321745633234}
+  _commentText: {fileID: 4530044517496773020}
+  _hashtagText: {fileID: 3070369884559887092}
+  _scrollView: {fileID: 5656343590194911904}
+  _commentPrefab: {fileID: 5372045896561475579, guid: a0ed588b063d17f40bd4e97820d0936e, type: 3}
+  _commentContainer: {fileID: 8958288208553196164}
 --- !u!1 &3507195687358270439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,7 +1633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 1a2adebb0bc5af14db2504c036c3ec34, type: 2}
-  m_Color: {r: 1, g: 0.75, b: 0.75, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -19,6 +19,16 @@ public class HashtagPresenter : MonoBehaviour
 
     private List<SNSPostDTO> _randomPosts = new List<SNSPostDTO>();
 
+    private void Start()
+    {
+        if (SNSPostManager.Instance != null)
+        {
+            RefreshGrid();
+            SNSPostManager.Instance.OnMyPostHistoryUpdated -= RefreshGrid;
+            SNSPostManager.Instance.OnMyPostHistoryUpdated += RefreshGrid;
+        }
+    }
+
     private void OnEnable()
     {
         RefreshGrid();

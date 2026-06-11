@@ -8,7 +8,7 @@ using UnityEngine;
 /// OnEnable 시 최신 DTO 를 요청해 미리보기를 복원하고,
 /// 완료 버튼에서 SubmitContext() 를 호출해 수정된 DTO 를 중앙 저장소에 밀어 넣는다.
 /// </summary>
-public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
+public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("Zone References")]
     [SerializeField] private CommentZoneManager _commentZoneManager;
@@ -58,7 +58,6 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter
     public void SubmitContext()
     {
         if (SubscribeManager.instance == null) return;
-        if (_snapshot.Equals(default(SNSPostDTO))) return;
 
         _snapshot.Comment = string.Join(" ", _commentZoneManager.GetWords());
         _snapshot.Hashtags = _hashtagZoneManager.GetSelectedTagNames();
