@@ -22,3 +22,27 @@ public interface ISNSPanelPresenter
     /// </summary>
     public void SubmitContext();
 }
+
+/// <summary>
+/// 외부 컨텍스트(DTO)를 수신하여 화면을 그릴 수 있는 
+/// 읽기 전용 컴포넌트의 규격을 정의합니다.
+/// </summary>
+public interface ISNSContextReceiver
+{
+    void RequestContext();
+}
+
+// 편집한 데이터를 밖으로 제출하는 역할 (쓰기 전용)
+public interface ISNSContextSubmitter
+{
+    void SubmitContext();
+}
+
+/// <summary>
+/// 패널이 비활성화되거나 전환될 때 내부 동적 자원과 
+/// 메모리를 스스로 소거할 수 있는 능력을 정의합니다.
+/// </summary>
+public interface ISNSPanelClearable
+{
+    void ClearPanelContext();
+}

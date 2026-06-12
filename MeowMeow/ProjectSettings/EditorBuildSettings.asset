@@ -6,10 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/_Project/01_Scenes/TestScenes/SHY_Test/Comment_Scene_New.unity
+    guid: ce9fb6c05b45b4c4bbbc0050a3d80ae4
+  - enabled: 0
+    path: Assets/_Project/01_Scenes/TestScenes/SHY_Test/Preview_Scene.unity
+    guid: d5bcc5a0bf24a804a9f86a0351aced65
+  - enabled: 1
     path: Assets/_Project/01_Scenes/BuildScenes/Login.unity
     guid: 6b8c5a5e44b891f409d41587f2e7e681
   - enabled: 1
-    path: Assets/_Project/01_Scenes/TestScenes/KSH_Test/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_Project/01_Scenes/TestScenes/KSH_Test/BuildTest.unity
+    guid: 7e3d58788556fed4db17630c40f7c726
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 021dc5c3b7adabf429b5673b57f536b3, type: 3}

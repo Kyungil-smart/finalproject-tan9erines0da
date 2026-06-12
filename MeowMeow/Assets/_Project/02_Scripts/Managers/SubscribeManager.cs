@@ -32,6 +32,10 @@ public enum SubscribeType
     //d
     dontDestroyBreak,
     // ==========================================
+    // [빌드 버전 디버그에 활용하기 위한 라인]
+    // ==========================================
+    Log_Write,
+    // ==========================================
     // [SNS 콘텐츠 MVP 데이터 흐름 전용 라인]
     // ==========================================
 
@@ -50,11 +54,23 @@ public enum SubscribeType
     Update_PostModelData,
 
     /// <summary>
+    /// 피드 팝업 화면 구성을 위한 DTO를 보냅니다
+    /// 인자 타입:SNSPostDTO
+    /// </summary>
+    Send_DTO_for_Feed,
+
+    /// <summary>
     /// 포스트 편집이 최종 완료되어 
     /// 로컬 JSON 저장 및 업로드 루틴을 트리거할 때 발행
     /// 인자 타입: 없음 (Action)
     /// </summary>
-    On_SubmitPostProcess
+    On_SubmitPostProcess,
+
+    /// <summary>
+    /// 
+    /// </summary>
+    RandomSixData,
+
 }
 public class SubscribeManager : MonoBehaviour
 {

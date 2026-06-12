@@ -1,6 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Firebase.Auth;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -64,6 +65,8 @@ public class LoginUI : MonoBehaviour
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
+
+        await InitUserData();
     }
 
     private async void OnLoginClicked()
@@ -100,6 +103,8 @@ public class LoginUI : MonoBehaviour
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
 
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
+
+        await InitUserData();
     }
 
     private void OnLogoutClicked()
@@ -120,5 +125,45 @@ public class LoginUI : MonoBehaviour
     {
         _loginButton.interactable = interactable;
         _logoutButton.interactable = interactable;
+    }
+
+    // 로그인 확인후 실행되는 유저관련 데이터 초기화 함수
+    private async Task InitUserData()
+    {
+        // 유저가 작성한 포스트 확보
+        if (SNSPostManager.Instance != null)
+        {
+            SNSPostManager.Instance.LoadLocalData();
+        }
+        
+        
+        // 유저 보유 재화 확보
+        if (LocalDataManager.Instance != null)
+        {
+            await LocalDataManager.Instance.LoadNyangNyangStone();
+        }
+        
+
+        FirebaseUser user = BackendManager.Auth.CurrentUser;
+        
+        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
+        
+        // 유저 로컬 데이터에 랜덤피드 6개 확보
+        if (localFeedStorage.Count > 1)
+        {
+            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, localFeedStorage);
+        }
+        else
+        {
+            // 로컬에 데이터가 존재하지 않을 때
+            var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
+            var SNSList = new List<SNSPostDTO>();
+            foreach (var item in Listdata)
+            {
+                SNSList.Add(item.ToStruct());
+            }
+            LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
+            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
+        }
     }
 }

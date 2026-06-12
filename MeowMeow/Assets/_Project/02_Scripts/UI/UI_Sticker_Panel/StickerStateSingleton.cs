@@ -63,15 +63,6 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("Sticker_Priority_Scroll View의 자식 Content를 참조")]
     [SerializeField] private RectTransform _content;
 
-    // 스티커 생선순 토글버튼 Toggle Group 컴포넌트 참조를 위해(한번에 토글 제어용)
-    [Header("Sticker_Priority_Scroll View의 Content를 참조")]
-    [SerializeField] private ToggleGroup _priorityToggleGroup;
-    public ToggleGroup PriorityToggleGroup
-    {
-        get => _priorityToggleGroup;
-        set => _priorityToggleGroup = value;
-    }
-
     [Header("스티커 생성 버튼들을 모두 참조")]
     [SerializeField] private List<StickerEditor> _stickerEditors = new List<StickerEditor>();
     #endregion
@@ -254,6 +245,44 @@ public class StickerStateSingleton : MonoBehaviour
     public void StickerCountUpload()
     {
         _stickerCountText.text = $"{_currentCount}/{_maxStickerCount}";
+    }
+    #endregion
+
+    #region 스티커 초기화 함수
+    public void AllClearSticker()
+    {
+        _currentCount = 0;
+        StickerCountUpload();
+
+        foreach (Toggle toggle in _toggleList)
+        {
+            if (toggle != null)
+            {
+                Destroy(toggle.gameObject);
+            }
+        }
+
+        foreach (KeyValuePair<GameObject, GameObject> pair in _stickerToDelButton)
+        {
+            if (pair.Value != null)
+            {
+                Destroy(pair.Value);
+            }
+        }
+
+        foreach (KeyValuePair<Toggle, GameObject> pair in _toggleToSticker)
+        {
+            if (pair.Value != null)
+            {
+                Destroy(pair.Value);
+            }
+        }
+
+        _stickerIndexes.Clear();
+        _toggleToSticker.Clear();
+        _stickerToToggle.Clear();
+        _toggleList.Clear();
+        _stickerToDelButton.Clear();
     }
     #endregion
 }

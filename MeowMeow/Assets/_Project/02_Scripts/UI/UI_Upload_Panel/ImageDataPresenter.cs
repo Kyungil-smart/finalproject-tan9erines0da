@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ImageDataPresenter : MonoBehaviour, ISNSPanelPresenter
+public class ImageDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("참조 필수")]
     [SerializeField] Image _previewImage;

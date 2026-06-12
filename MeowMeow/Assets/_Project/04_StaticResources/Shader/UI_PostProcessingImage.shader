@@ -13,6 +13,13 @@ Shader "Unlit/UI_ImageFixedShader"
         
         _ColdColor ("Cold Target Color", Color) = (0.15, 0.35, 0.85, 1)
         _WarmColor ("Warm Target Color", Color) = (0.85, 0.65, 0.15, 1)
+
+        _Stencil ("Stencil ID", Float) = 0
+        _StencilOp ("Stencil Operation", Float) = 0
+        _StencilComp ("Stencil Comparison", Float) = 8
+        _StencilWriteMask ("Write Mask", Float) = 255
+        _StencilReadMask ("Read Mask", Float) = 255
+        _ColorMask ("Color Mask", Float) = 15
     }
     SubShader
     {
@@ -32,12 +39,23 @@ Shader "Unlit/UI_ImageFixedShader"
         ZTest [unity_GUIZTestMode]
         Blend SrcAlpha OneMinusSrcAlpha
 
+        Stencil
+        {
+            Ref [_Stencil]
+            Comp [_StencilComp]
+            Pass [_StencilOp]
+            ReadMask [_StencilReadMask]
+            WriteMask [_StencilWriteMask]
+        }
+        ColorMask [_ColorMask]
+
         Pass
         {
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
             #pragma target 2.0
+            #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
 
             #include "UnityCG.cginc"
             #include "UnityUI.cginc"

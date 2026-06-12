@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
-public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
+public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
 {
     [Header("시각적 이미지/스티커 최종 복원 렌더러")]
     [SerializeField] private SNSPostImageRenderer _postImageRenderer;
@@ -11,6 +12,11 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     [Header("작업자 텍스트 UI 참조")]
     [SerializeField] private TextMeshProUGUI _hashtagText;
     [SerializeField] private TextMeshProUGUI _commentText;
+
+    [Header("UI 컨트롤러 및 타겟 패널 직접 참조")]
+    [SerializeField] private BaseScreenController _uiController;
+    [SerializeField] private UIPanel _profilePanel;
+    [SerializeField] private Button _uploadButton;
 
     private SNSPostDTO _snapshot;
 
@@ -46,6 +52,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
         {
             _commentText.text = _snapshot.Comment;
         }
+        _uploadButton?.onClick.RemoveAllListeners();
+        _uploadButton.onClick.AddListener(ExecuteUploadAndReturn);
     }
 
     public void RequestContext()
@@ -67,12 +75,52 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter
     /// </summary>
     public void SubmitContext()
     {
-        if (_snapshot.Equals(default(SNSPostDTO))) return;
-
-        // 추후 이 구역 또는 우측 하단 [최종 등록] 버튼 콜백 함수 내부에 
-        // FirestoreSNSPostDoc 클래스 포장지를 씌워 업로드하는 로직이 들어갈 예정입니다.
+        _uploadButton?.onClick.RemoveAllListeners();
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+    }
+
+    /// <summary>
+    /// 업로드를 진행하고, 다음 패널을 호출합니다
+    /// </summary>
+    public async void ExecuteUploadAndReturn()
+    {
+        // 1. 중복 클릭 방지
+        if (_uploadButton != null) _uploadButton.interactable = false;
+
+        try
+        {
+            // 2. 매니저에 업로드 지시 후 완료될 때까지 대기
+            await SNSPostManager.Instance
+                .UploadAndCachePostAsync(_snapshot);
+
+            Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
+
+            _snapshot = SNSPostDTO.CreateEmpty();
+            
+            SubscribeManager.instance.Publish<SNSPostDTO>(
+            SubscribeType.Update_PostModelData, _snapshot);
+
+            // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
+            if (_uiController != null && _profilePanel != null)
+            {
+                _uiController.RequestScreenChange(_profilePanel);
+            }
+            else
+            {
+                Debug.LogWarning("컨트롤러나 타겟 참조가 누락되었습니다.");
+            }
+        }
+        catch (Exception ex)
+        {
+            // 4. 업로드 실패 시 패널을 닫지 않고 대기
+            Debug.LogError($"업로드 실패. 전환 중단: {ex.Message}");
+        }
+        finally
+        {
+            // 5. 버튼 상태 복구
+            if (_uploadButton != null) _uploadButton.interactable = true;
+        }
     }
 }

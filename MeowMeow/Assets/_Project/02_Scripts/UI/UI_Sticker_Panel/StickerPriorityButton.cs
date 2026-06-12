@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointerClickHandler
 {
     private Toggle _toggle;
+    public Toggle Toggle
+    {
+        get => _toggle;
+        set => _toggle = value;
+    }
+
     // 토글이 눌렸는지 확인할 변수
     private bool _wasOn;
 
@@ -70,8 +76,8 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
         // 토글이 꺼지면 선택해제 및 삭제버튼 숨기기
         else
         {
-            TouchInputHandler.Instance.CallSelectionCleared();
-            StickerStateSingleton.Instance.StickerDelButtonSetOff();
+            StickerStateSingleton.Instance.StickerToDelButton
+                [StickerStateSingleton.Instance.ToggleToSticker[_toggle]].gameObject.SetActive(false);
         }
     }
     #endregion
