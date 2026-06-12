@@ -31,16 +31,23 @@ public class ImageEditButton : MonoBehaviour
     {
         if (LocalDataManager.Instance == null) return;
 
-        if (LocalDataManager.Instance.NyangNyangStone <= 0)
+        if (Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser != null)
         {
-            if (_nyangStoneEmptyImage.activeSelf) return;
+            if (LocalDataManager.Instance.NyangNyangStone <= 0)
+            {
+                if (_nyangStoneEmptyImage.activeSelf) return;
 
-            _nyangStoneEmptyImage.SetActive(true);
-            Invoke(nameof(CloseNyangStonePopup), 0.5f);
-            return;
+                _nyangStoneEmptyImage.SetActive(true);
+                Invoke(nameof(CloseNyangStonePopup), 0.5f);
+                return;
+            }
+            _baseScreenController.RequestScreenChange(_panel);
         }
 
-        _baseScreenController.RequestScreenChange(_panel);
+        else
+        {
+            _baseScreenController.RequestScreenChange(_panel);
+        }
     }
 
     private void CloseNyangStonePopup()
