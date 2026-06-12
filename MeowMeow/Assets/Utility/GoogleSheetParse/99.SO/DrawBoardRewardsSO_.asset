@@ -15,4 +15,67 @@ MonoBehaviour:
   url: https://docs.google.com/spreadsheets/d/1Cz_a9NfVx3N-nbmVaCu5ewD0iHeESlPYK4uSI4iVgYo/edit?gid=1026504732#gid=1026504732
   gid: 1026504732
   genericType: DrawBoardRewards
-  m_Data: []
+  m_Data:
+  - <uniqueId>k__BackingField: 20002
+    m_Name: "\uB9C8\uC220 \uBAA8\uC790(\uB808\uBCA8 5)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 1
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 20001
+    m_Name: "\uB9C8\uC220 \uAC00\uC704(\uB808\uBCA8 5)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 2
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 20006
+    m_Name: "\uBCF4\uC11D 8\uAC1C (\uB808\uBCA8 3)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 3
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 20010
+    m_Name: "\uCF54\uC778 20\uAC1C (\uB808\uBCA8 4)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 4
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 20013
+    m_Name: "\uB0E5\uB0E5\uC2A4\uD1A4 (\uB808\uBCA8 4)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 5
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 20011
+    m_Name: "\uD138\uBB49\uCE58 \uC778\uD615 (\uB808\uBCA8 5)"
+    m_Reward_resource_image: NULL
+    m_Reward_resource_text_image: NULL
+    m_Grade: 6
+    m_Amount: 1
+    m_Repeat: 1
+  - <uniqueId>k__BackingField: 30001
+    m_Name: "\uBCF5\uACE0\uD48D \uAE30\uB984\uB09C\uB85C"
+    m_Reward_resource_image: 
+    m_Reward_resource_text_image: 
+    m_Grade: 1
+    m_Amount: 1
+    m_Repeat: 0
+  - <uniqueId>k__BackingField: 30002
+    m_Name: "\uBCF5\uACE0\uD48D \uCC45\uC0C1\uACFC \uC758\uC790"
+    m_Reward_resource_image: 
+    m_Reward_resource_text_image: 
+    m_Grade: 3
+    m_Amount: 1
+    m_Repeat: 0
+  - <uniqueId>k__BackingField: 40001
+    m_Name: "\uBAA8\uC790\uB97C \uC4F4 \uBB49\uCE58"
+    m_Reward_resource_image: 
+    m_Reward_resource_text_image: 
+    m_Grade: 2
+    m_Amount: 1
+    m_Repeat: 0
