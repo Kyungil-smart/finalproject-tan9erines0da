@@ -301,14 +301,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7024746962624306509, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
-      propertyPath: m_Listdata.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7024746962624306509, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
-      propertyPath: m_Listdata.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: b04598ab178036743b79bc9eb6dc6bf9, type: 2}
     - target: {fileID: 7040793216939756363, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -352,10 +344,6 @@ PrefabInstance:
     - target: {fileID: 8048162555208173449, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
       propertyPath: m_Name
       value: googleSheetManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8048162555208173449, guid: 2fa90cf1b95915e4c9d3286b177b402e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
