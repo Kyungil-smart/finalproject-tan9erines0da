@@ -122,6 +122,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &342442604
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 342442606}
+  - component: {fileID: 342442605}
+  m_Layer: 0
+  m_Name: firestoremanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &342442605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342442604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091d7c77fd5a2384da9cc1c042e28d84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_data:
+    <ImageIndex>k__BackingField: 0
+    <ShaderProperty>k__BackingField:
+      <Brightness>k__BackingField: 0
+      <Contrast>k__BackingField: 0
+      <Saturation>k__BackingField: 0
+      <Temperature>k__BackingField: 0
+    <Comment>k__BackingField: 
+    <Stickers>k__BackingField: []
+    <Hashtags>k__BackingField: []
+    <RandomId>k__BackingField: 0
+  TestList: []
+  m_Data:
+  - {fileID: 11400000, guid: 05251f185d12f6f49972d6b719d0ce6b, type: 2}
+--- !u!4 &342442606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342442604}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 791.8164, y: 1308.5494, z: -4.653437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &627053057
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +351,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &994935428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 994935430}
+  - component: {fileID: 994935429}
+  m_Layer: 0
+  m_Name: GatchaDataManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &994935429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994935428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b83d98352763a4b850b3729a2991e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gatchaData:
+    <UID>k__BackingField: 
+    <OwnedTicketCount>k__BackingField: 0
+    <TodayAttendanceTicketCount>k__BackingField: 0
+    <TodayQuestTicketCount>k__BackingField: 0
+    <TotalGatchaCount>k__BackingField: 0
+    <ItemList>k__BackingField: 
+    <OpenedIndices>k__BackingField: 
+    <IsResetPerformed>k__BackingField: 0
+--- !u!4 &994935430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994935428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 791.8164, y: 1308.5494, z: -4.653437}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8867020922216688582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -357,3 +468,5 @@ SceneRoots:
   - {fileID: 972643222}
   - {fileID: 8867020922216688582}
   - {fileID: 627053060}
+  - {fileID: 994935430}
+  - {fileID: 342442606}
