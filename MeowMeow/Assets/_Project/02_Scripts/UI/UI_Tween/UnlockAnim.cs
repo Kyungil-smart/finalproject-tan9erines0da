@@ -18,10 +18,7 @@ public class UnlockAnim : MonoBehaviour
     {
         uiImage = lockImage.GetComponent<Image>();
         originalWidth = lockImage.sizeDelta.x;
-
-        
-        minWidth = 17f;
-        
+        minWidth = 17f;        
     }
 
     [ContextMenu("Rotate Lock Clean Version")]
@@ -30,7 +27,6 @@ public class UnlockAnim : MonoBehaviour
         container.DOKill();
         lockImage.DOKill();
 
-        // 초기화 (이제 자식의 위치는 무조건 (0,0) 고정입니다!)
         lockImage.sizeDelta = new Vector2(originalWidth, lockImage.sizeDelta.y);
         lockImage.localPosition = Vector3.zero;
         container.localScale = Vector3.one;
