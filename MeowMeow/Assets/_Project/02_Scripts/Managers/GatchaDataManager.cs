@@ -26,13 +26,13 @@ public class GatchaDataManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
     [ContextMenu("setTest")]
-    private async void Test_set()
+    private async void Set_GatchaDTO()
     {
         var  TestGatchaDTO = new GatchaDTO();
         await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(TestGatchaDTO);
     }
     [ContextMenu("getTest")]
-    private async void Test_get()
+    private async void Get_GatchaDTO()
     {
        var GetGatchaDTO =await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
        if(GetGatchaDTO.ItemList != null)//초기 데이터가 있는지 없는지 확인하기용도
