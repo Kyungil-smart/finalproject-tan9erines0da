@@ -21,7 +21,8 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private List<Button> _gatchaButtons;
 
     [Header("토글형 오브젝트")]
-    [SerializeField] private List<ISwitchable> _milestonBlocks;
+    [SerializeField] private List<GachaStackBox> _milestonBlocks;
+    [SerializeField] private List<Limited_Button> _LinitedBlocks;
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     //--------------내부 필드-----------------------
@@ -80,6 +81,17 @@ public class GatchaContentPresenter : MonoBehaviour
             {
                 _gatchaBlocks[i].SetViewCover(i);
             }
+        }
+
+        // 누적 보상 SetView 순회
+        int milestonCount = GatchaDataManager.Instance.GatchaData.TotalGatchaCount;
+
+        for (int i = 0; i <_milestonBlocks.Count; i++)
+        {
+            // milestonCount <= (현재 _milestonBlocks은 인덱스 * 10 + 10)
+            bool isOpened = (milestonCount <= i * 10 + 10);
+
+            _milestonBlocks[i].SetView(isOpened);
         }
     }
 }
