@@ -11,21 +11,12 @@ public class GatchaDataManager : MonoBehaviour
 
    [SerializeField] private GatchaDTO _gatchaData=new GatchaDTO();
     public GatchaDTO GatchaData => _gatchaData;
-    private int _attendanceCount;
+   
     //출석으로 얻은 뽑기권 
-    public int attendanceCount
-    {
-        get => attendanceCount;
-         
-        set
-        {
-            //음수 방지
-            _attendanceCount = Mathf.Max(0, value);
-        }
+    public int TodayAttendanceTicketCount => _gatchaData.TodayAttendanceTicketCount;
 
-    }
     //퀘스트로 얻은 뽑기권
-    public int questCount { get; private set; }
+    public int TodayQuestTicketCount => _gatchaData.TodayQuestTicketCount;
     private void Awake()
     {
         Init();
