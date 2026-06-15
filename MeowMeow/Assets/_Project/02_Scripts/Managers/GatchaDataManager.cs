@@ -1,4 +1,5 @@
 using Firebase.Firestore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -167,12 +168,29 @@ public class GatchaDataManager : MonoBehaviour
         bool receiveCompensation = _gatchaData.TodayAttendanceTicketCount == 1;
         if (receiveCompensation == false)
         {
-            _gatchaData.TodayAttendanceTicketCount += 1;
+            const int TICKET_REWARD = 1;
+            _gatchaData.TodayAttendanceTicketCount += TICKET_REWARD;
             GetTicket();
             Set_GatchaDTO();
          
         }
     }
+    [ContextMenu("IsQuestCompensation")]
+    public void IsQuestCompensation()
+    {
+        bool receiveCompensation = _gatchaData.TodayQuestTicketCount == 2;
+        const int MAX_QUEST_TICKET = 2;
+        const int MIN_QUEST_TICKET = 0;
+        const int QUEST_TICKET_REWARD = 1;
+        if (receiveCompensation == false)
+        {
+            var value = _gatchaData.TodayQuestTicketCount + QUEST_TICKET_REWARD;
+            _gatchaData.TodayQuestTicketCount = Math.Clamp(value, MIN_QUEST_TICKET, MAX_QUEST_TICKET);
+            GetTicket();
+            Set_GatchaDTO();
+        }
+    }
+
     public void GetTicket()
     {
         _gatchaData.OwnedTicketCount += 1;
