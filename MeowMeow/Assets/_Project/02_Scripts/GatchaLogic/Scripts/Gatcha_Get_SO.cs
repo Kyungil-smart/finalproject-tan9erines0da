@@ -24,7 +24,6 @@ public class Gatcha_Get_SO :BaseGatcha
         Owner.GatchaData.OpenedIndices= new();
         for (int i = 0; i < Owner.GatchaData.ItemList.Count; i++)
         {
-
             Owner.GatchaData.OpenedIndices.Add(i.ToString(), false);
         }
     }
