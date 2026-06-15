@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1482382646753724639}
   - component: {fileID: 8200853945696914049}
   - component: {fileID: 2030260598993075504}
+  - component: {fileID: 3788801044052456058}
   m_Layer: 0
   m_Name: BackendManager
   m_TagString: Untagged
@@ -114,3 +115,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NyangNyangStoneTMP: {fileID: 0}
+--- !u!114 &3788801044052456058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948890395797757019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b83d98352763a4b850b3729a2991e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gatchaData:
+    <UID>k__BackingField: 
+    <OwnedTicketCount>k__BackingField: 0
+    <TodayAttendanceTicketCount>k__BackingField: 0
+    <TodayQuestTicketCount>k__BackingField: 0
+    <TotalGatchaCount>k__BackingField: 0
+    <ItemList>k__BackingField: 
+    <IsResetPerformed>k__BackingField: 0
