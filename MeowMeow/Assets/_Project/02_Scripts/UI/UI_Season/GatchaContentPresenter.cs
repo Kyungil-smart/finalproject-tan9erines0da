@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
     [Header("팝업 관리목록 ")]
-    [SerializeField] private IPopupable _tutorialCanvas;
-    [SerializeField] private IPopupable _previewCanvas;
-    [SerializeField] private IPopupable _gatchaCanvas;
-    [SerializeField] private IPopupable _milestoneCanvas;
-    [SerializeField] private IPopupable _resetCanvas;
+    [SerializeField] private GameObject _tutorialCanvas;
+    [SerializeField] private GameObject _previewCanvas;
+    [SerializeField] private GameObject _gatchaCanvas;
+    [SerializeField] private GameObject _milestoneCanvas;
+    [SerializeField] private GameObject _resetCanvas;
 
 
     [Header("메인 캔버스 버튼")]
@@ -26,6 +27,10 @@ public class GatchaContentPresenter : MonoBehaviour
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
 
+    void Awake()
+    {
+        Bind();
+    }
     public void OpenPopup(IPopupable popup, int itemId = 0)
     {
         if (_isPopupOpen || popup == null) return;
@@ -52,4 +57,16 @@ public class GatchaContentPresenter : MonoBehaviour
         _isPopupOpen= false;
         
     }
+
+    void Bind()
+    {
+        _tutorialButton.onClick.AddListener(OnTutorialClick);
+    }
+    void OnTutorialClick()
+    {
+        IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
+        OpenPopup(popup);
+    }
+
+    
 }

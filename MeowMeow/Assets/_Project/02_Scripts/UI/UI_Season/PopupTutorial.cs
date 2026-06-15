@@ -7,9 +7,14 @@ public class PopupTutorial : MonoBehaviour, IPopupable
 {
     [SerializeField] Button _exitButton;
 
+    GatchaContentPresenter _contentPresenter;
+
     public void Open()
     {
-        // 필요 연출 없음
+        if(_exitButton != null)
+        {
+            _exitButton.interactable = true;
+        }
     }
     public void Close()
     {
@@ -22,11 +27,27 @@ public class PopupTutorial : MonoBehaviour, IPopupable
     }
     public void Bind(GatchaContentPresenter gcp)
     {
-        _exitButton.onClick += gcp.ClosePopup(this);
+        _contentPresenter = gcp;
+        _exitButton.onClick.AddListener(OnExitButtonClick);
     }
 
     public void Unbind()
     {
-        throw new System.NotImplementedException();
+        _exitButton.onClick.RemoveListener(OnExitButtonClick);
+        _contentPresenter = null;
+    }
+
+    void OnExitButtonClick()
+    {
+        if (_contentPresenter == null) return;
+        // 중복 클릭 방지
+        _exitButton.interactable = false;
+
+        _contentPresenter.ClosePopup(this);
+    }
+
+    void OnDestroy()
+    {
+        Unbind();
     }
 }
