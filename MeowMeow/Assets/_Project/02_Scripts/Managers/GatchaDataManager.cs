@@ -7,7 +7,7 @@ public class GatchaDataManager : MonoBehaviour
     public GatchaDataManager Instance { get; private set; }
 
    [SerializeField] private GatchaDTO _gatchaData=new GatchaDTO();
-      public GatchaDTO GatchaData => _gatchaData;
+    public GatchaDTO GatchaData => _gatchaData;
     
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class GatchaDataManager : MonoBehaviour
     [ContextMenu("getTest")]
     private async void Test_get()
     {
-        
+
         _gatchaData =await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
     }
 }
