@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +9,21 @@ public class GatchaDataManager : MonoBehaviour
 
    [SerializeField] private GatchaDTO _gatchaData=new GatchaDTO();
     public GatchaDTO GatchaData => _gatchaData;
+    private int _attendanceCount;
+    //출석으로 얻은 뽑기권 
+    public int attendanceCount
+    {
+        get => attendanceCount;
+         
+        set
+        {
+            //음수 방지
+            _attendanceCount = Mathf.Max(0, value);
+        }
 
- 
+    }
+    //퀘스트로 얻은 뽑기권
+    public int questCount { get; private set; }
     private void Awake()
     {
         Init();
@@ -143,4 +157,15 @@ public class GatchaDataManager : MonoBehaviour
 
         return flag;
     }
+    public void  drawByIndex(int index)
+    {
+        if (IsOpened(index) == false)
+        {
+            _gatchaData.OpenedIndices[index] = true;
+            _gatchaData.OwnedTicketCount -= 1;
+        }
+    }
+
+    public int GetItemID(int index)=> _gatchaData.ItemList[index];
+    
 }
