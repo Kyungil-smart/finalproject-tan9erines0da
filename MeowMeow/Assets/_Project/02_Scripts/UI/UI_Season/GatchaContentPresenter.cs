@@ -32,6 +32,11 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         Bind();
     }
+    /// <summary>
+    /// 팝업 패널을 여는 함수입니다
+    /// </summary>
+    /// <param name="popup">열고자하는 팝업입니다</param>
+    /// <param name="itemId">데이터가 필요할 때 아이템 아이디를 입력합니다</param>
     public void OpenPopup(IPopupable popup, int itemId = 0)
     {
         if (_isPopupOpen || popup == null) return;
@@ -47,6 +52,10 @@ public class GatchaContentPresenter : MonoBehaviour
 
         _isPopupOpen = true;
     }
+    /// <summary>
+    /// 팝업 패널을 닫는 함수입니다
+    /// </summary>
+    /// <param name="popup"></param>
     public void ClosePopup(IPopupable popup)
     {
         if (popup == null || !_isPopupOpen) return;
@@ -68,7 +77,9 @@ public class GatchaContentPresenter : MonoBehaviour
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
         OpenPopup(popup);
     }
-
+    /// <summary>
+    /// 메인 캔버스가 열릴때 호출하는 함수
+    /// </summary>
     private void OnOpen()
     {
         // 뽑기 블럭 SetView 순회
