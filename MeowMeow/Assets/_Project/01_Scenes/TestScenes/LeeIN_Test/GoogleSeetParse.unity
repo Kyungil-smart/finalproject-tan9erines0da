@@ -380,15 +380,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b83d98352763a4b850b3729a2991e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gatchaData:
+  LogicList:
+  - {fileID: 11400000, guid: 4f68dc5e5bebfdf44825933ebb8437bf, type: 2}
+  GatchaData:
     <UID>k__BackingField: 
     <OwnedTicketCount>k__BackingField: 0
     <TodayAttendanceTicketCount>k__BackingField: 0
     <TodayQuestTicketCount>k__BackingField: 0
     <TotalGatchaCount>k__BackingField: 0
     <ItemList>k__BackingField: 
-    <OpenedIndices>k__BackingField: 
     <IsResetPerformed>k__BackingField: 0
+    <Grade_1>k__BackingField: 0
+    <Grade_2>k__BackingField: 0
+    <Grade_3>k__BackingField: 0
+  Testvalue: 0
 --- !u!4 &994935430
 Transform:
   m_ObjectHideFlags: 0

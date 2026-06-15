@@ -31,7 +31,11 @@ public class GatchaDataManager : MonoBehaviour
     private void Awake()
     {
         Init();
-        LogicDic= LogicList.ToDictionary(x=>x.Type, x=>x);
+        foreach(var item in LogicList)
+        {
+            item.Init(this);
+        }
+        LogicDic = LogicList.ToDictionary(x=>x.Type, x=>x);
     }
 
     private void Init()

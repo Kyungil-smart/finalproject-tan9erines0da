@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9fcbf469a3b1874ebcc74173ee45122, type: 3}
-  m_Name: Gatcha_Get_SO
+  m_Script: {fileID: 11500000, guid: c0a412e3f26bbad459fd097e54d06fcb, type: 3}
+  m_Name: Gatcha_Set_SO
   m_EditorClassIdentifier: 
   Type: 2
   Owner: {fileID: 0}
