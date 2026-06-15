@@ -28,7 +28,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     public void OpenPopup(IPopupable popup, int itemId = 0)
     {
-        if (_isPopupOpen) return;
+        if (_isPopupOpen || popup == null) return;
                 
         popup.gameObject.SetActive(true);
         if (itemId != 0)
@@ -40,5 +40,16 @@ public class GatchaContentPresenter : MonoBehaviour
         popup.Open();
 
         _isPopupOpen = true;
+    }
+    public void ClosePopup(IPopupable popup)
+    {
+        if (popup == null || !_isPopupOpen) return;
+
+        popup.Unbind();
+        popup.Close();
+
+        popup.gameObject.SetActive(false);
+        _isPopupOpen= false;
+        
     }
 }
