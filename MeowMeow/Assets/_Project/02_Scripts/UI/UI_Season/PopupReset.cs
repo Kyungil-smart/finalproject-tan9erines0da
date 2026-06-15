@@ -60,8 +60,8 @@ public class PopupReset : MonoBehaviour, IPopupable
         _resetButton.interactable = false;
 
         _contentPresenter.ClosePopup(this);
-
-        // Todo 보드 리셋 함수 호출
+        // 보드 초기화 실행
+        _contentPresenter.ResetGachaBlocks();
     }
 
     void OnDestroy()
