@@ -13,6 +13,9 @@ public enum DataType
     Test,
     Posts,
     CurrencyData,
+    GatchaData,
+
+
 }
 public class FireStoreManager : MonoBehaviour
 {
@@ -29,6 +32,7 @@ public class FireStoreManager : MonoBehaviour
     private void Awake()
     {
         InitSingleton();
+        InitFirebaseAsync();
     }
 
     private void InitSingleton()
@@ -44,24 +48,24 @@ public class FireStoreManager : MonoBehaviour
         }
     }
 
-    async void Start()
-    {
-        // 백엔드 매니져에서 초기화 완료 대기
-        bool isBackendReady = await BackendManager.ReadyTask;
+    //async void Start()
+    //{
+    //    // 백엔드 매니져에서 초기화 완료 대기
+    //    bool isBackendReady = await BackendManager.ReadyTask;
 
-        if (!isBackendReady)
-        {
-            Debug.LogError("[Firestore] 백엔드 초기화 실패");
-            return;
-        }
+    //    if (!isBackendReady)
+    //    {
+    //        Debug.LogError("[Firestore] 백엔드 초기화 실패");
+    //        return;
+    //    }
 
-        // Firebase 초기화 성공 시
-        m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
-        m_db = FirebaseFirestore.DefaultInstance;
+    //    // Firebase 초기화 성공 시
+    //    m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
+    //    m_db = FirebaseFirestore.DefaultInstance;
 
-        BindClass();
-        InitDictionary();
-    }
+    //    BindClass();
+    //    InitDictionary();
+    //}
     // 초기화는 백엔드 매니져에서 진행 
     private void InitFirebaseAsync()
     {
