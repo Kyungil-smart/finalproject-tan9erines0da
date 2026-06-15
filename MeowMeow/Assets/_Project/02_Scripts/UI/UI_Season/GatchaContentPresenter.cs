@@ -22,7 +22,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     [Header("토글형 오브젝트")]
     [SerializeField] private List<ISwitchable> _milestonBlocks;
-    [SerializeField] private List<ISwitchable> _gatchaBlocks;
+    [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
@@ -68,5 +68,18 @@ public class GatchaContentPresenter : MonoBehaviour
         OpenPopup(popup);
     }
 
-    
+    private void OnOpen()
+    {
+        // 뽑기 블럭 SetView 순회
+        for(int i = 0; i < _gatchaBlocks.Count; i++)
+        {
+            bool isOpened = GatchaDataManager.Instance.IsOpened(i);
+            _gatchaBlocks[i].SetView(isOpened);
+
+            if (isOpened)
+            {
+                _gatchaBlocks[i].SetViewCover(i);
+            }
+        }
+    }
 }
