@@ -440,6 +440,7 @@ GameObject:
   - component: {fileID: 138269090045863570}
   - component: {fileID: 4893390706358124328}
   - component: {fileID: 1677422566678790051}
+  - component: {fileID: 7705836406893863629}
   m_Layer: 5
   m_Name: SeasonSectionButton
   m_TagString: Untagged
@@ -554,6 +555,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7705836406893863629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3873637543386226155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3b5cea45cfa54a4ba321a426e96b5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _front: {fileID: 7238978825266098810}
+  _1st: {fileID: 2484923317014529155}
+  _2nd: {fileID: 936740314256518360}
+  _3rd: {fileID: 3334708329369320715}
+  _lowRank: {fileID: 288827645257657112}
+  _lowRankTMP: {fileID: 7529039288919120727}
 --- !u!1 &3905006792712578787
 GameObject:
   m_ObjectHideFlags: 0

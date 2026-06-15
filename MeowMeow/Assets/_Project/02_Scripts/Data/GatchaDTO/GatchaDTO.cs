@@ -25,9 +25,19 @@ public struct GatchaDTO
     [field: SerializeField][FirestoreProperty]
     public List<int> ItemList { get; set; } // 42개 상품 리스트 (뽑기판 배치 순서)
 
-    [field: SerializeField][FirestoreProperty]
-    public Dictionary<int, bool> OpenedIndices { get; set; } // 뽑기권을 써서 열어둔 인덱스
+     [FirestoreProperty]
+    public Dictionary<string, bool> OpenedIndices { get; set; } // 뽑기권을 써서 열어둔 인덱스
 
     [field: SerializeField][FirestoreProperty]
     public bool IsResetPerformed { get; set; } // 초기화 시행 여부
+
+    [field: SerializeField][FirestoreProperty]
+    public bool Grade_1 { get; set; }//1등 보상 획득 여부
+
+    [field: SerializeField][FirestoreProperty]
+    public bool Grade_2 { get; set; }//2등 보상 획득 여부
+
+    [field: SerializeField][FirestoreProperty]
+    public bool Grade_3 { get; set; }//3등 보상 획득 여부
+
 }
