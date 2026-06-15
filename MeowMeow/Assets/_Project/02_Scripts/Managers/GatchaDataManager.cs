@@ -28,7 +28,7 @@ public class GatchaDataManager : MonoBehaviour
     [ContextMenu("setTest")]
     private async void Test_set()
     {
-       var  TestGatchaDTO = new GatchaDTO();
+        var  TestGatchaDTO = new GatchaDTO();
         await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(TestGatchaDTO);
     }
     [ContextMenu("getTest")]
@@ -82,6 +82,54 @@ public class GatchaDataManager : MonoBehaviour
            _gatchaData = GetGatchaDTO;
        }
     }
+    [ContextMenu("RewardReset")]
+    public void RewardReset()
+    {
+        //아이템 리스트 초기화
+        //1회성 보상 제외
+        
+        _gatchaData.ItemList.Clear();
+        _gatchaData.OpenedIndices.Clear();
+        var drawBoardRewards = googleSheetManager.instance.GetClassData<DrawBoardRewards>();
+        foreach (var reward in drawBoardRewards.m_Data)
+        {
+            if (reward.Repeat == false) continue;
+            else if (reward.Grade == 2)
+            {
+                for (int i = 0; i < 2; i++)
+                    _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+            else if (reward.Grade == 3)
+            {
+                for (int i = 0; i < 3; i++)
+                    _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+            else if (reward.Grade == 4)
+            {
+                for (int i = 0; i < 5; i++)
+                    _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+            else if (reward.Grade == 5)
+            {
+                for (int i = 0; i < 10; i++)
+                    _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+            else if (reward.Grade == 6)
+            {
+                for (int i = 0; i < 21; i++)
+                    _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+            else
+            {
+                _gatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+            }
+
+        }
+        _gatchaData.ItemList.Shuffle();
+    }
+
+
+
 
 
 }
