@@ -1,3 +1,4 @@
+using Firebase.Firestore;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class GatchaDataManager : MonoBehaviour
 {
+   
     public static GatchaDataManager Instance { get; private set; }
 
    [SerializeField] private GatchaDTO _gatchaData=new GatchaDTO();
@@ -53,6 +55,7 @@ public class GatchaDataManager : MonoBehaviour
        {
             InitGatchaData();
             Set_GatchaDTO();
+             
        }
  
     }
@@ -167,5 +170,20 @@ public class GatchaDataManager : MonoBehaviour
     }
 
     public int GetItemID(int index)=> _gatchaData.ItemList[index];
-    
+    [ContextMenu("IsCompensation")]
+    public void IsCompensation()
+    {
+        bool receiveCompensation = _gatchaData.TodayAttendanceTicketCount == 1;
+        if (receiveCompensation == false)
+        {
+            _gatchaData.TodayAttendanceTicketCount += 1;
+            GetTicket();
+            Set_GatchaDTO();
+         
+        }
+    }
+    public void GetTicket()
+    {
+        _gatchaData.OwnedTicketCount += 1;
+    }
 }

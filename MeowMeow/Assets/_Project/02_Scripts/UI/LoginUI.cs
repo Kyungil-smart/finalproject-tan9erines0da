@@ -149,7 +149,8 @@ public class LoginUI : MonoBehaviour
          
          */
         GatchaDataManager.Instance.Get_GatchaDTO();
-        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
+        GatchaDataManager.Instance.IsCompensation();
+       var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
         
         // 유저 로컬 데이터에 랜덤피드 6개 확보
         if (localFeedStorage.Count > 1)
