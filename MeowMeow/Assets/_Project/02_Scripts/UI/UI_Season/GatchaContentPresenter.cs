@@ -26,6 +26,9 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private List<Limited_Button> _LinitedBlocks;
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
+    [Header("뽑기 등수 별 보상 표시 그룹")]
+    [SerializeField] private RefreshPrizeRank _refreshPrizeRank;
+
     [Header("뽑기권 정보관련 텍스트")]
     [SerializeField] private TextMeshProUGUI _dailyTicket;
     [SerializeField] private TextMeshProUGUI _questTicket;
@@ -112,6 +115,11 @@ public class GatchaContentPresenter : MonoBehaviour
             _milestonBlocks[i].SetView(isOpened);
         }
 
+        // 뽑기 등수 별 보상 표시 그룹 갱신
+        bool isReset = GatchaDataManager.Instance.GatchaData.IsResetPerformed;
+        _refreshPrizeRank.SetView(isReset);
+
+        // 뽑기권 정보 관련 텍스트들 갱신
         RefreshDailyTicketTXT();
         RefreshQuestTicketTXT();
         RefreshOwnedTicketsTXT();
@@ -130,7 +138,9 @@ public class GatchaContentPresenter : MonoBehaviour
              bool isOpened = GatchaDataManager.Instance.IsOpened(i);
             _gatchaBlocks[i].SetView(isOpened);
         }
-        // TODO 등수별 상품목록 갱신
+        // 등수별 상품목록 갱신
+        bool isReset = GatchaDataManager.Instance.GatchaData.IsResetPerformed;
+        _refreshPrizeRank.SetView(isReset);
     }
     
     #region 뽑기권 정보 관련 텍스트 갱신 함수
