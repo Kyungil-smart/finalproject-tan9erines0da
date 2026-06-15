@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private List<GachaStackBox> _milestonBlocks;
     [SerializeField] private List<Limited_Button> _LinitedBlocks;
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
+
+    [Header("뽑기권 정보관련 텍스트")]
+    [SerializeField] private TextMeshProUGUI _dailyTicket;
+    [SerializeField] private TextMeshProUGUI _questTicket;
+    [SerializeField] private TextMeshProUGUI _ownedTickets;
+    [SerializeField] private TextMeshProUGUI _gachaStack;
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
@@ -104,5 +111,43 @@ public class GatchaContentPresenter : MonoBehaviour
 
             _milestonBlocks[i].SetView(isOpened);
         }
+
+        RefreshDailyTicketTXT();
+        RefreshQuestTicketTXT();
+        RefreshOwnedTicketsTXT();
+        RefreshGachaStackTXT();
     }
+
+    #region 뽑기권 정보 관련 텍스트 갱신 함수
+    /// <summary>
+    /// 출석 보상 뽑기권 개수 갱신 함수입니다.
+    /// </summary>
+    public void RefreshDailyTicketTXT()
+    {
+        _dailyTicket.text = $"출석 {GatchaDataManager.Instance.GatchaData.TodayAttendanceTicketCount}/1";
+    }
+    /// <summary>
+    /// 퀘스트 보상 뽑기권 개수 갱신 함수입니다.
+    /// </summary>
+    public void RefreshQuestTicketTXT()
+    {
+        _questTicket.text = $"퀘스트 {GatchaDataManager.Instance.GatchaData.TodayQuestTicketCount}/2";
+    }
+    /// <summary>
+    /// 보유한 뽑기권 총 개수 갱신 함수입니다.
+    /// </summary>
+    public void RefreshOwnedTicketsTXT()
+    {
+        // TODO 추후에 변동사항을 추적할 수 있도록 이벤트 구독이 필요합니다.
+        _ownedTickets.text = $"{GatchaDataManager.Instance.GatchaData.OwnedTicketCount} 개";
+    }
+    /// <summary>
+    /// 누적 뽑기 횟수 갱신 함수입니다.
+    /// </summary>
+    public void RefreshGachaStackTXT()
+    {
+        // TODO 추후에 변동사항을 추적할 수 있도록 이벤트 구독이 필요합니다.
+        _gachaStack.text = $"{GatchaDataManager.Instance.GatchaData.TotalGatchaCount} 회";
+    }
+    #endregion
 }
