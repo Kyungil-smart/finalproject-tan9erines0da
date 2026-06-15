@@ -23,7 +23,9 @@ public class GatchaContentPresenter : MonoBehaviour
 
     [Header("토글형 오브젝트")]
     [SerializeField] private List<GachaStackBox> _milestonBlocks;
-    [SerializeField] private List<Limited_Button> _LinitedBlocks;
+    [SerializeField] private Limited_Button _1stLinitedBlock;
+    [SerializeField] private Limited_Button _2ndLinitedBlock;
+    [SerializeField] private Limited_Button _3rdLinitedBlock;
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     [Header("뽑기 등수 별 보상 표시 그룹")]
@@ -115,6 +117,9 @@ public class GatchaContentPresenter : MonoBehaviour
             _milestonBlocks[i].SetView(isOpened);
         }
 
+        // 한정 보상 SetView 호출
+        LinitedBlockSetView();
+
         // 뽑기 등수 별 보상 표시 그룹 갱신
         bool isReset = GatchaDataManager.Instance.GatchaData.IsResetPerformed;
         _refreshPrizeRank.SetView(isReset);
@@ -142,7 +147,15 @@ public class GatchaContentPresenter : MonoBehaviour
         bool isReset = GatchaDataManager.Instance.GatchaData.IsResetPerformed;
         _refreshPrizeRank.SetView(isReset);
     }
-    
+
+    // 한정 보상 SetView 호출 함수
+    private void LinitedBlockSetView()
+    {
+        _1stLinitedBlock.SetView(GatchaDataManager.Instance.Grade_1);
+        _2ndLinitedBlock.SetView(GatchaDataManager.Instance.Grade_2);
+        _3rdLinitedBlock.SetView(GatchaDataManager.Instance.Grade_3);
+    }
+
     #region 뽑기권 정보 관련 텍스트 갱신 함수
     /// <summary>
     /// 출석 보상 뽑기권 개수 갱신 함수입니다.
