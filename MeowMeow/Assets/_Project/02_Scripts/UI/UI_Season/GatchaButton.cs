@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class GatchaButton : MonoBehaviour, ISwitchable
@@ -14,6 +13,8 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     public void SetView(bool isOpend)
     {
         if (_front == null) return;
+
+        if (!isOpend) AllCloseView();
 
         _front.SetActive(!isOpend);
     }
@@ -54,6 +55,18 @@ public class GatchaButton : MonoBehaviour, ISwitchable
                 _lowRankTMP.text = $"{grade}등";
                 break;
         }
+    }
+
+    // 뽑기 블럭을 뽑기전 상태로 되돌리기 위한 함수입니다.
+    private void AllCloseView()
+    {
+        if (_1st == null || _2nd == null || _3rd == null || _lowRank == null) return;
+
+        _1st.SetActive(false);
+        _2nd.SetActive(false);
+        _3rd.SetActive(false);
+        _lowRank.SetActive(false);
+        _lowRankTMP.text = string.Empty;
     }
 
     private int GetGrade(int index)

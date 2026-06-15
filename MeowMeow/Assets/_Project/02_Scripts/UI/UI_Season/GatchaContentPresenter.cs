@@ -118,6 +118,21 @@ public class GatchaContentPresenter : MonoBehaviour
         RefreshGachaStackTXT();
     }
 
+    /// <summary>
+    /// 초기화를 실행 했을때 뽑기 상품을 초기화 하는 함수입니다.
+    /// </summary>
+    public void ResetGachaBlocks()
+    {
+        GatchaDataManager.Instance.RewardReset();
+
+        for (int i = 0; i < _gatchaBlocks.Count; i++)
+        {
+             bool isOpened = GatchaDataManager.Instance.IsOpened(i);
+            _gatchaBlocks[i].SetView(isOpened);
+        }
+        // TODO 등수별 상품목록 갱신
+    }
+    
     #region 뽑기권 정보 관련 텍스트 갱신 함수
     /// <summary>
     /// 출석 보상 뽑기권 개수 갱신 함수입니다.
