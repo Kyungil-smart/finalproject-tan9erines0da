@@ -79,9 +79,13 @@ public enum SubscribeType
     On_SubmitPostProcess,
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     RandomSixData,
+
+    // 뽑기 결과로 한정 보상(진열장 상품)을 획득하여 팝업이 닫힐 때 발행
+    GetLimited,
+
 }
 public class SubscribeManager : MonoBehaviour
 {
