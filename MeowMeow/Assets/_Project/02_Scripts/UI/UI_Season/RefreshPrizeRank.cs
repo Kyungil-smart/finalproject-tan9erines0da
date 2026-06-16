@@ -1,0 +1,30 @@
+using TMPro;
+using UnityEngine;
+
+public class RefreshPrizeRank : MonoBehaviour, ISwitchable
+{
+    [SerializeField] private TextMeshProUGUI _1stText;
+    [SerializeField] private TextMeshProUGUI _2ndText;
+    [SerializeField] private TextMeshProUGUI _3rdText;
+
+    public void SetView(bool isReset)
+    {
+        // 구글시트 매니저에서 데이터 테이블에 해당하는 SO 가져오기
+        var db = googleSheetManager.instance.GetClassData<DrawBoardRewards>();
+        foreach (var data in db.m_Data)
+        {
+                if (data.Grade == 1 && data.Repeat == isReset)
+                {
+                    _1stText.text = data.ItemName;
+                }
+                else if (data.Grade == 2 && data.Repeat == isReset)
+                {
+                    _2ndText.text = data.ItemName;
+                }
+                else if (data.Grade == 3 && data.Repeat == isReset)
+                {
+                    _3rdText.text = data.ItemName;
+                }
+        }
+    }
+}
