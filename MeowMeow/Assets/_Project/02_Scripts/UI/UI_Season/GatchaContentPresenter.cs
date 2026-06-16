@@ -7,15 +7,20 @@ using TMPro;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
+    [Header("메인 캔버스 오브젝트")]
+    [SerializeField] private GameObject _mainCanvasOBJ;
+
+
     [Header("팝업 관리목록 ")]
     [SerializeField] private GameObject _tutorialCanvas;
     [SerializeField] private GameObject _previewCanvas;
     [SerializeField] private GameObject _gatchaCanvas;
-    [SerializeField] private GameObject _milestoneCanvas;
+    [SerializeField] private PopupMilestone _milestoneCanvas;
     [SerializeField] private GameObject _resetCanvas;
 
 
     [Header("메인 캔버스 버튼")]
+    [SerializeField] private Button _enterButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
@@ -70,7 +75,11 @@ public class GatchaContentPresenter : MonoBehaviour
     /// <param name="popup"></param>
     public void ClosePopup(IPopupable popup)
     {
-        if (popup == null || !_isPopupOpen) return;
+        if (popup == null || !_isPopupOpen)
+        {
+            Debug.Log($"클로즈 실패 {_isPopupOpen}");
+            return;
+        }
 
         popup.Unbind();
         popup.Close();
@@ -88,7 +97,16 @@ public class GatchaContentPresenter : MonoBehaviour
             int index = i; // 클로저 캡쳐 방지
             _gatchaButtons[i].onClick.AddListener(() => OnGatchaButtonClick(index));
         }
+        _exitButton.onClick.AddListener(OnExitClick);
+        _enterButton.onClick.AddListener(OnEnterClick);
     }
+
+    private void OnEnterClick()
+    {
+        _mainCanvasOBJ.SetActive(true);
+        OnOpen();
+    }
+    private void OnExitClick() => _mainCanvasOBJ.SetActive(false);
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
@@ -218,4 +236,13 @@ public class GatchaContentPresenter : MonoBehaviour
         _gachaStack.text = $"{GatchaDataManager.Instance.GatchaData.TotalGatchaCount} 회";
     }
     #endregion
+
+    //====================================================
+    // 테스트 코드입니다.
+    //====================================================
+    [ContextMenu("오픈 누적 보상 팝업")]
+    public void OpenTestMilestonePopup()
+    {
+        OpenPopup(_milestoneCanvas);
+    }
 }
