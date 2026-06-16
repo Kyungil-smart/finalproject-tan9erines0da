@@ -82,6 +82,15 @@ public enum SubscribeType
     /// 
     /// </summary>
     RandomSixData,
+    // ==========================================
+    // [매니져 단에서 관리할 전용 라인]
+    // ==========================================
+    /// <summary>
+    /// 로그인이 완료 되었을때 발행
+    /// 인자 타입 : 없음
+    /// </summary>
+    On_LoginComplete,
+
 }
 public class SubscribeManager : MonoBehaviour
 {
