@@ -36,6 +36,18 @@ public enum SubscribeType
     // ==========================================
     Log_Write,
     // ==========================================
+    // [시즌 컨텐츠 호출 전용 라인]
+    // ==========================================
+    /// <summary>
+    /// 누적 보상 팝업에서 애니메이션이 끝났을 때
+    /// </summary>
+    On_BoxAnimFinish,
+    /// <summary>
+    /// 누적 보상 팝업이 종료되었을때
+    /// 도장 연출 실행을 위해서 호출합니다.
+    /// </summary>
+    Close_MilestonePopup,
+    // ==========================================
     // [SNS 콘텐츠 MVP 데이터 흐름 전용 라인]
     // ==========================================
 
@@ -70,7 +82,6 @@ public enum SubscribeType
     /// 
     /// </summary>
     RandomSixData,
-
 }
 public class SubscribeManager : MonoBehaviour
 {
