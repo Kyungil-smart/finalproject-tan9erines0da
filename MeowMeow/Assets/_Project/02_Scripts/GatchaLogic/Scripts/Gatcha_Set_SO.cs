@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Gatcha_Set_SO", menuName = "GatchaSO/02_Gatcha_Set_SO")]
 public class Gatcha_Set_SO : BaseGatcha
@@ -9,8 +10,17 @@ public class Gatcha_Set_SO : BaseGatcha
     {
         this.Owner = manager;
     }
-    public override async void Excute()
+    public override async Task TaskExecute()
     {
-        await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(Owner.GatchaData);
+         
+        try
+        {
+            await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(Owner.GatchaData);
+            Debug.Log("Firestore 저장 성공");
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Firestore 저장 실패: {ex.Message}\n{ex.StackTrace}");
+        }
     }
 }

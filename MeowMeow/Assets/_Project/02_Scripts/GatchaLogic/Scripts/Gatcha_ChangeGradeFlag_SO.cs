@@ -1,6 +1,7 @@
 using System.Collections;
  
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "09_Gatcha_ChangeGradeFlag_SO", menuName = "GatchaSO/09_Gatcha_IsCompensation_SO")]
 public class Gatcha_ChangeGradeFlag_SO : BaseGatcha
@@ -9,7 +10,7 @@ public class Gatcha_ChangeGradeFlag_SO : BaseGatcha
     {
         this.Owner = manager;
     }
-    public override void Excute(int value)
+    public override Task TaskExecute(int value)
     {
         if (value == 1)
             Owner.GatchaData.Grade_1 = true;
@@ -17,5 +18,7 @@ public class Gatcha_ChangeGradeFlag_SO : BaseGatcha
             Owner.GatchaData.Grade_2 = true;
         else if (value == 3)
             Owner.GatchaData.Grade_3 = true;
+
+        return Task.CompletedTask;
     }
 }

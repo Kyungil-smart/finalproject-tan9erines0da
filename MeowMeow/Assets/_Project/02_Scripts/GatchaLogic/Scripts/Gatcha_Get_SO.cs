@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Gatcha_Get_SO", menuName = "GatchaSO/01_Gatcha_Get_SO")]
 public class Gatcha_Get_SO :BaseGatcha
@@ -10,14 +11,22 @@ public class Gatcha_Get_SO :BaseGatcha
     {
         this.Owner = manager;
     }
-    public override async void Excute()
+    public override async Task TaskExecute()
     {
         var GatchaData = await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
         if(GatchaData.ItemList ==null || GatchaData.ItemList.Count == 0)
         {
             Owner.InitGatchaData();
             Owner.InitfirstDic();
-            Owner.Set_GatchaDTO();
+            try
+            {
+                await Owner.Set_GatchaDTO();
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogError($"Gatcha_Get_SO Error");
+            }
+         
         }
         else
         {
