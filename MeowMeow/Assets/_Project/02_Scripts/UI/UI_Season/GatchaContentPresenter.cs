@@ -162,6 +162,8 @@ public class GatchaContentPresenter : MonoBehaviour
             // milestonCount <= (현재 _milestonBlocks은 인덱스 * 10 + 10)
             bool isOpened = (milestonCount <= i * 10 + 10);
 
+            _milestonBlocks[i].PassIndex(i * 10 + 10);
+
             _milestonBlocks[i].SetView(isOpened);
         }
 
