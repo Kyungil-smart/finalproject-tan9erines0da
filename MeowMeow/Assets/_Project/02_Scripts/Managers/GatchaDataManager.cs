@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GatchaDataManager : MonoBehaviour
@@ -49,11 +50,11 @@ public class GatchaDataManager : MonoBehaviour
     {
         if (LogicDic.ContainsKey(type) && value == -1)
         {
-            LogicDic[type].Excute();
+            LogicDic[type].TaskExecute();
         }
         else if(LogicDic.ContainsKey(type))
         {
-          LogicDic[type].Excute(value);
+          LogicDic[type].TaskExecute(value);
         }
         else
         {
@@ -62,7 +63,11 @@ public class GatchaDataManager : MonoBehaviour
     }
 
     [ContextMenu("Set_GatchaDTO")]
-    public async void Set_GatchaDTO()=> Invoke(GatchaLogicType.set);
+    //public async void Set_GatchaDTO()=> Invoke(GatchaLogicType.set);
+    public async Task Set_GatchaDTO()
+    {
+       await  LogicDic[GatchaLogicType.set].TaskExecute();
+    }
     /*
     Set_GatchaDTO 메소드
     GatchaDataManager 클래스 내부 필드인 GatchaData데이터를 저장
