@@ -52,7 +52,7 @@ public class GatchaContentPresenter : MonoBehaviour
     public void OpenPopup(IPopupable popup, int itemId = 0)
     {
         if (_isPopupOpen || popup == null) return;
-                
+
         popup.gameObject.SetActive(true);
         if (itemId != 0)
         {
@@ -76,18 +76,48 @@ public class GatchaContentPresenter : MonoBehaviour
         popup.Close();
 
         popup.gameObject.SetActive(false);
-        _isPopupOpen= false;
-        
+        _isPopupOpen = false;
+
     }
 
     void Bind()
     {
         _tutorialButton.onClick.AddListener(OnTutorialClick);
+        for (int i = 0; i < _gatchaButtons.Count; i++)
+        {
+            int index = i; // 클로저 캡쳐 방지
+            _gatchaButtons[i].onClick.AddListener(() => OnGatchaButtonClick(index));
+        }
     }
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
         OpenPopup(popup);
+    }
+
+    // 뽑기판의 뽑기 블럭을 클릭했을 때 실행되는 함수입니다.
+    void OnGatchaButtonClick(int index)
+    {
+        if (_isPopupOpen) return;
+        if (GatchaDataManager.Instance.IsOpened(index)) return;
+        if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
+
+        int itemId = GatchaDataManager.Instance.GetItemID(index);
+        GatchaDataManager.Instance.ExecuteGacha(index);
+
+        _gatchaBlocks[index].SetView(true);
+        _gatchaBlocks[index].SetViewCover(index);
+
+        IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
+        OpenPopup(popup, itemId);
+    }
+
+    // 뽑기 결과 팝업이 닫힌 뒤 메인 캔버스의 표시 정보를 갱신하는 함수입니다.
+    public void RefreshAfterGacha()
+    {
+        RefreshOwnedTicketsTXT();
+        RefreshGachaStackTXT();
+        LinitedBlockSetView();
     }
     /// <summary>
     /// 메인 캔버스가 열릴때 호출하는 함수
@@ -95,7 +125,7 @@ public class GatchaContentPresenter : MonoBehaviour
     private void OnOpen()
     {
         // 뽑기 블럭 SetView 순회
-        for(int i = 0; i < _gatchaBlocks.Count; i++)
+        for (int i = 0; i < _gatchaBlocks.Count; i++)
         {
             bool isOpened = GatchaDataManager.Instance.IsOpened(i);
             _gatchaBlocks[i].SetView(isOpened);
@@ -109,7 +139,7 @@ public class GatchaContentPresenter : MonoBehaviour
         // 누적 보상 SetView 순회
         int milestonCount = GatchaDataManager.Instance.GatchaData.TotalGatchaCount;
 
-        for (int i = 0; i <_milestonBlocks.Count; i++)
+        for (int i = 0; i < _milestonBlocks.Count; i++)
         {
             // milestonCount <= (현재 _milestonBlocks은 인덱스 * 10 + 10)
             bool isOpened = (milestonCount <= i * 10 + 10);
@@ -140,7 +170,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
         for (int i = 0; i < _gatchaBlocks.Count; i++)
         {
-             bool isOpened = GatchaDataManager.Instance.IsOpened(i);
+            bool isOpened = GatchaDataManager.Instance.IsOpened(i);
             _gatchaBlocks[i].SetView(isOpened);
         }
         // 등수별 상품목록 갱신
