@@ -31,9 +31,9 @@ public class CatStampTweenAni : MonoBehaviour
                 new Vector2(171f, 171f),
                 1.2f)
             .SetEase(Ease.InQuart));
-        /*seq.OnComplete(() =>
+        seq.OnComplete(() =>
         {
             gameObject.SetActive(false);
-        });*/
+        });
     }
 }
