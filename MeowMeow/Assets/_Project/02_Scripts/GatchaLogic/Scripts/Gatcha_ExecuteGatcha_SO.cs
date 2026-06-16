@@ -58,6 +58,8 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
         {
             Debug.LogError($"Gatcha_ExecuteGatcha_SO Error");
         }
+
+        SubscribeManager.instance.Publish(SubscribeType.MarkMilestone);
     }
 
 
