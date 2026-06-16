@@ -7,6 +7,10 @@ using TMPro;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
+    [Header("메인 캔버스 오브젝트")]
+    [SerializeField] private GameObject _mainCanvasOBJ;
+
+
     [Header("팝업 관리목록 ")]
     [SerializeField] private GameObject _tutorialCanvas;
     [SerializeField] private GameObject _previewCanvas;
@@ -16,6 +20,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
 
     [Header("메인 캔버스 버튼")]
+    [SerializeField] private Button _enterButton;
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
@@ -83,7 +88,16 @@ public class GatchaContentPresenter : MonoBehaviour
     void Bind()
     {
         _tutorialButton.onClick.AddListener(OnTutorialClick);
+        _exitButton.onClick.AddListener(OnExitClick);
+        _enterButton.onClick.AddListener(OnEnterClick);
     }
+
+    private void OnEnterClick()
+    {
+        _mainCanvasOBJ.SetActive(true);
+        OnOpen();
+    }
+    private void OnExitClick() => _mainCanvasOBJ.SetActive(false);
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
