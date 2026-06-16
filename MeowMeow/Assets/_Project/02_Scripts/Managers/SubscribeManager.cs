@@ -70,6 +70,8 @@ public enum SubscribeType
     /// 
     /// </summary>
     RandomSixData,
+    ///
+    MarkMilestone,
 
 }
 public class SubscribeManager : MonoBehaviour
