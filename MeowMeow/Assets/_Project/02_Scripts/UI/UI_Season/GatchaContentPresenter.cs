@@ -15,7 +15,7 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private GameObject _tutorialCanvas;
     [SerializeField] private GameObject _previewCanvas;
     [SerializeField] private GameObject _gatchaCanvas;
-    [SerializeField] private GameObject _milestoneCanvas;
+    [SerializeField] private PopupMilestone _milestoneCanvas;
     [SerializeField] private GameObject _resetCanvas;
 
 
@@ -75,7 +75,11 @@ public class GatchaContentPresenter : MonoBehaviour
     /// <param name="popup"></param>
     public void ClosePopup(IPopupable popup)
     {
-        if (popup == null || !_isPopupOpen) return;
+        if (popup == null || !_isPopupOpen)
+        {
+            Debug.Log($"클로즈 실패 {_isPopupOpen}");
+            return;
+        }
 
         popup.Unbind();
         popup.Close();
@@ -202,4 +206,13 @@ public class GatchaContentPresenter : MonoBehaviour
         _gachaStack.text = $"{GatchaDataManager.Instance.GatchaData.TotalGatchaCount} 회";
     }
     #endregion
+
+    //====================================================
+    // 테스트 코드입니다.
+    //====================================================
+    [ContextMenu("오픈 누적 보상 팝업")]
+    public void OpenTestMilestonePopup()
+    {
+        OpenPopup(_milestoneCanvas);
+    }
 }
