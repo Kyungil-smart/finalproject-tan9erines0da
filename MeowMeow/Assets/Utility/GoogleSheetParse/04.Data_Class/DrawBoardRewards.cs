@@ -8,6 +8,7 @@ public class DrawBoardRewards : Basedata
  [SerializeField] private int m_Grade;
  [SerializeField] private int m_Amount;
  [SerializeField] private bool m_Repeat;
+ [SerializeField] private string m_Description;
 
    public string ItemName => m_Name;
    public string RewardResourceImage => m_Reward_resource_image;
@@ -15,6 +16,8 @@ public class DrawBoardRewards : Basedata
    public int Grade => m_Grade;
    public int Amount => m_Amount;
    public bool Repeat => m_Repeat;
+   public string Description => m_Description;
+
     public override void ApplyRowData(string[] Data)
     {
         this.uniqueId = Data[0];
@@ -24,6 +27,6 @@ public class DrawBoardRewards : Basedata
         this.m_Repeat = int.Parse(Data[4]) == 1? true:false;
         this.m_Reward_resource_image = Data[5];
         this.m_Reward_resource_text_image = Data[6];
-       
+        this.m_Description = Data[7];
     }
 }
