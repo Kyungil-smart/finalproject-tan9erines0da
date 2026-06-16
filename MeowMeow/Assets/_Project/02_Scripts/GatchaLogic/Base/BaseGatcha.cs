@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public enum GatchaLogicType
@@ -25,12 +26,15 @@ public class BaseGatcha : ScriptableObject
     {
         Owner=manager;
     }
-    public virtual void Excute()
+     
+    public virtual Task TaskExecute()
     {
-        Debug.Log("BaseGatcha Excute");
+        return Task.CompletedTask;
     }
-    public virtual void Excute(int value)
+    public virtual Task TaskExecute(int index)
     {
-        Debug.Log("BaseGatcha Excute");
+        return Task.CompletedTask;
     }
+
+
 }

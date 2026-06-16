@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "08_Gatcha_IsCompensation_SO", menuName = "GatchaSO/08_Gatcha_IsCompensation_SO")]
 public class Gatcha_IsQuestCompensation_SO : BaseGatcha
@@ -9,7 +10,7 @@ public class Gatcha_IsQuestCompensation_SO : BaseGatcha
     {
         this.Owner = manager;
     }
-    public override void Excute()
+    public override async Task TaskExecute()
     {
         bool receiveCompensation = Owner.GatchaData.TodayQuestTicketCount == 2;
         const int MAX_QUEST_TICKET = 2;
@@ -20,7 +21,16 @@ public class Gatcha_IsQuestCompensation_SO : BaseGatcha
             var value = Owner.GatchaData.TodayQuestTicketCount + QUEST_TICKET_REWARD;
             Owner.GatchaData.TodayQuestTicketCount = Math.Clamp(value, MIN_QUEST_TICKET, MAX_QUEST_TICKET);
             Owner.GetTicket();
-            Owner.Set_GatchaDTO();
+
+            try
+            {
+                await Owner.Set_GatchaDTO();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"Gatcha_IsQuestCompensation_SO Error");
+            }
+            
         }
     }
 }

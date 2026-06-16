@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Gatcha_RewardReset_SO", menuName = "GatchaSO/05_Gatcha_RewardReset_SO")]
 public class Gatcha_RewardReset_SO : BaseGatcha
@@ -8,7 +10,7 @@ public class Gatcha_RewardReset_SO : BaseGatcha
     {
         this.Owner = manager;
     }
-    public override void Excute()
+    public override async Task TaskExecute()
     {
         //아이템 리스트 초기화
         //1회성 보상 제외
@@ -52,6 +54,15 @@ public class Gatcha_RewardReset_SO : BaseGatcha
 
         }
         Owner.GatchaData.ItemList.Shuffle();
-        Owner.Set_GatchaDTO();
+
+        try
+        {
+            await Owner.Set_GatchaDTO();
+        }
+        catch(Exception ex)
+        {
+            Debug.LogError($"Gatcha_RewardReset_SO Error");
+        }
+       
     }
 }

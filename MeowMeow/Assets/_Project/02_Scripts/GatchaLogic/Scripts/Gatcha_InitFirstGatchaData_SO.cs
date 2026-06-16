@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "Gatcha_InitFirstGatchaData_SO", menuName = "GatchaSO/04_Gatcha_InitFirstGatchaData_SO")]
 public class Gatcha_InitFirstGatchaData_SO : BaseGatcha
@@ -9,7 +10,7 @@ public class Gatcha_InitFirstGatchaData_SO : BaseGatcha
         this.Owner = manager;
     }
 
-    public override void Excute()
+    public override Task TaskExecute()
     {
         Owner.GatchaData.ItemList = new();
 
@@ -45,6 +46,7 @@ public class Gatcha_InitFirstGatchaData_SO : BaseGatcha
             }
         }
         Owner.GatchaData.ItemList.Shuffle();
+        return Task.CompletedTask;
     }
 
 }

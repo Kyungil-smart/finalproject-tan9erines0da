@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 [CreateAssetMenu(fileName = "10_Gatcha_ExecuteGatcha_SO", menuName = "GatchaSO/10_Gatcha_ExecuteGatcha_SO")]
 public class Gatcha_ExecuteGatcha_SO : BaseGatcha
@@ -9,7 +10,7 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
         this.Owner = manager;
     }
 
-    public override void Excute(int index)
+    public override async Task TaskExecute(int index)
     {
         bool ticketIsLack = Owner.GatchaData.OwnedTicketCount == 0 && Owner.GatchaData.OwnedTicketCount < 0;
         if (ticketIsLack)
@@ -49,8 +50,14 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
                 }
             }
         }
-        Owner.Set_GatchaDTO();
-
+        try
+        {
+          await Owner.Set_GatchaDTO();
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError($"Gatcha_ExecuteGatcha_SO Error");
+        }
     }
 
 
