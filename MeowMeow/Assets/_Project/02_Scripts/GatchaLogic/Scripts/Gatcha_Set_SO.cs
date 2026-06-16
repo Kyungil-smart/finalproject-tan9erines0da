@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "Gatcha_Set_SO", menuName = "GatchaSO/Gatcha_Set_SO")]
+[CreateAssetMenu(fileName = "Gatcha_Set_SO", menuName = "GatchaSO/02_Gatcha_Set_SO")]
 public class Gatcha_Set_SO : BaseGatcha
 {
     private GatchaDTO _gatchaData=> Owner.GatchaData;
