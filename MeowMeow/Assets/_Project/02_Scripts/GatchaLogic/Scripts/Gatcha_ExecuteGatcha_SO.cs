@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 [CreateAssetMenu(fileName = "10_Gatcha_ExecuteGatcha_SO", menuName = "GatchaSO/10_Gatcha_ExecuteGatcha_SO")]
 public class Gatcha_ExecuteGatcha_SO : BaseGatcha
 {
@@ -31,21 +32,15 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
 
         foreach (var item in sheetList)
         {
-            if (item.uniqueId == Owner.GetItemID(index).ToString())
+            var isSameID = item.uniqueId == Owner.GetItemID(index).ToString();
+
+            if (isSameID)
             {
-                if (item.Grade == 1 && item.Repeat == false)
+                bool is_Initial_Reward = (item.Repeat ==false);
+                bool canChangeGradeFlag = is_Initial_Reward && (item.Grade >= 1 && item.Grade <= 3);
+                if (canChangeGradeFlag)
                 {
-                    Owner.ChangeGradeFlag(1);
-                    break;
-                }
-                else if (item.Grade == 2 && item.Repeat == false)
-                {
-                    Owner.ChangeGradeFlag(2);
-                    break;
-                }
-                else if (item.Grade == 3 && item.Repeat == false)
-                {
-                    Owner.ChangeGradeFlag(3);
+                    Owner.ChangeGradeFlag(item.Grade);
                     break;
                 }
             }
