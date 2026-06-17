@@ -16,6 +16,6 @@ public class PreviewPopupTable : Basedata
         this.uniqueId = Data[0];
         this.m_Name = Data[1];
         this.m_Resource = Data[2];
-        this.m_Description = Data[3];
+        this.m_Description = Data[3].Replace("\\n", "\n");
     }
 }
