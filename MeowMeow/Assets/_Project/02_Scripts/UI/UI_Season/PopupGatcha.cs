@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
@@ -29,6 +31,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     GatchaContentPresenter _contentPresenter;
 
+    AsyncOperationHandle<Sprite> _itemImageHandle;
+    AsyncOperationHandle<Sprite> _limitedImageHandle;
+
     int _itemId;
     int _grade;
     bool _isLimitedItem;
@@ -52,6 +57,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     public void Close()
     {
+        if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
+        if (_limitedImageHandle.IsValid()) Addressables.Release(_limitedImageHandle);
+
         _highRankImage.sprite = null;
         _highRankTMP.text = string.Empty;
         _lowRankTMP.text = string.Empty;
@@ -64,7 +72,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _isLimitedItem = false;
     }
 
-    public void SetData(int itemId)
+    public async void SetData(int itemId)
     {
         _itemId = itemId;
 
@@ -74,8 +82,34 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _grade = data.Grade;
         _isLimitedItem = _grade <= 3 && data.Repeat == false;
 
-        // Todo db 기준 이미지 교체 (한정 보상이 아닌 일반 보상 이미지)
-        // Todo db 기준 한정 보상 이미지 교체
+        // 1~3등 아이템 이미지 로드
+        if (_grade <= 3)
+        {
+            if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
+            _itemImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceImage);
+            await _itemImageHandle.Task;
+
+            if (_itemImageHandle.Status == AsyncOperationStatus.Succeeded)
+                _highRankImage.sprite = _itemImageHandle.Result;
+            else
+                Debug.LogWarning("이미지 로드 실패");
+        }
+
+        // 한정 보상 이미지 로드
+        if (_isLimitedItem)
+        {
+            if (_limitedImageHandle.IsValid()) Addressables.Release(_limitedImageHandle);
+            _limitedImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceTextImage);
+            await _limitedImageHandle.Task;
+
+            if (_limitedImageHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                _limitedRewardImage.sprite = _limitedImageHandle.Result;
+                _limitedRewardTMP.text = data.ItemName;
+            }
+            else
+                Debug.LogWarning("이미지 로드 실패");
+        }
     }
 
     public void Bind(GatchaContentPresenter gcp)
