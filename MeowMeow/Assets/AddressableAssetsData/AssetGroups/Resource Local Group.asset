@@ -23,6 +23,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - sprite
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4876e79cceb72e248a4b88f61312f9bd
+    m_Address: Season_Profile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 81cc661d51d36b043ad2513224a20ecc
     m_Address: Season_Prize02_Text
     m_ReadOnly: 0
@@ -43,6 +49,18 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1e20cb63d653224f9bb4e8e4b0241e7
     m_Address: Season_Prize02_Line
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: caaa8d13e2387384383ec9c46c6caa68
+    m_Address: Season_Prize02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbfa388db6af46e48a16fe9fe98b37c1
+    m_Address: Season_Prize01
     m_ReadOnly: 0
     m_SerializedLabels:
     - sprite

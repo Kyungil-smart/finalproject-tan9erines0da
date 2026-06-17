@@ -32,14 +32,14 @@ public class PopupPreview : MonoBehaviour, IPopupable
     public async void SetData(int itemId)
     {
         // id로 데이터 가져오기
-        var db = googleSheetManager.instance.GetClassData<DrawBoardRewards>();
+        var db = googleSheetManager.instance.GetClassData<PreviewPopupTable>();
         var data = db.FindById(itemId.ToString());
 
         // 이전에 로드한 스프라이트가 있으면 해제
         if (_resourceImageHandle.IsValid()) Addressables.Release(_resourceImageHandle);
 
         // Addressables에서 스프라이트 비동기 로드
-        _resourceImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceImage);
+        _resourceImageHandle = Addressables.LoadAssetAsync<Sprite>(data.Resource);
 
         // 로드 완료 대기
         await _resourceImageHandle.Task;
@@ -47,7 +47,7 @@ public class PopupPreview : MonoBehaviour, IPopupable
         // 로드 실패 시 처리
         if (_resourceImageHandle.Status != AsyncOperationStatus.Succeeded)
         {
-            Debug.LogWarning($"스프라이트 로드 실패: {data.RewardResourceImage}");
+            Debug.LogWarning($"스프라이트 로드 실패: {data.Resource}");
             return;
         }
 
