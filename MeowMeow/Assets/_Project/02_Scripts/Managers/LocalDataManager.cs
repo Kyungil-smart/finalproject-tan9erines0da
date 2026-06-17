@@ -95,7 +95,13 @@ public class LocalDataManager : MonoBehaviour
     public async Task LoadNyangNyangStone()
     {
         CurrencyDTO currencyDTO;
-        currencyDTO = await GetCurrencyAsync(); 
+        currencyDTO = await GetCurrencyAsync();
+
+        if (currencyDTO == null)
+        {
+            this.PublishLog("재화 널 발생");
+            currencyDTO = new();
+        }
         NyangNyangStone = currencyDTO.NyangNyangStone;
     }
 

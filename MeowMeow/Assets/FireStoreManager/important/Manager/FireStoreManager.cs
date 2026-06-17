@@ -32,7 +32,7 @@ public class FireStoreManager : MonoBehaviour
     private void Awake()
     {
         InitSingleton();
-        InitFirebaseAsync();
+        // InitFirebaseAsync();
     }
 
     private void InitSingleton()
@@ -85,6 +85,13 @@ public class FireStoreManager : MonoBehaviour
                 Debug.LogError($"Firebase 초기화 실패: {status}");
             }
         });
+    }
+    public void InitF_M()
+    {
+        m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
+        m_db = FirebaseFirestore.DefaultInstance;
+        BindClass();
+        InitDictionary();
     }
     private void BindClass()
     {
