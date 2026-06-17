@@ -5,10 +5,6 @@ public class GetPrizeTweenAni : MonoBehaviour
 {
     [SerializeField] private RectTransform targetRect;
 
-    private void Start()
-    {
-        PlayAnimation();
-    }
     public void PlayAnimation()
     {
         if (targetRect == null)
