@@ -14,35 +14,18 @@ public class Gatcha_InitFirstGatchaData_SO : BaseGatcha
     {
         Owner.GatchaData.ItemList = new();
 
-
         var drawBoardRewards = googleSheetManager.instance.GetClassData<DrawBoardRewards>();
         foreach (var reward in drawBoardRewards.m_Data)
         {
+           
             if (reward.Grade == 1 && reward.Repeat == true) continue;
-
-            else if (reward.Grade == 3 && reward.Repeat == true)
+            int[] counts = { 1, 1, 2, 5, 10, 21 };
+            int grade = reward.Grade;
+            int count = reward.Grade >= 3 && reward.Grade <= 6 ? counts[reward.Grade - 1] : 1;
+            int ID = int.Parse(reward.uniqueId);
+            for(int i=0; i<count; i++)
             {
-                for (int i = 0; i < 2; i++)
-                    Owner.GatchaData.ItemList.Add(int.Parse(reward.uniqueId));
-            }
-            else if (reward.Grade == 4)
-            {
-                for (int i = 0; i < 5; i++)
-                    Owner.GatchaData.ItemList.Add(int.Parse(reward.uniqueId));
-            }
-            else if (reward.Grade == 5)
-            {
-                for (int i = 0; i < 10; i++)
-                    Owner.GatchaData.ItemList.Add(int.Parse(reward.uniqueId));
-            }
-            else if (reward.Grade == 6)
-            {
-                for (int i = 0; i < 21; i++)
-                    Owner.GatchaData.ItemList.Add(int.Parse(reward.uniqueId));
-            }
-            else
-            {
-                Owner.GatchaData.ItemList.Add(int.Parse(reward.uniqueId));
+                Owner.GatchaData.ItemList.Add(ID);
             }
         }
         Owner.GatchaData.ItemList.Shuffle();

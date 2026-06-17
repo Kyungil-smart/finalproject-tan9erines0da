@@ -10,9 +10,9 @@ public class Gatcha_Set_SO : BaseGatcha
     {
         this.Owner = manager;
     }
+    
     public override async Task TaskExecute()
     {
-         
         try
         {
             await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(Owner.GatchaData);
