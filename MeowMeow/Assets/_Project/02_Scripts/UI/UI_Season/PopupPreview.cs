@@ -34,9 +34,9 @@ public class PopupPreview : MonoBehaviour, IPopupable
         var data = db.FindById(itemId.ToString());
 
         // Todo db 기준 이미지 교체
-
+         이미지 
         // Todo 아이템 설명 교체
-        
+         디스크립션 ./ Text
 
     }
 
@@ -65,6 +65,4 @@ public class PopupPreview : MonoBehaviour, IPopupable
     {
         Unbind();
     }
-
-
 }
