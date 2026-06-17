@@ -66,8 +66,8 @@ MonoBehaviour:
     m_Description: NULL
   - <uniqueId>k__BackingField: 30001
     m_Name: "\uBCF5\uACE0\uD48D \uAE30\uB984\uB09C\uB85C"
-    m_Reward_resource_image: 
-    m_Reward_resource_text_image: 
+    m_Reward_resource_image: Season_Prize01_Line
+    m_Reward_resource_text_image: Season_Prize01_Text
     m_Grade: 1
     m_Amount: 1
     m_Repeat: 0
@@ -77,8 +77,8 @@ MonoBehaviour:
       \uD3EC\uD568\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
   - <uniqueId>k__BackingField: 30002
     m_Name: "\uBCF5\uACE0\uD48D \uCC45\uC0C1\uACFC \uC758\uC790"
-    m_Reward_resource_image: 
-    m_Reward_resource_text_image: 
+    m_Reward_resource_image: Season_Prize02_Line
+    m_Reward_resource_text_image: Season_Prize02_Text
     m_Grade: 3
     m_Amount: 1
     m_Repeat: 0
@@ -88,8 +88,8 @@ MonoBehaviour:
       \uC88B\uC744 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
   - <uniqueId>k__BackingField: 40001
     m_Name: "\uBAA8\uC790\uB97C \uC4F4 \uBB49\uCE58"
-    m_Reward_resource_image: 
-    m_Reward_resource_text_image: 
+    m_Reward_resource_image: Season_Profile_Line
+    m_Reward_resource_text_image: Season_Profile_Text
     m_Grade: 2
     m_Amount: 1
     m_Repeat: 0
