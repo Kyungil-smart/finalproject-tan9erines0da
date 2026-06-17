@@ -127,7 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b83d98352763a4b850b3729a2991e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gatchaData:
+  LogicList:
+  - {fileID: 11400000, guid: 8510188b5b5bc5d46b951457b1b57a66, type: 2}
+  - {fileID: 11400000, guid: 4f68dc5e5bebfdf44825933ebb8437bf, type: 2}
+  - {fileID: 11400000, guid: 50895106b21725c4fa57aab4a2d96086, type: 2}
+  - {fileID: 11400000, guid: 5002bb5866c7a6b4aaf7f89ff1b44c1f, type: 2}
+  - {fileID: 11400000, guid: 0d6a745815be9d746b258f0e8a9400b6, type: 2}
+  - {fileID: 11400000, guid: 8b9eede2a1c4068479b84d997bbcbfdc, type: 2}
+  - {fileID: 11400000, guid: d04ba77e4e07efd449eb92c6540b595d, type: 2}
+  - {fileID: 11400000, guid: e290686c435af0f4ba44643843195303, type: 2}
+  - {fileID: 11400000, guid: ca1c1f5ae956d9e49a977665500ca90a, type: 2}
+  - {fileID: 11400000, guid: fdd299619668b144db40d25e93d5a836, type: 2}
+  GatchaData:
     <UID>k__BackingField: 
     <OwnedTicketCount>k__BackingField: 0
     <TodayAttendanceTicketCount>k__BackingField: 0
@@ -135,3 +146,6 @@ MonoBehaviour:
     <TotalGatchaCount>k__BackingField: 0
     <ItemList>k__BackingField: 
     <IsResetPerformed>k__BackingField: 0
+    <Grade_1>k__BackingField: 0
+    <Grade_2>k__BackingField: 0
+    <Grade_3>k__BackingField: 0

@@ -141,6 +141,7 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     private void OnEnterClick()
     {
+        Debug.Log("클릭");
         _mainCanvasOBJ.SetActive(true);
         OnOpen();
     }
