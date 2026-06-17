@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using static UnityEditor.Progress;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
@@ -24,13 +25,14 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
-    [SerializeField] private List<Button> _gatchaButtons;
+     private List<Button> _gatchaButtons =new List<Button>();
 
     [Header("토글형 오브젝트")]
     [SerializeField] private List<GachaStackBox> _milestonBlocks;
-    [SerializeField] private Limited_Button _1stLinitedBlock;
-    [SerializeField] private Limited_Button _2ndLinitedBlock;
-    [SerializeField] private Limited_Button _3rdLinitedBlock;
+    [SerializeField] private Limited_Button _1stLinitedBlock;//진열장
+    [SerializeField] private Limited_Button _2ndLinitedBlock;//진열장
+    [SerializeField] private Limited_Button _3rdLinitedBlock;//진열장
+    [SerializeField] private Button _initbutton;//초기화 버튼 
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     [Header("뽑기 등수 별 보상 표시 그룹")]
@@ -47,6 +49,13 @@ public class GatchaContentPresenter : MonoBehaviour
 
     void Awake()
     {
+        foreach(var item in _gatchaBlocks)
+        {
+            var temp_BTN=item.GetComponent<Button>();
+            _gatchaButtons.Add(temp_BTN);
+        }
+        
+        
         Bind();
     }
     /// <summary>
@@ -99,8 +108,37 @@ public class GatchaContentPresenter : MonoBehaviour
         }
         _exitButton.onClick.AddListener(OnExitClick);
         _enterButton.onClick.AddListener(OnEnterClick);
-    }
 
+
+        _1stLinitedBlock.GetComponent<Button>().onClick.AddListener(Button_Grade_1);
+        _2ndLinitedBlock.GetComponent<Button>().onClick.AddListener(Button_Grade_2);
+        _3rdLinitedBlock.GetComponent<Button>().onClick.AddListener(Button_Grade_3);
+
+        _initbutton.onClick.AddListener(OpenResetCanvas);
+    }
+    private void Button_Grade_1()
+    {
+        var data = _previewCanvas.GetComponent<IPopupable>();
+        var Grade = 30001;
+        OpenPopup(data, Grade);
+    }
+    private void Button_Grade_2()
+    {
+        var data = _previewCanvas.GetComponent<IPopupable>();
+        var Grade = 40001;
+        OpenPopup(data, Grade);
+    }
+    private void Button_Grade_3()
+    {
+        var data = _previewCanvas.GetComponent<IPopupable>();
+        var Grade = 30002;
+        OpenPopup(data, Grade);
+    }
+    private void OpenResetCanvas()
+    {
+        var data = _resetCanvas.GetComponent<IPopupable>();
+        OpenPopup(data);
+    }
     private void OnEnterClick()
     {
         _mainCanvasOBJ.SetActive(true);
