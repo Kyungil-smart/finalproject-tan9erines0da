@@ -4,7 +4,6 @@ using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class GatchaContentPresenter : MonoBehaviour
 {
