@@ -7992,13 +7992,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a5b1be70b8ba24e8bcc525715af562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainCanvasOBJ: {fileID: 5031021207613337133}
+  _mainCanvasOBJ: {fileID: 4223520747464812850}
   _tutorialCanvas: {fileID: 6889076435362907711}
   _previewCanvas: {fileID: 0}
   _gatchaCanvas: {fileID: 4306207312913560643}
   _milestoneCanvas: {fileID: 2037062048386073869}
   _resetCanvas: {fileID: 8379569875315221139}
-  _enterButton: {fileID: 0}
+  _enterButton: {fileID: 7101391313376368876, guid: b19a6b6dbeb6c024bbafdc4ea3d98e0a, type: 3}
   _exitButton: {fileID: 2911864519114895032}
   _tutorialButton: {fileID: 7378913809610065975}
   _previewButtons: []
