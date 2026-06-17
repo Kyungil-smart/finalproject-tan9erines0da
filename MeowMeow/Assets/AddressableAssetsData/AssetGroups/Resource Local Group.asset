@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Resource Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: d60866f297d637c4ebaccca3e224eefe
+  m_SerializeEntries:
+  - m_GUID: 115e389a7860eb845a944801cb0a7979
+    m_Address: Season_Profile_Text
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81cc661d51d36b043ad2513224a20ecc
+    m_Address: Season_Prize02_Text
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b81e6ccf9a024a540876b1b86e0c9566
+    m_Address: Season_Prize01_Line
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb864e44dc3908e408027ec1dcb78edf
+    m_Address: Season_Prize01_Text
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1e20cb63d653224f9bb4e8e4b0241e7
+    m_Address: Season_Prize02_Line
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e769fbb005b23974da5d1799134aae2d
+    m_Address: Season_Profile_Line
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - sprite
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e1d623850cacf08408fbe5366cd57e03, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3623a81c65f694044819bda9356f4f3a, type: 2}
+    - {fileID: 11400000, guid: 6e2cb58dc0cbebb4a8ac935e811dc480, type: 2}
