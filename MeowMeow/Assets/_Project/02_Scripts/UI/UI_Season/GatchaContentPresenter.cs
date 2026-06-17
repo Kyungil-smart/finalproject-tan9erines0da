@@ -118,19 +118,19 @@ public class GatchaContentPresenter : MonoBehaviour
     private void Button_Grade_1()
     {
         var data = _previewCanvas.GetComponent<IPopupable>();
-        var Grade = 30001;
+        var Grade = 50001;
         OpenPopup(data, Grade);
     }
     private void Button_Grade_2()
     {
         var data = _previewCanvas.GetComponent<IPopupable>();
-        var Grade = 40001;
+        var Grade = 50002;
         OpenPopup(data, Grade);
     }
     private void Button_Grade_3()
     {
         var data = _previewCanvas.GetComponent<IPopupable>();
-        var Grade = 30002;
+        var Grade = 50003;
         OpenPopup(data, Grade);
     }
     private void OpenResetCanvas()
