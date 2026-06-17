@@ -11,10 +11,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     [SerializeField] private GameObject _openedCover;
     [SerializeField] private Button _touchCatchButton;
 
-    [Header("뽑기 결과 - 1~3등")]
-    [SerializeField] private GameObject _highRankGroup;
-    [SerializeField] private Image _highRankImage;
-    [SerializeField] private TextMeshProUGUI _highRankTMP;
+    [Header("뽑기 결과 - 1~3등 상품 그룹 (index 0=1등, 1=2등, 2=3등)")]
+    [SerializeField] private GameObject[] _highRankGroups;
+    [SerializeField] private Image[] _highRankImages;
+
+    [Header("뽑기 결과 - 1~3등 랭크 이미지 (index 0=1등, 1=2등, 2=3등)")]
+    [SerializeField] private GameObject[] _rankGroups;
 
     [Header("뽑기 결과 - 4~6등")]
     [SerializeField] private GameObject _lowRankGroup;
@@ -60,8 +62,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
         if (_limitedImageHandle.IsValid()) Addressables.Release(_limitedImageHandle);
 
-        _highRankImage.sprite = null;
-        _highRankTMP.text = string.Empty;
+        foreach (var img in _highRankImages)
+            img.sprite = null;
+
         _lowRankTMP.text = string.Empty;
         _limitedRewardTMP.text = string.Empty;
 
@@ -83,16 +86,16 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _isLimitedItem = _grade <= 3 && data.Repeat == false;
 
         // 1~3등 아이템 이미지 로드
-        if (_grade <= 3)
+        if (_grade <= 3 && !string.IsNullOrEmpty(data.RewardResourceImage) && data.RewardResourceImage != "NULL")
         {
             if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
             _itemImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceImage);
             await _itemImageHandle.Task;
 
             if (_itemImageHandle.Status == AsyncOperationStatus.Succeeded)
-                _highRankImage.sprite = _itemImageHandle.Result;
+                _highRankImages[_grade - 1].sprite = _itemImageHandle.Result;
             else
-                Debug.LogWarning("이미지 로드 실패");
+                Debug.LogWarning($"아이템 이미지 로드 실패: {data.RewardResourceImage}");
         }
 
         // 한정 보상 이미지 로드
@@ -108,8 +111,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
                 _limitedRewardTMP.text = data.ItemName;
             }
             else
-                Debug.LogWarning("이미지 로드 실패");
+                Debug.LogWarning($"한정 보상 이미지 로드 실패: {data.RewardResourceTextImage}");
         }
+
     }
 
     public void Bind(GatchaContentPresenter gcp)
@@ -135,17 +139,18 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _openedCover.SetActive(true);
 
         bool isHighRank = _grade <= 3;
-        _highRankGroup.SetActive(isHighRank);
+
+        // 등수에 맞는 그룹만 활성화 (나머지 비활성화)
+        for (int i = 0; i < _highRankGroups.Length; i++)
+            _highRankGroups[i].SetActive(isHighRank && i == _grade - 1);
+
+        for (int i = 0; i < _rankGroups.Length; i++)
+            _rankGroups[i].SetActive(isHighRank && i == _grade - 1);
+
         _lowRankGroup.SetActive(!isHighRank);
 
-        if (isHighRank)
-        {
-            _highRankTMP.text = $"{_grade}등";
-        }
-        else
-        {
+        if (!isHighRank)
             _lowRankTMP.text = $"{_grade}등";
-        }
 
         if (_isLimitedItem)
         {
