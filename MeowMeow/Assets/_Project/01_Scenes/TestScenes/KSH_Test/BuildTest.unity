@@ -1335,14 +1335,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7843787502588861309, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
-      propertyPath: m_Data.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7843787502588861309, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
-      propertyPath: m_Data.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 05251f185d12f6f49972d6b719d0ce6b, type: 2}
     - target: {fileID: 7948890395797757019, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
       propertyPath: m_Name
       value: BackendManager
@@ -3530,6 +3522,10 @@ PrefabInstance:
     - target: {fileID: 2762750135541186995, guid: 0445769b7a373ff40a589eb0d119975d, type: 3}
       propertyPath: m_Name
       value: Main_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2762750135541186995, guid: 0445769b7a373ff40a589eb0d119975d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4832194416406895844, guid: 0445769b7a373ff40a589eb0d119975d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -18862,7 +18858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8958288208965580634
 RectTransform:
   m_ObjectHideFlags: 0
