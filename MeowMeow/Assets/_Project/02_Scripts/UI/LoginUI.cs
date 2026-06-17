@@ -138,16 +138,14 @@ public class LoginUI : MonoBehaviour
         
         
         // 유저 보유 재화 확보
-        if (LocalDataManager.Instance != null)
-        {
-            await LocalDataManager.Instance.LoadNyangNyangStone();
-        }
+        // if (LocalDataManager.Instance != null)
+        // {
+        //     await LocalDataManager.Instance.LoadNyangNyangStone();
+        // }
         
 
         FirebaseUser user = BackendManager.Auth.CurrentUser;
-        /*
-         
-         */
+        
         GatchaDataManager.Instance.Get_GatchaDTO();
         GatchaDataManager.Instance.IsCompensation();
        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
