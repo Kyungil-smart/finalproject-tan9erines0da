@@ -10,6 +10,9 @@ public class GetImageList : MonoBehaviour
     // 이미 게시한 게시물 아이콘 SetActive관련 함수 호출을 위한 변수
     private SelectImageUpload _currentSelected;
 
+    // 이미지 선택 여부를 판별
+    public bool IsSelectImage = false;
+
     /// <summary>
     /// 냥스타그램에 업로드할 이미지 프리뷰 부분에 이미지를 넣는 함수
     /// </summary>

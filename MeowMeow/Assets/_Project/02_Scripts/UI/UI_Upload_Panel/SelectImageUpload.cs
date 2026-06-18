@@ -40,6 +40,7 @@ public class SelectImageUpload : MonoBehaviour
     {
         _getImageList.OnPostIconImage(this);
         _getImageList.UpLoadImage(_Image.sprite);
+        _getImageList.IsSelectImage = true;
     }
 
     /// <summary>
