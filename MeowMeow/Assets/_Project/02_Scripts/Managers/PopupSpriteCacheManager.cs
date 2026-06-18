@@ -15,6 +15,10 @@ public class PopupSpriteCacheManager : MonoBehaviour
 
     private Dictionary<string, Sprite> _popupSpriteCache = new Dictionary<string, Sprite>();
 
+    // 상태 확인을 위한 마커 변수
+    bool _isLoaded = false;
+    bool _isLoading = false;
+
     private void Awake()
     {
         Init();
@@ -42,17 +46,29 @@ public class PopupSpriteCacheManager : MonoBehaviour
     // Addressables Sprite를 미리 로드해서 캐시에 저장합니다.
     private async Task PreloadAsync()
     {
+        // 마커 확인을 통한 예외처리
+        if (_isLoaded || _isLoading) return;
+        _isLoading = true;
+
         // Sprite들을 한 번에 비동기 로드
         _loadHandle = Addressables.LoadAssetsAsync<Sprite>("sprite", null);
         // 모든 Sprite 로드가 완료될 때까지 대기
         await _loadHandle.Task;
         // 로드 실패 시 종료
-        if (_loadHandle.Status != AsyncOperationStatus.Succeeded) return;
+        if (_loadHandle.Status != AsyncOperationStatus.Succeeded)
+        {
+            _isLoading = false;
+            return;
+        }
         // Sprite 이름을 Key로 하여 캐시에 저장
         foreach (Sprite sprite in _loadHandle.Result)
         {
             _popupSpriteCache[sprite.name] = sprite;
         }
+
+        // 마커 변경
+        _isLoaded = true;
+        _isLoading = false;
     }
 
     /// <summary>
