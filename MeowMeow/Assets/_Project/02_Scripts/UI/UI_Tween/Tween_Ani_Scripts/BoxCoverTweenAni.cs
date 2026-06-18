@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +8,21 @@ public class BoxCoverTweenAni : MonoBehaviour
     [SerializeField] private RectTransform leafRect;
     [SerializeField] private Graphic leafGraphic;
     
-    public void PlayAnimation()
+    public async Task PlayAnimation()
     {
         if (leafRect == null || leafGraphic == null)
         {
             Debug.LogWarning("Leaf가 비어있습니다.");
             return;
         }
-        gameObject.SetActive(true);
+
 
         leafRect.DOKill();
         leafGraphic.DOKill();
 
+        gameObject.SetActive(true);
+
+        leafRect.anchoredPosition = Vector2.zero;
         Vector2 startPos = leafRect.anchoredPosition;
 
         Color color = leafGraphic.color;
@@ -57,9 +61,7 @@ public class BoxCoverTweenAni : MonoBehaviour
             1.6f,
             leafGraphic.DOFade(0f, 1f));
 
-        seq.OnComplete(() =>
-        {
-            gameObject.SetActive(false);
-        });
+        await seq.AsyncWaitForCompletion();
+        gameObject.SetActive(false);
     }
 }

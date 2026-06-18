@@ -175,7 +175,7 @@ public class GatchaContentPresenter : MonoBehaviour
     }
 
     // 뽑기판의 뽑기 블럭을 클릭했을 때 실행되는 함수입니다.
-    void OnGatchaButtonClick(int index)
+    async void OnGatchaButtonClick(int index)
     {
         if (_isPopupOpen) return;
         if (GatchaDataManager.Instance.IsOpened(index)) return;
@@ -186,6 +186,8 @@ public class GatchaContentPresenter : MonoBehaviour
 
         _gatchaBlocks[index].SetView(true);
         _gatchaBlocks[index].SetViewCover(index);
+
+        await _gatchaBlocks[index].Do();
 
         IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
         OpenPopup(popup, itemId);

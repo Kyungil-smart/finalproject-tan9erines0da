@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using TMPro;
+using UnityEditor.Overlays;
 using UnityEngine;
 
 public class GatchaButton : MonoBehaviour, ISwitchable
@@ -9,6 +11,7 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     [SerializeField] private GameObject _3rd;
     [SerializeField] private GameObject _lowRank;
     [SerializeField] private TextMeshProUGUI _lowRankTMP;
+    [SerializeField] private BoxCoverTweenAni _anim;
 
     public void SetView(bool isOpend)
     {
@@ -79,5 +82,10 @@ public class GatchaButton : MonoBehaviour, ISwitchable
         var data = db.FindById(id.ToString());
 
         return data.Grade;
+    }
+
+    public async Task Do()
+    {
+        await _anim.PlayAnimation();
     }
 }
