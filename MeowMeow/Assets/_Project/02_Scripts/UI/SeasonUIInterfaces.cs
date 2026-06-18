@@ -42,7 +42,7 @@ public interface ITweenable
     /// <summary>
     /// 트윈 애니메이션 등의 연출 요소 실행함수를 작성합니다.
     /// </summary>
-    public void Play();
+    public  void Play();
 
 
     /// <summary>

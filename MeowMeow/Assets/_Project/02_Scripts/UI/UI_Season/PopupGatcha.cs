@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +26,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     [SerializeField] private GameObject _limitedRewardPanel;
 [SerializeField] private TextMeshProUGUI _limitedRewardTMP;
     [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
+    [SerializeField] private GameObject _Test02;
 
+   [SerializeField] private CatStampTweenAni_2 _Test1;
     [Header("확인 버튼")]
     [SerializeField] private Button _confirmButton;
 
@@ -102,7 +106,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _confirmButton.onClick.RemoveListener(OnConfirmClick);
     }
 
-    public void Play()
+    public async void Play()
     {
         if (IsTransitioning) return;
         IsTransitioning = true;
@@ -129,7 +133,13 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
             _limitedRewardPanel.SetActive(true);
 
             if (_limitedRewardTween != null)
-                _limitedRewardTween.PlayAnimation();
+            {
+                await _limitedRewardTween.PlayAnimation();
+                //_limitedRewardPanel.SetActive(false);
+               // _Test02.SetActive(true);
+                await _Test1.PlayAnimation();
+               // _Test02.SetActive(false);
+            }
         }
 
         if (_confirmButton != null)
@@ -138,13 +148,13 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         IsTransitioning = false;
     }
 
-    void OnTouchReveal()
+    private   void OnTouchReveal()
     {
         if (IsTransitioning) return;
         // 중복 터치 방지
         _touchCatchButton.interactable = false;
 
-        Play();
+          Play();
     }
 
     void OnConfirmClick()

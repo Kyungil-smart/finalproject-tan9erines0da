@@ -10,7 +10,7 @@ public class OpenBoxTweenAni : MonoBehaviour
     [SerializeField] private RectTransform boxRect;
     [SerializeField] private RectTransform lightRect;
     [SerializeField] private RectTransform gemRect;
-
+    [ContextMenu("PlayAnimation")]
     public void PlayAnimation()
     {
         if (boxImage == null || boxFrames == null || boxFrames.Length == 0)
