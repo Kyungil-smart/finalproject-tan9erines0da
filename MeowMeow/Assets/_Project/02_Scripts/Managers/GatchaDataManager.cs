@@ -115,12 +115,23 @@ public class GatchaDataManager : MonoBehaviour
     */
 
     public void GetTicket() => GatchaData.OwnedTicketCount += 1;
+
+    [ContextMenu("테스트용 데이터 초기화 + 티켓 10장 지급")]
+    void Debug_InitForTest()
+    {
+        InitGatchaData();
+        InitfirstDic();
+        for (int i = 0; i < 10; i++) GetTicket();
+        Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
+    }
     /*
      GetTicket 메소드
      티켓 획득 시 뽑기권 개수 1 증가시키는 메소드입니다.
     */
    
-    public bool IsOpened(int index) => GatchaData.OpenedIndices[index.ToString()];
+    public bool IsOpened(int index) =>
+        GatchaData.OpenedIndices != null &&
+        GatchaData.OpenedIndices.TryGetValue(index.ToString(), out bool result) && result;
     /*
     IsOpened 메소드
     유저가 뽑았던 아이템이면 true 안뽑았던 아이템이면 false 반환
