@@ -9,10 +9,10 @@ public class PopupSpriteCacheManager : MonoBehaviour
     private static PopupSpriteCacheManager _instance;
     public static PopupSpriteCacheManager Instance => _instance;
 
+    // "sprite" 라벨로 로드한 모든 Sprite의 Addressables 핸들
+    // Release 시 사용하기 위해 보관
     private AsyncOperationHandle<IList<Sprite>> _loadHandle;
 
-    // Addressables key를 기준으로 Sprite 로딩 비동기 핸들을 캐싱하는 딕셔너리
-    // (핸들 내부에 Sprite 결과, 로딩 상태, 참조 카운트 정보 포함)
     private Dictionary<string, Sprite> _popupSpriteCache = new Dictionary<string, Sprite>();
 
     private void Awake()
@@ -42,12 +42,13 @@ public class PopupSpriteCacheManager : MonoBehaviour
     // Addressables Sprite를 미리 로드해서 캐시에 저장합니다.
     private async Task PreloadAsync()
     {
+        // Sprite들을 한 번에 비동기 로드
         _loadHandle = Addressables.LoadAssetsAsync<Sprite>("sprite", null);
-
+        // 모든 Sprite 로드가 완료될 때까지 대기
         await _loadHandle.Task;
-
+        // 로드 실패 시 종료
         if (_loadHandle.Status != AsyncOperationStatus.Succeeded) return;
-
+        // Sprite 이름을 Key로 하여 캐시에 저장
         foreach (Sprite sprite in _loadHandle.Result)
         {
             _popupSpriteCache[sprite.name] = sprite;
