@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
@@ -24,17 +22,13 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     [Header("한정 보상 획득 패널")]
     [SerializeField] private GameObject _limitedRewardPanel;
-    [SerializeField] private Image _limitedRewardImage;
-    [SerializeField] private TextMeshProUGUI _limitedRewardTMP;
+[SerializeField] private TextMeshProUGUI _limitedRewardTMP;
     [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
 
     [Header("확인 버튼")]
     [SerializeField] private Button _confirmButton;
 
     GatchaContentPresenter _contentPresenter;
-
-    AsyncOperationHandle<Sprite> _itemImageHandle;
-    AsyncOperationHandle<Sprite> _limitedImageHandle;
 
     int _itemId;
     int _grade;
@@ -59,12 +53,6 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     public void Close()
     {
-        if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
-        if (_limitedImageHandle.IsValid()) Addressables.Release(_limitedImageHandle);
-
-        foreach (var img in _highRankImages)
-            img.sprite = null;
-
         _lowRankTMP.text = string.Empty;
         _limitedRewardTMP.text = string.Empty;
 
@@ -75,7 +63,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _isLimitedItem = false;
     }
 
-    public async void SetData(int itemId)
+    public void SetData(int itemId)
     {
         _itemId = itemId;
 
@@ -88,32 +76,14 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         // 1~3등 아이템 이미지 로드
         if (_grade <= 3 && !string.IsNullOrEmpty(data.RewardResourceImage) && data.RewardResourceImage != "NULL")
         {
-            if (_itemImageHandle.IsValid()) Addressables.Release(_itemImageHandle);
-            _itemImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceImage);
-            await _itemImageHandle.Task;
-
-            if (_itemImageHandle.Status == AsyncOperationStatus.Succeeded)
-                _highRankImages[_grade - 1].sprite = _itemImageHandle.Result;
-            else
-                Debug.LogWarning($"아이템 이미지 로드 실패: {data.RewardResourceImage}");
+            _highRankImages[_grade - 1].sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(data.RewardResourceImage);
         }
 
-        // 한정 보상 이미지 로드
+        // 한정 보상 텍스트 설정
         if (_isLimitedItem)
         {
-            if (_limitedImageHandle.IsValid()) Addressables.Release(_limitedImageHandle);
-            _limitedImageHandle = Addressables.LoadAssetAsync<Sprite>(data.RewardResourceTextImage);
-            await _limitedImageHandle.Task;
-
-            if (_limitedImageHandle.Status == AsyncOperationStatus.Succeeded)
-            {
-                _limitedRewardImage.sprite = _limitedImageHandle.Result;
-                _limitedRewardTMP.text = data.ItemName;
-            }
-            else
-                Debug.LogWarning($"한정 보상 이미지 로드 실패: {data.RewardResourceTextImage}");
+            _limitedRewardTMP.text = data.ItemName;
         }
-
     }
 
     public void Bind(GatchaContentPresenter gcp)
