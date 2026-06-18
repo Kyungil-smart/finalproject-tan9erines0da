@@ -47,6 +47,9 @@ public class GatchaContentPresenter : MonoBehaviour
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
 
+    //-------------디버그 버튼 관련 필드
+    [SerializeField] private GameObject _debugButton;
+    public bool IsMainCanvasOpen = false;
     void Awake()
     {
         foreach(var item in _gatchaBlocks)
@@ -151,9 +154,20 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         Debug.Log("클릭");
         _mainCanvasOBJ.SetActive(true);
+        //---- 디버그 관련 ----
+        IsMainCanvasOpen = true;
+        _debugButton.SetActive(false);
+        //---------------------
         OnOpen();
     }
-    private void OnExitClick() => _mainCanvasOBJ.SetActive(false);
+    private void OnExitClick()
+    {
+        _mainCanvasOBJ.SetActive(false);
+        //---- 디버그 관련 ----
+        IsMainCanvasOpen = false;
+        _debugButton.SetActive(true);
+        //---------------------
+    }
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
