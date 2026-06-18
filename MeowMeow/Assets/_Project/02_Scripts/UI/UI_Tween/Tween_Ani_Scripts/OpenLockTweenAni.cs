@@ -9,6 +9,7 @@ public class OpenLockTweenAni : MonoBehaviour
     [SerializeField] private Sprite[] lockFrames;
     [SerializeField] private float frameInterval = 0.05f;
 
+    [ContextMenu("PlayAnimation")]
     public void PlayAnimation()
     {
         if (lockRect == null || lockImage == null)

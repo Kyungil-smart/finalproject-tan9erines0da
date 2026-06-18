@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 {
@@ -40,6 +41,8 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     public bool IsTransitioning { get; set; }
 
+    //
+    public int TempKey;
     public void Open()
     {
         IsTransitioning = false;
@@ -59,7 +62,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     {
         _lowRankTMP.text = string.Empty;
         _limitedRewardTMP.text = string.Empty;
-
+        _contentPresenter.L_itemID = TempKey;
         if (_isLimitedItem)
         {
             SubscribeManager.instance.Publish<int>(SubscribeType.GetLimited, _itemId);
@@ -68,6 +71,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
         _contentPresenter.ChangeResetButtonState();
         _contentPresenter = null;
+        TempKey = -1;
+
+
     }
 
     public void SetData(int itemId)
@@ -128,19 +134,10 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         if (!isHighRank)
             _lowRankTMP.text = $"{_grade}등";
 
-        if (_isLimitedItem)
-        {
-            _limitedRewardPanel.SetActive(true);
+        const int NULL_NUMBER= -1;
+        TempKey = _isLimitedItem ? _itemId : NULL_NUMBER;
 
-            if (_limitedRewardTween != null)
-            {
-                await _limitedRewardTween.PlayAnimation();
-                //_limitedRewardPanel.SetActive(false);
-               // _Test02.SetActive(true);
-                await _Test1.PlayAnimation();
-               // _Test02.SetActive(false);
-            }
-        }
+      
 
         if (_confirmButton != null)
             _confirmButton.interactable = true;

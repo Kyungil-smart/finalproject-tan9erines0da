@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +47,8 @@ public class GatchaContentPresenter : MonoBehaviour
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
-
+    //리미티드 키 스트링 입니다.
+    public int L_itemID;
     //-------------디버그 버튼 관련 필드
     [SerializeField] private GameObject _debugButton;
     public bool IsMainCanvasOpen = false;
@@ -98,6 +100,26 @@ public class GatchaContentPresenter : MonoBehaviour
 
         popup.gameObject.SetActive(false);
         _isPopupOpen = false;
+        /*
+        L_itemID 이 값이 있으면   자물쇠 연출 시작
+        30001 : 1등급 유일 보상
+        40001 : 2등급 유일 보상 
+        30002 : 3등급 유일 보상
+        */
+
+        var Grade = L_itemID == 30001 ? 1 :
+                    L_itemID == 40001 ? 2 :
+                    L_itemID == 30002 ? 3 : -1;
+        if (Grade == -1) return;
+
+     var LinitedBlock = Grade == 1 ? _1stLinitedBlock :
+                        Grade == 2 ? _2ndLinitedBlock :
+                        Grade == 3 ? _3rdLinitedBlock : null;
+
+        if (LinitedBlock == null) return;
+
+        var TweenLogic=LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
+        TweenLogic.PlayAnimation();
 
     }
     /// <summary>
