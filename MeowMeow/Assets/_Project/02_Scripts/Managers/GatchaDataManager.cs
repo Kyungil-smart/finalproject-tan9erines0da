@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GatchaDataManager : MonoBehaviour
+public partial class GatchaDataManager : MonoBehaviour
 {
     public List<BaseGatcha> LogicList=new List<BaseGatcha>();
     public Dictionary<GatchaLogicType, BaseGatcha> LogicDic = new Dictionary<GatchaLogicType, BaseGatcha>();
@@ -115,6 +115,10 @@ public class GatchaDataManager : MonoBehaviour
     */
 
     public void GetTicket() => GatchaData.OwnedTicketCount += 1;
+    /*
+     GetTicket 메소드
+     티켓 획득 시 뽑기권 개수 1 증가시키는 메소드입니다.
+    */
 
     [ContextMenu("테스트용 데이터 초기화 + 티켓 10장 지급")]
     void Debug_InitForTest()
@@ -124,10 +128,6 @@ public class GatchaDataManager : MonoBehaviour
         for (int i = 0; i < 10; i++) GetTicket();
         Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
     }
-    /*
-     GetTicket 메소드
-     티켓 획득 시 뽑기권 개수 1 증가시키는 메소드입니다.
-    */
    
     public bool IsOpened(int index) =>
         GatchaData.OpenedIndices != null &&
