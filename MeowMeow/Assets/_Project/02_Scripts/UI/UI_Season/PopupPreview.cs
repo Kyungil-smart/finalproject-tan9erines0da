@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 
 public class PopupPreview : MonoBehaviour, IPopupable
@@ -10,9 +8,6 @@ public class PopupPreview : MonoBehaviour, IPopupable
     [SerializeField] Button _exitButton;
     [SerializeField] Image _resourceImage;
     [SerializeField] TextMeshProUGUI _description;
-
-    // Addressables가 로드 작업을 관리하기 위한 핸들
-    private AsyncOperationHandle<Sprite> _resourceImageHandle;
 
     GatchaContentPresenter _contentPresenter;
 
@@ -26,6 +21,7 @@ public class PopupPreview : MonoBehaviour, IPopupable
 
     public void Close()
     {
+        _resourceImage.sprite = null;
         _description.text = string.Empty;
     }
 
@@ -35,24 +31,8 @@ public class PopupPreview : MonoBehaviour, IPopupable
         var db = googleSheetManager.instance.GetClassData<PreviewPopupTable>();
         var data = db.FindById(itemId.ToString());
 
-        // 이전에 로드한 스프라이트가 있으면 해제
-        if (_resourceImageHandle.IsValid()) Addressables.Release(_resourceImageHandle);
-
-        // Addressables에서 스프라이트 비동기 로드
-        _resourceImageHandle = Addressables.LoadAssetAsync<Sprite>(data.Resource);
-
-        // 로드 완료 대기
-        await _resourceImageHandle.Task;
-
-        // 로드 실패 시 처리
-        if (_resourceImageHandle.Status != AsyncOperationStatus.Succeeded)
-        {
-            Debug.LogWarning($"스프라이트 로드 실패: {data.Resource}");
-            return;
-        }
-
         // db 기준 이미지 교체
-        _resourceImage.sprite = _resourceImageHandle.Result;
+        _resourceImage.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(data.Resource);
         // 아이템 설명 교체
         _description.text = data.Description;
     }
