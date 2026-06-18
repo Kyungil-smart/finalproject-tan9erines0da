@@ -100,7 +100,6 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     {
         _touchCatchButton.onClick.RemoveListener(OnTouchReveal);
         _confirmButton.onClick.RemoveListener(OnConfirmClick);
-        _contentPresenter = null;
     }
 
     public void Play()
