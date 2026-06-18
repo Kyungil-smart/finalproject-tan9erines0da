@@ -42,7 +42,10 @@ public class BackendManager : MonoBehaviour
                 _app = FirebaseApp.DefaultInstance;
                 _auth = FirebaseAuth.DefaultInstance;
 
+<<<<<<< Updated upstream
                 FireStoreManager.Instance.InitF_M();
+=======
+>>>>>>> Stashed changes
             }
             else
             {
