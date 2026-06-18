@@ -7263,7 +7263,7 @@ MonoBehaviour:
   _1stLinitedBlock: {fileID: 1252512837727113669}
   _2ndLinitedBlock: {fileID: 4525095615580653945}
   _3rdLinitedBlock: {fileID: 8785653808573941345}
-  _initbutton: {fileID: 6040369984878155570}
+  _resetButton: {fileID: 6040369984878155570}
   _gatchaBlocks:
   - {fileID: 8464425154329457017}
   - {fileID: 2645586441005579434}

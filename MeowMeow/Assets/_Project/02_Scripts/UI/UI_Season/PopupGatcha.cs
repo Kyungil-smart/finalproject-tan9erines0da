@@ -62,6 +62,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
             SubscribeManager.instance.Publish<int>(SubscribeType.GetLimited, _itemId);
         }
         _isLimitedItem = false;
+
+        _contentPresenter.ChangeResetButtonState();
+        _contentPresenter = null;
     }
 
     public void SetData(int itemId)
