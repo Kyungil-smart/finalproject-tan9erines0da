@@ -11,6 +11,8 @@ public class ImageEditButton : MonoBehaviour
     [Header("화면전환 참조")]
     [SerializeField]private BaseScreenController _baseScreenController;
     [SerializeField]private UIPanel _panel;
+    [Header("BottomPanel -> Upload_Folder_Scroll View -> Content -> 를 참조")]
+    [SerializeField] private GetImageList _getImageList;
 
     private void Awake()
     {
@@ -30,6 +32,8 @@ public class ImageEditButton : MonoBehaviour
     private void OnClickEditButton()
     {
         if (LocalDataManager.Instance == null) return;
+
+        if (_getImageList.IsSelectImage == false) return;
 
         if (Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser != null)
         {

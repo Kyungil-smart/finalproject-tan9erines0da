@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2366926153567943129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,6 +1358,10 @@ MonoBehaviour:
   _storyUploadText: {fileID: 1235452017541630359}
   _image: {fileID: 9032678932288413441}
   _unCheckmark: {fileID: 4418796497997824458}
+  _backgroundImage: {fileID: 4474262369258719609}
+  _storyColor: {r: 1, g: 1, b: 1, a: 1}
+  _uploadColor: {r: 0.33333334, g: 0.12156863, b: 0.21568628, a: 1}
+  _getImageList: {fileID: 4289199051972236853}
 --- !u!1 &2329600466234746953
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,7 +3383,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33333334, g: 0.12156863, b: 0.21568628, a: 1}
+  m_Color: {r: 0.8509804, g: 0.5176471, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3775,6 +3779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UploadImage: {fileID: 5463505705002565925}
+  IsSelectImage: 0
 --- !u!1 &6490056839440389274
 GameObject:
   m_ObjectHideFlags: 0
@@ -7383,6 +7388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nyangStoneEmptyImage: {fileID: 8365167498074694737}
+  _baseScreenController: {fileID: 0}
+  _panel: {fileID: 0}
+  _getImageList: {fileID: 4289199051972236853}
 --- !u!224 &4839174371321476076 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3191603433785075131, guid: 5a66afba0a361a94ba7130a052f47ba2, type: 3}
