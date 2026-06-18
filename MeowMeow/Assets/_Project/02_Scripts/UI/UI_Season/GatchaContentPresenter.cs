@@ -31,7 +31,7 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private Limited_Button _1stLinitedBlock;//진열장
     [SerializeField] private Limited_Button _2ndLinitedBlock;//진열장
     [SerializeField] private Limited_Button _3rdLinitedBlock;//진열장
-    [SerializeField] private Button _initbutton;//초기화 버튼 
+    [SerializeField] private Button _resetButton;//초기화 버튼 
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     [Header("뽑기 등수 별 보상 표시 그룹")]
@@ -45,6 +45,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
+    bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
 
     void Awake()
     {
@@ -96,6 +97,14 @@ public class GatchaContentPresenter : MonoBehaviour
         _isPopupOpen = false;
 
     }
+    /// <summary>
+    /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
+    /// OnOpen, PopupGatcha.Close에서 호출 중입니다 추후 추가 혹은 변경이 필요할 수 있습니다
+    /// </summary>
+    public void ChangeResetButtonState()
+    {
+        _resetButton.interactable = CanReset;
+    }
 
     void Bind()
     {
@@ -113,7 +122,7 @@ public class GatchaContentPresenter : MonoBehaviour
         _2ndLinitedBlock.GetComponent<Button>().onClick.AddListener(Button_Grade_2);
         _3rdLinitedBlock.GetComponent<Button>().onClick.AddListener(Button_Grade_3);
 
-        _initbutton.onClick.AddListener(OpenResetCanvas);
+        _resetButton.onClick.AddListener(OpenResetCanvas);
     }
     private void Button_Grade_1()
     {
@@ -217,6 +226,9 @@ public class GatchaContentPresenter : MonoBehaviour
         RefreshQuestTicketTXT();
         RefreshOwnedTicketsTXT();
         RefreshGachaStackTXT();
+
+        // 리셋 버튼 활성화 여부 갱신
+        ChangeResetButtonState();
     }
 
     /// <summary>
