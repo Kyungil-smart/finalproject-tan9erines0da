@@ -1,16 +1,17 @@
 using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CatStampTweenAni : MonoBehaviour
 {
     [SerializeField] private RectTransform catStamp;
-    
-    public void PlayAnimation()
+
+    public Task PlayAnimation()
     {
         if (catStamp == null)
         {
             Debug.LogWarning("CatStamp가 비어있습니다.");
-            return;
+            return Task.CompletedTask;
         }
         gameObject.SetActive(true);
 
@@ -31,9 +32,8 @@ public class CatStampTweenAni : MonoBehaviour
                 new Vector2(171f, 171f),
                 1.2f)
             .SetEase(Ease.InQuart));
-        seq.OnComplete(() =>
-        {
-            gameObject.SetActive(false);
-        });
+
+
+        return seq.AsyncWaitForCompletion();
     }
 }
