@@ -292,7 +292,6 @@ public class GatchaContentPresenter : MonoBehaviour
     /// </summary>
     public void RefreshOwnedTicketsTXT()
     {
-        // TODO 추후에 변동사항을 추적할 수 있도록 이벤트 구독이 필요합니다.
         _ownedTickets.text = $"{GatchaDataManager.Instance.GatchaData.OwnedTicketCount} 개";
     }
     /// <summary>
@@ -300,7 +299,6 @@ public class GatchaContentPresenter : MonoBehaviour
     /// </summary>
     public void RefreshGachaStackTXT()
     {
-        // TODO 추후에 변동사항을 추적할 수 있도록 이벤트 구독이 필요합니다.
         _gachaStack.text = $"{GatchaDataManager.Instance.GatchaData.TotalGatchaCount} 회";
     }
     #endregion
