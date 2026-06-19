@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-[CreateAssetMenu(fileName = "08_Gatcha_IsCompensation_SO", menuName = "GatchaSO/08_Gatcha_IsCompensation_SO")]
+[CreateAssetMenu(fileName = "08_Gatcha_IsQuestCompensation_SO", menuName = "GatchaSO/08_Gatcha_IsQuestCompensation_SO")]
 public class Gatcha_IsQuestCompensation_SO : BaseGatcha
 {
     public override void Init(GatchaDataManager manager)

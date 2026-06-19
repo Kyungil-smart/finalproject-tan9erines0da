@@ -1,6 +1,9 @@
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 {
@@ -24,7 +27,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     [SerializeField] private GameObject _limitedRewardPanel;
 [SerializeField] private TextMeshProUGUI _limitedRewardTMP;
     [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
+    [SerializeField] private GameObject _Test02;
 
+   [SerializeField] private CatStampTweenAni_2 _Test1;
     [Header("확인 버튼")]
     [SerializeField] private Button _confirmButton;
 
@@ -36,6 +41,8 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     public bool IsTransitioning { get; set; }
 
+    //
+    public int TempKey;
     public void Open()
     {
         IsTransitioning = false;
@@ -55,7 +62,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     {
         _lowRankTMP.text = string.Empty;
         _limitedRewardTMP.text = string.Empty;
-
+        _contentPresenter.L_itemID = TempKey;
         if (_isLimitedItem)
         {
             SubscribeManager.instance.Publish<int>(SubscribeType.GetLimited, _itemId);
@@ -64,6 +71,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
         _contentPresenter.ChangeResetButtonState();
         _contentPresenter = null;
+        TempKey = -1;
+
+
     }
 
     public void SetData(int itemId)
@@ -102,7 +112,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _confirmButton.onClick.RemoveListener(OnConfirmClick);
     }
 
-    public void Play()
+    public  void Play()
     {
         if (IsTransitioning) return;
         IsTransitioning = true;
@@ -124,13 +134,10 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         if (!isHighRank)
             _lowRankTMP.text = $"{_grade}등";
 
-        if (_isLimitedItem)
-        {
-            _limitedRewardPanel.SetActive(true);
+        const int NULL_NUMBER= -1;
+        TempKey = _isLimitedItem ? _itemId : NULL_NUMBER;
 
-            if (_limitedRewardTween != null)
-                _limitedRewardTween.PlayAnimation();
-        }
+      
 
         if (_confirmButton != null)
             _confirmButton.interactable = true;
@@ -138,13 +145,13 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         IsTransitioning = false;
     }
 
-    void OnTouchReveal()
+    private   void OnTouchReveal()
     {
         if (IsTransitioning) return;
         // 중복 터치 방지
         _touchCatchButton.interactable = false;
 
-        Play();
+          Play();
     }
 
     void OnConfirmClick()
@@ -157,6 +164,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _contentPresenter.ClosePopup(this);
     }
 
+    public Task OnlimitedRewardPopup()
+    {
+        _limitedRewardPanel.gameObject.SetActive(true);
+        var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+        return data.PlayAnimation();
+    }
     void OnDestroy()
     {
         Unbind();

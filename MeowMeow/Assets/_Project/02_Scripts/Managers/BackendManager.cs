@@ -43,6 +43,7 @@ public class BackendManager : MonoBehaviour
                 _auth = FirebaseAuth.DefaultInstance;
 
                 FireStoreManager.Instance.InitF_M();
+
             }
             else
             {

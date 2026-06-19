@@ -1,16 +1,17 @@
 using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GetPrizeTweenAni : MonoBehaviour
 {
     [SerializeField] private RectTransform targetRect;
 
-    public void PlayAnimation()
+    public    Task PlayAnimation()
     {
         if (targetRect == null)
         {
             Debug.LogWarning("Target Rect가 비어있습니다.");
-            return;
+            return Task.CompletedTask;
         }
 
         gameObject.SetActive(true);
@@ -28,5 +29,8 @@ public class GetPrizeTweenAni : MonoBehaviour
                 new Vector2(622f, 521f),
                 1f)
             .SetEase(Ease.InQuart));
+
+        return seq.AsyncWaitForCompletion();
+
     }
 }

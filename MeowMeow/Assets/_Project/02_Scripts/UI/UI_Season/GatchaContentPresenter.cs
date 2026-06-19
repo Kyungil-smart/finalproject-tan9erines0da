@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,10 +44,15 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ownedTickets;
     [SerializeField] private TextMeshProUGUI _gachaStack;
 
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    [SerializeField] private GameObject _limitedRewardPanel;
+    [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
+
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
-
+    //리미티드 키 스트링 입니다.
+    public int L_itemID;
     //-------------디버그 버튼 관련 필드
     [SerializeField] private GameObject _debugButton;
     public bool IsMainCanvasOpen = false;
@@ -85,7 +91,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// 팝업 패널을 닫는 함수입니다
     /// </summary>
     /// <param name="popup"></param>
-    public void ClosePopup(IPopupable popup)
+    public async  void ClosePopup(IPopupable popup)
     {
         if (popup == null || !_isPopupOpen)
         {
@@ -98,6 +104,34 @@ public class GatchaContentPresenter : MonoBehaviour
 
         popup.gameObject.SetActive(false);
         _isPopupOpen = false;
+        /*
+        L_itemID 이 값이 있으면   자물쇠 연출 시작
+        30001 : 1등급 유일 보상
+        40001 : 2등급 유일 보상 
+        30002 : 3등급 유일 보상
+        */
+
+        var Grade = L_itemID == 30001 ? 1 :
+                    L_itemID == 40001 ? 2 :
+                    L_itemID == 30002 ? 3 : -1;
+        if (Grade == -1) return;
+
+     var LinitedBlock = Grade == 1 ? _1stLinitedBlock :
+                        Grade == 2 ? _2ndLinitedBlock :
+                        Grade == 3 ? _3rdLinitedBlock : null;
+
+        if (LinitedBlock == null) return;
+
+        var TweenLogic=LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
+        var _PopupGatcha= popup.gameObject.GetComponent<PopupGatcha>();
+        TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
+        await TweenLogic.PlayAnimation(); // 자물쇠 연출 끝날 때 까지 대기
+       
+         _limitedRewardPanel.gameObject.SetActive(true);
+        var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+        await data.PlayAnimation();//한정 보상 팝업 연출
+        _limitedRewardPanel.SetActive(false);
+         //도장 찍기 연출 
 
     }
     /// <summary>
@@ -198,7 +232,6 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         RefreshOwnedTicketsTXT();
         RefreshGachaStackTXT();
-        LinitedBlockSetView();
     }
     /// <summary>
     /// 메인 캔버스가 열릴때 호출하는 함수
