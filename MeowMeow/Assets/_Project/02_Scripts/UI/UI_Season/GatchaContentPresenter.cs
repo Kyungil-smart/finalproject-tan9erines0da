@@ -135,8 +135,10 @@ public class GatchaContentPresenter : MonoBehaviour
         _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
         await data.PlayAnimation();//한정 보상 팝업 연출
         _limitedRewardPanel.SetActive(false);
-         //도장 찍기 연출 
 
+        var stampAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);
+        if (stampAni != null)
+            await stampAni.PlayAnimation();
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
