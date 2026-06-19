@@ -7,7 +7,7 @@ public class GachaStackBox : MonoBehaviour, ISwitchable
 {
     [SerializeField] private GameObject _stamp;
     [SerializeField] private int _gachaStackBoxIndex;
-    [SerializeField] private CatStampTweenAni _animStamp;
+    [SerializeField] private CatStampTweenAni_2 _animStamp;
 
     public void SetView(bool isOpend)
     {

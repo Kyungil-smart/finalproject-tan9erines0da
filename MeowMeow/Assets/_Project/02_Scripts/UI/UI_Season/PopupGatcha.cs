@@ -64,6 +64,11 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
         if (_confirmButton != null)
             _confirmButton.interactable = false;
+
+        if (TenthCheck())
+        {
+            _contentPresenter.Need_M_Open = true;
+        }
     }
 
     public void Close()
@@ -187,5 +192,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     void OnDestroy()
     {
         Unbind();
+    }
+
+    private bool TenthCheck()
+    {
+        int i = GatchaDataManager.Instance.GatchaData.TotalGatchaCount;
+        if (i % 10 != 0 || i == 0) return false;
+        return true;
     }
 }

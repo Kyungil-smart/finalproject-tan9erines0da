@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GatchaContentPresenter : MonoBehaviour
@@ -52,6 +53,12 @@ public class GatchaContentPresenter : MonoBehaviour
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
+    // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
+    public bool Need_M_Open
+    {
+        get;
+        set;
+    }
     //리미티드 키 스트링 입니다.
     public int L_itemID;
     //-------------디버그 버튼 관련 필드
@@ -115,30 +122,41 @@ public class GatchaContentPresenter : MonoBehaviour
         var Grade = L_itemID == 30001 ? 1 :
                     L_itemID == 40001 ? 2 :
                     L_itemID == 30002 ? 3 : -1;
-        if (Grade == -1) return;
+        if (Grade != -1)
+        {
+            var LinitedBlock = Grade == 1 ? _1stLinitedBlock :
+                               Grade == 2 ? _2ndLinitedBlock :
+                               Grade == 3 ? _3rdLinitedBlock : null;
 
-     var LinitedBlock = Grade == 1 ? _1stLinitedBlock :
-                        Grade == 2 ? _2ndLinitedBlock :
-                        Grade == 3 ? _3rdLinitedBlock : null;
+            if (LinitedBlock != null)
+            {
+                var TweenLogic = LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
+                var _PopupGatcha = popup.gameObject.GetComponent<PopupGatcha>();
+                TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
+                await TweenLogic.PlayAnimation(); // 자물쇠 연출 끝날 때 까지 대기
 
-        if (LinitedBlock == null) return;
+                _limitedRewardPanel.gameObject.SetActive(true);
+                var data = _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+                // 한정 보상 팝업 이미지를 한번 초기화 후 등수에 맞게 적용
+                _seasonPrizeLine.sprite = null;
+                _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
+                await data.PlayAnimation();//한정 보상 팝업 연출
+                _limitedRewardPanel.SetActive(false);
 
-        var TweenLogic=LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
-        var _PopupGatcha= popup.gameObject.GetComponent<PopupGatcha>();
-        TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
-        await TweenLogic.PlayAnimation(); // 자물쇠 연출 끝날 때 까지 대기
+                var stampAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);
+                if (stampAni != null)
+                    await stampAni.PlayAnimation();
+            }
 
-        _limitedRewardPanel.gameObject.SetActive(true);
-        var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
-        // 한정 보상 팝업 이미지를 한번 초기화 후 등수에 맞게 적용
-        _seasonPrizeLine.sprite = null;
-        _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
-        await data.PlayAnimation();//한정 보상 팝업 연출
-        _limitedRewardPanel.SetActive(false);
+            L_itemID = -1;
+        }
 
-        var stampAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);
-        if (stampAni != null)
-            await stampAni.PlayAnimation();
+        // 누적보상을 획득 해야 할때
+        if (Need_M_Open == true)
+        {
+            OpenPopup(_milestoneCanvas);
+            Need_M_Open = false;
+        }
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -346,7 +364,7 @@ public class GatchaContentPresenter : MonoBehaviour
     // 테스트 코드입니다.
     //====================================================
     [ContextMenu("오픈 누적 보상 팝업")]
-    public void OpenTestMilestonePopup()
+    public void OpenMilestonePopup()
     {
         OpenPopup(_milestoneCanvas);
     }
