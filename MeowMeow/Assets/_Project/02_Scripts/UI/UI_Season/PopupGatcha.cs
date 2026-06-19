@@ -37,6 +37,14 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     int _itemId;
     int _grade;
+    #region LimitedReward_Panel의 이미지 변경을 위한 변수
+    string[] _rewardResourceArr = new string[3];
+    string _rewardResource;
+    public string RewardResource
+    {
+        get => _rewardResource;
+    }
+    #endregion
     bool _isLimitedItem;
 
     public bool IsTransitioning { get; set; }
@@ -90,6 +98,8 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         if (_grade <= 3 && !string.IsNullOrEmpty(data.RewardResourceImage) && data.RewardResourceImage != "NULL")
         {
             _highRankImages[_grade - 1].sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(data.RewardResourceImage);
+            // LimitedReward_Panel의 이미지 변경을 위한 등수별 키값 저장
+            _rewardResourceArr[_grade - 1] = data.RewardResourceImage;
         }
 
         // 한정 보상 텍스트 설정
@@ -124,8 +134,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
         // 등수에 맞는 그룹만 활성화 (나머지 비활성화)
         for (int i = 0; i < _highRankGroups.Length; i++)
+        {
             _highRankGroups[i].SetActive(isHighRank && i == _grade - 1);
-
+            // LimitedReward_Panel의 이미지 변경을 위해 현재 이미지 키값을 _rewardResource 저장
+            // 이후에 GatchaContentPresenter.cs에서 RewardResource를 불러와 이미지를 적용 합니다.
+            if ((isHighRank && i == _grade - 1)) _rewardResource = _rewardResourceArr[i];
+        }
         for (int i = 0; i < _rankGroups.Length; i++)
             _rankGroups[i].SetActive(isHighRank && i == _grade - 1);
 

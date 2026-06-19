@@ -6241,7 +6241,10 @@ MonoBehaviour:
   _limitedRewardPanel: {fileID: 4318481496965088489}
   _limitedRewardTMP: {fileID: 2783781933940146139}
   _limitedRewardTween: {fileID: 7418529637418529637}
+  _Test02: {fileID: 0}
+  _Test1: {fileID: 0}
   _confirmButton: {fileID: 8705762002162732144}
+  TempKey: 0
 --- !u!1 &4318481496965088489
 GameObject:
   m_ObjectHideFlags: 0
@@ -8096,6 +8099,10 @@ MonoBehaviour:
   _questTicket: {fileID: 1422033513138906021}
   _ownedTickets: {fileID: 3684290529367556797}
   _gachaStack: {fileID: 328004979766751828}
+  _limitedRewardPanel: {fileID: 4318481496965088489}
+  _seasonPrizeLine: {fileID: 4933703855685794572}
+  _limitedRewardTween: {fileID: 7418529637418529637}
+  L_itemID: 0
   _debugButton: {fileID: 1432475065017949201}
   IsMainCanvasOpen: 0
 --- !u!114 &2621534140258417079
