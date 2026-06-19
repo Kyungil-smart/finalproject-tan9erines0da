@@ -17,7 +17,11 @@ public class CatStampTweenAni : MonoBehaviour
 
         catStamp.DOKill();
 
+        Vector2 endPos = catStamp.anchoredPosition;
+        catStamp.position = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
         catStamp.sizeDelta = new Vector2(415f, 415f);
+
+        float totalDuration = 0.37f + 1.2f;
 
         Sequence seq = DOTween.Sequence();
 
@@ -33,6 +37,7 @@ public class CatStampTweenAni : MonoBehaviour
                 1.2f)
             .SetEase(Ease.InQuart));
 
+        seq.Insert(0f, catStamp.DOAnchorPos(endPos, totalDuration).SetEase(Ease.InCubic));
 
         return seq.AsyncWaitForCompletion();
     }
