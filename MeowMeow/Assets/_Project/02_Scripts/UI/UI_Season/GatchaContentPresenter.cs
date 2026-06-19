@@ -46,6 +46,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     [SerializeField] private GameObject _limitedRewardPanel;
+    [SerializeField] private Image _seasonPrizeLine;// 한정 보상 연출시 보상 이미지를 바꾸기 위한 변수
     [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
 
     //--------------내부 필드-----------------------
@@ -126,9 +127,12 @@ public class GatchaContentPresenter : MonoBehaviour
         var _PopupGatcha= popup.gameObject.GetComponent<PopupGatcha>();
         TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
         await TweenLogic.PlayAnimation(); // 자물쇠 연출 끝날 때 까지 대기
-       
-         _limitedRewardPanel.gameObject.SetActive(true);
+
+        _limitedRewardPanel.gameObject.SetActive(true);
         var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+        // 한정 보상 팝업 이미지를 한번 초기화 후 등수에 맞게 적용
+        _seasonPrizeLine.sprite = null;
+        _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
         await data.PlayAnimation();//한정 보상 팝업 연출
         _limitedRewardPanel.SetActive(false);
 
