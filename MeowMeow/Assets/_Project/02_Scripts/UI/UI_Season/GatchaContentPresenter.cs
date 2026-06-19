@@ -221,7 +221,6 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         RefreshOwnedTicketsTXT();
         RefreshGachaStackTXT();
-        LinitedBlockSetView();
     }
     /// <summary>
     /// 메인 캔버스가 열릴때 호출하는 함수
