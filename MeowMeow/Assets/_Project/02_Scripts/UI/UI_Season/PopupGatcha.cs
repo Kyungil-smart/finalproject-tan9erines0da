@@ -112,7 +112,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _confirmButton.onClick.RemoveListener(OnConfirmClick);
     }
 
-    public async void Play()
+    public  void Play()
     {
         if (IsTransitioning) return;
         IsTransitioning = true;

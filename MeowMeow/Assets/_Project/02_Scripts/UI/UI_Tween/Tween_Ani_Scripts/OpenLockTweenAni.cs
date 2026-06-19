@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class OpenLockTweenAni : MonoBehaviour
     [SerializeField] private float frameInterval = 0.05f;
 
     [ContextMenu("PlayAnimation")]
-    public void PlayAnimation()
+    public   void PlayAnimation()
     {
         if (lockRect == null || lockImage == null)
         {
@@ -18,7 +19,6 @@ public class OpenLockTweenAni : MonoBehaviour
             return;
         }
 
-        gameObject.SetActive(true);
         lockRect.DOKill();
 
         float startX = lockRect.anchoredPosition.x;
@@ -58,6 +58,8 @@ public class OpenLockTweenAni : MonoBehaviour
         seq.AppendInterval(0.5f);
 
         seq.OnComplete(() => PlayFrameAnimation());
+
+       
     }
 
     private void PlayFrameAnimation()

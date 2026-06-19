@@ -87,7 +87,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// 팝업 패널을 닫는 함수입니다
     /// </summary>
     /// <param name="popup"></param>
-    public void ClosePopup(IPopupable popup)
+    public   void ClosePopup(IPopupable popup)
     {
         if (popup == null || !_isPopupOpen)
         {
@@ -119,7 +119,8 @@ public class GatchaContentPresenter : MonoBehaviour
         if (LinitedBlock == null) return;
 
         var TweenLogic=LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
-        TweenLogic.PlayAnimation();
+        TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
+        TweenLogic.PlayAnimation(); 
 
     }
     /// <summary>
