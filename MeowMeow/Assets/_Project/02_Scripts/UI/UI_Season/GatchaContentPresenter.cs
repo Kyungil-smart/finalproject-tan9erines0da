@@ -44,6 +44,10 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ownedTickets;
     [SerializeField] private TextMeshProUGUI _gachaStack;
 
+    // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+    [SerializeField] private GameObject _limitedRewardPanel;
+    [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
+
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
@@ -87,7 +91,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// 팝업 패널을 닫는 함수입니다
     /// </summary>
     /// <param name="popup"></param>
-    public   void ClosePopup(IPopupable popup)
+    public async  void ClosePopup(IPopupable popup)
     {
         if (popup == null || !_isPopupOpen)
         {
@@ -119,8 +123,15 @@ public class GatchaContentPresenter : MonoBehaviour
         if (LinitedBlock == null) return;
 
         var TweenLogic=LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
+        var _PopupGatcha= popup.gameObject.GetComponent<PopupGatcha>();
         TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
-        TweenLogic.PlayAnimation(); 
+        await TweenLogic.PlayAnimation(); // 자물쇠 연출 끝날 때 까지 대기
+       
+         _limitedRewardPanel.gameObject.SetActive(true);
+        var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+        await data.PlayAnimation();//한정 보상 팝업 연출
+        _limitedRewardPanel.SetActive(false);
+         //도장 찍기 연출 
 
     }
     /// <summary>

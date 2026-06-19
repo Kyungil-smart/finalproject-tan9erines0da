@@ -164,6 +164,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         _contentPresenter.ClosePopup(this);
     }
 
+    public Task OnlimitedRewardPopup()
+    {
+        _limitedRewardPanel.gameObject.SetActive(true);
+        var data= _limitedRewardTween.GetComponent<GetPrizeTweenAni>();
+        return data.PlayAnimation();
+    }
     void OnDestroy()
     {
         Unbind();
