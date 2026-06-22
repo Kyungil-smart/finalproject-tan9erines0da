@@ -14,7 +14,9 @@ public class Gatcha_Get_SO :BaseGatcha
     public override async Task TaskExecute()
     {
         var GatchaData = await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
-        if(GatchaData.ItemList ==null || GatchaData.ItemList.Count == 0)
+        var text= FireStoreManager.DocumentType(DataType.GatchaData).TargetStore.currentRef.Path;
+        SubscribeManager.instance.Publish(SubscribeType.Test_Path, "set \n"+text);
+        if (GatchaData.ItemList ==null || GatchaData.ItemList.Count == 0)
         {
             await Owner.InitGatchaData();
             await Owner.InitfirstDic();

@@ -135,10 +135,10 @@ public partial class GatchaDataManager : MonoBehaviour
     */
 
     [ContextMenu("테스트용 데이터 초기화 + 티켓 10장 지급")]
-    void Debug_InitForTest()
+    async void Debug_InitForTest()
     {
-        InitGatchaData();
-        InitfirstDic();
+        await InitGatchaData();
+        await  InitfirstDic();
         for (int i = 0; i < 10; i++) GetTicket();
         Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
     }
