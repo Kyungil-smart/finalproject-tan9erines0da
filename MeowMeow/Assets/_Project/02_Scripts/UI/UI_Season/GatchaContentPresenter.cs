@@ -48,8 +48,10 @@ public class GatchaContentPresenter : MonoBehaviour
 
     // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
     [SerializeField] private GameObject _limitedRewardPanel;
+    [SerializeField] private Button _limitedRewardButton;// _limitedRewardPanel 참조
     [SerializeField] private Image _seasonPrizeLine;// 한정 보상 연출시 보상 이미지를 바꾸기 위한 변수
     [SerializeField] private GetPrizeTweenAni _limitedRewardTween;
+    [SerializeField] private TextMeshProUGUI _limitedRewardText; // 한정 보상 팝업 TMP
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
@@ -62,6 +64,9 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     //리미티드 키 스트링 입니다.
     public int L_itemID;
+    // 한정 보상 스탬프 애니메이션을 백업할 변수
+    private CatStampTweenAni _catStampTweenAni;
+
     //-------------디버그 버튼 관련 필드
     [SerializeField] private GameObject _debugButton;
     public bool IsMainCanvasOpen = false;
@@ -76,6 +81,17 @@ public class GatchaContentPresenter : MonoBehaviour
         
         Bind();
     }
+    #region OnEnable(), OnDisable()
+    private void OnEnable()
+    {
+        _limitedRewardButton.onClick.AddListener(OnClickCloseLPopup);
+    }
+    private void OnDisable()
+    {
+        _limitedRewardButton.onClick.RemoveListener(OnClickCloseLPopup);
+    }
+    #endregion
+
     /// <summary>
     /// 팝업 패널을 여는 함수입니다
     /// </summary>
@@ -143,11 +159,11 @@ public class GatchaContentPresenter : MonoBehaviour
                 _seasonPrizeLine.sprite = null;
                 _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
                 await data.PlayAnimation();//한정 보상 팝업 연출
-                _limitedRewardPanel.SetActive(false);
+                _limitedRewardButton.interactable = true;// 한정 보상 팝업 버튼 활성화
+                _limitedRewardText.text = "한정 보상 획득!";
 
-                var stampAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);
-                if (stampAni != null)
-                    await stampAni.PlayAnimation();
+                // 한정 보상 팝업 버튼 함수에서 불러오기 위해 백업
+                _catStampTweenAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);
             }
 
             L_itemID = -1;
@@ -385,6 +401,20 @@ public class GatchaContentPresenter : MonoBehaviour
     public void RefreshGachaStackTXT()
     {
         _gachaStack.text = $"{GatchaDataManager.Instance.GatchaData.TotalGatchaCount} 회";
+    }
+    #endregion
+
+    #region 한정 보상 팝업 버튼 함수
+    /// <summary>
+    /// 한정 보상 팝업을 닫기위한 함수입니다.
+    /// 한정 보상 팝업 자체가 버튼이 됩니다.
+    /// </summary>
+    public async void OnClickCloseLPopup()
+    {
+        _limitedRewardButton.interactable = false;
+        _limitedRewardPanel.SetActive(false);
+        if (_catStampTweenAni != null) await _catStampTweenAni.PlayAnimation();
+        _catStampTweenAni = null;
     }
     #endregion
 
