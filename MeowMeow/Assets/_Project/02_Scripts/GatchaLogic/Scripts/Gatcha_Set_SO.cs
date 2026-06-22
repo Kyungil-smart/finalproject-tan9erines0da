@@ -17,6 +17,8 @@ public class Gatcha_Set_SO : BaseGatcha
         {
             await FireStoreManager.DocumentType(DataType.GatchaData).SetAsync(Owner.GatchaData);
             Debug.Log("Firestore 저장 성공");
+            var text = FireStoreManager.DocumentType(DataType.GatchaData).TargetStore.currentRef.Path;
+            SubscribeManager.instance.Publish(SubscribeType.Test_Path, "Set \n"+text);
         }
         catch (System.Exception ex)
         {
