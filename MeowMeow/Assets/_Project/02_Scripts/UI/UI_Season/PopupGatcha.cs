@@ -64,6 +64,11 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
         if (_confirmButton != null)
             _confirmButton.interactable = false;
+
+        if (TenthCheck())
+        {
+            _contentPresenter.Need_M_Open = true;
+        }
     }
 
     public void Close()
@@ -135,7 +140,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         // 등수에 맞는 그룹만 활성화 (나머지 비활성화)
         for (int i = 0; i < _highRankGroups.Length; i++)
         {
-            _highRankGroups[i].SetActive(isHighRank && i == _grade - 1);
+            _highRankGroups[i].SetActive(isHighRank && i == _grade - 1 && _isLimitedItem);
             // LimitedReward_Panel의 이미지 변경을 위해 현재 이미지 키값을 _rewardResource 저장
             // 이후에 GatchaContentPresenter.cs에서 RewardResource를 불러와 이미지를 적용 합니다.
             if ((isHighRank && i == _grade - 1)) _rewardResource = _rewardResourceArr[i];
@@ -187,5 +192,12 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     void OnDestroy()
     {
         Unbind();
+    }
+
+    private bool TenthCheck()
+    {
+        int i = GatchaDataManager.Instance.GatchaData.TotalGatchaCount;
+        if (i % 10 != 0 || i == 0) return false;
+        return true;
     }
 }

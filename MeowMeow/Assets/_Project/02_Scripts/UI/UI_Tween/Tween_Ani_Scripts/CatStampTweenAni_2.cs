@@ -52,13 +52,12 @@ public class CatStampTweenAni_2 : MonoBehaviour
                 1.0f,
                 stampGraphic.DOFade(0.6f, 1f));
         }
-
-        /*
+        
         seq.OnComplete(() =>
         {
             gameObject.SetActive(false);
         });
-        */
+        
         return seq.AsyncWaitForCompletion();
     }
 }
