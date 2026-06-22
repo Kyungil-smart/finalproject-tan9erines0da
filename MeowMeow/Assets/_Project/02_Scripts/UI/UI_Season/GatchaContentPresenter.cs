@@ -246,6 +246,7 @@ public class GatchaContentPresenter : MonoBehaviour
         int itemId = GatchaDataManager.Instance.GetItemID(index);
         /*
          시간없어서 일단 임시 방편으로 적어둔 코드
+         if(flag) 나중에 수정 바람
          */
         bool flag = itemId == 20001 ? true : // 2등급 
                     itemId == 20002 ? true ://  1등급
