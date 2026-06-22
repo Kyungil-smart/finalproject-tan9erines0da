@@ -77,17 +77,14 @@ public partial class GatchaDataManager : MonoBehaviour
     }
 
     [ContextMenu("Set_GatchaDTO")]
-    //public async void Set_GatchaDTO()=> Invoke(GatchaLogicType.set);
-    public async Task Set_GatchaDTO()
-    {
-       await  LogicDic[GatchaLogicType.set].TaskExecute();
-    }
+    public async Task Set_GatchaDTO()=> Invoke(GatchaLogicType.set);
+   
     /*
     Set_GatchaDTO 메소드
     GatchaDataManager 클래스 내부 필드인 GatchaData데이터를 저장
     */
     [ContextMenu("Get_GatchaDTO")]
-    public async void Get_GatchaDTO() => Invoke(GatchaLogicType.get);
+    public async Task Get_GatchaDTO() => Invoke(GatchaLogicType.get);
     /*
   Get_GatchaDTO 메소드
     Firestore에서 GatchaDataDTo데이터를  파싱 시도하고
