@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,44 +28,66 @@ public class SNSFeedPresenter : MonoBehaviour,
     private List<GameObject> _spawnedComments =
         new List<GameObject>();
 
+    // 오브젝트 비활성화 체크 플래그
+    private bool _needsLayoutRebuild = false;
+
     /// <summary>
     /// 전역 매니져의 현재 DTO를 기반으로 복원을 수행합니다.
     /// </summary>
     public void RequestContext()
     {
-        if (SNSPostManager.Instance == null) return;
+        if(SNSPostManager.Instance == null) return;
 
-        // 전역 매니져부터 DTO 획득
         SNSPostDTO snapshot = SNSPostManager.Instance.CurrentSelectedFeed;
 
-        // 1. 이미지 및 상단 본문 복원
-        if (_imageRenderer != null)
-            _imageRenderer.RenderPreview(snapshot);
+        // 1. 이미지 및 상단 본문 복원 
+        if (_imageRenderer != null) _imageRenderer.RenderPreview(snapshot);
+        if (_commentText != null) _commentText.text = snapshot.Comment;
 
-        if (_commentText != null)
-            _commentText.text = snapshot.Comment;
-
-        // 2. 해시태그 복원 문자열 가공
         if (_hashtagText != null && snapshot.Hashtags != null)
         {
-            _hashtagText.text =
-                string.Join(" ", snapshot.Hashtags);
+            _hashtagText.text = string.Join(" ", snapshot.Hashtags);
         }
 
-        // 3. 가상 댓글 생성 엔진 구동
+        // 2. 가상 댓글 생성 
         BuildFakeComments(snapshot);
 
-
-        // 4. 스크롤 위치를 무조건 최상단(1.0f)으로 리셋
-        if (_scrollView != null)
+        // 3. 현재 오브젝트가 켜져 있는지 확인
+        if (gameObject.activeInHierarchy)
         {
-            _scrollView.verticalNormalizedPosition = 1f;
+            // 이미 켜져 있다면 즉시 정렬
+            ExecuteLayoutRefresh();
         }
+        else
+        {
+            // 꺼져 있다면 OnEnable 시점에 정렬
+            _needsLayoutRebuild = true;
+        }
+    }
+    void OnEnable()
+    {
+        if (_needsLayoutRebuild) ExecuteLayoutRefresh();
+    }
 
-        // 5. 동적으로 생성된 댓글들의 레이아웃 높이 재계산
+    /// <summary>
+    /// 레이아웃을 강제로 재계산하고 스크롤을 리셋하는 정렬 함수
+    /// </summary>
+    private void ExecuteLayoutRefresh()
+    {
+        // 플래그 초기화
+        _needsLayoutRebuild = false;
+
+        // 캔버스 재계산
+        Canvas.ForceUpdateCanvases();
+
         if (_commentContainer is RectTransform rect)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+        }
+
+        if (_scrollView != null)
+        {
+            _scrollView.verticalNormalizedPosition = 1f;
         }
     }
 
@@ -73,20 +96,22 @@ public class SNSFeedPresenter : MonoBehaviour,
     /// </summary>
     public void ClearPanelContext()
     {
-        string stackTrace = System.Environment.StackTrace;
+        _needsLayoutRebuild = false;
 
-        // 생성된 가상 댓글 오브젝트 완전 파괴
-        foreach (var obj in _spawnedComments)
+        // 삭제 및 분리
+        for (int i = _spawnedComments.Count - 1; i >= 0; i--)
         {
-            if (obj != null) Destroy(obj);
+            if (_spawnedComments[i] != null)
+            {
+                GameObject target = _spawnedComments[i];
+                target.transform.SetParent(null);
+                DestroyImmediate(target);
+            }
         }
         _spawnedComments.Clear();
 
-        // 텍스트 컴포넌트 백지화
-        if (_commentText != null)
-            _commentText.text = string.Empty;
-        if (_hashtagText != null)
-            _hashtagText.text = string.Empty;
+        if (_commentText != null) _commentText.text = string.Empty;
+        if (_hashtagText != null) _hashtagText.text = string.Empty;
     }
 
     /// <summary>
