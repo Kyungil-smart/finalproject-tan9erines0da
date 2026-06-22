@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8200853945696914049}
   - component: {fileID: 2030260598993075504}
   - component: {fileID: 3788801044052456058}
+  - component: {fileID: 5356160152813190188}
   m_Layer: 0
   m_Name: BackendManager
   m_TagString: Untagged
@@ -61,17 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091d7c77fd5a2384da9cc1c042e28d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data:
-    <ImageIndex>k__BackingField: 0
-    <ShaderProperty>k__BackingField:
-      <Brightness>k__BackingField: 0
-      <Contrast>k__BackingField: 0
-      <Saturation>k__BackingField: 0
-      <Temperature>k__BackingField: 0
-    <Comment>k__BackingField: 
-    <Stickers>k__BackingField: []
-    <Hashtags>k__BackingField: []
-    <RandomId>k__BackingField: 0
   TestList: []
   m_Data:
   - {fileID: 11400000, guid: 6d281463d7428c142b19341643ec8a5c, type: 2}
@@ -150,3 +140,15 @@ MonoBehaviour:
     <Grade_1>k__BackingField: 0
     <Grade_2>k__BackingField: 0
     <Grade_3>k__BackingField: 0
+--- !u!114 &5356160152813190188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948890395797757019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb316d537d7f8484e9dbe30e57e06ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -196,6 +196,7 @@ public partial class GatchaDataManager : MonoBehaviour
     item.Repeat가 false인 유일보상 일 경우 true로 바꿈
   */
 }
+#if UNITY_EDITOR
 [CustomEditor(typeof(GatchaDataManager))]
 public class GatchaDataManagerEditor : Editor
 {
@@ -213,3 +214,4 @@ public class GatchaDataManagerEditor : Editor
   
 
 }
+#endif

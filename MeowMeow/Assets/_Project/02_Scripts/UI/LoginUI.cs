@@ -167,5 +167,11 @@ public class LoginUI : MonoBehaviour
             LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
             //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
         }
+
+        // 자정이벤트 등록
+        if(TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnOClock += GatchaDataManager.Instance.OnDailyReset;
+        }
     }
 }
