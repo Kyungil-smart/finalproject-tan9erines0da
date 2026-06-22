@@ -238,9 +238,9 @@ public class GatchaContentPresenter : MonoBehaviour
     async void OnGatchaButtonClick(int index)
     {
         if (_isPopupOpen) return;
-        _isPopupOpen = true;
         if (GatchaDataManager.Instance.IsOpened(index)) return;
         if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
+        _isPopupOpen = true;
 
         int itemId = GatchaDataManager.Instance.GetItemID(index);
         GatchaDataManager.Instance.ExecuteGacha(index);

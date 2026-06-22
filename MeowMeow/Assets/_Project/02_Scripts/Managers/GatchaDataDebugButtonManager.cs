@@ -67,5 +67,11 @@ public partial class GatchaDataManager : MonoBehaviour
     출석 뽑기권 획득 횟수 및 퀘스트 뽑기권 획득 횟수를 0 으로 만듭니다.
     해당 기능은 Firestore에 변경된 데이터를 업로드 합니다.
 */
+    public async void OnDailyReset()
+    {
+        GatchaData.TodayAttendanceTicketCount = 0;
+        GatchaData.TodayQuestTicketCount = 0;
+        await Set_GatchaDTO();
+    }
     #endregion
 }
