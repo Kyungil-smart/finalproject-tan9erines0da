@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public partial class GatchaDataManager : MonoBehaviour
 {
     public List<BaseGatcha> LogicList=new List<BaseGatcha>();
@@ -27,13 +29,25 @@ public partial class GatchaDataManager : MonoBehaviour
     private void Awake()
     {
         Init();
-        foreach(var item in LogicList)
+        initList();
+
+        foreach (var item in LogicList)
         {
             item.Init(this);
         }
         LogicDic = LogicList.ToDictionary(x=>x.Type, x=>x);
     }
-
+    public void initList()
+    {
+        LogicList.Clear();
+        var LoadData = Resources.LoadAll<BaseGatcha>("SO");
+        LogicList.AddRange(LoadData);
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+#endif
+    }
     private void Init()
     {
         if (Instance != null && Instance != this)
@@ -181,4 +195,21 @@ public partial class GatchaDataManager : MonoBehaviour
     해당 인덱스 개방
     item.Repeat가 false인 유일보상 일 경우 true로 바꿈
   */
+}
+[CustomEditor(typeof(GatchaDataManager))]
+public class GatchaDataManagerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+        var data = (GatchaDataManager)target;
+        GUILayout.Space(15);
+        if (GUILayout.Button("수동 Logic List 데이터 셋팅(Awake 작동되긴 함)", GUILayout.Height(40)))
+        {
+            // 버튼을 누르면 실행될 로직
+            data.initList();
+        }
+    }
+  
+
 }

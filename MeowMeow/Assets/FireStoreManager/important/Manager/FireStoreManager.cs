@@ -6,7 +6,9 @@ using Firebase;
 using Firebase.Extensions;
 using Firebase.Firestore;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 public enum DataType
 {
     None,
@@ -19,8 +21,6 @@ public enum DataType
 }
 public class FireStoreManager : MonoBehaviour
 {
-
-    public SNSPostDTO2 m_data = new();
     public List<SNSPostDTO> TestList = new List<SNSPostDTO>();
     private static FirebaseFirestore m_db;
     public static FirebaseFirestore db => m_db;
@@ -31,10 +31,22 @@ public class FireStoreManager : MonoBehaviour
 
     private void Awake()
     {
+        AutoSetting();
         InitSingleton();
+
         // InitFirebaseAsync();
     }
-
+    public void AutoSetting()
+    {
+        m_Data.Clear();
+        var datas = Resources.LoadAll<BaseFireStore>("SO");
+        m_Data.AddRange(datas);
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+#endif
+    }
     private void InitSingleton()
     {
 
@@ -48,24 +60,7 @@ public class FireStoreManager : MonoBehaviour
         }
     }
 
-    //async void Start()
-    //{
-    //    // 백엔드 매니져에서 초기화 완료 대기
-    //    bool isBackendReady = await BackendManager.ReadyTask;
-
-    //    if (!isBackendReady)
-    //    {
-    //        Debug.LogError("[Firestore] 백엔드 초기화 실패");
-    //        return;
-    //    }
-
-    //    // Firebase 초기화 성공 시
-    //    m_NullSO = ScriptableObject.CreateInstance<FireStoreNullSO>();
-    //    m_db = FirebaseFirestore.DefaultInstance;
-
-    //    BindClass();
-    //    InitDictionary();
-    //}
+    
     // 초기화는 백엔드 매니져에서 진행 
     private void InitFirebaseAsync()
     {
@@ -150,161 +145,31 @@ public class FireStoreManager : MonoBehaviour
             return new FirestoreRequestContext(m_DataDictionary[type]);
         }
     }
+ 
+}
 
-   
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    [ContextMenu("Test")]
-    public async void sdsd()
+ 
+#if UNITY_EDITOR
+[CustomEditor(typeof(FireStoreManager))]
+public class FireStoreManagerrEditor : Editor
+{
+    public override void OnInspectorGUI()
     {
-        await Test();
-    }
+        // 기존 인스펙터의 기본 필드들(sheetUrl 등)을 그대로 먼저 그려줍니다.
+        DrawDefaultInspector();
 
-    [ContextMenu("Save")]
-    public async void Save()
-    {
-        SNSPostDTO2 testPost = new SNSPostDTO2
+        // 타겟 스크립트를 가져옵니다.
+        FireStoreManager generator = (FireStoreManager)target;
+
+        // 위아래 여백을 살짝 줍니다.
+        GUILayout.Space(15);
+
+        // 💡 버튼 만들기 (버튼이 클릭되면 true를 반환합니다)
+        if (GUILayout.Button(" 데이터 수동 셋팅", GUILayout.Height(40)))
         {
-            RandomId = UnityEngine.Random.value,
-            // 1. 기본 필드
-            ImageIndex = 2,
-            Comment = "오늘 새로 산 스티커로 꾸며본 내 고양이 사진! 너무 귀엽지 않나요? 🐱✨ #반려동물 #일상",
-
-            // 2. 셰이더 프로퍼티 구조체 (약간 따뜻하고 대비가 강한 필터 느낌)
-            ShaderProperty = new UIShaderProperty2
-            {
-                Brightness = Math.Round(0.05f, 2),
-                Contrast = Math.Round(1.2f, 2),
-                Saturation = Math.Round(1.1f, 2),
-                Temperature = Math.Round(0.6f, 2)
-            },
-
-            // 3. 해시태그 리스트
-            Hashtags = new List<string> { "반려동물", "일상", "고양이", "꾸미기" },
-
-            // 4. 스티커 리스트 (스티커 3개 배치 예시)
-            Stickers = new List<StickerTransformData2>
-        {
-            new StickerTransformData2
-            {
-                StickerId = 101,          // 고양이 귀 모양 스티커
-                RelativeX = Math.Round(0.35f, 2),
-                RelativeY = Math.Round(0.68f, 2),
-                RelativeScale = Math.Round(1.2f, 2) ,
-                Rotation = Math.Round(-15.0f, 2)
-            },
-            new StickerTransformData2
-            {
-                StickerId = 102,          // 볼터치 스티커
-                RelativeX = Math.Round(0.42f,2),
-                RelativeY = Math.Round(0.62f,2),
-                RelativeScale = Math.Round(0.8f,2),
-                Rotation = Math.Round(0.0f, 2)
-            },
-            new StickerTransformData2
-            {
-                StickerId = 505,          // 반짝이는 별 스티커
-                RelativeX = Math.Round(0.75f, 2),
-                RelativeY = Math.Round(0.25f, 2),
-                RelativeScale = Math.Round(1.5f, 2),
-                Rotation = Math.Round(45.0f, 2)
-            }
+            // 버튼을 누르면 실행될 로직
+            generator.AutoSetting();
         }
-
-        }; await FireStoreManager.DocumentType(DataType.Test)
-            .SetAsync(testPost);
-    }
-    [ContextMenu("get")]
-    public async void get()
-    {
-        m_data = await FireStoreManager.DocumentType(DataType.Test).
-            GetAsync<SNSPostDTO2>();
-    }
-    [ContextMenu("update")]
-    public async void dateUpdate()
-    {
-        Dictionary<string, object> updates = new Dictionary<string, object>
-        {
-          { "Comment", "zzzz" } //  
-        };
-
-        await FireStoreManager.DocumentType(DataType.Test).UpdateAsync<SNSPostDTO>(updates);
-    }
-    [ContextMenu("delete")]
-    public async void Delete()
-    {
-        await FireStoreManager.DocumentType(DataType.Test).DeleteAsync();
-    }
-    [ContextMenu("확장메소드 체크")]
-    public async void Extens()
-    {
-        var data = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
-        foreach (var doc in data)
-        {
-            TestList.Add(doc.ToStruct());
-        }
-        LocalFeedStorage.SavePosts("testuid", "feed", TestList);
-    }
-
-    [ContextMenu("확장메소드 _AddAsync ")]
-    public async void Extens__AddAsync()
-    {
-        var testdata = new SNSPostDTO2();
-        await FireStoreManager.DocumentType(DataType.Test).AddAsync(testdata);
-
-    }
-    private async Task Test()
-    {
-
-        Dictionary<string, object> updates = new Dictionary<string, object>
-        {
-          { "Comment", "zzzz" } //  
-        };
-        await FireStoreManager.DocumentType(DataType.None)?.UpdateAsync<SNSPostDTO>(updates);
-    }
-    [ContextMenu("Extensions_SNSData_SAVE")]
-    public async void Extensions_SNSData_SAVE()
-    {
-        var data = new FirestoreSNSPostDoc();
-        data.RandomIndex = UnityEngine.Random.value;
-        await FireStoreManager.DocumentType(DataType.Posts).SaveSNSPostData(data);
-
     }
 }
-
-[System.Serializable]
-[FirestoreData] // 👈 파이어스토어 변환기 활성화
-public struct StickerTransformData2
-{
-    [field: SerializeField][FirestoreProperty] public int StickerId { get; set; }
-    [field: SerializeField][FirestoreProperty] public double RelativeX { get; set; }
-    [field: SerializeField][FirestoreProperty] public double RelativeY { get; set; }
-    [field: SerializeField][FirestoreProperty] public double RelativeScale { get; set; }
-    [field: SerializeField][FirestoreProperty] public double Rotation { get; set; }
-}
-
-[System.Serializable]
-[FirestoreData] //  파이어스토어 변환기 활성화
-public struct UIShaderProperty2
-{
-    [field: SerializeField][FirestoreProperty] public double Brightness { get; set; }
-    [field: SerializeField][FirestoreProperty] public double Contrast { get; set; }
-    [field: SerializeField][FirestoreProperty] public double Saturation { get; set; }
-    [field: SerializeField][FirestoreProperty] public double Temperature { get; set; }
-}
-
-[System.Serializable]
-[FirestoreData] //  파이어스토어 변환기 활성화
-public struct SNSPostDTO2
-{
-    // 만약 uid나 id 필드가 있다면 여기에 추가하고 [FirestoreProperty]를 붙이세요.
-
-    [field: SerializeField][FirestoreProperty] public int ImageIndex { get; set; }
-    [field: SerializeField][FirestoreProperty] public UIShaderProperty2 ShaderProperty { get; set; }
-    [field: SerializeField][FirestoreProperty] public string Comment { get; set; }
-    [field: SerializeField][FirestoreProperty] public List<StickerTransformData2> Stickers { get; set; }
-    [field: SerializeField][FirestoreProperty] public List<string> Hashtags { get; set; }
-    [field: SerializeField][FirestoreProperty] public double RandomId { get; set; }
-
-}
-
+#endif
