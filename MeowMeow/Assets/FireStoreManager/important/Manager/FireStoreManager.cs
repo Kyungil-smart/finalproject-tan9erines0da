@@ -29,14 +29,14 @@ public class FireStoreManager : MonoBehaviour
     private static Dictionary<DataType, BaseFireStore> m_DataDictionary;
     private static FireStoreNullSO m_NullSO;
 
-    private void Awake()
+    private async void Awake()
     {
-        AutoSetting();
+        await AutoSetting();
         InitSingleton();
 
         // InitFirebaseAsync();
     }
-    public void AutoSetting()
+    public   Task AutoSetting()
     {
         m_Data.Clear();
         var datas = Resources.LoadAll<BaseFireStore>("SO");
@@ -46,6 +46,7 @@ public class FireStoreManager : MonoBehaviour
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 #endif
+        return Task.CompletedTask;
     }
     private void InitSingleton()
     {
@@ -145,7 +146,8 @@ public class FireStoreManager : MonoBehaviour
             return new FirestoreRequestContext(m_DataDictionary[type]);
         }
     }
- 
+   
+
 }
 
  
