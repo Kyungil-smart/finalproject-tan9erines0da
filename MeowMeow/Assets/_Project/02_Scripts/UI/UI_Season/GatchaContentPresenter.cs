@@ -83,7 +83,7 @@ public class GatchaContentPresenter : MonoBehaviour
     public void OpenPopup(IPopupable popup, int itemId = 0)
     {
         if (_isPopupOpen || popup == null) return;
-
+        _isPopupOpen = true;
         popup.gameObject.SetActive(true);
         if (itemId != 0)
         {
@@ -92,8 +92,8 @@ public class GatchaContentPresenter : MonoBehaviour
         popup.Unbind();
         popup.Bind(this);
         popup.Open();
+        
 
-        _isPopupOpen = true;
     }
     /// <summary>
     /// 팝업 패널을 닫는 함수입니다
@@ -101,17 +101,18 @@ public class GatchaContentPresenter : MonoBehaviour
     /// <param name="popup"></param>
     public async  void ClosePopup(IPopupable popup)
     {
+      
         if (popup == null || !_isPopupOpen)
         {
             Debug.Log($"클로즈 실패 {_isPopupOpen}");
             return;
         }
-
+      
         popup.Unbind();
         popup.Close();
 
         popup.gameObject.SetActive(false);
-        _isPopupOpen = false;
+      
         /*
         L_itemID 이 값이 있으면   자물쇠 연출 시작
         30001 : 1등급 유일 보상
@@ -157,6 +158,7 @@ public class GatchaContentPresenter : MonoBehaviour
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
         }
+        _isPopupOpen = false;
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -236,6 +238,7 @@ public class GatchaContentPresenter : MonoBehaviour
     async void OnGatchaButtonClick(int index)
     {
         if (_isPopupOpen) return;
+        _isPopupOpen = true;
         if (GatchaDataManager.Instance.IsOpened(index)) return;
         if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
 
@@ -244,10 +247,11 @@ public class GatchaContentPresenter : MonoBehaviour
 
         _gatchaBlocks[index].SetView(true);
         _gatchaBlocks[index].SetViewCover(index);
-
+        Debug.Log("시작");
         await _gatchaBlocks[index].Do();
-
-        IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
+        Debug.Log("끝");
+        _isPopupOpen = false; 
+          IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
         OpenPopup(popup, itemId);
     }
 

@@ -12,11 +12,12 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     [SerializeField] private GameObject _lowRank;
     [SerializeField] private TextMeshProUGUI _lowRankTMP;
     [SerializeField] private BoxCoverTweenAni _anim;
+    
 
     public void SetView(bool isOpend)
     {
         if (_front == null) return;
-
+      
         if (!isOpend) AllCloseView();
 
         _front.SetActive(!isOpend);
@@ -58,6 +59,7 @@ public class GatchaButton : MonoBehaviour, ISwitchable
                 _lowRankTMP.text = $"{grade}등";
                 break;
         }
+      
     }
 
     // 뽑기 블럭을 뽑기전 상태로 되돌리기 위한 함수입니다.
