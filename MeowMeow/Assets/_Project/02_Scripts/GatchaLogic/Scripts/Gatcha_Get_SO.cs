@@ -16,8 +16,8 @@ public class Gatcha_Get_SO :BaseGatcha
         var GatchaData = await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
         if(GatchaData.ItemList ==null || GatchaData.ItemList.Count == 0)
         {
-            Owner.InitGatchaData();
-            Owner.InitfirstDic();
+            await Owner.InitGatchaData();
+            await Owner.InitfirstDic();
             try
             {
                 await Owner.Set_GatchaDTO();

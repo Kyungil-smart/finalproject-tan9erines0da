@@ -7,7 +7,7 @@ public partial class GatchaDataManager : MonoBehaviour
     [ContextMenu("OnClickCompleteQuestButton")]
     public async Task OnClickCompleteQuestButton()
     {
-        IsQuestCompensation();
+        await IsQuestCompensation();
     }
     /*
     OnClickCompleteQuestButton 메소드
@@ -37,8 +37,8 @@ public partial class GatchaDataManager : MonoBehaviour
     public async Task OnClickGachaResetButton()
     {
         GatchaData = new();
-        InitGatchaData();
-        InitfirstDic();
+        await InitGatchaData();
+        await InitfirstDic();
         GatchaData.IsResetPerformed = false;
         GatchaData.Grade_1 = false;
         GatchaData.Grade_2 = false;
