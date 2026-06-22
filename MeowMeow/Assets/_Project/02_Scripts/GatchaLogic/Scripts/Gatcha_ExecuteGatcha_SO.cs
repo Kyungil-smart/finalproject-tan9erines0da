@@ -32,15 +32,22 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
 
         foreach (var item in sheetList)
         {
+             //일단 내가 뽑은거랑 비교
             var isSameID = item.uniqueId == Owner.GetItemID(index).ToString();
-
+            //찾으면 실행
             if (isSameID)
             {
-                bool is_Initial_Reward = (item.Repeat ==false);
-                bool canChangeGradeFlag = is_Initial_Reward && (item.Grade >= 1 && item.Grade <= 3);
-                if (canChangeGradeFlag)
+                //아이템 등급이 1등급에서 3등급인지 
+                bool IsValidGrade = (item.Grade >= 1 && item.Grade <= 3);
+                int CurrentGrade = item.Grade;
+                bool flag = (CurrentGrade == 1 && Owner.GatchaData.Grade_1 == false) ? true :
+                            (CurrentGrade == 2 && Owner.GatchaData.Grade_2 == false) ? true :
+                            (CurrentGrade == 3 && Owner.GatchaData.Grade_3 == false) ? true :
+                            false;
+                if (flag)
                 {
                     await Owner.ChangeGradeFlag(item.Grade);
+
                     break;
                 }
             }

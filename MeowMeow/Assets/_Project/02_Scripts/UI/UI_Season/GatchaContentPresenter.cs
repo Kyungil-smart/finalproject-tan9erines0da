@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -243,7 +244,29 @@ public class GatchaContentPresenter : MonoBehaviour
         _isPopupOpen = true;
 
         int itemId = GatchaDataManager.Instance.GetItemID(index);
-        GatchaDataManager.Instance.ExecuteGacha(index);
+        /*
+         시간없어서 일단 임시 방편으로 적어둔 코드
+         */
+        bool flag = itemId == 20001 ? true : // 2등급 
+                    itemId == 20002 ? true ://  1등급
+                    itemId == 20006 ? true : false;//3등급
+        if(flag)
+        {
+            if(itemId == 20001 && GatchaDataManager.Instance.GatchaData.Grade_2==false)
+            {
+                itemId = 40001;
+            }
+            else if (itemId == 20002 && GatchaDataManager.Instance.GatchaData.Grade_1 == false)
+            {
+                itemId = 30001;
+            }
+            else if (itemId == 20006 && GatchaDataManager.Instance.GatchaData.Grade_3 == false)
+            {
+                itemId = 30002;
+            }
+        }
+        await GatchaDataManager.Instance.ExecuteGacha(index);
+
 
         _gatchaBlocks[index].SetView(true);
         _gatchaBlocks[index].SetViewCover(index);
@@ -311,9 +334,9 @@ public class GatchaContentPresenter : MonoBehaviour
     /// <summary>
     /// 초기화를 실행 했을때 뽑기 상품을 초기화 하는 함수입니다.
     /// </summary>
-    public void ResetGachaBlocks()
+    public async Task ResetGachaBlocks()
     {
-        GatchaDataManager.Instance.RewardReset();
+       await  GatchaDataManager.Instance.RewardReset();
 
         for (int i = 0; i < _gatchaBlocks.Count; i++)
         {
