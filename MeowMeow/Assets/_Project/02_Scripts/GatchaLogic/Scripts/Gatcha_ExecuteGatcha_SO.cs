@@ -40,7 +40,7 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
                 bool canChangeGradeFlag = is_Initial_Reward && (item.Grade >= 1 && item.Grade <= 3);
                 if (canChangeGradeFlag)
                 {
-                    Owner.ChangeGradeFlag(item.Grade);
+                    await Owner.ChangeGradeFlag(item.Grade);
                     break;
                 }
             }

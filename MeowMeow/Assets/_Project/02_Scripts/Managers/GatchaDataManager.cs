@@ -60,34 +60,34 @@ public partial class GatchaDataManager : MonoBehaviour
     }
 
 
-    public void Invoke(GatchaLogicType type, int value=-1)
+    public Task Invoke(GatchaLogicType type, int value=-1)
     {
         if (LogicDic.ContainsKey(type) && value == -1)
         {
             LogicDic[type].TaskExecute();
+            return Task.CompletedTask;
         }
         else if(LogicDic.ContainsKey(type))
         {
-          LogicDic[type].TaskExecute(value);
+            LogicDic[type].TaskExecute(value);
+            return Task.CompletedTask;
         }
         else
         {
             Debug.LogError($"LogicDic에 {type}이 존재하지 않습니다.");
         }
+        return Task.CompletedTask;
     }
 
     [ContextMenu("Set_GatchaDTO")]
-    //public async void Set_GatchaDTO()=> Invoke(GatchaLogicType.set);
-    public async Task Set_GatchaDTO()
-    {
-       await  LogicDic[GatchaLogicType.set].TaskExecute();
-    }
+    public async Task Set_GatchaDTO()=> await Invoke(GatchaLogicType.set);
+   
     /*
     Set_GatchaDTO 메소드
     GatchaDataManager 클래스 내부 필드인 GatchaData데이터를 저장
     */
     [ContextMenu("Get_GatchaDTO")]
-    public async void Get_GatchaDTO() => Invoke(GatchaLogicType.get);
+    public async Task Get_GatchaDTO() => await Invoke(GatchaLogicType.get);
     /*
   Get_GatchaDTO 메소드
     Firestore에서 GatchaDataDTo데이터를  파싱 시도하고
@@ -95,7 +95,7 @@ public partial class GatchaDataManager : MonoBehaviour
     데이터가 있으면 내부 필드로 캐싱한다.
   */
     [ContextMenu("RewardReset")]
-    public void RewardReset()=> Invoke(GatchaLogicType.RewardReset);
+    public async Task RewardReset()=> await Invoke(GatchaLogicType.RewardReset);
     /*
     RewardReset 메소드
 
@@ -105,7 +105,7 @@ public partial class GatchaDataManager : MonoBehaviour
     GatchaData.ItemList에  추가한다.
   */
 
-    public void InitGatchaData()=> Invoke(GatchaLogicType.InitGatchaData);
+    public async Task InitGatchaData()=> await Invoke(GatchaLogicType.InitGatchaData);
     /*
      InitGatchaData 메소드
      초기 데이터 설정하는 메소드입니다.
@@ -119,7 +119,7 @@ public partial class GatchaDataManager : MonoBehaviour
     ItemList에 index번째에 있는 아이템의 ID를 반환하는 메소드입니다.
     */
 
-    public void InitfirstDic() => Invoke(GatchaLogicType.InitFirstDic);
+    public async Task InitfirstDic() =>await Invoke(GatchaLogicType.InitFirstDic);
     /*
      InitfirstDic 메소드
      초기 데이터 설정하는 메소드입니다.
@@ -150,7 +150,7 @@ public partial class GatchaDataManager : MonoBehaviour
     IsOpened 메소드
     유저가 뽑았던 아이템이면 true 안뽑았던 아이템이면 false 반환
     */
-    public void  drawByIndex(int index) => Invoke(GatchaLogicType.drawByIndex, index);
+    public async Task drawByIndex(int index) => await Invoke(GatchaLogicType.drawByIndex, index);
     /*
       drawByIndex 메소드
       뽑기를 했을 때 실행될 메소드 입니다.
@@ -159,7 +159,7 @@ public partial class GatchaDataManager : MonoBehaviour
       OwnedTicketCount <-- 가지고 있는 티켓 카운트 1감소 시킴
     */
     [ContextMenu("IsCompensation")]
-    public void IsCompensation() => Invoke(GatchaLogicType.IsCompensation);
+    public async Task IsCompensation() =>await Invoke(GatchaLogicType.IsCompensation);
     /*
     IsCompensation 메소드
     일일 출석 보상 지급 시 호출하는 메소드 입니다.
@@ -170,7 +170,7 @@ public partial class GatchaDataManager : MonoBehaviour
     그리고 내부 DTO필드 값 firestore에 저장
     */
     [ContextMenu("IsQuestCompensation")]
-    public void IsQuestCompensation() => Invoke(GatchaLogicType.IsQuestCompensation);
+    public async Task IsQuestCompensation() => await Invoke(GatchaLogicType.IsQuestCompensation);
     /*
      IsQuestCompensation 메소드
      퀘스트 획득한 티켓카운트 증가 시키는 메소드 입니다.
@@ -180,12 +180,12 @@ public partial class GatchaDataManager : MonoBehaviour
      보유중인 티켓 카운트 증가시킴
      그리고 저장
      */
-    public void ChangeGradeFlag(int value)=> Invoke(GatchaLogicType.ChangeGradeFlag, value);
+    public async Task ChangeGradeFlag(int value)=> await Invoke(GatchaLogicType.ChangeGradeFlag, value);
     /*
      ChangeGradeFlag 메소드
      초기 유일 보상 획득 했으면 Owner.GatchaData.Grade_* = true; 변경
     */
-    public void ExecuteGacha(int index) => Invoke(GatchaLogicType.ExecuteGacha, index);
+    public async Task ExecuteGacha(int index) =>await  Invoke(GatchaLogicType.ExecuteGacha, index);
     /*
     ExecuteGacha 메소드
     티켓 으로 뽑기를 실행할 경우 실행하는 메소드

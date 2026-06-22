@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3788801044052456058, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
       propertyPath: LogicList.Array.size
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7843787502588861309, guid: 4a37425ed7f2ce243b3358997056e094, type: 3}
       propertyPath: m_Data.Array.size
