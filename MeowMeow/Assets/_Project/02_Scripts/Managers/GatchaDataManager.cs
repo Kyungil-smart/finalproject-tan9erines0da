@@ -25,8 +25,6 @@ public partial class GatchaDataManager : MonoBehaviour
     public bool Grade_2 => GatchaData.Grade_2;
     //3등 보상 획득 여부
     public bool Grade_3 => GatchaData.Grade_3;
-    //일반 1등 보상 획득 여부
-    public bool Normal_Grade_1;
     /// ////////////////////////////////////////////////////////////////////
     private void Awake()
     {
