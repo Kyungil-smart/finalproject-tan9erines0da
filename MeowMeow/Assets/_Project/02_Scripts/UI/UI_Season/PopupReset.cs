@@ -62,6 +62,14 @@ public class PopupReset : MonoBehaviour, IPopupable
         // 보드 초기화 실행
        await _contentPresenter.ResetGachaBlocks();
 
+        // 초기화 버튼을 처음 눌렀을때
+        if (_contentPresenter.IsFirstReset == false) _contentPresenter.IsFirstReset = true;
+        // 초기화 버튼을 2회차 이상 눌렀을때 일반 1등 보상 획득을 false 처리
+        else GatchaDataManager.Instance.Normal_Grade_1 = false;
+
+        // 초기화 버튼 비활성화
+        _contentPresenter.ResetButton.interactable = false;
+
         _contentPresenter.ClosePopup(this);
     }
 
