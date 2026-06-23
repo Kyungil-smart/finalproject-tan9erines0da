@@ -70,23 +70,22 @@ public partial class GatchaDataManager : MonoBehaviour
     }
 
 
-    public Task Invoke(GatchaLogicType type, int value=-1)
+    public async Task Invoke(GatchaLogicType type, int value=-1)
     {
-        if (LogicDic.ContainsKey(type) && value == -1)
-        {
-            LogicDic[type].TaskExecute();
-            return Task.CompletedTask;
-        }
-        else if(LogicDic.ContainsKey(type))
-        {
-            LogicDic[type].TaskExecute(value);
-            return Task.CompletedTask;
-        }
-        else
+        Debug.Log($"[호출 타입] {type}, 값 : {value}");
+        if(!LogicDic.ContainsKey(type))
         {
             Debug.LogError($"LogicDic에 {type}이 존재하지 않습니다.");
         }
-        return Task.CompletedTask;
+
+        if (value == -1)
+        {
+            await LogicDic[type].TaskExecute();
+        }
+        else
+        {
+            await LogicDic[type].TaskExecute(value);           
+        }        
     }
 
     [ContextMenu("Set_GatchaDTO")]
