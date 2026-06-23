@@ -1,11 +1,7 @@
-using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GatchaContentPresenter : MonoBehaviour
@@ -34,7 +30,8 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private Limited_Button _1stLinitedBlock;//진열장
     [SerializeField] private Limited_Button _2ndLinitedBlock;//진열장
     [SerializeField] private Limited_Button _3rdLinitedBlock;//진열장
-    [SerializeField] private Button _resetButton;//초기화 버튼 
+    [SerializeField] private Button _resetButton;//초기화 버튼
+    public Button ResetButton => _resetButton;
     [SerializeField] private List<GatchaButton> _gatchaBlocks;
 
     [Header("뽑기 등수 별 보상 표시 그룹")]
@@ -55,7 +52,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
-    bool CanReset { get { return GatchaDataManager.Instance.Grade_1; } }
+    bool CanReset { get { return GatchaDataManager.Instance.CanReset; } }
     // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
     public bool Need_M_Open
     {
@@ -183,7 +180,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// </summary>
     public void ChangeResetButtonState()
     {
-        _resetButton.interactable = CanReset;
+       _resetButton.interactable = CanReset;
     }
 
     void Bind()
@@ -276,6 +273,7 @@ public class GatchaContentPresenter : MonoBehaviour
             else if (itemId == 20002 && GatchaDataManager.Instance.GatchaData.Grade_1 == false)
             {
                 itemId = 30001;
+                // 1등 보상 획득 여부 판별
             }
             else if (itemId == 20006 && GatchaDataManager.Instance.GatchaData.Grade_3 == false)
             {
@@ -310,6 +308,7 @@ public class GatchaContentPresenter : MonoBehaviour
         for (int i = 0; i < _gatchaBlocks.Count; i++)
         {
             bool isOpened = GatchaDataManager.Instance.IsOpened(i);
+
             _gatchaBlocks[i].SetView(isOpened);
 
             if (isOpened)

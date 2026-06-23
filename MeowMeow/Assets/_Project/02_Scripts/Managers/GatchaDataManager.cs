@@ -25,6 +25,16 @@ public partial class GatchaDataManager : MonoBehaviour
     public bool Grade_2 => GatchaData.Grade_2;
     //3등 보상 획득 여부
     public bool Grade_3 => GatchaData.Grade_3;
+    
+    public bool CanReset
+    {
+        get
+        {
+            bool canReset;
+            canReset = IsOpened(FirstGradeIndex());
+            return canReset;
+        }
+    }
     /// ////////////////////////////////////////////////////////////////////
     private void Awake()
     {
@@ -133,15 +143,6 @@ public partial class GatchaDataManager : MonoBehaviour
      티켓 획득 시 뽑기권 개수 1 증가시키는 메소드입니다.
     */
 
-    [ContextMenu("테스트용 데이터 초기화 + 티켓 10장 지급")]
-    async void Debug_InitForTest()
-    {
-        await InitGatchaData();
-        await  InitfirstDic();
-        for (int i = 0; i < 10; i++) GetTicket();
-        Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
-    }
-   
     public bool IsOpened(int index) =>
         GatchaData.OpenedIndices != null &&
         GatchaData.OpenedIndices.TryGetValue(index.ToString(), out bool result) && result;
@@ -194,6 +195,21 @@ public partial class GatchaDataManager : MonoBehaviour
     해당 인덱스 개방
     item.Repeat가 false인 유일보상 일 경우 true로 바꿈
   */
+
+    // 1등 보상 획득 여부 판별하는 메소드입니다.
+    public int FirstGradeIndex()
+    {
+        return GatchaData.ItemList.IndexOf(20002);
+    }
+
+    [ContextMenu("테스트용 데이터 초기화 + 티켓 10장 지급")]
+    async void Debug_InitForTest()
+    {
+        await InitGatchaData();
+        await InitfirstDic();
+        for (int i = 0; i < 10; i++) GetTicket();
+        Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
+    }
 }
 #if UNITY_EDITOR
 [CustomEditor(typeof(GatchaDataManager))]
