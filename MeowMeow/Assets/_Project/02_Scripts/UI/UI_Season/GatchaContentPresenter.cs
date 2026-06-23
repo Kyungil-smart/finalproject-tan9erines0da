@@ -52,13 +52,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
-    // 1등 보상 획득 여부
-    public bool IsGet1stReward
-    {
-        get;
-        set;
-    }
-    bool CanReset { get { return IsGet1stReward; } }
+    bool CanReset { get { return GatchaDataManager.Instance.CanReset; } }
     // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
     public bool Need_M_Open
     {
@@ -280,16 +274,10 @@ public class GatchaContentPresenter : MonoBehaviour
             {
                 itemId = 30001;
                 // 1등 보상 획득 여부 판별
-                IsGet1stReward = true;
             }
             else if (itemId == 20006 && GatchaDataManager.Instance.GatchaData.Grade_3 == false)
             {
                 itemId = 30002;
-            }
-            // 일반 1등 보상 획득시 획득여부 판별
-            else if (itemId == 20002 && GatchaDataManager.Instance.GatchaData.Grade_1 == true)
-            {
-                IsGet1stReward = true;
             }
         }
         await GatchaDataManager.Instance.ExecuteGacha(index);
@@ -325,13 +313,6 @@ public class GatchaContentPresenter : MonoBehaviour
 
             if (isOpened)
             {
-                // 시작시 열려있는 뽑기판에 1등 보상이 있으면 초기화 버튼 활성
-                if (GatchaDataManager.Instance.GetItemID(i) == 20002)
-                {
-                    IsGet1stReward = true;
-                    _resetButton.interactable = true;
-                }
-
                 _gatchaBlocks[i].SetViewCover(i);
             }
         }

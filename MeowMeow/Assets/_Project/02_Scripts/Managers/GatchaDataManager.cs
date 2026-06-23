@@ -25,6 +25,16 @@ public partial class GatchaDataManager : MonoBehaviour
     public bool Grade_2 => GatchaData.Grade_2;
     //3등 보상 획득 여부
     public bool Grade_3 => GatchaData.Grade_3;
+    
+    public bool CanReset
+    {
+        get
+        {
+            bool canReset;
+            canReset = IsOpened(FirstGradeIndex());
+            return canReset;
+        }
+    }
     /// ////////////////////////////////////////////////////////////////////
     private void Awake()
     {
@@ -142,7 +152,12 @@ public partial class GatchaDataManager : MonoBehaviour
         for (int i = 0; i < 10; i++) GetTicket();
         Debug.Log($"테스트 초기화 완료. ItemList: {GatchaData.ItemList?.Count}개, 티켓: {GatchaData.OwnedTicketCount}장");
     }
-   
+    // 1등 보상 획득 여부 판별하는 메소드입니다. ===============================================================
+    public int FirstGradeIndex()
+    {
+       return GatchaData.ItemList.IndexOf(20002);
+    }
+
     public bool IsOpened(int index) =>
         GatchaData.OpenedIndices != null &&
         GatchaData.OpenedIndices.TryGetValue(index.ToString(), out bool result) && result;
