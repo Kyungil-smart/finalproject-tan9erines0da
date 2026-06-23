@@ -14,9 +14,9 @@ public class Gatcha_Get_SO :BaseGatcha
     public override async Task TaskExecute()
     {
         var GatchaData = await FireStoreManager.DocumentType(DataType.GatchaData).GetAsync<GatchaDTO>();
-        var text= FireStoreManager.DocumentType(DataType.GatchaData).TargetStore.currentRef.Path;
-        SubscribeManager.instance.Publish(SubscribeType.Test_Path, "set \n"+text);
-        if (GatchaData.ItemList ==null || GatchaData.ItemList.Count == 0)
+
+
+        if (GatchaData.ItemList == null || GatchaData.ItemList.Count == 0)
         {
             await Owner.InitGatchaData();
             await Owner.InitfirstDic();
@@ -28,7 +28,7 @@ public class Gatcha_Get_SO :BaseGatcha
             {
                 Debug.LogError($"Gatcha_Get_SO Error");
             }
-         
+
         }
         else
         {
@@ -36,5 +36,5 @@ public class Gatcha_Get_SO :BaseGatcha
         }
     }
 
-     
+
 }

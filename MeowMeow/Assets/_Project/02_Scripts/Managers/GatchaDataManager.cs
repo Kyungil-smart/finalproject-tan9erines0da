@@ -14,7 +14,7 @@ public partial class GatchaDataManager : MonoBehaviour
     public List<BaseGatcha> LogicList=new List<BaseGatcha>();
     public Dictionary<GatchaLogicType, BaseGatcha> LogicDic = new Dictionary<GatchaLogicType, BaseGatcha>();
     public static GatchaDataManager Instance { get; private set; }
-   [SerializeField] public GatchaDTO GatchaData=new GatchaDTO();
+   [SerializeField] public GatchaDTO GatchaData = new GatchaDTO();
     //출석으로 얻은 뽑기권 
     public int TodayAttendanceTicketCount => GatchaData.TodayAttendanceTicketCount;
     //퀘스트로 얻은 뽑기권
@@ -25,6 +25,7 @@ public partial class GatchaDataManager : MonoBehaviour
     public bool Grade_2 => GatchaData.Grade_2;
     //3등 보상 획득 여부
     public bool Grade_3 => GatchaData.Grade_3;
+
     
     public bool CanReset
     {
@@ -39,13 +40,7 @@ public partial class GatchaDataManager : MonoBehaviour
     private void Awake()
     {
         Init();
-        initList();
-
-        foreach (var item in LogicList)
-        {
-            item.Init(this);
-        }
-        LogicDic = LogicList.ToDictionary(x=>x.Type, x=>x);
+        
     }
     public void initList()
     {
@@ -67,6 +62,14 @@ public partial class GatchaDataManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        initList();
+
+        foreach (var item in LogicList)
+        {
+            item.Init(this);
+        }
+        LogicDic = LogicList.ToDictionary(x => x.Type, x => x);
     }
 
 

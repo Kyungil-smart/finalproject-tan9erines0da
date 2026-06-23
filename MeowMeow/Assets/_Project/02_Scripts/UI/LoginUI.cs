@@ -145,10 +145,13 @@ public class LoginUI : MonoBehaviour
         
 
         FirebaseUser user = BackendManager.Auth.CurrentUser;
-        
+
         await GatchaDataManager.Instance.Get_GatchaDTO();
         await GatchaDataManager.Instance.IsCompensation();
-       var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
+        
+
+
+        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
         
         // 유저 로컬 데이터에 랜덤피드 6개 확보
         if (localFeedStorage.Count > 1)

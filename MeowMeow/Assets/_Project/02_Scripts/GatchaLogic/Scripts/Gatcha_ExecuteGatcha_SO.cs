@@ -13,10 +13,10 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
 
     public override async Task TaskExecute(int index)
     {
-        bool ticketIsLack = Owner.GatchaData.OwnedTicketCount == 0 && Owner.GatchaData.OwnedTicketCount < 0;
+        bool ticketIsLack = Owner.GatchaData.OwnedTicketCount <= 0;
         if (ticketIsLack)
         {
-            Debug.LogError("뽑기권 부족");
+            Debug.LogError("[Gatcha_ExecuteGatcha] 뽑기권 부족");
             return;//뽑기권 부족하면 실행 안함
         }
 
@@ -58,7 +58,7 @@ public class Gatcha_ExecuteGatcha_SO : BaseGatcha
         }
         catch (System.Exception ex)
         {
-            Debug.LogError($"Gatcha_ExecuteGatcha_SO Error");
+            Debug.LogError($"[Gatcha_ExecuteGatcha]Gatcha_ExecuteGatcha_SO Error");
         }
 
         SubscribeManager.instance.Publish(SubscribeType.MarkMilestone);
