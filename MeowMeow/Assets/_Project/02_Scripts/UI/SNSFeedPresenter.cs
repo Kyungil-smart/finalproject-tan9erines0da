@@ -16,7 +16,7 @@ public class SNSFeedPresenter : MonoBehaviour,
     [SerializeField]
     private TextMeshProUGUI _hashtagText;
     [SerializeField]
-    private UnityEngine.UI.ScrollRect _scrollView;
+    private ScrollRect _scrollView;
 
     [Header("가상 댓글 생성 관련")]
     [SerializeField]
@@ -171,8 +171,8 @@ public class SNSFeedPresenter : MonoBehaviour,
             users[rnd] = temp;
         }
 
-        // 3) 최대 6개의 가상 댓글 인스턴스화 및 데이터 주입
-        int count = Mathf.Min(6, users.Count);
+        // 3) 최대 4개의 가상 댓글 인스턴스화 및 데이터 주입
+        int count = Mathf.Min(4, users.Count);
         for (int i = 0; i < count; i++)
         {
             GameObject item = Instantiate(
