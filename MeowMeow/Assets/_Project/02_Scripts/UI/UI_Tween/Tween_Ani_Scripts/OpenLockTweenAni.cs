@@ -9,10 +9,14 @@ public class OpenLockTweenAni : MonoBehaviour
     [SerializeField] private Image lockImage;
     [SerializeField] private Sprite[] lockFrames;
     [SerializeField] private float frameInterval = 0.05f;
+    [SerializeField] private Button _limitedItemButton;
 
     public async Task PlayAnimation()
     {
         if (lockRect == null || lockImage == null) return;
+
+        // 애니메이션 시작 전에 한정상품 미리보기 버튼 비활성화
+        _limitedItemButton.interactable = false;
 
         // 전체 애니메이션 완료를 보장할 TaskCompletionSource 생성
         var tcs = new TaskCompletionSource<bool>();
