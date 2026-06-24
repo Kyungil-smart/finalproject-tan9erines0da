@@ -14,7 +14,17 @@ public class StickerDelFollow : MonoBehaviour
     {
         if (_targetRect == null) return;
 
-        _myRect.anchoredPosition = _targetRect.anchoredPosition + _offset;
+        _myRect.anchoredPosition = GetDeleteButtonPosition();
+    }
+
+    private Vector2 GetDeleteButtonPosition()
+    {
+        float width = _targetRect.rect.width * (_targetRect.localScale.x - 1f);
+        float height = _targetRect.rect.height * (_targetRect.localScale.y - 1f);
+
+        return _targetRect.anchoredPosition
+               + _offset
+               + new Vector2(width * 0.5f, height * 0.5f);
     }
 
     /// <summary>

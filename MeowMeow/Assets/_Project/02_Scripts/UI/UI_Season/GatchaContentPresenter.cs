@@ -165,6 +165,7 @@ public class GatchaContentPresenter : MonoBehaviour
 
             L_itemID = -1;
         }
+        _isPopupOpen = false;
 
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
@@ -172,7 +173,6 @@ public class GatchaContentPresenter : MonoBehaviour
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
         }
-        _isPopupOpen = false;
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.

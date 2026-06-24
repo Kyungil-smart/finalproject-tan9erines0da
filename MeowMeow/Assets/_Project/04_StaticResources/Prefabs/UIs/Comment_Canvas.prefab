@@ -2052,6 +2052,7 @@ GameObject:
   - component: {fileID: 5041496978929895990}
   - component: {fileID: 6136631590024537615}
   - component: {fileID: 732071815705014265}
+  - component: {fileID: 7319471032897603325}
   m_Layer: 5
   m_Name: CG
   m_TagString: Untagged

@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/_Project/01_Scenes/TestScenes/SHY_Test/Preview_Scene.unity
     guid: d5bcc5a0bf24a804a9f86a0351aced65
   - enabled: 1
+    path: Assets/_Project/01_Scenes/TestScenes/LeeIN_Test/UseAI.unity
+    guid: 3aa523ad0aaea4649a9bb61bb9529dba
+  - enabled: 1
     path: Assets/_Project/01_Scenes/BuildScenes/Login.unity
     guid: 6b8c5a5e44b891f409d41587f2e7e681
   - enabled: 1
-    path: Assets/_Project/01_Scenes/TestScenes/SGH_Test/BuildTest.unity
-    guid: f115731237558ed42aaa6a956c90b538
+    path: Assets/_Project/01_Scenes/BuildScenes/BuildTest.unity
+    guid: e8bac7e1e5efea64b9479f5c9df06f5c
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8e88db2e2b04654448c64f14c14c8c90, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 021dc5c3b7adabf429b5673b57f536b3, type: 3}
