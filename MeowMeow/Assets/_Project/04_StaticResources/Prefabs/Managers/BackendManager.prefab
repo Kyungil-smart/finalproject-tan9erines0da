@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneName: SampleScene
-  _sceneIndex: 1
+  _sceneIndex: 2
 --- !u!114 &8200853945696914049
 MonoBehaviour:
   m_ObjectHideFlags: 0
