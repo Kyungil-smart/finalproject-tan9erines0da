@@ -208,11 +208,15 @@ public class SNS_UI_Controller : BaseScreenController
         // 1깊이를 보다가 2깊이로 처음 진입하는 핵심 분기 상황
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
         {
-            // 보던 1깊이를 끄지(Close) 않고 대피만 시킨 후 2깊이를 위에 얹음
             _lastActiveDepth1Panel = CurrentActivePanel;
-            CurrentActivePanel = targetPanel;
-            RefreshPanelData(CurrentActivePanel);
-            CurrentActivePanel.OpenWithEnterAnimation(null);
+
+            // 1깊이를 닫고, 2깊이 화면을 실행
+            _lastActiveDepth1Panel.Close(() =>
+            {
+                CurrentActivePanel = targetPanel;
+                RefreshPanelData(CurrentActivePanel);
+                CurrentActivePanel.OpenWithEnterAnimation(null);
+            });
         }
         // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
         else
@@ -249,8 +253,7 @@ public class SNS_UI_Controller : BaseScreenController
                 // 숨겨져 있던 직전 1깊이를 다시 현재 활성 판넬로 지정
                 CurrentActivePanel = _lastActiveDepth1Panel;
 
-                // 이미 화면에 켜진 상태(Active=true)였으므로 
-                // 수평 전환용 연출만 산뜻하게 얹어줌
+                // 1깊이 화면을 다시 열어줌
                 CurrentActivePanel.OpenWithTabChangeAnimation(null);
             });
         }
