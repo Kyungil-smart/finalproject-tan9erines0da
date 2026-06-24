@@ -7,6 +7,6 @@ public class Hashtag : Basedata
     {
 
         this.uniqueId = Data[0];
-        this.TagName = Data[1];
+        this.TagName = Data[1].Replace("\\n", "\n");
     }
 }
