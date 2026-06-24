@@ -23,7 +23,7 @@ public class GatchaContentPresenter : MonoBehaviour
     [SerializeField] private Button _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
-     private List<Button> _gatchaButtons =new List<Button>();
+    private List<Button> _gatchaButtons = new List<Button>();
 
     [Header("토글형 오브젝트")]
     [SerializeField] private List<GachaStackBox> _milestonBlocks;
@@ -59,6 +59,8 @@ public class GatchaContentPresenter : MonoBehaviour
         get;
         set;
     }
+    // 한정 보상 획득시의 분기점을 나누는 마커
+    private bool _limitedStart;
     //리미티드 키 스트링 입니다.
     public int L_itemID;
     // 한정 보상 스탬프 애니메이션을 백업할 변수
@@ -69,13 +71,13 @@ public class GatchaContentPresenter : MonoBehaviour
     public bool IsMainCanvasOpen = false;
     void Awake()
     {
-        foreach(var item in _gatchaBlocks)
+        foreach (var item in _gatchaBlocks)
         {
-            var temp_BTN=item.GetComponent<Button>();
+            var temp_BTN = item.GetComponent<Button>();
             _gatchaButtons.Add(temp_BTN);
         }
-        
-        
+
+
         Bind();
     }
     #region OnEnable(), OnDisable()
@@ -106,27 +108,27 @@ public class GatchaContentPresenter : MonoBehaviour
         popup.Unbind();
         popup.Bind(this);
         popup.Open();
-        
+
 
     }
     /// <summary>
     /// 팝업 패널을 닫는 함수입니다
     /// </summary>
     /// <param name="popup"></param>
-    public async  void ClosePopup(IPopupable popup)
+    public async void ClosePopup(IPopupable popup)
     {
-      
+
         if (popup == null || !_isPopupOpen)
         {
             Debug.Log($"클로즈 실패 {_isPopupOpen}");
             return;
         }
-      
+
         popup.Unbind();
         popup.Close();
 
         popup.gameObject.SetActive(false);
-      
+
         /*
         L_itemID 이 값이 있으면   자물쇠 연출 시작
         30001 : 1등급 유일 보상
@@ -145,6 +147,9 @@ public class GatchaContentPresenter : MonoBehaviour
 
             if (LinitedBlock != null)
             {
+                // 한정 보상 획득 시작을 알리는 마커
+                _limitedStart = true;
+
                 var TweenLogic = LinitedBlock.GetComponentInChildren<OpenLockTweenAni>(true);
                 var _PopupGatcha = popup.gameObject.GetComponent<PopupGatcha>();
                 TweenLogic.gameObject.transform.parent.gameObject.SetActive(true);
@@ -167,12 +172,17 @@ public class GatchaContentPresenter : MonoBehaviour
         }
         _isPopupOpen = false;
 
+        if (_limitedStart == true) return;
+
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
         }
+
+        _exitButton.interactable = true;
+        _limitedStart = false;
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -180,7 +190,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// </summary>
     public void ChangeResetButtonState()
     {
-       _resetButton.interactable = CanReset;
+        _resetButton.interactable = CanReset;
     }
 
     void Bind()
@@ -233,6 +243,8 @@ public class GatchaContentPresenter : MonoBehaviour
         _debugButton.SetActive(false);
         //---------------------
         OnOpen();
+        _enterButton.interactable = false;
+        _exitButton.interactable = true;
     }
     private void OnExitClick()
     {
@@ -241,6 +253,8 @@ public class GatchaContentPresenter : MonoBehaviour
         IsMainCanvasOpen = false;
         _debugButton.SetActive(true);
         //---------------------
+        _enterButton.interactable = true;
+        _exitButton.interactable = false;
     }
     void OnTutorialClick()
     {
@@ -256,6 +270,8 @@ public class GatchaContentPresenter : MonoBehaviour
         if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
         _isPopupOpen = true;
 
+        _exitButton.interactable = false;
+
         int itemId = GatchaDataManager.Instance.GetItemID(index);
         /*
          시간없어서 일단 임시 방편으로 적어둔 코드
@@ -264,9 +280,9 @@ public class GatchaContentPresenter : MonoBehaviour
         bool flag = itemId == 20001 ? true : // 2등급 
                     itemId == 20002 ? true ://  1등급
                     itemId == 20006 ? true : false;//3등급
-        if(flag)
+        if (flag)
         {
-            if(itemId == 20001 && GatchaDataManager.Instance.GatchaData.Grade_2==false)
+            if (itemId == 20001 && GatchaDataManager.Instance.GatchaData.Grade_2 == false)
             {
                 itemId = 40001;
             }
@@ -288,8 +304,8 @@ public class GatchaContentPresenter : MonoBehaviour
         Debug.Log("시작");
         await _gatchaBlocks[index].Do();
         Debug.Log("끝");
-        _isPopupOpen = false; 
-          IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
+        _isPopupOpen = false;
+        IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
         OpenPopup(popup, itemId);
     }
 
@@ -352,7 +368,7 @@ public class GatchaContentPresenter : MonoBehaviour
     /// </summary>
     public async Task ResetGachaBlocks()
     {
-       await  GatchaDataManager.Instance.RewardReset();
+        await GatchaDataManager.Instance.RewardReset();
 
         for (int i = 0; i < _gatchaBlocks.Count; i++)
         {
@@ -414,6 +430,16 @@ public class GatchaContentPresenter : MonoBehaviour
         _limitedRewardPanel.SetActive(false);
         if (_catStampTweenAni != null) await _catStampTweenAni.PlayAnimation();
         _catStampTweenAni = null;
+
+        // 누적보상을 획득 해야 할때
+        if (Need_M_Open == true)
+        {
+            OpenPopup(_milestoneCanvas);
+            Need_M_Open = false;
+        }
+
+        _exitButton.interactable = true;
+        _limitedStart = false;
     }
     #endregion
 
