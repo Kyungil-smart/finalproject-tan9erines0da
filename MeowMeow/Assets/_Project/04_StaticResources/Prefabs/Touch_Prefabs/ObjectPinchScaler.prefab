@@ -47,6 +47,6 @@ MonoBehaviour:
   _moveSpeed: 0.005
   _scaleSpeed: 0.005
   _minScale: 0.3
-  _maxScale: 1.7
+  _maxScale: 4
   _rotationSpeed: 1.5
   _target: {fileID: 0}
