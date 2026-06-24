@@ -11,7 +11,7 @@ public class ObjectPinchScaler : MonoBehaviour
     [Header("스티커 확대 관련")]
     [SerializeField] private float _scaleSpeed = 0.005f;
     [SerializeField] private float _minScale = 0.3f;
-    [SerializeField] private float _maxScale = 1.7f;
+    [SerializeField] private float _maxScale = 4f;
 
     [Header("스티커 회전 관련")]
     [SerializeField] private float _rotationSpeed = 1.5f;
@@ -106,19 +106,31 @@ public class ObjectPinchScaler : MonoBehaviour
         // 이동할 위치 계산
         Vector2 nextPos = _target.anchoredPosition + delta * _moveSpeed;
 
-        // 부모(사진)와 스티커 크기 저장
+        // 부모 크기
         Vector2 parentSize = _parent.rect.size;
-        Vector2 targetSize = _target.rect.size;
+
+        // 현재 스케일이 반영된 실제 스티커 크기
+        Vector2 targetSize = new Vector2(
+            _target.rect.width * _target.localScale.x,
+            _target.rect.height * _target.localScale.y
+        );
+
+        // 스티커의 25% 정도는 화면 안에 남도록
+        float remainRatio = 0.25f;
+
+        float offsetX = targetSize.x * (0.5f - remainRatio);
+        float offsetY = targetSize.y * (0.5f - remainRatio);
 
         // 스티커 중심점이 이동할 수 있는 최소 좌표
         Vector2 min = new Vector2(
-            -parentSize.x * 0.5f + targetSize.x * 0.5f,
-            -parentSize.y * 0.5f + targetSize.y * 0.5f
+            -parentSize.x * 0.5f - offsetX,
+            -parentSize.y * 0.5f - offsetY
         );
+
         // 스티커 중심점이 이동할 수 있는 최대 좌표
         Vector2 max = new Vector2(
-            parentSize.x * 0.5f - targetSize.x * 0.5f,
-            parentSize.y * 0.5f - targetSize.y * 0.5f
+            parentSize.x * 0.5f + offsetX,
+            parentSize.y * 0.5f + offsetY
         );
 
         // 스티거 이동 범위 제한
@@ -210,4 +222,26 @@ public class ObjectPinchScaler : MonoBehaviour
         _previousDirection = currentDir;
     }
     #endregion
+
+    [ContextMenu("최대 크기로 확대")]
+    public void SetMaxScale()
+    {
+        if (_target == null) return;
+
+        _target.localScale = new Vector3(
+            _maxScale,
+            _maxScale,
+            1f);
+    }
+
+    [ContextMenu("최소 크기로 확대")]
+    public void SetMinScale()
+    {
+        if (_target == null) return;
+
+        _target.localScale = new Vector3(
+            _minScale,
+            _minScale,
+            1f);
+    }
 }
