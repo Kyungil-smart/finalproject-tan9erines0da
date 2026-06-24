@@ -10839,10 +10839,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StickerDelButton_Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7213353046873997022, guid: 18db34de4dba8174d81eb052383c701c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
