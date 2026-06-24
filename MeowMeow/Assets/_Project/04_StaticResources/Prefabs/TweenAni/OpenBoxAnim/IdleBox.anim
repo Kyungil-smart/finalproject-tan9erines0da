@@ -84,7 +84,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 364868439, guid: 2323346b42c67244cb867e8cc4f60227, type: 3}
+      value: {fileID: 1669799972, guid: 2323346b42c67244cb867e8cc4f60227, type: 3}
     attribute: m_Sprite
     path: SeasonCloseBoxSprite_Image
     classID: 114
@@ -134,7 +134,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 364868439, guid: 2323346b42c67244cb867e8cc4f60227, type: 3}
+    - {fileID: 1669799972, guid: 2323346b42c67244cb867e8cc4f60227, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
