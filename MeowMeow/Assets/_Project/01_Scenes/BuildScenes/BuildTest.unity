@@ -1465,6 +1465,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1619188949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6927169846817452779, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+  m_PrefabInstance: {fileID: 5093116972551601554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619188943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186f192cfe6c78e49828ad5d55d30b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1663840750 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5347137270458712636, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
@@ -11931,6 +11942,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4791391483441628719}
     m_Modifications:
+    - target: {fileID: 7711223344556681, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 7711223344556681, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickNavigateBackDepth2Button
+      objectReference: {fileID: 0}
     - target: {fileID: 1453085389071820707, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_SizeDelta.y
       value: 30
@@ -11999,33 +12018,41 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6927169846817452779, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: _previewPanel
+      value: 
+      objectReference: {fileID: 8596093122635220066}
+    - target: {fileID: 6927169846817452779, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
+      propertyPath: _screenController
+      value: 
+      objectReference: {fileID: 389156666477936609}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 389156666477936609}
+      objectReference: {fileID: 1619188949}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RequestScreenChange
+      value: PlzAddComment
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BaseScreenController, Assembly-CSharp
+      value: CommentPanelPresenter, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 8596093122635220066}
+      objectReference: {fileID: 0}
     - target: {fileID: 6955949147446896634, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UIPanel, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7217225550253396868, guid: 9f473d082311fe74eab71db5d7262ebf, type: 3}
       propertyPath: m_Type
