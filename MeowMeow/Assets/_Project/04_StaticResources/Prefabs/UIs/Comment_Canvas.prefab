@@ -1265,7 +1265,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5990061461296897655}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: BaseScreenController, Assembly-CSharp
+        m_MethodName: CloseController
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2838985182463531601
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,7 +2064,7 @@ GameObject:
   - component: {fileID: 5041496978929895990}
   - component: {fileID: 6136631590024537615}
   - component: {fileID: 732071815705014265}
-  - component: {fileID: 7319471032897603325}
+  - component: {fileID: 660493750799547491}
   m_Layer: 5
   m_Name: CG
   m_TagString: Untagged
@@ -2150,6 +2162,20 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 5041496978929895990}
   _shaderController: {fileID: 6136631590024537615}
+--- !u!114 &660493750799547491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5472319421828506601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &5524565102236547966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2899,7 +2925,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000015258789}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &4693969265376981276
 MonoBehaviour:
@@ -2914,15 +2940,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 10
+    m_Left: 30
     m_Right: 10
-    m_Top: 10
+    m_Top: 40
     m_Bottom: 10
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 318, y: 80}
-  m_Spacing: {x: 8, y: 8}
+  m_CellSize: {x: 260, y: 80}
+  m_Spacing: {x: 68, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 3
 --- !u!114 &2171771391855542347
@@ -2953,13 +2979,14 @@ GameObject:
   - component: {fileID: 3487109055453928188}
   - component: {fileID: 8256844785750171202}
   - component: {fileID: 6927169846817452779}
+  - component: {fileID: 331386391691151198}
   m_Layer: 5
   m_Name: Comment_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8088943711256263664
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2969,7 +2996,7 @@ RectTransform:
   m_GameObject: {fileID: 6453104242370286200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 420198236660750375}
@@ -3001,14 +3028,14 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_TargetDisplay: 0
 --- !u!114 &2369358951005112382
 MonoBehaviour:
@@ -3081,7 +3108,19 @@ MonoBehaviour:
   _hashtagZoneManager: {fileID: 6122898799634411366}
   _postImageRenderer: {fileID: 732071815705014265}
   _screenController: {fileID: 0}
-  _previewPanel: {fileID: 8256844785750171202}
+  _previewPanel: {fileID: 0}
+--- !u!225 &331386391691151198
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6453104242370286200}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6615161310024493782
 GameObject:
   m_ObjectHideFlags: 0
@@ -3425,18 +3464,6 @@ MonoBehaviour:
       - m_Target: {fileID: 6927169846817452779}
         m_TargetAssemblyTypeName: CommentPanelPresenter, Assembly-CSharp
         m_MethodName: PlzAddComment
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3895,7 +3922,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0.000030517578}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 12}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3961990586661200061
 MonoBehaviour:
