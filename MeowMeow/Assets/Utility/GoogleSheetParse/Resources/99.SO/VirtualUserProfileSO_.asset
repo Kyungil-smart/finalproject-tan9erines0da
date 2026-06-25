@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26654551de1ba6244a3ab7397b8146a0, type: 3}
   m_Name: VirtualUserProfileSO_
   m_EditorClassIdentifier: 
-  url: https://docs.google.com/spreadsheets/d/1gYNBGShiSUJVUWo5W_aWo_EHQHYh5vHPU2fnb-QwVII/edit?gid=199611489#gid=199611489
+  url: https://docs.google.com/spreadsheets/d/1tgJ4L5SWzK3PqqfZ85NwCGhHPd8nArlpQjWz-rcc5Y4/edit?gid=199611489#gid=199611489
   gid: 199611489
   genericType: VirtualUserProfile
   m_Data:
