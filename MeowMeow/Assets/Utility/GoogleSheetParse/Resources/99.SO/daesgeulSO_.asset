@@ -79,7 +79,7 @@ MonoBehaviour:
     dependent_ID: 60003
   - <uniqueId>k__BackingField: 70014
     sentence: "\uC544\uC774\uAD6C~~ \uC800\uD76C \uC9D1\uC5D0\uB3C4 \uC774\uB7F0
-      \uD138\uBB49\uCE58 \uC788\uC73C\uBA74 \\n\uC544\uAE4C\uC6CC\uC11C \uCCAD\uC18C\uB3C4
+      \uD138\uBB49\uCE58 \uC788\uC73C\uBA74 \n\uC544\uAE4C\uC6CC\uC11C \uCCAD\uC18C\uB3C4
       \uC81C\uB300\uB85C \uBABB \uD558\uACA0\uB124\uC694~~\u314E\u314E<sprite name=NYE_15><sprite
       name=NYE_15>"
     atlas: 100001
@@ -116,7 +116,7 @@ MonoBehaviour:
     dependent_ID: 60004
   - <uniqueId>k__BackingField: 70021
     sentence: "\uC640 \u3160\u3160\u3160 \uC9C4\uC9DC \uC88B\uACA0\uB2E4\u3160\u3160
-      \uB108\uBB34 \uBD80\uB7EC\uC6CC\uC694\u3160\u3160!!\\n\uCD95\uD558\uD574\uC694!!<sprite
+      \uB108\uBB34 \uBD80\uB7EC\uC6CC\uC694\u3160\u3160!!\n\uCD95\uD558\uD574\uC694!!<sprite
       name=NYE_23><sprite name=NYE_23>"
     atlas: 100001
     dependent_ID: 60005
@@ -175,7 +175,7 @@ MonoBehaviour:
     dependent_ID: 60007
   - <uniqueId>k__BackingField: 70033
     sentence: "\uB108\uBB34....\uD589\uBCF5\uD574... \uBCF4\uC774\uB2C8... \uBCF4\uAE30\uAC00...
-      \uCC38~~ \uC88B\uC2B5\uB2C8\uB2E4~~^^\\n\uB298 \uAC74\uAC15<sprite name=NYE_33>\uD558\uC2DC\uACE0~~\uD589\uBCF5\uD55C
+      \uCC38~~ \uC88B\uC2B5\uB2C8\uB2E4~~^^\n\uB298 \uAC74\uAC15<sprite name=NYE_33>\uD558\uC2DC\uACE0~~\uD589\uBCF5\uD55C
       \uC77C\uB9CC... \uAC00\uB4DD \uD558\uC2ED\uC1FC~~^^<spritename=NYE_28><sprite
       name=NYE_28>"
     atlas: 100001
@@ -200,13 +200,13 @@ MonoBehaviour:
     dependent_ID: 60008
   - <uniqueId>k__BackingField: 70038
     sentence: "\uB9C8\uC74C\uC774 \uB9CE\uC774 \uC0C1\uD558\uC168\uB098 \uBCF4\uAD70\uC694.
-      \uC800\uB3C4 \uB369\uB2EC\uC544 \uB9C8\uC74C\uC774 \uC548 \uC88B\uC544 \uC9D1\uB2C8\uB2E4.\\n\uBD80\uB514
+      \uC800\uB3C4 \uB369\uB2EC\uC544 \uB9C8\uC74C\uC774 \uC548 \uC88B\uC544 \uC9D1\uB2C8\uB2E4.\n\uBD80\uB514
       \uB9C8\uC74C \uC798 \uCD94\uC2A4\uB974\uC2DC\uAE38 \uBC14\uB78D\uB2C8\uB2E4."
     atlas: 100001
     dependent_ID: 60008
   - <uniqueId>k__BackingField: 70039
     sentence: "\uC2AC\uD37C \uD558\uC2DC\uB294 \uBAA8\uC2B5\uC744 \uBCF4\uB2C8 \uB9C8\uC74C\uC774
-      \uB9CE\uC774 \uC548 \uC88B\uB124\uC694~~<sprite name=NYE_6><sprite name=NYE_6>\\n\uB9C8\uC74C
+      \uB9CE\uC774 \uC548 \uC88B\uB124\uC694~~<sprite name=NYE_6><sprite name=NYE_6>\n\uB9C8\uC74C
       \uC798 \uCD94\uC2A4\uB974\uC2DC\uAE38 \uBC14\uB798\uC694... \uD654\uC774\uD305!!<sprite
       name=NYE_28><sprite name=NYE_28>"
     atlas: 100001
@@ -260,7 +260,7 @@ MonoBehaviour:
   - <uniqueId>k__BackingField: 70049
     sentence: "\uC138\uC0C1\uC5D0...!! \uC5B4\uB5BB\uAC8C \uC774\uB7F0 \uC77C\uC774
       \uC0DD\uAE38 \uC218\uAC00 \uC788\uB294\uC9C0~~!!<sprite name=NYE_9><sprite
-      name=NYE_9>\\n\uC815\uB9D0 \uD654\uAC00 \uB098\uB124\uC694~~!!<sprite name=NYE_4>"
+      name=NYE_9>\n\uC815\uB9D0 \uD654\uAC00 \uB098\uB124\uC694~~!!<sprite name=NYE_4>"
     atlas: 100001
     dependent_ID: 60010
   - <uniqueId>k__BackingField: 70050
@@ -285,7 +285,7 @@ MonoBehaviour:
     dependent_ID: 60011
   - <uniqueId>k__BackingField: 70054
     sentence: "\uC6B0\uC6B8\uD574 \uD558\uC2DC\uB294 \uBAA8\uC2B5\uC774 \uC2EC\uD788
-      \uC548\uD0C0\uAE5D\uC2B5\uB2C8\uB2E4.<sprite name=NYE_10>\\n\uD798 \uB0B4\uC2DC\uAE38
+      \uC548\uD0C0\uAE5D\uC2B5\uB2C8\uB2E4.<sprite name=NYE_10>\n\uD798 \uB0B4\uC2DC\uAE38
       \uBC14\uB78D\uB2C8\uB2E4."
     atlas: 100001
     dependent_ID: 60011
@@ -406,15 +406,14 @@ MonoBehaviour:
     atlas: 100001
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70078
-    sentence: "\uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB4E4 \uBCF4\uBA74\uC11C \uD790\uB9C1\uD569\uB2C8\uB2E4.\\nSNS\uB3C4
+    sentence: "\uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB4E4 \uBCF4\uBA74\uC11C \uD790\uB9C1\uD569\uB2C8\uB2E4.\nSNS\uB3C4
       \uC801\uB2F9\uD788 \uBCF4\uBA74 \uC815\uB9D0 \uD070 \uB3C4\uC6C0\uC774 \uB418\uB124\uC694."
     atlas: 100001
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70079
     sentence: "\uC624\uB298 \uC62C\uB9AC\uC2E0 \uAE00\uB3C4 \uC798 \uBD24\uC5B4\uC694~~<spring
-      name=NYE_32><spring name=NYE_32>\\n\uB298 \uC88B\uC740 \uAE00 \uC62C\uB824
-      \uC8FC\uC154\uC11C \uACE0\uB9D9\uC2B5\uB2C8\uB2E4~~<sprite name=NYE_29><sprite
-      name=NYE_29>"
+      name=NYE_32><spring name=NYE_32>\n\uB298 \uC88B\uC740 \uAE00 \uC62C\uB824 \uC8FC\uC154\uC11C
+      \uACE0\uB9D9\uC2B5\uB2C8\uB2E4~~<sprite name=NYE_29><sprite name=NYE_29>"
     atlas: 100001
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70080
@@ -424,7 +423,7 @@ MonoBehaviour:
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70081
     sentence: "\uC73C\uC544\uC544\u3160\u3160\u3160\u3160 \uC800 \uBCF4\uB4E4\uBCF4\uB4E4\uD55C
-      \uD138\u3160\u3160\u3160\\n\uC9C4\uC9DC \uB108\uBB34 \uC0AC\uB791\uC2A4\uB7EC\uC6CC\uC694\u3160\u3160\u3160<sprite
+      \uD138\u3160\u3160\u3160\n\uC9C4\uC9DC \uB108\uBB34 \uC0AC\uB791\uC2A4\uB7EC\uC6CC\uC694\u3160\u3160\u3160<sprite
       name=NYE_1><sprite name=NYE_1><sprite name=NYE_29><sprite name=NYE_29>"
     atlas: 100001
     dependent_ID: 60017
@@ -435,7 +434,7 @@ MonoBehaviour:
     dependent_ID: 60017
   - <uniqueId>k__BackingField: 70083
     sentence: "\uC561\uC815 \uB108\uBA38\uB85C \uD138\uC758 \uBCF4\uB4E4\uBCF4\uB4E4\uD568\uC774
-      \uB290\uAEF4\uC9D1\uB2C8\uB2E4.\\n\uD138 \uAD00\uB9AC\uB97C \uC815\uB9D0 \uD6CC\uB96D\uD558\uAC8C
+      \uB290\uAEF4\uC9D1\uB2C8\uB2E4.\n\uD138 \uAD00\uB9AC\uB97C \uC815\uB9D0 \uD6CC\uB96D\uD558\uAC8C
       \uD558\uC168\uB098 \uBCF4\uB124\uC694. "
     atlas: 100001
     dependent_ID: 60017
@@ -456,12 +455,12 @@ MonoBehaviour:
     dependent_ID: 60018
   - <uniqueId>k__BackingField: 70087
     sentence: "\uC544\uBB34\uB9AC \uC0AC\uB8CC\uB77C\uB3C4 \uB9E4\uBC88 \uB611\uAC19\uC740
-      \uB9DB\uB9CC \uBA39\uC73C\uBA74 \\n\uACE0\uC591\uC774\uB3C4 \uC9C8\uB9AC\uAE34
+      \uB9DB\uB9CC \uBA39\uC73C\uBA74 \n\uACE0\uC591\uC774\uB3C4 \uC9C8\uB9AC\uAE34
       \uD560 \uB4EF?\u314B\u314B\u314B<sprite name=NYE_21><sprite name=NYE_21>"
     atlas: 100001
     dependent_ID: 60018
   - <uniqueId>k__BackingField: 70088
-    sentence: "\uACE0\uC591\uC774\uAC00 \uC0AC\uB8CC\uB97C \uC798 \uC548 \uBA39\uC744\uB54C\uC5D4\\n
+    sentence: "\uACE0\uC591\uC774\uAC00 \uC0AC\uB8CC\uB97C \uC798 \uC548 \uBA39\uC744\uB54C\uC5D4\n
       \uC0B4\uC9DD \uB370\uC6CC\uC8FC\uBA74 \uC88B\uB2E4\uACE0 \uD569\uB2C8\uB2E4."
     atlas: 100001
     dependent_ID: 60018
@@ -475,7 +474,7 @@ MonoBehaviour:
     atlas: 100001
     dependent_ID: 60018
   - <uniqueId>k__BackingField: 70091
-    sentence: "\uACE0\uC591\uC774\uB4E4\uC774 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC11C\\n\uC7A5\uB09C\uAC10\uC774\uB77C\uB3C4
+    sentence: "\uACE0\uC591\uC774\uB4E4\uC774 \uB108\uBB34 \uADC0\uC5EC\uC6CC\uC11C\n\uC7A5\uB09C\uAC10\uC774\uB77C\uB3C4
       \uC120\uBB3C \uD574 \uC8FC\uACE0 \uC2F6\uC5B4\uC694!!<sprite name=NYE_0><sprite
       name=NYE_0>"
     atlas: 100001
@@ -492,7 +491,7 @@ MonoBehaviour:
     dependent_ID: 60019
   - <uniqueId>k__BackingField: 70094
     sentence: "\uC800\uB807\uAC8C \uC990\uAC81\uAC8C \uB178\uB294 \uBAA8\uC2B5\uC744
-      \uBCF4\uBA74. \uC7A5\uB09C\uAC10\uC744 \uC815\uB9D0\\n\uC794\uB729 \uC0AC \uC8FC\uACE0
+      \uBCF4\uBA74. \uC7A5\uB09C\uAC10\uC744 \uC815\uB9D0\n\uC794\uB729 \uC0AC \uC8FC\uACE0
       \uC2F6\uB124\uC694!!<sprite name=NYE_5>"
     atlas: 100001
     dependent_ID: 60019
@@ -502,7 +501,7 @@ MonoBehaviour:
     dependent_ID: 60019
   - <uniqueId>k__BackingField: 70096
     sentence: "\uC774\uB7F0 \uADC0\uC5EC\uC6B4 \uACE0\uC591\uC774\uB4E4 \uD0A4\uC6B8
-      \uC218 \uC788\uB2E4\uBA74...\\n\uC800\uB3C4 \uC9D1\uC0AC\uB178\uB987 \uC5F4\uC2EC\uD788
+      \uC218 \uC788\uB2E4\uBA74...\n\uC800\uB3C4 \uC9D1\uC0AC\uB178\uB987 \uC5F4\uC2EC\uD788
       \uD560 \uC790\uC2E0 \uC788\uC5B4\uC694!! "
     atlas: 100001
     dependent_ID: 60020
@@ -513,20 +512,20 @@ MonoBehaviour:
     dependent_ID: 60020
   - <uniqueId>k__BackingField: 70098
     sentence: "\uB204\uAD70\uAC00\uB97C \uB3CC\uBCF4\uB294 \uC77C\uC744 \uD55C\uB2E4\uB294
-      \uC810\uC5D0\uC11C \uBCFC \uB54C.\\n\uC8FC\uC778 \uBCF4\uB2E8 \uC9D1\uC0AC\uB77C\uB294
+      \uC810\uC5D0\uC11C \uBCFC \uB54C.\n\uC8FC\uC778 \uBCF4\uB2E8 \uC9D1\uC0AC\uB77C\uB294
       \uD45C\uD604\uC774 \uB354 \uC5B4\uC6B8\uB9AC\uAE34 \uD558\uB124\uC694."
     atlas: 100001
     dependent_ID: 60020
   - <uniqueId>k__BackingField: 70099
-    sentence: "\uC800\uB3C4 \uC2A4\uC2A4\uB85C \uC9D1\uC0AC\uB77C\uACE0 \uB9D0 \uD558\uC9C0\uB9CC.\\n\uC0AC\uC2E4
-      \uC9D1\uC0AC \uBCF4\uB2E8 \uC5C4\uB9C8\uC758 \uB9C8\uC74C\uC73C\uB85C\\n\uC800\uD76C
+    sentence: "\uC800\uB3C4 \uC2A4\uC2A4\uB85C \uC9D1\uC0AC\uB77C\uACE0 \uB9D0 \uD558\uC9C0\uB9CC.\n\uC0AC\uC2E4
+      \uC9D1\uC0AC \uBCF4\uB2E8 \uC5C4\uB9C8\uC758 \uB9C8\uC74C\uC73C\uB85C\n\uC800\uD76C
       \uC9D1 \uACE0\uC591\uC774\uB97C\uD0A4\uC6B0\uACE0 \uC788\uB2F5\uB2C8\uB2E4~<sprite
       name=NYE_29><sprite name=NYE_29>"
     atlas: 100001
     dependent_ID: 60020
   - <uniqueId>k__BackingField: 70100
     sentence: "\uC8FC\uC778\uC774\uAC74 \uC9D1\uC0AC\uAC74. \uD45C\uD604\uC774 \uBB50\uAC00
-      \uC911\uC694\uD560\uAE4C\uC694.\\n\uC911\uC694\uD55C \uAC74 \uACE0\uC591\uC774\uAC00
+      \uC911\uC694\uD560\uAE4C\uC694.\n\uC911\uC694\uD55C \uAC74 \uACE0\uC591\uC774\uAC00
       \uADC0\uC5FD\uB2E4\uB294 \uAC81\uB2C8\uB2E4.<sprite name=NYE_15>"
     atlas: 100001
     dependent_ID: 60020
