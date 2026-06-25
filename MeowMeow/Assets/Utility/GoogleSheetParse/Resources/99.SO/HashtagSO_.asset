@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a49568361adb5548a28d7833ae9dbde, type: 3}
   m_Name: HashtagSO_
   m_EditorClassIdentifier: 
-  url: https://docs.google.com/spreadsheets/d/1gYNBGShiSUJVUWo5W_aWo_EHQHYh5vHPU2fnb-QwVII/edit?gid=0#gid=0
+  url: https://docs.google.com/spreadsheets/d/1tgJ4L5SWzK3PqqfZ85NwCGhHPd8nArlpQjWz-rcc5Y4/edit?gid=0#gid=0
   gid: 0
   genericType: Hashtag
   m_Data:
