@@ -57,7 +57,7 @@ public class CatStampTweenAni_2 : MonoBehaviour
         seq.OnComplete(() =>
         {
             // 스탬프 애니메이션이 끝나면 나가기 버튼 활성화
-            _contentPresenter.ExitButton.interactable = true;
+            _contentPresenter.AllButtonCtrl(true);
             _contentPresenter.MilestonStart = false;
 
             gameObject.SetActive(false);

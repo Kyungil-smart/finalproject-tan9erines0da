@@ -21,7 +21,6 @@ public class GatchaContentPresenter : MonoBehaviour
     [Header("메인 캔버스 버튼")]
     [SerializeField] private Button _enterButton;
     [SerializeField] private Button _exitButton;
-    public Button ExitButton => _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
     private List<Button> _gatchaButtons = new List<Button>();
@@ -196,7 +195,7 @@ public class GatchaContentPresenter : MonoBehaviour
         }
 
         if (MilestonStart == true) return;
-        _exitButton.interactable = true;
+        AllButtonCtrl(true);
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -231,6 +230,7 @@ public class GatchaContentPresenter : MonoBehaviour
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50001;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void Button_Grade_2()
     {
@@ -238,6 +238,7 @@ public class GatchaContentPresenter : MonoBehaviour
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50002;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void Button_Grade_3()
     {
@@ -245,12 +246,14 @@ public class GatchaContentPresenter : MonoBehaviour
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50003;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void OpenResetCanvas()
     {
         if (_interactableReset == false) return;
         var data = _resetCanvas.GetComponent<IPopupable>();
         OpenPopup(data);
+        AllButtonCtrl(false);
     }
     private void OnEnterClick()
     {
@@ -262,7 +265,7 @@ public class GatchaContentPresenter : MonoBehaviour
         //---------------------
         OnOpen();
         _enterButton.interactable = false;
-        _exitButton.interactable = true;
+        AllButtonCtrl(true);
     }
     private void OnExitClick()
     {
@@ -272,12 +275,13 @@ public class GatchaContentPresenter : MonoBehaviour
         _debugButton.SetActive(true);
         //---------------------
         _enterButton.interactable = true;
-        _exitButton.interactable = false;
+        AllButtonCtrl(false);
     }
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
         OpenPopup(popup);
+        AllButtonCtrl(false);
     }
 
     // 뽑기판의 뽑기 블럭을 클릭했을 때 실행되는 함수입니다.
@@ -289,7 +293,7 @@ public class GatchaContentPresenter : MonoBehaviour
         if (_interactableGatchaBlocks == false) return;
         _isPopupOpen = true;
 
-        _exitButton.interactable = false;
+        AllButtonCtrl(false);
 
         int itemId = GatchaDataManager.Instance.GetItemID(index);
         /*
@@ -460,7 +464,7 @@ public class GatchaContentPresenter : MonoBehaviour
         }
 
         if (MilestonStart == true) return;
-        _exitButton.interactable = true;
+        AllButtonCtrl(true);
         _limitedStart = false;
     }
     #endregion
