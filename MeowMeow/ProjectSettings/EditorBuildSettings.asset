@@ -5,15 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Project/01_Scenes/TestScenes/SHY_Test/Comment_Scene_New.unity
-    guid: ce9fb6c05b45b4c4bbbc0050a3d80ae4
-  - enabled: 0
-    path: Assets/_Project/01_Scenes/TestScenes/SHY_Test/Preview_Scene.unity
-    guid: d5bcc5a0bf24a804a9f86a0351aced65
   - enabled: 1
-    path: Assets/_Project/01_Scenes/TestScenes/LeeIN_Test/UseAI.unity
-    guid: 3aa523ad0aaea4649a9bb61bb9529dba
+    path: Assets/_Project/01_Scenes/BuildScenes/Init.unity
+    guid: ebd38c79da48db64e9132687c9c1fd37
   - enabled: 1
     path: Assets/_Project/01_Scenes/BuildScenes/Login.unity
     guid: 6b8c5a5e44b891f409d41587f2e7e681
