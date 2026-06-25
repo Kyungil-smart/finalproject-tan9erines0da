@@ -54,6 +54,12 @@ public class GatchaContentPresenter : MonoBehaviour
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.CanReset; } }
+    // 팝업이 열릴때 초기화 버튼의 동작을 막아주는 마커
+    bool _interactableReset;
+    // 팝업이 열릴때 미리 보기 버튼의 동작을 막아주는 마커
+    bool _interactableLimitedBlock;
+    // 팝업이 열릴때 뽑기버튼의 동작을 막아주는 마커
+    bool _interactableGatchaBlocks;
     // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
     public bool Need_M_Open
     {
@@ -221,24 +227,28 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     private void Button_Grade_1()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50001;
         OpenPopup(data, Grade);
     }
     private void Button_Grade_2()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50002;
         OpenPopup(data, Grade);
     }
     private void Button_Grade_3()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50003;
         OpenPopup(data, Grade);
     }
     private void OpenResetCanvas()
     {
+        if (_interactableReset == false) return;
         var data = _resetCanvas.GetComponent<IPopupable>();
         OpenPopup(data);
     }
@@ -276,6 +286,7 @@ public class GatchaContentPresenter : MonoBehaviour
         if (_isPopupOpen) return;
         if (GatchaDataManager.Instance.IsOpened(index)) return;
         if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
+        if (_interactableGatchaBlocks == false) return;
         _isPopupOpen = true;
 
         _exitButton.interactable = false;
@@ -451,6 +462,21 @@ public class GatchaContentPresenter : MonoBehaviour
         if (MilestonStart == true) return;
         _exitButton.interactable = true;
         _limitedStart = false;
+    }
+    #endregion
+
+    #region 모든 버튼 interactable 설정하는 함수
+    /// <summary>
+    /// 팝업창 실행시 모든 버튼을 켜고 끄기 위한 함수
+    /// </summary>
+    /// <param name="On_Off">true, false를 입력해 주세요.</param>
+    public void AllButtonCtrl(bool On_Off)
+    {
+        _exitButton.interactable = On_Off;
+        _tutorialButton.interactable = On_Off;
+        _interactableReset = On_Off;
+        _interactableLimitedBlock = On_Off;
+        _interactableGatchaBlocks = On_Off;
     }
     #endregion
 
