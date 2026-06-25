@@ -12,6 +12,9 @@ public class SNS_UI_Controller : BaseScreenController
     [SerializeField]
     private UIPanel _defaultDepth1Panel;
 
+    [Header("이전 화면 팝업 참조")]
+    [SerializeField] GameObject _editCancelPopup;
+
     // 2깊이에서 원래 화면으로 빠져나올 때 돌아갈 1깊이 백업 변수
     private UIPanel _lastActiveDepth1Panel;
 
@@ -138,6 +141,20 @@ public class SNS_UI_Controller : BaseScreenController
     /// </summary>
     public void ClickNavigateBackDepth2Button()
     {
+        _editCancelPopup.SetActive(true);  
+    }
+
+    /// <summary>
+    /// 2깊이 편집 단계에서 '이전 단계로' 버튼을 눌렀을 때 
+    /// 데이터를 저장하지 않고 완벽하게 직전 단계로 롤백하는 후진 함수
+    /// </summary>
+    public void ClickBackDepth2Button()
+    {
+        Debug.Log("클릭 성공");
+
+        // 팝업을 닫는다.
+        _editCancelPopup.SetActive(false);
+
         // 스택에 돌아갈 기록이 남아있는지 검사
         if (_uiHistory == null || _uiHistory.Count == 0)
         {
