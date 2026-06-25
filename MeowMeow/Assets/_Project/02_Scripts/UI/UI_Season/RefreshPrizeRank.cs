@@ -13,15 +13,15 @@ public class RefreshPrizeRank : MonoBehaviour, ISwitchable
         var db = googleSheetManager.instance.GetClassData<DrawBoardRewards>();
         foreach (var data in db.m_Data)
         {
-                if (data.Grade == 1 && data.Repeat == isReset)
+                if (data.Grade == 1 && GatchaDataManager.Instance.Grade_1 && data.Repeat == isReset)
                 {
                     _1stText.text = data.ItemName;
                 }
-                else if (data.Grade == 2 && data.Repeat == isReset)
+                else if (data.Grade == 2 && GatchaDataManager.Instance.Grade_2 && data.Repeat == isReset)
                 {
                     _2ndText.text = data.ItemName;
                 }
-                else if (data.Grade == 3 && data.Repeat == isReset)
+                else if (data.Grade == 3 && GatchaDataManager.Instance.Grade_3 && data.Repeat == isReset)
                 {
                     _3rdText.text = data.ItemName;
                 }
