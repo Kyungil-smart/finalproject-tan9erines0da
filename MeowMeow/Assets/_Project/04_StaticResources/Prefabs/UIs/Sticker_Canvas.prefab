@@ -5349,6 +5349,7 @@ GameObject:
   - component: {fileID: 3050095752315278361}
   - component: {fileID: 247862883929850148}
   - component: {fileID: 2881673813175426143}
+  - component: {fileID: 7017587356039750942}
   m_Layer: 5
   m_Name: Preview_image
   m_TagString: Untagged
@@ -5441,6 +5442,20 @@ MonoBehaviour:
   _contrast: 1
   _Saturation: 1
   _temperature: 0.5
+--- !u!114 &7017587356039750942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558239033750606343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &7666423093390724439
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,7 +6887,6 @@ GameObject:
   - component: {fileID: 2407713072968122250}
   - component: {fileID: 7954195853082551264}
   - component: {fileID: 7491977977073760962}
-  - component: {fileID: 4368109332026173151}
   m_Layer: 5
   m_Name: Phone_frame_panel
   m_TagString: Untagged
@@ -6941,20 +6955,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4368109332026173151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8900489040264198479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding: {x: 0, y: 0, z: 0, w: 0}
-  m_Softness: {x: 0, y: 0}
 --- !u!1 &9027684857561938143
 GameObject:
   m_ObjectHideFlags: 0

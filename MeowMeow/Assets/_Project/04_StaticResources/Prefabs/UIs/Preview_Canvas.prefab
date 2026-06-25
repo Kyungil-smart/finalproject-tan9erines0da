@@ -1716,6 +1716,7 @@ GameObject:
   - component: {fileID: 3292605778068515196}
   - component: {fileID: 8878114224883921810}
   - component: {fileID: 5323550108136815383}
+  - component: {fileID: 5431262429171789214}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1846,6 +1847,20 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 7921831420081312929}
   _shaderController: {fileID: 8878114224883921810}
+--- !u!114 &5431262429171789214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152716656531370206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!1 &8691177184288509388
 GameObject:
   m_ObjectHideFlags: 0
