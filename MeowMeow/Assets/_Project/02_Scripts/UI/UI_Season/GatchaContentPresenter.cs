@@ -21,6 +21,7 @@ public class GatchaContentPresenter : MonoBehaviour
     [Header("메인 캔버스 버튼")]
     [SerializeField] private Button _enterButton;
     [SerializeField] private Button _exitButton;
+    public Button ExitButton => _exitButton;
     [SerializeField] private Button _tutorialButton;
     [SerializeField] private List<Button> _previewButtons;
     private List<Button> _gatchaButtons = new List<Button>();
@@ -55,6 +56,12 @@ public class GatchaContentPresenter : MonoBehaviour
     bool CanReset { get { return GatchaDataManager.Instance.CanReset; } }
     // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
     public bool Need_M_Open
+    {
+        get;
+        set;
+    }
+    // 누적 보상 획득시의 분기점을 나누는 마커
+    public bool MilestonStart
     {
         get;
         set;
@@ -177,12 +184,13 @@ public class GatchaContentPresenter : MonoBehaviour
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
+            MilestonStart = true;
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
         }
 
+        if (MilestonStart == true) return;
         _exitButton.interactable = true;
-        _limitedStart = false;
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -434,10 +442,13 @@ public class GatchaContentPresenter : MonoBehaviour
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
+            MilestonStart = true;
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
+            _limitedStart = false;
         }
 
+        if (MilestonStart == true) return;
         _exitButton.interactable = true;
         _limitedStart = false;
     }
