@@ -13867,6 +13867,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GachaStackBox
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14436,6 +14444,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15308,6 +15324,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15990,6 +16014,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17432,6 +17464,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18227,6 +18267,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19027,6 +19075,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19257,6 +19313,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19487,6 +19551,14 @@ PrefabInstance:
       propertyPath: m_text
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 4101397764604158370, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _gatchaContentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
+    - target: {fileID: 6048287250258424170, guid: 6a7dc15bd63ff8c42acbdc763168e370, type: 3}
+      propertyPath: _contentPresenter
+      value: 
+      objectReference: {fileID: 9207254074214588007}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

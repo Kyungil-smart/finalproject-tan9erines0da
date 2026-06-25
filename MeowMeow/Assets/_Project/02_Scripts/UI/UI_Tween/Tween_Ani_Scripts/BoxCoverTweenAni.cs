@@ -23,6 +23,8 @@ public class BoxCoverTweenAni : MonoBehaviour
         gameObject.SetActive(true);
 
         leafRect.anchoredPosition = Vector2.zero;
+        leafRect.localRotation = Quaternion.identity;
+
         Vector2 startPos = leafRect.anchoredPosition;
 
         Color color = leafGraphic.color;

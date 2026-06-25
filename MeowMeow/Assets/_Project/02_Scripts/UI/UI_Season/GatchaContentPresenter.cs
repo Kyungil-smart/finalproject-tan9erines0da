@@ -53,8 +53,20 @@ public class GatchaContentPresenter : MonoBehaviour
     //--------------내부 필드-----------------------
     bool _isPopupOpen = false;
     bool CanReset { get { return GatchaDataManager.Instance.CanReset; } }
+    // 팝업이 열릴때 초기화 버튼의 동작을 막아주는 마커
+    bool _interactableReset;
+    // 팝업이 열릴때 미리 보기 버튼의 동작을 막아주는 마커
+    bool _interactableLimitedBlock;
+    // 팝업이 열릴때 뽑기버튼의 동작을 막아주는 마커
+    bool _interactableGatchaBlocks;
     // 누적 보상 팝업이 열릴 타이밍을 알려주는 마커
     public bool Need_M_Open
+    {
+        get;
+        set;
+    }
+    // 누적 보상 획득시의 분기점을 나누는 마커
+    public bool MilestonStart
     {
         get;
         set;
@@ -177,12 +189,13 @@ public class GatchaContentPresenter : MonoBehaviour
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
+            MilestonStart = true;
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
         }
 
-        _exitButton.interactable = true;
-        _limitedStart = false;
+        if (MilestonStart == true) return;
+        AllButtonCtrl(true);
     }
     /// <summary>
     /// 호출하면 현재 DTO에 맞추어 초기화 가능 여부에 따라 초기화 버튼을 활성화 합니다.
@@ -213,26 +226,34 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     private void Button_Grade_1()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50001;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void Button_Grade_2()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50002;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void Button_Grade_3()
     {
+        if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
         var Grade = 50003;
         OpenPopup(data, Grade);
+        AllButtonCtrl(false);
     }
     private void OpenResetCanvas()
     {
+        if (_interactableReset == false) return;
         var data = _resetCanvas.GetComponent<IPopupable>();
         OpenPopup(data);
+        AllButtonCtrl(false);
     }
     private void OnEnterClick()
     {
@@ -244,7 +265,7 @@ public class GatchaContentPresenter : MonoBehaviour
         //---------------------
         OnOpen();
         _enterButton.interactable = false;
-        _exitButton.interactable = true;
+        AllButtonCtrl(true);
     }
     private void OnExitClick()
     {
@@ -254,12 +275,13 @@ public class GatchaContentPresenter : MonoBehaviour
         _debugButton.SetActive(true);
         //---------------------
         _enterButton.interactable = true;
-        _exitButton.interactable = false;
+        AllButtonCtrl(false);
     }
     void OnTutorialClick()
     {
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
         OpenPopup(popup);
+        AllButtonCtrl(false);
     }
 
     // 뽑기판의 뽑기 블럭을 클릭했을 때 실행되는 함수입니다.
@@ -268,9 +290,10 @@ public class GatchaContentPresenter : MonoBehaviour
         if (_isPopupOpen) return;
         if (GatchaDataManager.Instance.IsOpened(index)) return;
         if (GatchaDataManager.Instance.GatchaData.OwnedTicketCount <= 0) return;
+        if (_interactableGatchaBlocks == false) return;
         _isPopupOpen = true;
 
-        _exitButton.interactable = false;
+        AllButtonCtrl(false);
 
         int itemId = GatchaDataManager.Instance.GetItemID(index);
         /*
@@ -434,12 +457,30 @@ public class GatchaContentPresenter : MonoBehaviour
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
+            MilestonStart = true;
             OpenPopup(_milestoneCanvas);
             Need_M_Open = false;
+            _limitedStart = false;
         }
 
-        _exitButton.interactable = true;
+        if (MilestonStart == true) return;
+        AllButtonCtrl(true);
         _limitedStart = false;
+    }
+    #endregion
+
+    #region 모든 버튼 interactable 설정하는 함수
+    /// <summary>
+    /// 팝업창 실행시 모든 버튼을 켜고 끄기 위한 함수
+    /// </summary>
+    /// <param name="On_Off">true, false를 입력해 주세요.</param>
+    public void AllButtonCtrl(bool On_Off)
+    {
+        _exitButton.interactable = On_Off;
+        _tutorialButton.interactable = On_Off;
+        _interactableReset = On_Off;
+        _interactableLimitedBlock = On_Off;
+        _interactableGatchaBlocks = On_Off;
     }
     #endregion
 
