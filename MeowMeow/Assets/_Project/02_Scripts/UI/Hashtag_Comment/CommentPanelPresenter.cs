@@ -17,6 +17,9 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     [SerializeField] private BaseScreenController _screenController;
     [SerializeField] private UIPanel _previewPanel;
 
+    [Header("Zoom Overlay")]
+    [SerializeField] private CGImageZoomOverlay _zoomOverlay;
+
     private SNSPostDTO _snapshot;
 
     private void OnEnable() => RequestContext();
@@ -54,14 +57,16 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     // ISNSPanelClearable — 패널 전환/종료 시 SNS_UI_Controller가 호출한다.
     public void ClearPanelContext() => ResetAll();
 
+    // CG_Image 버튼에 연결한다.
+    public void OpenZoomOverlay() => _zoomOverlay?.Open(_snapshot);
+
     // 다음 버튼에 연결한다.
-    // 코멘트와 해시태그가 둘 다 비어 있으면 팝업을 띄우고 이동을 차단한다.
+    // 코멘트가 비어 있으면 팝업을 띄우고 이동을 차단한다.
     public void PlzAddComment()
     {
-        bool hasContent = (_commentZoneManager != null && _commentZoneManager.GetWords().Count > 0)
-                       || (_hashtagZoneManager != null && _hashtagZoneManager.GetSelectedTagNames().Count > 0);
+        bool hasComment = _commentZoneManager != null && _commentZoneManager.GetWords().Count > 0;
 
-        if (!hasContent)
+        if (!hasComment)
         {
             _commentZoneManager?.ShowNoContentPopup();
             return;
