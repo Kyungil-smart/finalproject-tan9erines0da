@@ -6843,6 +6843,10 @@ PrefabInstance:
       propertyPath: _uiController
       value: 
       objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 5323550108136815383, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+      propertyPath: _shaderController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6023636711154545180, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6955,7 +6959,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 389156666477936609}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8878114224883921810, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
+    - {fileID: 5323550108136815383, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
     m_RemovedGameObjects:
     - {fileID: 697454016570982430, guid: 689c48157d8ffa24b8ae18ddcdf494a2, type: 3}
     m_AddedGameObjects: []
