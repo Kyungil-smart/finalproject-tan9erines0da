@@ -42,27 +42,30 @@ public class SNSPostImageRenderer : MonoBehaviour
         // 2. 스티커 레이어 청소 및 복원
         ClearStickers();
 
-        if (snapshot.Stickers == null || snapshot.Stickers.Count == 0) return;
-
-        RectTransform bgRect = _bgImage.rectTransform;
-
-        foreach (var data in snapshot.Stickers)
+        if (snapshot.Stickers != null && snapshot.Stickers.Count > 0)
         {
-            GameObject obj = Instantiate(
-                _rawStickerPrefab.gameObject, transform, false);
+            RectTransform bgRect = _bgImage.rectTransform;
 
-            Image img = obj.GetComponent<Image>();
-            img.sprite = _stickerDB.GetSprite(data.StickerId);
+            foreach (var data in snapshot.Stickers)
+            {
+                GameObject obj = Instantiate(
+                    _rawStickerPrefab.gameObject, transform, false);
 
-            RectTransform rect = obj.GetComponent<RectTransform>();
+                Image img = obj.GetComponent<Image>();
+                img.sprite = _stickerDB.GetSprite(data.StickerId);
 
-            Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
-            rect.RestorePos(savedPos, bgRect);
-            rect.RestoreScale((float)data.RelativeScale, bgRect);
-            rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
+                RectTransform rect = obj.GetComponent<RectTransform>();
 
-            _spawnedStickers.Add(obj);
+                Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
+                rect.RestorePos(savedPos, bgRect);
+                rect.RestoreScale((float)data.RelativeScale, bgRect);
+                rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
+
+                _spawnedStickers.Add(obj);
+            }
         }
+
+       
 
         // 3. 셰이더 복원
         if (_shaderController != null)

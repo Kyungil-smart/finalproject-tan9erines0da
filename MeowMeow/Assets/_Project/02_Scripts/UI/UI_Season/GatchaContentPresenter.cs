@@ -77,6 +77,8 @@ public class GatchaContentPresenter : MonoBehaviour
     public int L_itemID;
     // 한정 보상 스탬프 애니메이션을 백업할 변수
     private CatStampTweenAni _catStampTweenAni;
+    // 스포일러 방지 커버를 비활성화 하기위해 뽑기버튼을 백업할 변수
+    private GatchaButton _gatchaButton;
 
     //-------------디버그 버튼 관련 필드
     [SerializeField] private GameObject _debugButton;
@@ -140,6 +142,13 @@ public class GatchaContentPresenter : MonoBehaviour
         popup.Close();
 
         popup.gameObject.SetActive(false);
+
+        // 뽑기 결과를 확인하면 스포일러 방지 커버를 비활성화 및 변수 초기화
+        if (_gatchaButton != null)
+        {
+            _gatchaButton.CloseSpoilerCove();
+            _gatchaButton = null;
+        }
 
         /*
         L_itemID 이 값이 있으면   자물쇠 연출 시작
@@ -320,7 +329,7 @@ public class GatchaContentPresenter : MonoBehaviour
             }
         }
         await GatchaDataManager.Instance.ExecuteGacha(index);
-
+        
 
         _gatchaBlocks[index].SetView(true);
         _gatchaBlocks[index].SetViewCover(index);
@@ -330,6 +339,8 @@ public class GatchaContentPresenter : MonoBehaviour
         _isPopupOpen = false;
         IPopupable popup = _gatchaCanvas.GetComponent<IPopupable>();
         OpenPopup(popup, itemId);
+        // 스포일러 방지 커버의 비활성화를 위해 해당 뽑기 버튼을 백업
+        _gatchaButton = _gatchaBlocks[index];
     }
 
     // 뽑기 결과 팝업이 닫힌 뒤 메인 캔버스의 표시 정보를 갱신하는 함수입니다.

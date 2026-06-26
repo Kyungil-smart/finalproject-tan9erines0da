@@ -7,7 +7,10 @@ public class BoxCoverTweenAni : MonoBehaviour
 {
     [SerializeField] private RectTransform leafRect;
     [SerializeField] private Graphic leafGraphic;
-    
+    [Header("SpoilerCover를 참조")]
+    [SerializeField] private GameObject _spoilerCover;
+    public GameObject SpoilerCover => _spoilerCover;
+
     public async Task PlayAnimation()
     {
         if (leafRect == null || leafGraphic == null)
@@ -62,6 +65,9 @@ public class BoxCoverTweenAni : MonoBehaviour
         seq.Insert(
             1.6f,
             leafGraphic.DOFade(0f, 1f));
+
+        // 애니메이션에 맞춰 등수 스포일러 방지 커버가 활성화
+        _spoilerCover.SetActive(true);
 
         await seq.AsyncWaitForCompletion();
         gameObject.SetActive(false);

@@ -89,4 +89,13 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     {
         await _anim.PlayAnimation();
     }
+
+    /// <summary>
+    /// 뽑기권 등수를 확인하는 타이밍에
+    /// 등수 스포일러 방지 커버를 비활성화 하기위한 함수입니다.
+    /// </summary>
+    public void CloseSpoilerCove()
+    {
+        _anim.SpoilerCover.SetActive(false);
+    }
 }
