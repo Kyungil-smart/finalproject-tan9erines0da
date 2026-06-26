@@ -37,6 +37,7 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+
         if(Instance != null)
         {
             Destroy(this.gameObject);
@@ -44,11 +45,17 @@ public class SoundManager : MonoBehaviour
 
         }
         Instance = this;
+        AutoSetting();
         m_AuidoDic = audioSOs.ToDictionary(x=>x.audio_Name, x=>x.clip);
         SetBackGroundSound();
         DontDestroyOnLoad(this.gameObject);
     }
-   
+    private void AutoSetting()
+    {
+        audioSOs.Clear();
+        var SO = Resources.LoadAll<AudioSO>("AudioSO");
+        audioSOs.AddRange(SO);
+    }
     private void  SetBackGroundSound()
     {
         var data = GetAudioClip(AudioType.nyanv2_3);
