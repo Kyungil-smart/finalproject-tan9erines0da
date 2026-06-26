@@ -139,6 +139,10 @@ public class SNSFeedPresenter : MonoBehaviour,
         List<daesgeul> pool = new List<daesgeul>();
         HashSet<string> tagIds = new HashSet<string>();
 
+        // NULL id 필수 포함
+        tagIds.Add("60001");
+        
+        // 태그 아이디 풀에 설정된 해시태그 id 주입
         foreach (var tag in tagSO.m_Data)
         {
             if (snapshot.Hashtags.Contains(tag.TagName))
@@ -146,10 +150,11 @@ public class SNSFeedPresenter : MonoBehaviour,
                 tagIds.Add(tag.uniqueId);
             }
         }
-
+        // 태그 아이디 풀 기준으로 코멘트 순회후 추가
         foreach (var com in comSO.m_Data)
         {
             string depId = com.dependent_ID.ToString();
+            
             if (tagIds.Contains(depId))
             {
                 pool.Add(com);
@@ -158,6 +163,15 @@ public class SNSFeedPresenter : MonoBehaviour,
 
         if (pool.Count == 0)
             pool = new List<daesgeul>(comSO.m_Data);
+
+        // 댓글 풀 셔플
+        for (int i = 0;  i < pool.Count; i++)
+        {
+            int rnd = Random.Range(i, pool.Count);
+            var temp = pool[i];
+            pool[i] = pool[rnd];
+            pool[rnd] = temp;
+        }
 
         // 2) 중복 없는 유저 배정을 위한 유저 리스트 셔플
         List<VirtualUserProfile> users =
@@ -172,7 +186,8 @@ public class SNSFeedPresenter : MonoBehaviour,
         }
 
         // 3) 최대 4개의 가상 댓글 인스턴스화 및 데이터 주입
-        int count = Mathf.Min(4, users.Count);
+        int maxCount = Mathf.Min(users.Count, pool.Count);
+        int count = Mathf.Min(4, maxCount);
         for (int i = 0; i < count; i++)
         {
             GameObject item = Instantiate(
@@ -185,8 +200,8 @@ public class SNSFeedPresenter : MonoBehaviour,
             if (script != null)
             {
                 VirtualUserProfile u = users[i];
-                int idx = Random.Range(0, pool.Count);
-                string text = pool[idx].sentence;
+                
+                string text = pool[i].sentence;
 
                 script.SetData(u.UserName, text);
             }
