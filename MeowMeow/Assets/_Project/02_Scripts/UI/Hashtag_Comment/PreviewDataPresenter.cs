@@ -21,15 +21,6 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
     private SNSPostDTO _snapshot;
 
     /// <summary>
-    /// UI 병합 씬에서 패널이 SetActive(true)로 켜지는 순간, 
-    /// 다른 작업자의 구조처럼 즉시 최신 DTO 컨텍스트를 서버 마스터로부터 요청합니다.
-    /// </summary>
-    private void OnEnable()
-    {
-        RequestContext();
-    }
-
-    /// <summary>
     /// 전달받은 DTO 구조체를 바탕으로 복원합니다
     /// </summary>
     public void ReceiveSnapshot(SNSPostDTO snapshot)

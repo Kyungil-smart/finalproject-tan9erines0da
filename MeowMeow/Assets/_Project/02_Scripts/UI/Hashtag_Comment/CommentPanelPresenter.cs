@@ -22,8 +22,6 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
     private SNSPostDTO _snapshot;
 
-    private void OnEnable() => RequestContext();
-    private void OnDisable() => ResetAll();
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
 

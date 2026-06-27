@@ -60,7 +60,7 @@ public class CatStampTweenAni_2 : MonoBehaviour
             _contentPresenter.AllButtonCtrl(true);
             _contentPresenter.MilestonStart = false;
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
         });
 
         return seq.AsyncWaitForCompletion();
