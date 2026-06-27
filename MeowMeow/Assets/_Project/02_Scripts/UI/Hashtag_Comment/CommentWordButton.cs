@@ -32,6 +32,7 @@ public class CommentWordButton : MonoBehaviour
     private bool _isSelected;
 
     public string Word => _word;
+    public bool IsSelected => _isSelected; // DraggableUI에서 드래그 허용 여부 판단에 사용
 
     private void Awake()
     {

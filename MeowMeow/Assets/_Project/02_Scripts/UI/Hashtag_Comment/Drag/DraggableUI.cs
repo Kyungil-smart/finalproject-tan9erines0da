@@ -25,6 +25,14 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        // 선택(X 표시) 상태가 아니면 드래그 차단
+        var commentBtn = GetComponent<CommentWordButton>();
+        if (commentBtn != null && !commentBtn.IsSelected)
+        {
+            eventData.pointerDrag = null;
+            return;
+        }
+
         originalParent = transform.parent;
         grid = originalParent.GetComponent<GridLayoutGroup>();
 
@@ -38,12 +46,14 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (placeholder == null) return; // 드래그 차단 시 null 가드
         MoveDraggedObject(eventData);
         UpdatePlaceholderPosition(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (placeholder == null) return; // 드래그 차단 시 null 가드
         transform.SetParent(originalParent);
         transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
 
@@ -59,21 +69,22 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     private void CreatePlaceholder()
     {
-        placeholder = new GameObject("Placeholder"); //GridLayoutGroup 안에서 "임시 자리" 역할을 할 오브젝트 생성, 드래그 중인 버튼이 빠져나간 위치를 유지하기 위해 사용
+        // 원본 버튼을 복사해 고스트 이미지로 사용
+        placeholder = Instantiate(gameObject, originalParent);
+        placeholder.name = "Placeholder";
 
-        placeholder.transform.SetParent(originalParent);
+        // 클릭·드래그 등 기능 컴포넌트 제거
+        Destroy(placeholder.GetComponent<CommentWordButton>());
+        Destroy(placeholder.GetComponent<DraggableUI>());
+        Destroy(placeholder.GetComponent<Button>());
 
-        LayoutElement layout = placeholder.AddComponent<LayoutElement>();
+        // 반투명 처리 및 레이캐스트 차단
+        CanvasGroup cg = placeholder.GetComponent<CanvasGroup>();
+        cg.alpha = 0.4f;
+        cg.blocksRaycasts = false;
+        cg.interactable = false;
 
-        RectTransform myRect = GetComponent<RectTransform>(); // 현재 드래그 중인 버튼의 RectTransform 가져오기
-
-        layout.preferredWidth = myRect.rect.width; // Placeholder 크기를 원본 버튼과 동일하게 설정 그래야 GridLayoutGroup이 같은 크기의 슬롯으로 취급함
-        layout.preferredHeight = myRect.rect.height;
-
-        layout.flexibleWidth = 0; // 크기 자동 확장 방지
-        layout.flexibleHeight = 0;
-
-        placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex()); // 원래 버튼이 있던 위치에 Placeholder 배치
+        placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex()); // 원래 버튼이 있던 위치에 배치
     }
 
     private void UpdatePlaceholderPosition(PointerEventData eventData) // 드래그 중 계속 호출되는 함수, Placeholder 위치 갱신용임
