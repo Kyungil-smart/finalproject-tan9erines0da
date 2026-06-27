@@ -141,7 +141,9 @@ public class SNS_UI_Controller : BaseScreenController
     /// </summary>
     public void ClickNavigateBackDepth2Button()
     {
-        _editCancelPopup.SetActive(true);  
+        _editCancelPopup.SetActive(true);
+        // 스티커 터치 제어를 위한 코드
+        TouchInputHandler.Instance.OnEditCancel = true;
     }
 
     /// <summary>
@@ -154,6 +156,11 @@ public class SNS_UI_Controller : BaseScreenController
 
         // 팝업을 닫는다.
         _editCancelPopup.SetActive(false);
+        // 스티커 터치 제어를 위한 코드
+        if (TouchInputHandler.Instance.OnEditCancel == true)
+        {
+            TouchInputHandler.Instance.OnEditCancel = false;
+        }
 
         // 스택에 돌아갈 기록이 남아있는지 검사
         if (_uiHistory == null || _uiHistory.Count == 0)

@@ -18,17 +18,15 @@ public class GetPrizeTweenAni : MonoBehaviour
 
         targetRect.DOKill();
 
-        // 시작 크기
-        targetRect.sizeDelta = new Vector2(300f, 251f);
+        // 시작 크기: 원본 크기(622x521) 기준으로 약 300x251 크기
+        targetRect.localScale = new Vector3(0.482f, 0.482f, 1f);
 
         Sequence seq = DOTween.Sequence();
 
         // 처음 느리고 갈수록 빨라짐
         seq.Append(
-            targetRect.DOSizeDelta(
-                new Vector2(622f, 521f),
-                1f)
-            .SetEase(Ease.InQuart));
+             targetRect.DOScale(Vector3.one, 1f)
+                 .SetEase(Ease.InQuart));
 
         return seq.AsyncWaitForCompletion();
 

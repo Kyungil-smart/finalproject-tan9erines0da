@@ -56,6 +56,8 @@ public class TouchInputHandler : MonoBehaviour
 
     // 스티커 위를 터치 했는지 판별을 위해 개인적으로 추가(스티커 드래그, 확대/축소, 회전용)
     public bool _isTouchingSticker;
+    // EditCancelPopup이 활성화 되있는지 판별하기 위한 마커
+    public bool OnEditCancel;
 
     // 디버그 마커
     private GameObject _debugFirstMarker;
@@ -259,6 +261,8 @@ public class TouchInputHandler : MonoBehaviour
     // 오브젝트 선택---------------------------------
     private void TrySelectObject(Vector2 screenPos)
     {
+        if (OnEditCancel == true) return;
+
         PointerEventData eventData = new PointerEventData(EventSystem.current);
         eventData.position = screenPos;
 
