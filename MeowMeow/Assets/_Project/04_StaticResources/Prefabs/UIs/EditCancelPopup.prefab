@@ -760,6 +760,7 @@ GameObject:
   - component: {fileID: 1556960763891059884}
   - component: {fileID: 2299664550091782634}
   - component: {fileID: 3201634706485478144}
+  - component: {fileID: 2644615768988862126}
   m_Layer: 5
   m_Name: Exit_Button
   m_TagString: Untagged
@@ -867,19 +868,21 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2299664550091782634}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5726818124039649797}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &2644615768988862126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5909609890505732430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47a47b01658c324f9cc9bf9280bfde0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exitButton: {fileID: 3201634706485478144}
+  _editCancelPopup: {fileID: 5726818124039649797}
 --- !u!1 &6987794457446433717
 GameObject:
   m_ObjectHideFlags: 0
