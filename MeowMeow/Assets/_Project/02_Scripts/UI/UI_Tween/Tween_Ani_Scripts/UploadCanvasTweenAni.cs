@@ -1,9 +1,10 @@
 using DG.Tweening;
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UploadCanvasTweenAni : MonoBehaviour
+public class UploadCanvasTweenAni : UIAnimationEffect
 {
     [Header("Upload_Canvas의 Phone_frame_panel 참조")]
     [SerializeField] private RectTransform _uploadCanvas;
@@ -11,6 +12,8 @@ public class UploadCanvasTweenAni : MonoBehaviour
     [SerializeField] private float _second;
     [Header("팝업 위치 옵셋값")]
     [SerializeField] private float _offsetY;
+
+    UIPanel _backgroundPanel;
 
     [ContextMenu("업로드 캔버스 열기 애니메이션 재생")]
     public Task PlayOpenAnimation()
@@ -59,5 +62,41 @@ public class UploadCanvasTweenAni : MonoBehaviour
         });
 
         return seq.AsyncWaitForCompletion();
+    }
+
+    public override void PlayIn(Action onComplete)
+    {
+        // 예외처리
+        if (_uploadCanvas == null)
+        {
+            Debug.LogWarning("_uploadCanvas가 비어있습니다.");
+            onComplete?.Invoke();
+            return;
+        }
+        // 트윈 실행부
+        if (_backgroundPanel != null)
+            _backgroundPanel.gameObject.SetActive(true);
+
+        _uploadCanvas.DOKill();
+        _uploadCanvas.anchoredPosition = new Vector2(0f, _offsetY);
+
+        _uploadCanvas.DOAnchorPosY(0f, _second)
+            .SetEase(Ease.OutQuad)
+            .OnComplete(() =>
+            {
+                if (_backgroundPanel != null)
+                    _backgroundPanel.gameObject.SetActive(false);
+                onComplete?.Invoke();
+            });
+    }
+
+    public override void PlayOut(Action onComplete)
+    {
+        onComplete?.Invoke();
+    }
+
+    public void SetupBackground(UIPanel target)
+    {
+        _backgroundPanel = target;
     }
 }

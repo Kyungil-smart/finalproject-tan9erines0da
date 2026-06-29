@@ -80,7 +80,7 @@ public class SNS_UI_Controller : BaseScreenController
                 clearable.ClearPanelContext();
             }
 
-            CurrentActivePanel.Close(null);
+            CurrentActivePanel.Close(null, true);
         }
 
         // 배경에 숨어서 Active 상태로 깔려있던 1깊이 화면도 함께 정리
@@ -234,13 +234,23 @@ public class SNS_UI_Controller : BaseScreenController
         {
             _lastActiveDepth1Panel = CurrentActivePanel;
 
-            // 1깊이를 닫고, 2깊이 화면을 실행
-            _lastActiveDepth1Panel.Close(() =>
+            // 업로드 패널 체크
+            var customTween =
+            targetPanel.GetComponent<UploadCanvasTweenAni>();
+
+            if (customTween != null)
             {
-                CurrentActivePanel = targetPanel;
-                RefreshPanelData(CurrentActivePanel);
-                CurrentActivePanel.OpenWithEnterAnimation(null);
-            });
+                // 기존 패널을 연출 중에도 보여줄 수 있도록 주입
+                customTween.SetupBackground(CurrentActivePanel);
+            }
+
+            // 1깊이를 닫는 연출 실행
+            _lastActiveDepth1Panel.Close(null);
+
+            // 동시에 2깊이를 여는 연출 실행
+            CurrentActivePanel = targetPanel;
+            RefreshPanelData(CurrentActivePanel);
+            CurrentActivePanel.OpenWithEnterAnimation(null);
         }
         // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
         else
