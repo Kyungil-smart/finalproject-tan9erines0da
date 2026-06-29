@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class MeowStarStartTweenAni : MonoBehaviour
+public class MeowStarStartTweenAni : UIAnimationEffect
 {
     [Header("NYS_BG_Image → NYS_Merge_Image 참조")]
     [SerializeField] private RectTransform _nysMergeImage;
@@ -13,10 +13,6 @@ public class MeowStarStartTweenAni : MonoBehaviour
     [SerializeField] private Sprite _starSprite;
     [SerializeField] private float _radius = 90f;
 
-    private async void Start()
-    {
-        await PlayAnimation();
-    }
 
     static readonly Color[] Palette = // 별들의 색상을 랜덤으로 출력하기 위한 색상 팔레트
     {
@@ -85,11 +81,79 @@ public class MeowStarStartTweenAni : MonoBehaviour
         img.sprite = _starSprite;
         img.color = col;
 
-        DOTween.Sequence() //Append는 앞에서부터 순차적으로 실행시키고, Join은 바로 앞에 것이 실행되면 동시에 실행시킴
-            .Append(rt.DOLocalMove(dir * _radius, 0.5f).SetEase(Ease.OutCubic)) // Append앞에 트윈이 없으므로 바로 실행됨, 0.5초 동안 dir 방향으로 radius 거리만큼 이동, Ease.OutCubic은 빠르게 시작해서 천천히 끝나는 움직임을 만들어줌
+        Sequence starSeq = DOTween.Sequence();
 
-            .Join(img.DOFade(0f, 1f)); // 이동과 동시에 1초 동안 서서히 투명해짐 // 앞의 Append에서 트윈이 실행되면 바로 이어서 실행됨, 1초 동안 서서히 투명해지도록 만듬, DOFade 는 정해진 시간동안 일정 알파값을 만드는 트윈을 반환하는 메서드
 
-        Destroy(go, 1f); // 1초 후에 go 이미지 오브젝트가 완전히 투명해지기 때문에 1초 뒤에 Destroy로 삭제하여 메모리 관리
+
+        //Append는 앞에서부터 순차적으로 실행시키고, Join은 바로 앞에 것이 실행되면 동시에 실행시킴
+        // Append앞에 트윈이 없으므로 바로 실행됨, 0.5초 동안 dir 방향으로 radius 거리만큼 이동, Ease.OutCubic은 빠르게 시작해서 천천히 끝나는 움직임을 만들어줌
+        starSeq.Append(rt.DOLocalMove(dir * _radius, 0.5f).SetEase(Ease.OutCubic));
+
+        starSeq.Join(img.DOFade(0f, 1f)); // 이동과 동시에 1초 동안 서서히 투명해짐 // 앞의 Append에서 트윈이 실행되면 바로 이어서 실행됨, 1초 동안 서서히 투명해지도록 만듬, DOFade 는 정해진 시간동안 일정 알파값을 만드는 트윈을 반환하는 메서드
+
+        starSeq.OnComplete(() =>
+        {
+            if(go != null)
+            {
+                Destroy(go, 1f); // 1초 후에 go 이미지 오브젝트가 완전히 투명해지기 때문에 1초 뒤에 Destroy로 삭제하여 메모리 관리
+            }
+        });
+    }
+
+    public override void PlayIn(System.Action onComplete)
+    {
+        if (_nysMergeImage == null || _nysMergeImageImage == null)
+        {
+            Debug.LogWarning("필요한 컴포넌트가 비어있습니다.");
+            onComplete?.Invoke();
+            return;
+        }
+
+        // 기존 트윈 초기화 및 시작 상태 강제 세팅
+        _nysMergeImage.DOKill();
+        _nysMergeImageImage.DOKill();
+        transform.DOKill();
+
+        _nysMergeImageImage.color = new Color(
+            _nysMergeImageImage.color.r,
+            _nysMergeImageImage.color.g,
+            _nysMergeImageImage.color.b,
+            0f
+        );
+        _nysMergeImage.sizeDelta = new Vector2(700f, 700f);
+        transform.localScale = Vector3.one;
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(_nysMergeImageImage.DOFade(1f, 0.8f).SetEase(Ease.InCubic));
+
+        seq.Join(_nysMergeImage.DOSizeDelta(
+            new Vector2(197f, 197f), 0.8f).SetEase(Ease.OutQuad));
+
+        seq.Insert(0.6f, transform.DOScale(0.9f, 0.3f).SetEase(Ease.OutQuad));
+
+        // 별 파티클 폭발 콜백 등록
+        seq.InsertCallback(0.6f, PlayStarBurst);
+
+        seq.Append(transform.DOScale(1f, 0.2f).SetEase(Ease.OutQuad));
+
+        // 연출 완료 시 완료 콜백 구동
+        seq.OnComplete(() => onComplete?.Invoke());
+    }
+
+    public override void PlayOut(System.Action onComplete)
+    {
+        onComplete?.Invoke();
+    }
+
+    private void PlayStarBurst()
+    {
+        int count = Random.Range(5, 7);
+        for (int i = 0; i < count; i++)
+        {
+            Vector2 randomDir = Random.insideUnitCircle.normalized;
+            Color randomColor = Palette[Random.Range(0, Palette.Length)];
+            Burst(randomDir, randomColor);
+        }
     }
 }

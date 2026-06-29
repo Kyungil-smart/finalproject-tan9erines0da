@@ -58,9 +58,10 @@ public class Debugging_Buttons : MonoBehaviour
     private async void OnDailyResetButton()
     {
         if (_gatchaContentPresenter.IsMainCanvasOpen == true) return;
-
+        _dailyReset_Button.interactable = false;
         await GatchaDataManager.Instance.OnClickDailyResetButton();
         await LocalFeedStorage.GetRandomSixAsync();
+        _dailyReset_Button.interactable = true;
 
         _gatchaContentPresenter.RefreshQuestTicketTXT();
         _gatchaContentPresenter.RefreshDailyTicketTXT();
