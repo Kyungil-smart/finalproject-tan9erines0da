@@ -1120,6 +1120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uploadCanvas: {fileID: 3487189770458087029}
+  _second: 0.5
+  _offsetY: -2110
 --- !u!1 &1972671259628034358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1158,7 +1160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -237}
+  m_AnchoredPosition: {x: 0, y: -236.5}
   m_SizeDelta: {x: 995, y: 97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8248275451970119507
