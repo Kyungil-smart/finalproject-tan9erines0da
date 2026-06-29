@@ -7,6 +7,8 @@ public class MeowStarStartTweenAni : MonoBehaviour
 {
     [Header("NYS_BG_Image → NYS_Merge_Image 참조")]
     [SerializeField] private RectTransform _nysMergeImage;
+    [Header("NYS_BG_Image → NYS_Merge_Image 참조")]
+    [SerializeField] private Image _nysMergeImageImage;
     [Header("별 연출 전용 필드")]
     [SerializeField] private Sprite _starSprite;
     [SerializeField] private float _radius = 90f;
@@ -37,13 +39,22 @@ public class MeowStarStartTweenAni : MonoBehaviour
         }
 
         _nysMergeImage.DOKill();
+        _nysMergeImageImage.DOKill();
 
-        _nysMergeImage.gameObject.SetActive(true);
+        _nysMergeImageImage.color = new Color(
+              _nysMergeImageImage.color.r,
+              _nysMergeImageImage.color.g,
+              _nysMergeImageImage.color.b,
+              0f
+          );
+
         _nysMergeImage.sizeDelta = new Vector2(700f, 700f);
 
         Sequence seq = DOTween.Sequence();
 
-        seq.Append(_nysMergeImage.DOSizeDelta(new Vector2(197f, 197f), 0.8f).SetEase(Ease.OutQuad));
+        seq.Append(_nysMergeImageImage.DOFade(1f, 0.8f).SetEase(Ease.InCubic));
+
+        seq.Join(_nysMergeImage.DOSizeDelta(new Vector2(197f, 197f), 0.8f).SetEase(Ease.OutQuad));
 
         seq.Insert(0.6f, gameObject.transform.DOScale(0.9f, 0.3f).SetEase(Ease.OutQuad));
 

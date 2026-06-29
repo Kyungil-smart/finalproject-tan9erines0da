@@ -397,6 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nysMergeImage: {fileID: 4432943451103572511}
+  _nysMergeImageImage: {fileID: 1597080273163705371}
   _starSprite: {fileID: 21300000, guid: 6bbfba9f9ec194543a7c11ada8603132, type: 3}
   _radius: 90
 --- !u!1 &3312422453153943227
@@ -452,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4432943451103572511
 RectTransform:
   m_ObjectHideFlags: 0
