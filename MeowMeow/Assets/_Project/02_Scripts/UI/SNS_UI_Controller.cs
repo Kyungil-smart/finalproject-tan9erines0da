@@ -80,7 +80,7 @@ public class SNS_UI_Controller : BaseScreenController
                 clearable.ClearPanelContext();
             }
 
-            CurrentActivePanel.Close(null);
+            CurrentActivePanel.Close(null, true);
         }
 
         // 배경에 숨어서 Active 상태로 깔려있던 1깊이 화면도 함께 정리
@@ -172,6 +172,11 @@ public class SNS_UI_Controller : BaseScreenController
 
         if (CurrentActivePanel == null || CurrentActivePanel.IsTransitioning) return;
 
+        // ISNSPanelClearable 구현 패널(Comment)은 뒤로가기 전 초기화한다.
+        // Preview 등 미구현 패널은 null 반환으로 자동 스킵됨
+        var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+        clearable?.ClearPanelContext();
+
         // 현재 패널의 SubmitContext()를 호출하지 않고 화면을 닫음으로써
         // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.
         CurrentActivePanel.Close(() =>
@@ -234,13 +239,23 @@ public class SNS_UI_Controller : BaseScreenController
         {
             _lastActiveDepth1Panel = CurrentActivePanel;
 
-            // 1깊이를 닫고, 2깊이 화면을 실행
-            _lastActiveDepth1Panel.Close(() =>
+            // 업로드 패널 체크
+            var customTween =
+            targetPanel.GetComponent<UploadCanvasTweenAni>();
+
+            if (customTween != null)
             {
-                CurrentActivePanel = targetPanel;
-                RefreshPanelData(CurrentActivePanel);
-                CurrentActivePanel.OpenWithEnterAnimation(null);
-            });
+                // 기존 패널을 연출 중에도 보여줄 수 있도록 주입
+                customTween.SetupBackground(CurrentActivePanel);
+            }
+
+            // 1깊이를 닫는 연출 실행
+            _lastActiveDepth1Panel.Close(null);
+
+            // 동시에 2깊이를 여는 연출 실행
+            CurrentActivePanel = targetPanel;
+            RefreshPanelData(CurrentActivePanel);
+            CurrentActivePanel.OpenWithEnterAnimation(null);
         }
         // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
         else
