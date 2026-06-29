@@ -151,4 +151,20 @@ public class CategoryButton : MonoBehaviour
             .OnComplete(() => _wordPanel.gameObject.SetActive(false));
         _wordPanelGroup.DOFade(0f, _animDuration);
     }
+
+    // 패널 초기화 시 애니메이션 없이 즉시 닫힌 상태로 리셋한다.
+    public void Reset()
+    {
+        if (!_isExpanded) return;
+        _isExpanded = false;
+
+        DOTween.Kill(_rt);
+        DOTween.Kill(_wordPanel);
+        DOTween.Kill(_wordPanelGroup);
+
+        _rt.anchoredPosition = _originalPosition;
+        _wordPanel.sizeDelta = new Vector2(_wordPanel.sizeDelta.x, 0f);
+        _wordPanelGroup.alpha = 0f;
+        _wordPanel.gameObject.SetActive(false);
+    }
 }
