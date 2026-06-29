@@ -161,7 +161,10 @@ public class CommentZoneManager : MonoBehaviour
 
     private void UpdateCountText()
     {
-        if (_countText != null)
-            _countText.text = $"{_totalChars}/{_maxChars}";
+        if (_countText == null) return;
+        _countText.text = $"{_totalChars}/{_maxChars}";
+        _countText.color = _totalChars == 0   ? new Color32(85, 31, 52, 255)
+                         : _totalChars <= 45  ? new Color32(114, 29, 144, 255)
+                                              : new Color32(229, 0, 242, 255);
     }
 }
