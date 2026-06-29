@@ -172,6 +172,11 @@ public class SNS_UI_Controller : BaseScreenController
 
         if (CurrentActivePanel == null || CurrentActivePanel.IsTransitioning) return;
 
+        // ISNSPanelClearable 구현 패널(Comment)은 뒤로가기 전 초기화한다.
+        // Preview 등 미구현 패널은 null 반환으로 자동 스킵됨
+        var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+        clearable?.ClearPanelContext();
+
         // 현재 패널의 SubmitContext()를 호출하지 않고 화면을 닫음으로써
         // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.
         CurrentActivePanel.Close(() =>

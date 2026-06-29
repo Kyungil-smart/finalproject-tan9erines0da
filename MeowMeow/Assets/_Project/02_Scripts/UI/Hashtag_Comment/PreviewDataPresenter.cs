@@ -47,6 +47,11 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
         _uploadButton.onClick.AddListener(ExecuteUploadAndReturn);
     }
 
+    private void OnEnable()
+    {
+        RequestContext();
+    }
+
     public void RequestContext()
     {
         if (SubscribeManager.instance == null)
