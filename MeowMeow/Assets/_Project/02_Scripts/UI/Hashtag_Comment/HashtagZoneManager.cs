@@ -94,7 +94,11 @@ public class HashtagZoneManager : MonoBehaviour
 
     private void UpdateCountText()
     {
-        if (_countText != null)
-            _countText.text = $"{_tagObjects.Count}/{_maxTags}";
+        if (_countText == null) return;
+        int count = _tagObjects.Count;
+        _countText.text = $"{count}/{_maxTags}";
+        _countText.color = count == 0  ? new Color32(85, 31, 52, 255)
+                         : count <= 3  ? new Color32(114, 29, 144, 255)
+                                       : new Color32(229, 0, 242, 255);
     }
 }
