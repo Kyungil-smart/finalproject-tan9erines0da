@@ -1,7 +1,10 @@
+using Firebase.Auth;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public static class LocalFeedStorage
 {
@@ -82,5 +85,38 @@ public static class LocalFeedStorage
     {
         return Path.Combine(Application.persistentDataPath,
             $"{key}_{uid}.json");
+    }
+
+    /// <summary>
+    /// 파이어 스토어에서 피르 6개를 가져오고 로컬에 저장하는 함수 입니다.
+    /// </summary>
+    public static async Task GetRandomSixAsync()
+    {
+        if (BackendManager.Instance == null) return;
+        FirebaseUser user = BackendManager.Auth.CurrentUser;
+
+        var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
+        var SNSList = new List<SNSPostDTO>();
+        foreach (var item in Listdata)
+        {
+            SNSList.Add(item.ToStruct());
+        }
+        SavePosts(user.UserId, "RandomFeeds", SNSList);
+    }
+
+    /// <summary>
+    /// GetRandomSixAsync()의 이벤트 등록을 위한 래핑함수입니다.
+    /// 파이어 스토어에서 피르 6개를 가져오고 로컬에 저장하는 함수 입니다.
+    /// </summary>
+    public static async void GetRandomSix()
+    {
+        try
+        {
+            await GetRandomSixAsync();
+        }
+        catch(System.Exception ex) 
+        {
+            Debug.LogError($"[랜덤피드] 에러 : {ex.Message} ");
+        }
     }
 }
