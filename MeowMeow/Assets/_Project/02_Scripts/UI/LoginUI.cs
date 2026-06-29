@@ -156,25 +156,21 @@ public class LoginUI : MonoBehaviour
         // 유저 로컬 데이터에 랜덤피드 6개 확보
         if (localFeedStorage.Count > 1)
         {
-            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, localFeedStorage);
+            // 이미 자료가 있으면 통과합니다.
         }
         else
         {
             // 로컬에 데이터가 존재하지 않을 때
-            var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
-            var SNSList = new List<SNSPostDTO>();
-            foreach (var item in Listdata)
-            {
-                SNSList.Add(item.ToStruct());
-            }
-            LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
-            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
+            await LocalFeedStorage.GetRandomSixAsync();
         }
 
         // 자정이벤트 등록
         if(TimeManager.Instance != null)
         {
             TimeManager.Instance.OnOClock += GatchaDataManager.Instance.OnDailyReset;
+            TimeManager.Instance.OnOClock += LocalFeedStorage.GetRandomSix;
         }
     }
+
+    
 }
