@@ -95,7 +95,7 @@ public class MeowStarStartTweenAni : UIAnimationEffect
         {
             if(go != null)
             {
-                Destroy(go, 1f); // 1초 후에 go 이미지 오브젝트가 완전히 투명해지기 때문에 1초 뒤에 Destroy로 삭제하여 메모리 관리
+                Destroy(go); // 1초 후에 go 이미지 오브젝트가 완전히 투명해지기 때문에 1초 뒤에 Destroy로 삭제하여 메모리 관리
             }
         });
     }
@@ -136,6 +136,9 @@ public class MeowStarStartTweenAni : UIAnimationEffect
         seq.InsertCallback(0.6f, PlayStarBurst);
 
         seq.Append(transform.DOScale(1f, 0.2f).SetEase(Ease.OutQuad));
+
+        // 시간 대기
+        seq.AppendInterval(1.2f);
 
         // 연출 완료 시 완료 콜백 구동
         seq.OnComplete(() => onComplete?.Invoke());

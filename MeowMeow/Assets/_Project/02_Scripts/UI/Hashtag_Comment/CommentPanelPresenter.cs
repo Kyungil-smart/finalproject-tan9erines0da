@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Comment 씬의 데이터 흐름 조율자.
@@ -27,7 +28,10 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
-
+    void OnDisable()
+    {
+        ClearPanelContext();
+    }
     public void RequestContext()
     {
         if (SubscribeManager.instance == null)

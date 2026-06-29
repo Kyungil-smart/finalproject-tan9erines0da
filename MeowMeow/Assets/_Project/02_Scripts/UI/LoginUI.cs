@@ -161,7 +161,7 @@ public class LoginUI : MonoBehaviour
         else
         {
             // 로컬에 데이터가 존재하지 않을 때
-            await LocalFeedStorage.GetRandomSixAsync();
+            await SNSPostManager.Instance.RefreshRandomFeedsAsync();
         }
 
         // 자정이벤트 등록
