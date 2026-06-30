@@ -16,6 +16,11 @@ public class ObjectPinchScaler : MonoBehaviour
     [Header("스티커 회전 관련")]
     [SerializeField] private float _rotationSpeed = 1.5f;
 
+    [Header("스티커 조작 범위")]
+    [SerializeField] private RectTransform _touchArea;
+    // 터치 범위 외부에서 터치했는지 판단하는 마커
+    private bool _isTouchValid;
+
     [Header("현재 타겟 확인용/참조X")]
     [SerializeField] private RectTransform _target;
 
@@ -44,6 +49,7 @@ public class ObjectPinchScaler : MonoBehaviour
 
     private void Update()
     {
+        UpdateTouchValidity();
         RotateTarget();
     }
 
@@ -99,9 +105,12 @@ public class ObjectPinchScaler : MonoBehaviour
     #region 스티커 이동 함수
     private void OnDrag(Vector2 delta)
     {
-        if (!TouchInputHandler.Instance._isTouchingSticker) return;
+        // $$$$
+        //if (!TouchInputHandler.Instance._isTouchingSticker) return;
 
-        if (_target == null || _parent == null) return;
+        if (!CanInteract()) return;
+
+        if (_parent == null) return;
 
         // 이동할 위치 계산
         Vector2 nextPos = _target.anchoredPosition + delta * _moveSpeed;
@@ -145,9 +154,12 @@ public class ObjectPinchScaler : MonoBehaviour
     #region 스티커 확대 함수
     private void OnPinch(float pinchDelta)
     {
-        if (!TouchInputHandler.Instance._isTouchingSticker) return;
+        // $$$$
+        //if (!TouchInputHandler.Instance._isTouchingSticker) return;
 
-        if (_target == null) return;
+        if (!CanInteract()) return;
+
+        if (Touchscreen.current.touches.Count < 2) return;
 
         // 현재 크기 저장
         Vector3 scale = _target.localScale;
@@ -171,11 +183,11 @@ public class ObjectPinchScaler : MonoBehaviour
     // TouchInputHandler에 제공된 이벤트 함수가 없어서 독립적으로 작성
     private void RotateTarget()
     {
-        if (!TouchInputHandler.Instance._isTouchingSticker) return;
+        // $$$$
+        //if (!TouchInputHandler.Instance._isTouchingSticker) return;
 
-        if (_target == null) return;
+        if (!CanInteract()) return;
 
-        if (Touchscreen.current == null) return;
         // 두 손가락 터치 확인
         if (Touchscreen.current.touches.Count < 2)
         {
@@ -220,6 +232,70 @@ public class ObjectPinchScaler : MonoBehaviour
 
         // 다음 프레임 회전 계산을 위한 기준값 갱신
         _previousDirection = currentDir;
+    }
+    #endregion
+
+    #region 터치범위 관련 함수
+    private bool CanInteract()
+    {
+        if(!_isTouchValid) return false;
+        if (_target == null) return false;
+        if (_touchArea == null) return false;
+        if (Touchscreen.current == null) return false;
+
+        return true;
+    }
+
+    // 해당 UI 영역 안에 터치 좌표가 들어있는지 체크(true = 안쪽, false = 바깥)
+    private bool IsInside(RectTransform rectTransform, Vector2 screenPos)
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPos, null);
+    }
+
+
+    private void UpdateTouchValidity()
+    {
+        if (Touchscreen.current == null)
+            return;
+
+        // ===== 1번 손가락 처리 =====
+        // 첫 번째 터치가 시작된 프레임에만 실행
+        if (Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
+        {
+            // 1번 손가락 터치 위치 가져오기 (스크린 좌표)
+            Vector2 pos1 = Touchscreen.current.primaryTouch.position.ReadValue();
+
+            // 해당 위치가 터치 허용 영역 안인지 검사해서 상태 설정
+            _isTouchValid = IsInside(_touchArea, pos1);
+        }
+
+        // ===== 2번 손가락 처리 =====
+        // 현재 터치가 2개 이상일 때만 검사
+        if (Touchscreen.current.touches.Count > 1)
+        {
+            TouchControl second = Touchscreen.current.touches[1];
+
+            // 2번 손가락이 처음 눌린 프레임에만 실행
+            if (second.press.wasPressedThisFrame)
+            {
+                // 2번 손가락 위치 가져오기
+                Vector2 pos2 = second.position.ReadValue();
+
+                // 두 번째 손가락이 영역 밖이면 전체 터치 무효 처리
+                // (멀티터치 중 하나라도 밖이면 조작 차단)
+                if (!IsInside(_touchArea, pos2))
+                {
+                    _isTouchValid = false;
+                }
+            }
+        }
+
+        // ===== 1번 손가락 종료 처리 =====
+        // 첫 번째 손가락이 떨어지는 순간 터치 유효 상태 초기화
+        if (Touchscreen.current.primaryTouch.press.wasReleasedThisFrame)
+        {
+            _isTouchValid = false;
+        }
     }
     #endregion
 

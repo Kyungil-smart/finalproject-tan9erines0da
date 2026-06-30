@@ -276,6 +276,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105542685}
   m_CullTransparentMesh: 1
+--- !u!224 &206638174 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6804003401282180037, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
+  m_PrefabInstance: {fileID: 2939198872549327819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &357268714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1258,6 +1263,10 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8061316860890254636, guid: e291481e276eaab4b92f0a54d90fa5df, type: 3}
+      propertyPath: _touchArea
+      value: 
+      objectReference: {fileID: 206638174}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2500,6 +2509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiFrameObject: {fileID: 0}
   _defaultDepth1Panel: {fileID: 735825518191764962}
+  _editCancelPopup: {fileID: 0}
 --- !u!1 &394762151547755744
 GameObject:
   m_ObjectHideFlags: 0
