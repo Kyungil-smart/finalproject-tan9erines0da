@@ -55,7 +55,8 @@ public class TouchInputHandler : MonoBehaviour
     private bool _isPinchConfirmed;
 
     // 스티커 위를 터치 했는지 판별을 위해 개인적으로 추가(스티커 드래그, 확대/축소, 회전용)
-    public bool _isTouchingSticker;
+    // $$$$
+    //public bool _isTouchingSticker;
     // EditCancelPopup이 활성화 되있는지 판별하기 위한 마커
     public bool OnEditCancel;
 
@@ -139,8 +140,9 @@ public class TouchInputHandler : MonoBehaviour
     {
         //_isPrimaryOnUI = IsPointerOverUI();
         //if (_isPrimaryOnUI) return;
-        
-        _isTouchingSticker = false;
+
+        // $$$$
+        //_isTouchingSticker = false;
 
         Vector2 touchPos = _inputActions.Touch.PrimaryTouchPosition.ReadValue<Vector2>();
 
@@ -150,14 +152,15 @@ public class TouchInputHandler : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
-        foreach (RaycastResult result in results)
-        {
-            if (result.gameObject.GetComponent<TouchInteractor>() != null)
-            {
-                _isTouchingSticker = true;
-                break;
-            }
-        }
+        // $$$$
+        //foreach (RaycastResult result in results)
+        //{
+        //    if (result.gameObject.GetComponent<TouchInteractor>() != null)
+        //    {
+        //        _isTouchingSticker = true;
+        //        break;
+        //    }
+        //}
 
         _isPrimaryTouching = true;
         _isDragConfirmed = false;
