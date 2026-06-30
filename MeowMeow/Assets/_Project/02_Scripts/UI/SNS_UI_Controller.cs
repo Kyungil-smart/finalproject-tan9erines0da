@@ -8,6 +8,9 @@ public class SNS_UI_Controller : BaseScreenController
     [SerializeField]
     private GameObject _uiFrameObject;
 
+    [Header("인트로 판넬")]
+    [SerializeField]
+    UIPanel _introPanel;
     [Header("진입 시 기본으로 켤 1깊이 판넬")]
     [SerializeField]
     private UIPanel _defaultDepth1Panel;
@@ -45,20 +48,25 @@ public class SNS_UI_Controller : BaseScreenController
                 _lastActiveDepth1Panel.gameObject.SetActive(true);
             }
         }
+        else if (_introPanel != null && _defaultDepth1Panel != null) 
+        {
+            CurrentActivePanel = _introPanel;
+            // 인트로 패널 오픈
+            CurrentActivePanel.OpenWithEnterAnimation(() =>
+            {
+                RequestScreenChange(_defaultDepth1Panel);
+            });
+        }
         else
         {
-            // 주입된 특수 타겟이 없다면 정석대로 기본 1깊이 판넬을 지정
             CurrentActivePanel = _defaultDepth1Panel;
+            CurrentActivePanel.OpenWithEnterAnimation(null);
         }
-
         // 1깊이가 최초 저장되는 타이밍 동기화
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
         {
             _lastActiveDepth1Panel = CurrentActivePanel;
         }
-
-        // 결정된 첫 메인 화면을 진입 애니메이션과 함께 오픈
-        CurrentActivePanel.OpenWithEnterAnimation(null);
     }
 
     protected override void ExecuteClose()
@@ -171,6 +179,11 @@ public class SNS_UI_Controller : BaseScreenController
         }
 
         if (CurrentActivePanel == null || CurrentActivePanel.IsTransitioning) return;
+
+        // ISNSPanelClearable 구현 패널(Comment)은 뒤로가기 전 초기화한다.
+        // Preview 등 미구현 패널은 null 반환으로 자동 스킵됨
+        var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+        clearable?.ClearPanelContext();
 
         // 현재 패널의 SubmitContext()를 호출하지 않고 화면을 닫음으로써
         // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.

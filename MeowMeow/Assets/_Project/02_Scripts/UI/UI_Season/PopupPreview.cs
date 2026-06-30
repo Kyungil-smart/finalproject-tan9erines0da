@@ -25,7 +25,7 @@ public class PopupPreview : MonoBehaviour, IPopupable
         _description.text = string.Empty;
     }
 
-    public async void SetData(int itemId)
+    public void SetData(int itemId)
     {
         // id로 데이터 가져오기
         var db = googleSheetManager.instance.GetClassData<PreviewPopupTable>();

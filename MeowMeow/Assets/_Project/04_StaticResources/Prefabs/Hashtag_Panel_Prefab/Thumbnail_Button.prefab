@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 181291184122530464}
   - component: {fileID: 9203824064454388997}
   - component: {fileID: 2468562685395819468}
+  - component: {fileID: 626713032253327821}
   m_Layer: 5
   m_Name: Thumbnail_Button
   m_TagString: Untagged
@@ -210,10 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69cffb14ebfc2d43a9d901063bedd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _brightness: 0
-  _contrast: 1
-  _Saturation: 1
-  _temperature: 0.5
 --- !u!114 &2468562685395819468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,3 +228,17 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 1346416404707654671}
   _shaderController: {fileID: 9203824064454388997}
+--- !u!114 &626713032253327821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291843085683186248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}

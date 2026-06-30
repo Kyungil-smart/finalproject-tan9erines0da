@@ -245,7 +245,7 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
-        var Grade = 50002;
+        var Grade = 50003;
         OpenPopup(data, Grade);
         AllButtonCtrl(false);
     }
@@ -253,7 +253,7 @@ public class GatchaContentPresenter : MonoBehaviour
     {
         if (_interactableLimitedBlock == false) return;
         var data = _previewCanvas.GetComponent<IPopupable>();
-        var Grade = 50003;
+        var Grade = 50002;
         OpenPopup(data, Grade);
         AllButtonCtrl(false);
     }

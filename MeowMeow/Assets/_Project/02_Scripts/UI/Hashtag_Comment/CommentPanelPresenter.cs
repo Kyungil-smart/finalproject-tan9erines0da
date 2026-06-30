@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Comment 씬의 데이터 흐름 조율자.
@@ -20,11 +21,17 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     [Header("Zoom Overlay")]
     [SerializeField] private CGImageZoomOverlay _zoomOverlay;
 
+    [Header("Category Buttons")]
+    [SerializeField] private CategoryButton[] _categoryButtons;
+
     private SNSPostDTO _snapshot;
 
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
-
+    void OnDisable()
+    {
+        ClearPanelContext();
+    }
     public void RequestContext()
     {
         if (SubscribeManager.instance == null)
@@ -53,7 +60,13 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     }
 
     // ISNSPanelClearable — 패널 전환/종료 시 SNS_UI_Controller가 호출한다.
-    public void ClearPanelContext() => ResetAll();
+    public void ClearPanelContext()
+    {
+        _zoomOverlay?.Close();
+        if (_categoryButtons != null)
+            foreach (var btn in _categoryButtons) btn.Reset();
+        ResetAll();
+    }
 
     // CG_Image 버튼에 연결한다.
     public void OpenZoomOverlay() => _zoomOverlay?.Open(_snapshot);
@@ -74,6 +87,8 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     }
 
     // 완료 버튼에 연결한다. Comment_Zone / Hashtag_Zone 값을 DTO에 기록하고 중앙 저장소를 갱신한다.
+    // ResetAll은 호출하지 않는다 — Preview에서 돌아올 때 코멘트가 유지되어야 하며,
+    // 패널 닫힘 시 ClearPanelContext()가 별도로 초기화를 담당한다.
     public void SubmitContext()
     {
         if (SubscribeManager.instance == null) return;
@@ -83,7 +98,5 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
-
-        ResetAll();
     }
 }
