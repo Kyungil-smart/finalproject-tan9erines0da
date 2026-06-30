@@ -5,26 +5,30 @@ using UnityEngine.UI;
 
 public class OpenLockTweenAni : MonoBehaviour
 {
+    [SerializeField] private RectTransform bodyRect;
     [SerializeField] private RectTransform lockRect;
     [SerializeField] private Image lockImage;
     [SerializeField] private Sprite[] lockFrames;
     [SerializeField] private float frameInterval = 0.05f;
     [SerializeField] private Button _limitedItemButton;
 
+    [ContextMenu("Test")]
     public async Task PlayAnimation()
     {
-        if (lockRect == null || lockImage == null) return;
+        if (lockRect == null || lockImage == null|| bodyRect ==null) return;
 
         // 애니메이션 시작 전에 한정상품 미리보기 버튼 비활성화
         _limitedItemButton.interactable = false;
-
+       // bodyRect.DOAnchorPosY(13f, 1f);
+        await lockRect.DOSizeDelta(new Vector2(231, 231), 1f).AsyncWaitForCompletion();
+        await lockRect.DOSizeDelta(new Vector2(169,169), 1f).AsyncWaitForCompletion();
         // 전체 애니메이션 완료를 보장할 TaskCompletionSource 생성
         var tcs = new TaskCompletionSource<bool>();
 
         lockRect.DOKill();
         float startX = lockRect.anchoredPosition.x;
 
-        Sequence seq = DOTween.Sequence();
+        Sequence seq = DOTween.Sequence(); 
         seq.AppendInterval(0.1f);
 
         // 약한 흔들림 (4.94도) - 좌 > 제자리 > 우 > 제자리
