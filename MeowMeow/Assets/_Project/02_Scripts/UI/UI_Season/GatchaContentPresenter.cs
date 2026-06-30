@@ -465,6 +465,8 @@ public class GatchaContentPresenter : MonoBehaviour
         if (_catStampTweenAni != null) await _catStampTweenAni.PlayAnimation();
         _catStampTweenAni = null;
 
+        LinitedBlockSetView();
+
         // 누적보상을 획득 해야 할때
         if (Need_M_Open == true)
         {
