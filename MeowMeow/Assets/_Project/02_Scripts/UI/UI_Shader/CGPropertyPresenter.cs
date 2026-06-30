@@ -126,6 +126,9 @@ public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContex
 
     private void OnSliderValueChanged(float value)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
+
         UIShaderProperty newProperties = new UIShaderProperty
         {
             Brightness = _sliderBrightness.value,

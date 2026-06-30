@@ -60,6 +60,9 @@ public class CommentWordButton : MonoBehaviour
 
     private void OnClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         if (_isSelected)
             _manager.DeselectAll();
         else
@@ -68,6 +71,9 @@ public class CommentWordButton : MonoBehaviour
 
     private void OnDeleteClicked()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Popup4b);
+
         _manager.RemoveWord(this);
     }
 }

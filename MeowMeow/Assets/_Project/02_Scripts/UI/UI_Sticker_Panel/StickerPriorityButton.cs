@@ -55,6 +55,9 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
     // 스티커 생선순 토글버튼에 구독할 스티커 선택 함수
     private void OnClickSelectSticker(bool isOn)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         if (StickerStateSingleton.Instance == null) return;
 
         if (!StickerStateSingleton.Instance.ToggleToSticker.TryGetValue(_toggle, out GameObject sticker)) return;

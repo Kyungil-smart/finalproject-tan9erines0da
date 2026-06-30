@@ -42,10 +42,16 @@ public class CommentZoneManager : MonoBehaviour
 
     public bool TryAddWord(string word)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         word = word.Trim();
         if (word.Length == 0) return false;
         if (_totalChars + word.Length > _maxChars)
         {
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
             _charLimitPopup?.SetActive(true);
             return false;
         }
@@ -54,6 +60,9 @@ public class CommentZoneManager : MonoBehaviour
         _wordCounts.TryGetValue(word, out int count);
         if (count >= _maxSameWord)
         {
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
             _wordLimitPopup?.SetActive(true);
             return false;
         }
@@ -72,7 +81,13 @@ public class CommentZoneManager : MonoBehaviour
     public void CloseCharLimitPopup() => _charLimitPopup?.SetActive(false);
 
     // 콘텐츠 없음 팝업을 표시한다. PlzAddComment()에서 호출한다.
-    public void ShowNoContentPopup() => _noContentPopup?.SetActive(true);
+    public void ShowNoContentPopup()
+    {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
+        _noContentPopup?.SetActive(true);
+    }
 
     // 콘텐츠 없음 팝업 닫기 버튼에 연결한다.
     public void CloseNoContentPopup() => _noContentPopup?.SetActive(false);

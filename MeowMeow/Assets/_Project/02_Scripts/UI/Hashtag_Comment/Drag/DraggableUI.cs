@@ -57,6 +57,9 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     {
         if (placeholder == null) return;
 
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         Destroy(GetComponent<GraphicRaycaster>());
         Destroy(_dragCanvas);
         _dragCanvas = null;
