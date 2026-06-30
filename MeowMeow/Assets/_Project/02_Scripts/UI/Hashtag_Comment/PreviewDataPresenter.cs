@@ -93,6 +93,9 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
 
             Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
 
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SnappyButton5);
+
             _snapshot = SNSPostDTO.CreateEmpty();
             
             SubscribeManager.instance.Publish<SNSPostDTO>(

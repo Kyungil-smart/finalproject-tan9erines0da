@@ -41,6 +41,9 @@ public class ImageEditButton : MonoBehaviour
             {
                 if (_nyangStoneEmptyImage.activeSelf) return;
 
+                // 효과음
+                SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
                 _nyangStoneEmptyImage.SetActive(true);
                 Invoke(nameof(CloseNyangStonePopup), 0.5f);
                 return;
