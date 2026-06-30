@@ -28,10 +28,13 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
+    [SerializeField]private GameObject NoContent_Popup;
     void OnDisable()
     {
         ClearPanelContext();
+        NoContent_Popup.SetActive(false);
     }
+    
     public void RequestContext()
     {
         if (SubscribeManager.instance == null)
