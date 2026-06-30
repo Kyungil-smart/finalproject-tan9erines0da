@@ -196,6 +196,7 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     private bool TenthCheck()
     {
         int i = GatchaDataManager.Instance.GatchaData.TotalGatchaCount;
+        if (i >= 100) return false;//누적뽑기90을 초과하면 그 이후로부터는 누적뽑기 끝나서 false처리
         if (i % 10 != 0 || i == 0) return false;
         return true;
     }
