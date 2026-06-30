@@ -260,6 +260,10 @@ public class GatchaContentPresenter : MonoBehaviour
     private void OpenResetCanvas()
     {
         if (_interactableReset == false) return;
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         var data = _resetCanvas.GetComponent<IPopupable>();
         OpenPopup(data);
         AllButtonCtrl(false);
@@ -278,6 +282,9 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     private void OnExitClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _mainCanvasOBJ.SetActive(false);
         //---- 디버그 관련 ----
         IsMainCanvasOpen = false;
@@ -288,6 +295,9 @@ public class GatchaContentPresenter : MonoBehaviour
     }
     void OnTutorialClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         IPopupable popup = _tutorialCanvas.GetComponent<IPopupable>();
         OpenPopup(popup);
         AllButtonCtrl(false);

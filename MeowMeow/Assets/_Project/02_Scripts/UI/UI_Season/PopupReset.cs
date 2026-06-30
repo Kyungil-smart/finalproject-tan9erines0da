@@ -23,6 +23,9 @@ public class PopupReset : MonoBehaviour, IPopupable
     }
     public void Close()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         // 필요한 처리 없음
     }
 
