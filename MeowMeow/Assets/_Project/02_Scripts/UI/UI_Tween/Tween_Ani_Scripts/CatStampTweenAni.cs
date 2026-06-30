@@ -33,6 +33,11 @@ public class CatStampTweenAni : MonoBehaviour
                 1.2f)
             .SetEase(Ease.InQuart));
 
+        seq.OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+        });
+
         return seq.AsyncWaitForCompletion();
     }
 }
