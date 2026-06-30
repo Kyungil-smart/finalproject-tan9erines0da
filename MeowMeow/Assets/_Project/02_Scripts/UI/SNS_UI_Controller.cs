@@ -34,6 +34,9 @@ public class SNS_UI_Controller : BaseScreenController
     }
     protected override void ExecuteFirstOpen()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Boxy_2);
+
         // 외부에 의해 특정 지정 타겟(SpecificTargetPanel)이 주입되었는지 검사
         if (SpecificTargetPanel != null)
         {
@@ -283,6 +286,9 @@ public class SNS_UI_Controller : BaseScreenController
     /// </summary>
     public void ClickCloseDepth2Button()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         // 현재 화면이 2깊이가 맞고 돌아갈 배경 1깊이가 안전하게 존재할 때만 구동
         if (CurrentActivePanel != null &&
             CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2 &&

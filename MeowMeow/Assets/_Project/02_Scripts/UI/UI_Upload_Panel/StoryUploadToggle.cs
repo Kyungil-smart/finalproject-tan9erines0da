@@ -39,6 +39,9 @@ public class StoryUploadToggle : MonoBehaviour
 
     private void OnStoryUploadToggle(bool isOn)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_UI_Button_Click_Settings_1);
+
         if (!isOn)
         {
             _backgroundImage.color = _storyColor;

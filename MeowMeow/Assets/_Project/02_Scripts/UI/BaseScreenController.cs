@@ -53,6 +53,9 @@ public abstract class BaseScreenController : MonoBehaviour
     /// </summary>
     public void CloseController()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         SetGlobalInputBlock(true);
         OnBeforeClose();
 
@@ -70,6 +73,9 @@ public abstract class BaseScreenController : MonoBehaviour
     /// <param name="targetPanel">새로 교체하고자 하는 타겟 판넬</param>
     public void RequestScreenChange(UIPanel targetPanel)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         SubscribeManager.instance.Publish<string>(SubscribeType.Log_Write, $"{targetPanel} 전환 요청");
         if (targetPanel == null || targetPanel == CurrentActivePanel)
         {
