@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6030a286122ccb145b907da1abae1e38, type: 3}
   m_Name: daesgeulSO_
   m_EditorClassIdentifier: 
-  url: https://docs.google.com/spreadsheets/d/1m973Tfpslb37-fdWmSR9Vr3Vrct86rK3FzmBYp2enQc/edit?gid=33201847#gid=33201847
+  url: https://docs.google.com/spreadsheets/d/1tgJ4L5SWzK3PqqfZ85NwCGhHPd8nArlpQjWz-rcc5Y4/edit?gid=33201847#gid=33201847
   gid: 33201847
   genericType: daesgeul
   m_Data:
@@ -59,7 +59,7 @@ MonoBehaviour:
     atlas: 100001
     dependent_ID: 60002
   - <uniqueId>k__BackingField: 70010
-    sentence: "\u200B<sprite name=100007>\u200B<sprite name=NYE_5>\u200B<sprite name=NYE_29>\u200B<sprite
+    sentence: "\u200B<sprite name=NYE_5>\u200B<sprite name=NYE_5>\u200B<sprite name=NYE_29>\u200B<sprite
       name=NYE_29>\u200B<sprite name=NYE_29>"
     atlas: 100001
     dependent_ID: 60002
@@ -87,7 +87,7 @@ MonoBehaviour:
     dependent_ID: 60003
   - <uniqueId>k__BackingField: 70015
     sentence: "\u200B<sprite name=NYE_26>\u200B<sprite name=NYE_26>\u200B<sprite
-      name=100017>\u200B<sprite name=NYE_15>\u200B<sprite name=NYE_15>"
+      name=NYE_15>\u200B<sprite name=NYE_15>\u200B<sprite name=NYE_15>"
     atlas: 100001
     dependent_ID: 60003
   - <uniqueId>k__BackingField: 70016
@@ -130,7 +130,7 @@ MonoBehaviour:
   - <uniqueId>k__BackingField: 70023
     sentence: "\uC774\uC57C~~!! \uC815\uB9D0... \uBA4B\uC9D1\uB2C8\uB2E4~~!! \uC798
       \uB410\uB124\uC694~~!! \uCD95\uD558 \uB4DC\uB9BD\uB2C8\uB2E4~~!!\u200B<sprite
-      name=NYE_23><NYE_22>"
+      name=NYE_23>\u200B<sprite name=NYE_22>"
     atlas: 100001
     dependent_ID: 60005
   - <uniqueId>k__BackingField: 70024
@@ -180,7 +180,7 @@ MonoBehaviour:
   - <uniqueId>k__BackingField: 70033
     sentence: "\uB108\uBB34....\uD589\uBCF5\uD574... \uBCF4\uC774\uB2C8... \uBCF4\uAE30\uAC00...
       \uCC38~~ \uC88B\uC2B5\uB2C8\uB2E4~~^^\n\uB298 \uAC74\uAC15\u200B<sprite name=NYE_33>\uD558\uC2DC\uACE0~~\uD589\uBCF5\uD55C
-      \uC77C\uB9CC... \uAC00\uB4DD \uD558\uC2ED\uC1FC~~^^\u200B<spritename=NYE_28>\u200B<sprite
+      \uC77C\uB9CC... \uAC00\uB4DD \uD558\uC2ED\uC1FC~~^^\u200B<sprite name=NYE_28>\u200B<sprite
       name=NYE_28>"
     atlas: 100001
     dependent_ID: 60007
@@ -238,7 +238,7 @@ MonoBehaviour:
     dependent_ID: 60009
   - <uniqueId>k__BackingField: 70044
     sentence: "\uC640\uC6B0~~!! \uB108\uBB34 \uC608\uC058\uB124\uC694~~\u200B<sprite
-      name=100034> \uB450 \uB208\uC73C\uB85C \uC9C1\uC811 \uBCF4\uACE0\uC2F6\uC744
+      name=NYE_32> \uB450 \uB208\uC73C\uB85C \uC9C1\uC811 \uBCF4\uACE0\uC2F6\uC744
       \uC815\uB3C4\uC5D0\uC694~~\u200B<sprite name=NYE_22>"
     atlas: 100001
     dependent_ID: 60009
@@ -423,9 +423,10 @@ MonoBehaviour:
     atlas: 100001
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70079
-    sentence: "\uC624\uB298 \uC62C\uB9AC\uC2E0 \uAE00\uB3C4 \uC798 \uBD24\uC5B4\uC694~~<spring
-      name=NYE_32><spring name=NYE_32>\n\uB298 \uC88B\uC740 \uAE00 \uC62C\uB824 \uC8FC\uC154\uC11C
-      \uACE0\uB9D9\uC2B5\uB2C8\uB2E4~~\u200B<sprite name=NYE_29>\u200B<sprite name=NYE_29>"
+    sentence: "\uC624\uB298 \uC62C\uB9AC\uC2E0 \uAE00\uB3C4 \uC798 \uBD24\uC5B4\uC694~~\u200B<sprite
+      name=NYE_32>\u200B<sprite name=NYE_32>\n\uB298 \uC88B\uC740 \uAE00 \uC62C\uB824
+      \uC8FC\uC154\uC11C \uACE0\uB9D9\uC2B5\uB2C8\uB2E4~~\u200B<sprite name=NYE_29>\u200B<sprite
+      name=NYE_29>"
     atlas: 100001
     dependent_ID: 60016
   - <uniqueId>k__BackingField: 70080
