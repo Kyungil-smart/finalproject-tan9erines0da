@@ -80,6 +80,9 @@ public class SNSFeedPresenter : MonoBehaviour,
         // 캔버스 재계산
         Canvas.ForceUpdateCanvases();
 
+        // 스크롤 뷰 재계산
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollView.content);
+
         if (_commentContainer is RectTransform rect)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
