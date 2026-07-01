@@ -13,6 +13,9 @@ public class PopupPreview : MonoBehaviour, IPopupable
 
     public void Open()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         if (_exitButton != null)
         {
             _exitButton.interactable = true;
@@ -21,6 +24,9 @@ public class PopupPreview : MonoBehaviour, IPopupable
 
     public void Close()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _resourceImage.sprite = null;
         _description.text = string.Empty;
     }

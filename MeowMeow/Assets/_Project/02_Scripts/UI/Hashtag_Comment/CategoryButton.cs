@@ -114,6 +114,9 @@ public class CategoryButton : MonoBehaviour
 
     private void OnClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         CommentZoneManager.Instance?.DeselectAll();
         if (_isExpanded) Collapse();
         else Expand();

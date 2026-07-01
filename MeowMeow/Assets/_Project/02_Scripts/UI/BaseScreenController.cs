@@ -12,6 +12,10 @@ public abstract class BaseScreenController : MonoBehaviour
     /// </summary>
     public UIPanel SpecificTargetPanel { get; set; }
 
+    // 효과음
+    // 처음 냥스타그램 켰을때의 사운드 재생을 막기위한 마커
+    private bool _isFirstOnCanvas = true;
+
     /// <summary>
     /// [템플릿 메서드] 콘텐츠 UI가 최초로 오픈될 때의 
     /// 연타 잠금 및 데이터 세팅의 절대적인 순서를 제어합니다.
@@ -53,6 +57,12 @@ public abstract class BaseScreenController : MonoBehaviour
     /// </summary>
     public void CloseController()
     {
+        // 효과음 관련 마커
+        _isFirstOnCanvas = true;
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         SetGlobalInputBlock(true);
         OnBeforeClose();
 
@@ -70,6 +80,12 @@ public abstract class BaseScreenController : MonoBehaviour
     /// <param name="targetPanel">새로 교체하고자 하는 타겟 판넬</param>
     public void RequestScreenChange(UIPanel targetPanel)
     {
+        // 효과음
+        if (!_isFirstOnCanvas) SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
+        // 효과음 관련 마커
+        _isFirstOnCanvas = false;
+
         SubscribeManager.instance.Publish<string>(SubscribeType.Log_Write, $"{targetPanel} 전환 요청");
         if (targetPanel == null || targetPanel == CurrentActivePanel)
         {
