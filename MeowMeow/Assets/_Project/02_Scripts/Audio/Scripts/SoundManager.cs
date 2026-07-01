@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         AutoSetting();
         m_AuidoDic = audioSOs.ToDictionary(x=>x.audio_Name, x=>x.clip);
-        //SetBackGroundSound();
+        SetBackGroundSound();
         DontDestroyOnLoad(this.gameObject);
     }
     private void AutoSetting()
