@@ -271,6 +271,12 @@ public class SNS_UI_Controller : BaseScreenController
         // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
         else
         {
+            var customTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
+            if (customTween != null)
+            {
+                customTween.SetupBackground(null);
+            }
+
             CurrentActivePanel.Close(() =>
             {
                 CurrentActivePanel = targetPanel;
@@ -299,7 +305,12 @@ public class SNS_UI_Controller : BaseScreenController
             {
                 clearable.ClearPanelContext();
             }
-
+            // 연출 분기
+            var customTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
+            if(customTween != null)
+            {
+                customTween.SetupBackground(_lastActiveDepth1Panel);
+            }
             // 2깊이 장막을 걷어내는 무조건적인 클로즈 연출 실행
             CurrentActivePanel.Close(() =>
             {

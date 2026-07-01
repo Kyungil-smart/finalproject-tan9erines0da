@@ -92,7 +92,29 @@ public class UploadCanvasTweenAni : UIAnimationEffect
 
     public override void PlayOut(Action onComplete)
     {
-        onComplete?.Invoke();
+        if (_uploadCanvas == null)
+        {
+            Debug.LogWarning("_uploadCanvas가 비어있습니다.");
+            return;
+        }
+
+        if( _backgroundPanel != null && _backgroundPanel.PanelDepth == UIPanel.UIDepth.Depth1)
+        {
+            _backgroundPanel.gameObject.SetActive(true);
+
+            _uploadCanvas.DOKill();
+
+            _uploadCanvas.DOAnchorPosY(_offsetY, _second)
+                .SetEase(Ease.InQuad).OnComplete(() =>
+                {
+                    onComplete?.Invoke();
+                });
+        }
+        else
+        {
+            onComplete?.Invoke();
+        }
+        
     }
 
     public void SetupBackground(UIPanel target)

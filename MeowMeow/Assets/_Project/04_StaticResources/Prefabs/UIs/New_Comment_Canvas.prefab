@@ -295,7 +295,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 10
     m_Bottom: 10
-  m_ChildAlignment: 0
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 314, y: 70}
@@ -3726,6 +3726,7 @@ MonoBehaviour:
   - {fileID: 5133016418860369335}
   - {fileID: 4832818138443972116}
   - {fileID: 8588924629898983609}
+  NoContent_Popup: {fileID: 0}
 --- !u!225 &2200000000000000002
 CanvasGroup:
   m_ObjectHideFlags: 0

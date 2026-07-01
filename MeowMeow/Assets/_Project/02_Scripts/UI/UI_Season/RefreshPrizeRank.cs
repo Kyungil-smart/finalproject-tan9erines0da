@@ -15,15 +15,15 @@ public class RefreshPrizeRank : MonoBehaviour, ISwitchable
         {
                 if (data.Grade == 1 && GatchaDataManager.Instance.Grade_1 && data.Repeat == isReset)
                 {
-                    _1stText.text = data.ItemName;
+                    _1stText.text = data.ItemName.Replace("(","\n(");
                 }
                 else if (data.Grade == 2 && GatchaDataManager.Instance.Grade_2 && data.Repeat == isReset)
                 {
-                    _2ndText.text = data.ItemName;
+                    _2ndText.text = data.ItemName.Replace("(", "\n(");
                 }
                 else if (data.Grade == 3 && GatchaDataManager.Instance.Grade_3 && data.Repeat == isReset)
                 {
-                    _3rdText.text = data.ItemName;
+                    _3rdText.text = data.ItemName.Replace("(", "\n(");
                 }
         }
     }
