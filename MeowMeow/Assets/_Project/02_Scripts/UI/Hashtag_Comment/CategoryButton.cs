@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
@@ -18,8 +19,11 @@ public class CategoryButton : MonoBehaviour
     [SerializeField] private CommentType _commentType;
 
     [Header("Button Style")]
+    [SerializeField] private Sprite _buttonSprite;
     [SerializeField] private Color _buttonColor = Color.white;
-    [SerializeField] private Color _textColor = new Color(0.27f, 0.16f, 0.39f);
+    [SerializeField] private ColorBlock _buttonColors = ColorBlock.defaultColorBlock;
+    [SerializeField] private Color _textColor = new Color(0.33f, 0.12f, 0.20f);
+    [SerializeField] private Color _pressedTextColor = Color.white;
     [SerializeField] private float _fontSize = 36f;
 
     [Header("Animation")]
@@ -82,10 +86,13 @@ public class CategoryButton : MonoBehaviour
             go.transform.SetParent(_content, false);
 
             var img = go.AddComponent<Image>();
+            img.sprite = _buttonSprite;
+            img.type = _buttonSprite != null ? Image.Type.Sliced : Image.Type.Simple;
             img.color = _buttonColor;
 
             var btn = go.AddComponent<Button>();
             btn.targetGraphic = img;
+            btn.colors = _buttonColors;
 
             string capturedWord = word;
             btn.onClick.AddListener(() =>
@@ -109,6 +116,21 @@ public class CategoryButton : MonoBehaviour
             tmp.alignment = TextAlignmentOptions.Center;
             tmp.color = _textColor;
             if (_font != null) tmp.font = _font;
+
+            var trigger = go.AddComponent<EventTrigger>();
+            var tmpRef = tmp;
+
+            var down = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
+            down.callback.AddListener(_ => tmpRef.color = _pressedTextColor);
+            trigger.triggers.Add(down);
+
+            var up = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
+            up.callback.AddListener(_ => tmpRef.color = _textColor);
+            trigger.triggers.Add(up);
+
+            var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
+            exit.callback.AddListener(_ => tmpRef.color = _textColor);
+            trigger.triggers.Add(exit);
         }
     }
 

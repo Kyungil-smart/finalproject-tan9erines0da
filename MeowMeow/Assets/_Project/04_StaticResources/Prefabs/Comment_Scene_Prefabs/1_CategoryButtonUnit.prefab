@@ -70,7 +70,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -323, y: -346}
-  m_SizeDelta: {x: 210, y: 90}
+  m_SizeDelta: {x: 260, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8953494263619550558
 CanvasRenderer:
@@ -220,12 +220,12 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 50
+    m_Top: 70
     m_Bottom: 50
   m_ChildAlignment: 1
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 250, y: 100}
+  m_CellSize: {x: 270, y: 120}
   m_Spacing: {x: 50, y: 50}
   m_Constraint: 1
   m_ConstraintCount: 3
@@ -551,8 +551,18 @@ MonoBehaviour:
   _content: {fileID: 196070170093796490}
   _font: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
   _commentType: 1
+  _buttonSprite: {fileID: 21300000, guid: 86530c690f8261b4690d374ff09fcc24, type: 3}
   _buttonColor: {r: 1, g: 1, b: 1, a: 1}
-  _textColor: {r: 0.27, g: 0.16, b: 0.39, a: 1}
-  _fontSize: 36
+  _buttonColors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.5176471, g: 0.18431373, b: 0.5921569, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  _textColor: {r: 0.33333334, g: 0.121568635, b: 0.20392159, a: 1}
+  _pressedTextColor: {r: 1, g: 1, b: 1, a: 1}
+  _fontSize: 40
   _animDuration: 0.25
   _selectedPosition: {x: -85, y: 240}
