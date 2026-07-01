@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 /*
      DOKill(): 해당 RectTransform에 걸려있는 모든 트윈을 즉시 중지
     Sequence(): 여러 트윈을 순차적으로 또는 병렬로 실행하기 위한 컨테이너
@@ -22,6 +23,21 @@ public class OpenLockTweenAni : MonoBehaviour
 
     private float startX;
     private float totalFrameTime;
+    [SerializeField] private int Grade;
+    private void OnEnable()
+    {
+        if(Grade == 1) chanage(GatchaDataManager.Instance.Grade_1);
+        else if(Grade == 2) chanage(GatchaDataManager.Instance.Grade_2);
+        else if(Grade == 3) chanage(GatchaDataManager.Instance.Grade_3);
+ 
+    }
+    private void chanage(bool flag)
+    {
+        if (flag == false)
+        {
+            lockImage.sprite = lockFrames[0];
+        }
+    }
     [ContextMenu("Test")]
     public async Task PlayAnimation()
     {
