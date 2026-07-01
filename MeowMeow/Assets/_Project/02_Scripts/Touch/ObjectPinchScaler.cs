@@ -36,6 +36,7 @@ public class ObjectPinchScaler : MonoBehaviour
         TouchInputHandler.Instance.OnSelectionCleared += OnUnselect;
         TouchInputHandler.Instance.OnDragDelta += OnDrag;
         TouchInputHandler.Instance.OnPinchDelta += OnPinch;
+        TouchInputHandler.Instance.OPScalerTargetNull += TargetIsNull;
     }
 
     private void OnDisable()
@@ -45,6 +46,7 @@ public class ObjectPinchScaler : MonoBehaviour
         TouchInputHandler.Instance.OnSelectionCleared -= OnUnselect;
         TouchInputHandler.Instance.OnDragDelta -= OnDrag;
         TouchInputHandler.Instance.OnPinchDelta -= OnPinch;
+        TouchInputHandler.Instance.OPScalerTargetNull -= TargetIsNull;
     }
 
     private void Update()
@@ -304,6 +306,10 @@ public class ObjectPinchScaler : MonoBehaviour
             _isTouchValid = false;
         }
     }
+    #endregion
+
+    #region 외부에서 직접 타겟을 null로 바꾸기해 이벤트 등록할 함수
+    private void TargetIsNull() => _target = null;
     #endregion
 
     [ContextMenu("최대 크기로 확대")]

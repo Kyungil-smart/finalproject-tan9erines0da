@@ -67,6 +67,8 @@ public class TouchInputHandler : MonoBehaviour
     public event Action<TouchInteractor> OnObjectSelected;
     // 토글버튼 선택으로 스티커 선택되게 개인적으로 추가
     public event Action<TouchInteractor> OnObjectSelectedForToggle;
+    // ObjectPinchScaler의 타겟을 null로 바꾸기 위해 사용하는 이벤트 액션
+    public event Action OPScalerTargetNull;
     public event Action OnSelectionCleared;
     public event Action OnDragStarted;
     public event Action<Vector2> OnDragDelta;
@@ -425,6 +427,13 @@ public class TouchInputHandler : MonoBehaviour
     public void CallObjectSelectedForToggle(TouchInteractor obj)
     {
         OnObjectSelectedForToggle?.Invoke(obj);
+    }
+    /// <summary>
+    ///  ObjectPinchScaler의 타겟을 null로 바꾸기 위한 이벤트 함수
+    /// </summary>
+    public void CallOPScalerTargetNull()
+    {
+        OPScalerTargetNull?.Invoke();
     }
     #endregion
 }
