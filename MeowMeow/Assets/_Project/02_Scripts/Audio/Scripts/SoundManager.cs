@@ -20,7 +20,7 @@ public enum AudioType
     SFX_Pop_Bottle_Designed_1,
     SFX_Pop_Bubble_Single_1,
     SFX_Pop_Mouth_High_Sharp_1,
-    SFX_UI_Button_Click_Settings_1,
+    SFX_UI_Button_Click_Settings_1 = 14,
     SFX_UI_Button_Click_Settings_Switch_1,
     SFX_UI_Error,
     SnappyButton5,
@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         AutoSetting();
         m_AuidoDic = audioSOs.ToDictionary(x=>x.audio_Name, x=>x.clip);
-        SetBackGroundSound();
+        //SetBackGroundSound();
         DontDestroyOnLoad(this.gameObject);
     }
     private void AutoSetting()
@@ -92,4 +92,18 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // 인스펙터에서 직접 쓰기 위한 함수
+    public void PlaySFX(int at)
+    {
+        var item = GetAudioClip((AudioType)at);
+        if (item != null)
+        {
+            m_reactiveProcessingSound.clip = item;
+            m_reactiveProcessingSound.Play();
+        }
+        else
+        {
+            Debug.Log("에러 발생");
+        }
+    }
 }
