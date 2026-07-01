@@ -112,6 +112,9 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
         if (_snapshot.Stickers == null || _snapshot.Stickers.Count == 0) return;
         if (_stickerState == null) return;
 
+        // 스티커 패널 활성화
+        gameObject.SetActive(true);
+
         // 기존 스티커 초기화
         _stickerState.AllClearSticker();
 
@@ -124,6 +127,9 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
             int lastIndex = _stickerState.ToggleList.Count - 1;
             Toggle lastToggle = _stickerState.ToggleList[lastIndex];
             GameObject spawnedSticker = _stickerState.ToggleToSticker[lastToggle];
+
+            // 토글 선택해제
+            lastToggle.isOn = false;
 
             // 3. 생성된 스티커의 트랜스폼을 스냅샷 저장 수치로 재배치합니다.
             RectTransform rect = spawnedSticker.GetComponent<RectTransform>();
