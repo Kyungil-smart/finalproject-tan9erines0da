@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 36.01}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2221398849469563808
 CanvasRenderer:
@@ -191,7 +191,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 80}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5974816541748939911
 CanvasRenderer:
@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 2813585578402970401}
   - component: {fileID: 5490640776625168570}
   - component: {fileID: 2722776837579579956}
-  - component: {fileID: 8832157799726698751}
+  - component: {fileID: 5503096521394653574}
   m_Layer: 5
   m_Name: Comment_TMP
   m_TagString: Untagged
@@ -287,9 +287,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 669, y: -40}
+  m_AnchoredPosition: {x: 394, y: -40}
   m_SizeDelta: {x: 550, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2813585578402970401
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -318,7 +318,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC640 \uC815\uB9D0 \uACE0\uC591\uC774\uAC00 \uADC0\uC5EC\uC6CC\uC694 "
+  m_text: "\uC6B0\uC6B8\uD574 \uD558\uC2DC\uB294 \uBAA8\uC2B5\uC774 \uC2EC\uD788
+    \uC548\uD0C0\uAE5D\uC2B5\uB2C8\uB2E4. \\u200B\u200B<sprite name=NYE_10>\\u200B"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
   m_sharedMaterial: {fileID: 8459353301060225919, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
@@ -402,12 +403,12 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: 550
   m_MinHeight: -1
-  m_PreferredWidth: -1
+  m_PreferredWidth: 550
   m_PreferredHeight: -1
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &8832157799726698751
+--- !u!114 &5503096521394653574
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -484,7 +485,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0

@@ -15,7 +15,8 @@ public class daesgeul : Basedata
         }
         this.uniqueId = Data[0];
         string rawSentence=Data[1].Replace("\\n", "\n");
-        sentence = rawSentence.Replace("<sprite", "\u200B<sprite");
+        string fixSentence = rawSentence.Replace("<sprite", "\u200B<sprite");
+        sentence = fixSentence.Replace(">", ">\u200B");
         atlas = int.TryParse(Data[2], out int temp) ? temp : 0;
         dependent_ID=int.TryParse(Data[3], out int temp2) ? temp2 : 0;
     }
