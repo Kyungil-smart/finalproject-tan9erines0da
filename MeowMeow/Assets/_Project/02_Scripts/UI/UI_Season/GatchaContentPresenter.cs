@@ -312,6 +312,9 @@ public class GatchaContentPresenter : MonoBehaviour
         if (_interactableGatchaBlocks == false) return;
         _isPopupOpen = true;
 
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Paper);
+
         AllButtonCtrl(false);
 
         int itemId = GatchaDataManager.Instance.GetItemID(index);
