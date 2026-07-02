@@ -29,9 +29,10 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
     [SerializeField]private GameObject NoContent_Popup;
+
+    // 여기서 초기화하면 되돌아왔을 때 입력했던 코멘트/해시태그가 사라지기 때문에 SNS_UI_Controller에서 ClearPanelContext()를 호출한다.
     void OnDisable()
     {
-        ClearPanelContext();
         NoContent_Popup.SetActive(false);
     }
     

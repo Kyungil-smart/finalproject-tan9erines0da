@@ -739,7 +739,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SNS_UI_Controller, Assembly-CSharp
-        m_MethodName: ClickNavigateBackDepth2Button
+        m_MethodName: ClickBackDepth2Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

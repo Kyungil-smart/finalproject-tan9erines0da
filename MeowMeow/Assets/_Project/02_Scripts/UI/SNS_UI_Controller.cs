@@ -217,6 +217,9 @@ public class SNS_UI_Controller : BaseScreenController
         // 기존에 보던 화면이 2깊이 장막이었던 경우
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2)
         {
+            var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+            clearable?.ClearPanelContext();
+
             CurrentActivePanel.Close(() =>
             {
                 // 배경에 깔려있던 이전 1깊이를 끄고 새로운 1깊이를 수평 오픈
