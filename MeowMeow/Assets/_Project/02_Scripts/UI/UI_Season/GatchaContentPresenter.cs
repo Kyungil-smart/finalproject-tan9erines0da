@@ -271,6 +271,10 @@ public class GatchaContentPresenter : MonoBehaviour
     private void OnEnterClick()
     {
         Debug.Log("클릭");
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _mainCanvasOBJ.SetActive(true);
         //---- 디버그 관련 ----
         IsMainCanvasOpen = true;
