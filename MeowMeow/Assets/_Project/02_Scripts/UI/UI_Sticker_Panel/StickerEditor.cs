@@ -38,6 +38,12 @@ public class StickerEditor : MonoBehaviour
     // 스티커 생성버튼에 구독할 함수(스티커 생성)
     private void OnClickSetSticker()
     {
+        // 스티커 생성 최대치에서 생성버튼 클릭시 스티커 선택해제 막는 코드
+        if (StickerStateSingleton.Instance.CurrentCount >= 4)
+        {
+            StickerStateSingleton.Instance.BlockUnselect = true;
+        }
+
         // 효과음
         SoundManager.Instance.Invoke(AudioType.Popup3);
 
