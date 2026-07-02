@@ -576,6 +576,7 @@ MonoBehaviour:
   _lowRank: {fileID: 288827645257657112}
   _lowRankTMP: {fileID: 7529039288919120727}
   _anim: {fileID: 6746601635770628244}
+  m_image: {fileID: 4301311048517945208}
 --- !u!1 &3905006792712578787
 GameObject:
   m_ObjectHideFlags: 0
