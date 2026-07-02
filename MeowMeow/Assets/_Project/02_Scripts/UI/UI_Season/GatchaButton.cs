@@ -1,7 +1,8 @@
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
 public class GatchaButton : MonoBehaviour, ISwitchable
 {
     [SerializeField] private GameObject _front;
@@ -11,8 +12,9 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     [SerializeField] private GameObject _lowRank;
     [SerializeField] private TextMeshProUGUI _lowRankTMP;
     [SerializeField] private BoxCoverTweenAni _anim;
+    [SerializeField] private Image m_image;
     
-
+    
     public void SetView(bool isOpend)
     {
         if (_front == null) return;
@@ -96,6 +98,13 @@ public class GatchaButton : MonoBehaviour, ISwitchable
     /// </summary>
     public void CloseSpoilerCove()
     {
-        _anim.SpoilerCover.SetActive(false);
+      
+        m_image.DOFade(0f, 1f).OnComplete(() =>
+        {
+            _anim.SpoilerCover.SetActive(false);
+            m_image.color=new Color(m_image.color.r, m_image.color.g, m_image.color.b, 1f);
+        });
+
     }
+    
 }
