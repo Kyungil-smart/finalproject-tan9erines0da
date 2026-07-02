@@ -107,14 +107,16 @@ public class UploadCanvasTweenAni : UIAnimationEffect
             _uploadCanvas.DOAnchorPosY(_offsetY, _second)
                 .SetEase(Ease.InQuad).OnComplete(() =>
                 {
+                    _uploadCanvas.anchoredPosition = new Vector2(0f, 0f);
                     onComplete?.Invoke();
                 });
         }
         else
         {
+            _uploadCanvas.anchoredPosition = new Vector2(0f, 0f);
             onComplete?.Invoke();
         }
-        
+
     }
 
     public void SetupBackground(UIPanel target)
