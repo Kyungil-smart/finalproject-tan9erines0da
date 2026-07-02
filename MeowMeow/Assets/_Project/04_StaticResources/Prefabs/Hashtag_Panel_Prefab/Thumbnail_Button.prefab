@@ -228,6 +228,7 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 1346416404707654671}
   _shaderController: {fileID: 9203824064454388997}
+  _frameOverlay: {fileID: 2189155426537851512}
 --- !u!114 &626713032253327821
 MonoBehaviour:
   m_ObjectHideFlags: 0
