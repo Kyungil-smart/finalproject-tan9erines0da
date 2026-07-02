@@ -13,6 +13,9 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("Sticker_Count_Text를 참조")]
     [SerializeField] private TextMeshProUGUI _stickerCountText;
 
+    [Header("Sticker_Limit_Reached를 참조")]
+    [SerializeField] private StickerLimitTweenAni _stickerLimitTweenAni;
+
     // 현재 스티커 개수
     private int _currentCount;
     public int CurrentCount
@@ -30,6 +33,10 @@ public class StickerStateSingleton : MonoBehaviour
     {
         get => _maxStickerCount;
     }
+
+    // 스티커 제한 상황에서 스티커 생성 버튼 클릭시
+    // ObjectPinchScaler의 OnUnselect()를 블럭 시키기 위한 마커
+    public bool BlockUnselect { get; set; }
     #endregion
 
     #region 스티커 생성 관련 참조할 변수들
@@ -149,17 +156,12 @@ public class StickerStateSingleton : MonoBehaviour
     {
         if (CurrentCount >= MaxStickerCount)
         {
-            // 최대 개수 초과 시 마지막 스티커 선택 유지
-            if (_toggleList.Count > 0)
-            {
-                Toggle lastToggle = _toggleList[_toggleList.Count - 1];
-
-                lastToggle.isOn = false;
-                lastToggle.isOn = true;
-            }
-
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+            _stickerLimitTweenAni.PlayAnimation();
             return;
         }
+
         // 스티커 생성
         GameObject sticker = Instantiate(_stickerImage.gameObject, _targetImage.transform);
         StickerDelOff stickerDelOff = sticker.GetComponent<StickerDelOff>();
