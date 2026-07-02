@@ -47,13 +47,19 @@ public class CatStampTweenAni_2 : MonoBehaviour
                 0.28f)
             .SetEase(Ease.InQuart));
 
+        // 효과음
+        seq.AppendCallback(() =>
+        {
+            SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bottle_Designed_1);
+        });
+
         if (stampGraphic != null)
         {
             seq.Insert(
                 1.0f,
                 stampGraphic.DOFade(0.6f, 1f));
         }
-        
+
         seq.OnComplete(() =>
         {
             // 스탬프 애니메이션이 끝나면 나가기 버튼 활성화

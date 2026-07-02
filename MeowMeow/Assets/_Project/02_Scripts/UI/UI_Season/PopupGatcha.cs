@@ -52,6 +52,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
     public int TempKey;
     public void Open()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         IsTransitioning = false;
 
         _closedCover.SetActive(true);
@@ -72,6 +75,9 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
 
     public void Close()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _lowRankTMP.text = string.Empty;
         _limitedRewardTMP.text = string.Empty;
         _contentPresenter.L_itemID = TempKey;
@@ -155,10 +161,14 @@ public class PopupGatcha : MonoBehaviour, IPopupable, ITweenable
         const int NULL_NUMBER= -1;
         TempKey = _isLimitedItem ? _itemId : NULL_NUMBER;
 
-      
+        // 효과음
+        // 1~3등 효과음
+        if (isHighRank) SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Bright_3);
+        // 4~6등 효과음
+        else SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Bright_1);
 
         if (_confirmButton != null)
-            _confirmButton.interactable = true;
+                _confirmButton.interactable = true;
 
         IsTransitioning = false;
     }

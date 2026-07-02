@@ -44,6 +44,9 @@ public class PopupMilestone : MonoBehaviour, IPopupable
 
     void OnCheckButtonClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         // 애니메이션 시작
         _checkButton.interactable = false;
         _checkButton.gameObject.SetActive(false);
