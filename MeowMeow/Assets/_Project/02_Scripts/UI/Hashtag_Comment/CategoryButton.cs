@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using TMPro;
 using DG.Tweening;
 
@@ -117,20 +116,7 @@ public class CategoryButton : MonoBehaviour
             tmp.color = _textColor;
             if (_font != null) tmp.font = _font;
 
-            var trigger = go.AddComponent<EventTrigger>();
-            var tmpRef = tmp;
-
-            var down = new EventTrigger.Entry { eventID = EventTriggerType.PointerDown };
-            down.callback.AddListener(_ => tmpRef.color = _pressedTextColor);
-            trigger.triggers.Add(down);
-
-            var up = new EventTrigger.Entry { eventID = EventTriggerType.PointerUp };
-            up.callback.AddListener(_ => tmpRef.color = _textColor);
-            trigger.triggers.Add(up);
-
-            var exit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
-            exit.callback.AddListener(_ => tmpRef.color = _textColor);
-            trigger.triggers.Add(exit);
+            go.AddComponent<WordButtonPressEffect>().Init(tmp, _textColor, _pressedTextColor);
         }
     }
 
