@@ -13,6 +13,9 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("Sticker_Count_Text를 참조")]
     [SerializeField] private TextMeshProUGUI _stickerCountText;
 
+    [Header("Sticker_Limit_Reached를 참조")]
+    [SerializeField] private StickerLimitTweenAni _stickerLimitTweenAni;
+
     // 현재 스티커 개수
     private int _currentCount;
     public int CurrentCount
@@ -152,10 +155,10 @@ public class StickerStateSingleton : MonoBehaviour
             // 최대 개수 초과 시 마지막 스티커 선택 유지
             if (_toggleList.Count > 0)
             {
-                Toggle lastToggle = _toggleList[_toggleList.Count - 1];
+                // 효과음
+                SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
-                lastToggle.isOn = false;
-                lastToggle.isOn = true;
+                _stickerLimitTweenAni.PlayAnimation();
             }
 
             return;
