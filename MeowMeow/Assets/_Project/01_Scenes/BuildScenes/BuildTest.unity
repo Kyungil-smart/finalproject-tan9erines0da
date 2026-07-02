@@ -6205,6 +6205,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 3468217451362505564, guid: bbceea6cee132b54aa818b0447313cc9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1030
+      objectReference: {fileID: 0}
+    - target: {fileID: 3468217451362505564, guid: bbceea6cee132b54aa818b0447313cc9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1030
+      objectReference: {fileID: 0}
     - target: {fileID: 4778595670937086176, guid: bbceea6cee132b54aa818b0447313cc9, type: 3}
       propertyPath: _profilePanel
       value: 
@@ -12489,6 +12497,7 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 5725111949531618723}
   _shaderController: {fileID: 3633257071065780049}
+  _frameOverlay: {fileID: 0}
 --- !u!1 &2817607243116525876
 GameObject:
   m_ObjectHideFlags: 0
