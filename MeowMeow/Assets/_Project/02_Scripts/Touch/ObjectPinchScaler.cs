@@ -95,6 +95,13 @@ public class ObjectPinchScaler : MonoBehaviour
             return;
         }
 
+        // 스티커 생성 최대치에서 생성버튼 클릭시 스티커 선택해제 막는 코드
+        if (StickerStateSingleton.Instance.BlockUnselect == true)
+        {
+            StickerStateSingleton.Instance.BlockUnselect = false;
+            return;
+        }
+
         // 토글 버든 모두 해제
         foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
         {
