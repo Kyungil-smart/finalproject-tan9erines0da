@@ -64,6 +64,10 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
 
         if (isOn)
         {
+            // 토글 선택시 선택된 토글과 그 토글의 상태 저장
+            StickerStateSingleton.Instance.CurrentToggle = _toggle;
+            StickerStateSingleton.Instance.CurrentToggleState = true;
+
             // 토글 리스트를 순회하며 현재 눌린 토글이 아닌 버튼은 전부 끄는 코드
             foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
             {
