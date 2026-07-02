@@ -91,6 +91,12 @@ public class OpenLockTweenAni : MonoBehaviour
         seq.Append(lockRect.DOAnchorPosX(startX, 0.1f));
         seq.Join(lockRect.DOLocalRotate(Vector3.zero, 0.1f));
 
+        // 효과음
+        seq.AppendCallback(() =>
+        {
+            SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Coin_3);
+        });
+
         seq.AppendInterval(0.5f);
     }
     private void PlayUnlockAnimation(Sequence seq)

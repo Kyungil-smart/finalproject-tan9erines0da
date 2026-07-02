@@ -87,6 +87,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
 
         try
         {
+            Debug.Log("[Preview] 업로드 진행");
+
             // 2. 매니저에 업로드 지시 후 완료될 때까지 대기
             await SNSPostManager.Instance
                 .UploadAndCachePostAsync(_snapshot);
@@ -108,13 +110,16 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
             }
             else
             {
-                Debug.LogWarning("컨트롤러나 타겟 참조가 누락되었습니다.");
+                Debug.LogWarning("[Preview] 컨트롤러나 타겟 참조가 누락되었습니다.");
             }
         }
         catch (Exception ex)
         {
             // 4. 업로드 실패 시 패널을 닫지 않고 대기
-            Debug.LogError($"업로드 실패. 전환 중단: {ex.Message}");
+            Debug.LogError($"[Preview] 업로드 실패. 전환 중단: {ex.Message}");
+
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
         }
         finally
         {

@@ -3022,6 +3022,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8313434709123993434}
   - component: {fileID: 6203564378205462789}
+  - component: {fileID: 7957240680785409430}
   m_Layer: 5
   m_Name: BoxAnimRoot
   m_TagString: Untagged
@@ -3073,6 +3074,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7957240680785409430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866260292162312293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 860d26220d666c645bf21c27ff4ef99c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2059356676863326092
 GameObject:
   m_ObjectHideFlags: 0

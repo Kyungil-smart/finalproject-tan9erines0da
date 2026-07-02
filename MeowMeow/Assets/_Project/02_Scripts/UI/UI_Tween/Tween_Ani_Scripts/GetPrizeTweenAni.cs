@@ -28,6 +28,12 @@ public class GetPrizeTweenAni : MonoBehaviour
              targetRect.DOScale(Vector3.one, 1f)
                  .SetEase(Ease.InQuart));
 
+        // 효과음
+        seq.AppendCallback(() =>
+        {
+            SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Pop_1);
+        });
+
         return seq.AsyncWaitForCompletion();
 
     }

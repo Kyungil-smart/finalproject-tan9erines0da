@@ -33,6 +33,12 @@ public class CatStampTweenAni : MonoBehaviour
                 1.2f)
             .SetEase(Ease.InQuart));
 
+        // 효과음
+        seq.AppendCallback(() =>
+        {
+            SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bottle_Designed_1);
+        });
+
         seq.OnComplete(() =>
         {
             gameObject.SetActive(false);
