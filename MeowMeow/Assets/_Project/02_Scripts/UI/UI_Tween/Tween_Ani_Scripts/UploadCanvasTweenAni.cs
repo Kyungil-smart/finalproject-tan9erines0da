@@ -98,7 +98,7 @@ public class UploadCanvasTweenAni : UIAnimationEffect
             return;
         }
 
-        if( _backgroundPanel != null && _backgroundPanel.PanelDepth == UIPanel.UIDepth.Depth1)
+        if( _backgroundPanel != null)
         {
             _backgroundPanel.gameObject.SetActive(true);
 

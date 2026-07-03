@@ -3845,7 +3845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2112335554352347632, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: m_SortingOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2112335554352347632, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: m_OverrideSorting
@@ -4010,7 +4010,7 @@ PrefabInstance:
     - target: {fileID: 4380820803836356998, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: _tabChangeAnimationEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1519959291}
     - target: {fileID: 4843159107879278164, guid: 2c3a03c1d2ae9314c9bc0412b77fb8b6, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1000
@@ -6282,7 +6282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8691177184288509388, guid: bbceea6cee132b54aa818b0447313cc9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
