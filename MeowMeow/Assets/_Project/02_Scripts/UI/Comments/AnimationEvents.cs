@@ -14,6 +14,13 @@ public class AnimationEvents : MonoBehaviour
             e.init(initdata.ToArray());
         }
     }
+    //private void OnDisable()
+    //{
+    //    foreach (BaseEvent e in m_eventList)
+    //    {
+    //        e.OnDisableEvent();
+    //    }
+    //}
     public void OnEvent(int index)
     {
        
