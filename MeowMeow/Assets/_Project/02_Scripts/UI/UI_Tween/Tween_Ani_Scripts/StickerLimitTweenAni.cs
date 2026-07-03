@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class StickerLimitTweenAni : MonoBehaviour
 {
-    [SerializeField] private RectTransform _stickerLimitReached;
-    [SerializeField] private Graphic _stickerLimitGraphic;
+    [Header("Sticker_Limit_Reached를 참조")]
+    [SerializeField] private CanvasGroup _stickerLimitCanvasGroup;
     private bool _isPlayingLimitAni = false;
 
     public Task PlayAnimation()
@@ -15,32 +15,26 @@ public class StickerLimitTweenAni : MonoBehaviour
 
         _isPlayingLimitAni = true;
 
-        if (_stickerLimitReached == null)
+        if (_stickerLimitCanvasGroup == null)
         {
-            Debug.LogWarning("_stickerLimitReached가 비어있습니다.");
+            Debug.LogWarning("_stickerLimitCanvasGroup가 비어있습니다.");
+            _isPlayingLimitAni = false;
             return Task.CompletedTask;
         }
 
         gameObject.SetActive(true);
 
-        _stickerLimitReached.DOKill();
+        _stickerLimitCanvasGroup.DOKill();
 
-        if (_stickerLimitGraphic != null)
-        {
-            _stickerLimitGraphic.DOKill();
-
-            Color color = _stickerLimitGraphic.color;
-            color.a = 1f;
-            _stickerLimitGraphic.color = color;
-        }
+        _stickerLimitCanvasGroup.alpha = 1f;
 
         Sequence seq = DOTween.Sequence();
 
         seq.AppendInterval(1f);
 
-        if (_stickerLimitGraphic != null)
+        if (_stickerLimitCanvasGroup != null)
         {
-            seq.Append(_stickerLimitGraphic.DOFade(0f, 0.3f).SetEase(Ease.OutQuad));
+            seq.Append(_stickerLimitCanvasGroup.DOFade(0f, 0.3f).SetEase(Ease.OutCubic));
         }
 
         seq.OnComplete(() =>

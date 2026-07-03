@@ -169,9 +169,6 @@ public class ObjectPinchScaler : MonoBehaviour
 
         if (Touchscreen.current.touches.Count < 2) return;
 
-        // 효과음
-        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
-
         // 현재 크기 저장
         Vector3 scale = _target.localScale;
 
@@ -217,9 +214,6 @@ public class ObjectPinchScaler : MonoBehaviour
             _previousDirection = Vector2.zero;
             return;
         }
-
-        // 효과음
-        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
 
         Vector2 p1 = first.position.ReadValue();
         Vector2 p2 = second.position.ReadValue();
