@@ -21,6 +21,8 @@ public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContex
 
     private SNSPostDTO _snapshot;
 
+    private int _lastValue;
+
     public void RequestContext()
     {
         UnbindSlider();
@@ -126,8 +128,14 @@ public class CGPropertyPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContex
 
     private void OnSliderValueChanged(float value)
     {
-        // 효과음
-        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
+        int current = Mathf.FloorToInt(value * 5f);
+
+        if (current != _lastValue)
+        {
+            _lastValue = current;
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
+        }
 
         UIShaderProperty newProperties = new UIShaderProperty
         {

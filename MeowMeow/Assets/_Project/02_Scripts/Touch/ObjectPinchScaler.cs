@@ -95,11 +95,10 @@ public class ObjectPinchScaler : MonoBehaviour
             return;
         }
 
-        // 스티커 생성 최대치에서 생성버튼 클릭시 스티커 선택해제 막는 코드
-        if (StickerStateSingleton.Instance.BlockUnselect == true)
+        // 토글 버든 모두 해제 전 CurrentToggle의 마지막 상태를 저장
+        if (StickerStateSingleton.Instance.CurrentToggle != null)
         {
-            StickerStateSingleton.Instance.BlockUnselect = false;
-            return;
+            StickerStateSingleton.Instance.CurrentToggleState = StickerStateSingleton.Instance.CurrentToggle.isOn;
         }
 
         // 토글 버든 모두 해제
@@ -170,9 +169,6 @@ public class ObjectPinchScaler : MonoBehaviour
 
         if (Touchscreen.current.touches.Count < 2) return;
 
-        // 효과음
-        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
-
         // 현재 크기 저장
         Vector3 scale = _target.localScale;
 
@@ -218,9 +214,6 @@ public class ObjectPinchScaler : MonoBehaviour
             _previousDirection = Vector2.zero;
             return;
         }
-
-        // 효과음
-        SoundManager.Instance.Invoke(AudioType.ClickyButton3a);
 
         Vector2 p1 = first.position.ReadValue();
         Vector2 p2 = second.position.ReadValue();

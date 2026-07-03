@@ -214,9 +214,12 @@ public class SNS_UI_Controller : BaseScreenController
     // 1깊이 타겟으로의 화면 전환 연산을 전담하는 내부 함수
     private void ProcessNavigateToDepth1(UIPanel targetPanel)
     {
-        // 기존에 보던 화면이 2깊이 장막이었던 경우
+        // 기존에 보던 화면이 2깊이인 경우
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2)
         {
+            var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+            clearable?.ClearPanelContext();
+
             CurrentActivePanel.Close(() =>
             {
                 // 배경에 깔려있던 이전 1깊이를 끄고 새로운 1깊이를 수평 오픈
@@ -245,45 +248,27 @@ public class SNS_UI_Controller : BaseScreenController
     // 2깊이 타겟으로의 화면 전환 연산을 전담하는 내부 함수
     private void ProcessNavigateToDepth2(UIPanel targetPanel)
     {
-        // 1깊이를 보다가 2깊이로 처음 진입하는 핵심 분기 상황
-        if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
+        // 닫기 연출 시 배경 처리를 위한 업로드 캔버스 체크
+        var currentTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
+
+        if (currentTween != null)
         {
-            _lastActiveDepth1Panel = CurrentActivePanel;
-
-            // 업로드 패널 체크
-            var customTween =
-            targetPanel.GetComponent<UploadCanvasTweenAni>();
-
-            if (customTween != null)
-            {
-                // 기존 패널을 연출 중에도 보여줄 수 있도록 주입
-                customTween.SetupBackground(CurrentActivePanel);
-            }
-
-            // 1깊이를 닫는 연출 실행
-            _lastActiveDepth1Panel.Close(null);
-
-            // 동시에 2깊이를 여는 연출 실행
-            CurrentActivePanel = targetPanel;
-            RefreshPanelData(CurrentActivePanel);
-            CurrentActivePanel.OpenWithEnterAnimation(null);
+            currentTween.SetupBackground(targetPanel);
         }
-        // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
-        else
+
+        var targetTween = targetPanel.GetComponent<UploadCanvasTweenAni>();
+
+        if(targetTween != null)
         {
-            var customTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
-            if (customTween != null)
-            {
-                customTween.SetupBackground(null);
-            }
-
-            CurrentActivePanel.Close(() =>
-            {
-                CurrentActivePanel = targetPanel;
-                RefreshPanelData(CurrentActivePanel);
-                CurrentActivePanel.OpenWithTabChangeAnimation(null);
-            });
+            targetTween.SetupBackground(CurrentActivePanel);
         }
+
+        RefreshPanelData(targetPanel);
+        // 닫기 연출 실행 및 다음 화면의 열기 연출
+        CurrentActivePanel.Close(null);
+
+        CurrentActivePanel = targetPanel;
+        CurrentActivePanel.OpenWithTabChangeAnimation(null);
     }
 
     /// <summary>
