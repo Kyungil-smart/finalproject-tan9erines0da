@@ -17,11 +17,15 @@ public class AnimactionEvent_Objectdisable : BaseEvent
             }
         }
     }
+    public override void OnDisableEvent()
+    {
+        m_gameobjects.Clear();
+    }
     public override void OnAnimationEvent()
     {
-        foreach(var obj in m_gameobjects)
+        foreach (var obj in m_gameobjects.ToArray())
         {
-            obj.SetActive(false);
+            if (obj != null) obj.SetActive(false);
         }
     }
 }
