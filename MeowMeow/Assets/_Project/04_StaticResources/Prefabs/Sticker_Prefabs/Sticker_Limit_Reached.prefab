@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3644432449735783668}
   - component: {fileID: 1162662732530138241}
   - component: {fileID: 49689548707508061}
+  - component: {fileID: 4269854351567609885}
   m_Layer: 5
   m_Name: Sticker_Limit_Reached
   m_TagString: Untagged
@@ -113,8 +114,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cb63b8802e78443a52d4964225e16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stickerLimitReached: {fileID: 3485425279078419898}
-  _stickerLimitGraphic: {fileID: 3644432449735783668}
+  _stickerLimitCanvasGroup: {fileID: 4269854351567609885}
+--- !u!225 &4269854351567609885
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1467755656505315898}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6588150223910458358
 GameObject:
   m_ObjectHideFlags: 0
