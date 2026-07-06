@@ -31,7 +31,7 @@ public class ImageEditButton : MonoBehaviour
 
     private void OnClickEditButton()
     {
-        if (LocalDataManager.Instance == null) return;
+        if (LocalUserDataManager.Instance == null) return;
 
         if (_getImageList.IsSelectImage == false)
         {
@@ -44,7 +44,7 @@ public class ImageEditButton : MonoBehaviour
 
         if (Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser != null)
         {
-            if (LocalDataManager.Instance.NyangNyangStone <= 0)
+            if (LocalUserDataManager.Instance.NyangNyangStone <= 0)
             {
                 // 효과음
                 SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);

@@ -13,6 +13,13 @@ public class TimeManager : MonoBehaviour
 
     private CancellationTokenSource _cts;
 
+    private string _currentDate;
+    public string CurrentDate => _currentDate;
+
+    public Task InitializationTask => _initTcs.Task;
+    private TaskCompletionSource<bool> _initTcs =
+        new TaskCompletionSource<bool>();
+
     private void Awake()
     {
         SetSingleton();
@@ -43,9 +50,12 @@ public class TimeManager : MonoBehaviour
             {
                 // 현재 시간 가져오기
                 DateTime severTime = await NtpTimeFetcher.GetNetworkTimeAsync(token);
+                _currentDate = severTime.Date.ToString();
 
                 // 다음 시간까지 남은 시간 계산
                 float delay = GetSecondsUntilOClock(severTime);
+
+                _initTcs.TrySetResult(true);
 
                 // 다음 시간까지 대기
                 await Task.Delay(TimeSpan.FromSeconds(delay), token);
