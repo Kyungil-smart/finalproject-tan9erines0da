@@ -17,6 +17,7 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
     [SerializeField] private BaseScreenController _uiController;
     [SerializeField] private UIPanel _profilePanel;
     [SerializeField] private Button _uploadButton;
+    [SerializeField] private CommentPanelPresenter _commentPanelPresenter;
 
     private SNSPostDTO _snapshot;
 
@@ -102,6 +103,8 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
             
             SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+
+            _commentPanelPresenter.ClearPanelContext();
 
             // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
             if (_uiController != null && _profilePanel != null)
