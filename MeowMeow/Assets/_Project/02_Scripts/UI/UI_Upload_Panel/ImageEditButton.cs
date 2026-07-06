@@ -33,7 +33,14 @@ public class ImageEditButton : MonoBehaviour
     {
         if (LocalDataManager.Instance == null) return;
 
-        if (_getImageList.IsSelectImage == false) return;
+        if (_getImageList.IsSelectImage == false)
+        {
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
+            return;
+        }
+           
 
         if (Firebase.Auth.FirebaseAuth.DefaultInstance.CurrentUser != null)
         {
