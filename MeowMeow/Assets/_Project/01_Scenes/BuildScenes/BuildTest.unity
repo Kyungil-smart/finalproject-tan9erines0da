@@ -1577,7 +1577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3837510476486812884, guid: 4c0abf8d5383c5046ae9b42549d632a7, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6047247929277921217, guid: 4c0abf8d5383c5046ae9b42549d632a7, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -13250,7 +13250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4761811034861808836, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4761811034861808836, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
       propertyPath: m_sharedMaterial
@@ -21671,7 +21671,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
