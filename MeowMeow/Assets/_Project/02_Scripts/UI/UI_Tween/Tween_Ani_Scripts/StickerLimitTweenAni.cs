@@ -7,7 +7,17 @@ public class StickerLimitTweenAni : MonoBehaviour
 {
     [Header("Sticker_Limit_Reached를 참조")]
     [SerializeField] private CanvasGroup _stickerLimitCanvasGroup;
+    private float _defaultAlpha;
+
     private bool _isPlayingLimitAni = false;
+
+    private void Awake()
+    {
+        if (_stickerLimitCanvasGroup != null)
+        {
+            _defaultAlpha = _stickerLimitCanvasGroup.alpha;
+        }
+    }
 
     public Task PlayAnimation()
     {
@@ -26,7 +36,7 @@ public class StickerLimitTweenAni : MonoBehaviour
 
         _stickerLimitCanvasGroup.DOKill();
 
-        _stickerLimitCanvasGroup.alpha = 1f;
+        _stickerLimitCanvasGroup.alpha = _defaultAlpha;
 
         Sequence seq = DOTween.Sequence();
 
