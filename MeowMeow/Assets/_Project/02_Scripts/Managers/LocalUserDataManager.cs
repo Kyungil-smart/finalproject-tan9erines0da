@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
-public class LocalDataManager : MonoBehaviour
+public class LocalUserDataManager : MonoBehaviour
 {
-    public static LocalDataManager Instance { get; private set; }
+    public static LocalUserDataManager Instance { get; private set; }
 
     [Header("냥냥스톤 재화를 출력할 TMP를 참조")]
     [SerializeField] private TextMeshProUGUI NyangNyangStoneTMP;
@@ -28,6 +28,9 @@ public class LocalDataManager : MonoBehaviour
             UpdateNyangNyangTMP();
         }
     }
+
+    private string _lastDate;
+    public string LastDate => _lastDate;
 
     private void Awake()
     {
@@ -80,6 +83,17 @@ public class LocalDataManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
     }
 
+    public async Task SetUserData()
+    {
+        CurrencyDTO currencyDTO = new CurrencyDTO
+        {
+            NyangNyangStone = _nyangNyangStone,
+            LastDate = _lastDate
+        };
+
+        await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
+    }
+
     // FireStore에서 NyangNyangStone을 갱신합니다.
     private async Task UpdateCurrencyAsync(int amount)
     {
@@ -92,7 +106,7 @@ public class LocalDataManager : MonoBehaviour
     }
 
     // FireStore 재화 로컬에 반영
-    public async Task LoadNyangNyangStone()
+    public async Task LoadUserData()
     {
         CurrencyDTO currencyDTO;
         currencyDTO = await GetCurrencyAsync();
@@ -103,6 +117,13 @@ public class LocalDataManager : MonoBehaviour
             currencyDTO = new();
         }
         NyangNyangStone = currencyDTO.NyangNyangStone;
+
+        if (currencyDTO.LastDate == null || string.IsNullOrWhiteSpace(currencyDTO.LastDate))
+        {
+            _lastDate = TimeManager.Instance.CurrentDate;
+            
+            await SetUserData();
+        }
     }
 
     // 재화 증가 + 서버 저장

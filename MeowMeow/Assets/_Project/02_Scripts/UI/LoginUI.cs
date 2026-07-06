@@ -136,17 +136,29 @@ public class LoginUI : MonoBehaviour
             SNSPostManager.Instance.LoadLocalData();
         }
         
+        await TimeManager.Instance.InitializationTask;
         
         // 유저 보유 재화 확보
-        if (LocalDataManager.Instance != null)
+        if (LocalUserDataManager.Instance != null)
         {
-            await LocalDataManager.Instance.LoadNyangNyangStone();
+            await LocalUserDataManager.Instance.LoadUserData();
         }
         
 
         FirebaseUser user = BackendManager.Auth.CurrentUser;
 
         await GatchaDataManager.Instance.Get_GatchaDTO();
+
+        // 날짜 바뀌는거 코드
+        string NowDateTime = TimeManager.Instance.CurrentDate;
+        string LastDateTime = LocalUserDataManager.Instance.LastDate;
+
+        if (LastDateTime != NowDateTime)
+        {
+            GatchaDataManager.Instance.OnDailyReset();
+            LocalFeedStorage.GetRandomSix();
+        }
+
         await GatchaDataManager.Instance.IsCompensation();
         
 

@@ -34,6 +34,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource m_reactiveProcessingSound;
     private Dictionary<AudioType, AudioClip> m_AuidoDic=new Dictionary<AudioType, AudioClip>();
 
+    [Header("배경음 켜고/끄기")]
+    [SerializeField] private bool IsBGM_On;
 
     private void Awake()
     {
@@ -47,7 +49,7 @@ public class SoundManager : MonoBehaviour
         Instance = this;
         AutoSetting();
         m_AuidoDic = audioSOs.ToDictionary(x=>x.audio_Name, x=>x.clip);
-        SetBackGroundSound();
+        if (IsBGM_On) SetBackGroundSound();
         DontDestroyOnLoad(this.gameObject);
     }
     private void AutoSetting()
