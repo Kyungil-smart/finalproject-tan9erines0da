@@ -24,9 +24,9 @@ public class CommentZoneManager : MonoBehaviour
     [SerializeField] private int _maxSameWord = 3; // 동일 단어 최대 배치 횟수
 
     [Header("Popups")]
-    [SerializeField] private GameObject _wordLimitPopup;  // 동일 단어 제한 초과 시 표시할 팝업
-    [SerializeField] private GameObject _charLimitPopup;  // 글자수 제한 초과 시 표시할 팝업
-    [SerializeField] private GameObject _noContentPopup;  // 코멘트·해시태그 둘 다 없을 때 표시할 팝업
+    [SerializeField] private StickerLimitTweenAni _wordLimitPopup;  // 동일 단어 제한 초과 시 표시할 팝업
+    [SerializeField] private StickerLimitTweenAni _charLimitPopup;  // 글자수 제한 초과 시 표시할 팝업
+    [SerializeField] private StickerLimitTweenAni _noContentPopup;  // 코멘트·해시태그 둘 다 없을 때 표시할 팝업
 
     private int _totalChars;
     private CommentWordButton _selectedButton;
@@ -52,7 +52,7 @@ public class CommentZoneManager : MonoBehaviour
             // 효과음
             SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
-            _charLimitPopup?.SetActive(true);
+            _charLimitPopup?.PlayAnimation();
             return false;
         }
 
@@ -63,7 +63,7 @@ public class CommentZoneManager : MonoBehaviour
             // 효과음
             SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
-            _wordLimitPopup?.SetActive(true);
+            _wordLimitPopup?.PlayAnimation();
             return false;
         }
 
@@ -74,23 +74,14 @@ public class CommentZoneManager : MonoBehaviour
         return true;
     }
 
-    // 동일 단어 제한 팝업 닫기 버튼에 연결한다.
-    public void CloseWordLimitPopup() => _wordLimitPopup?.SetActive(false);
-
-    // 글자수 제한 팝업 닫기 버튼에 연결한다.
-    public void CloseCharLimitPopup() => _charLimitPopup?.SetActive(false);
-
     // 콘텐츠 없음 팝업을 표시한다. PlzAddComment()에서 호출한다.
     public void ShowNoContentPopup()
     {
         // 효과음
         SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
-        _noContentPopup?.SetActive(true);
+        _noContentPopup?.PlayAnimation();
     }
-
-    // 콘텐츠 없음 팝업 닫기 버튼에 연결한다.
-    public void CloseNoContentPopup() => _noContentPopup?.SetActive(false);
 
     // 특정 버튼을 선택 상태로 전환한다.
     public void Select(CommentWordButton button)
