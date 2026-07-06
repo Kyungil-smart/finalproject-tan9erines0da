@@ -7041,18 +7041,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2417408574563897828}
     m_Modifications:
-    - target: {fileID: 318004498542479302, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_Color.b
-      value: 0.65882355
-      objectReference: {fileID: 0}
-    - target: {fileID: 318004498542479302, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_Color.g
-      value: 0.65882355
-      objectReference: {fileID: 0}
-    - target: {fileID: 318004498542479302, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_Color.r
-      value: 0.65882355
-      objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7079,11 +7067,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 829
+      value: 862
       objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 140
+      value: 144
       objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7119,7 +7107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7133,59 +7121,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_text
-      value: "\uB0E5\uB0E5\uC2A4\uD1A4\uC774 \uBD80\uC871\uD574\uC694"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_fontSize
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 8459353301060225919, guid: 1b2105d2a7d21234c966ef03d27efa29, type: 2}
-    - target: {fileID: 1492911958843808759, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2502198208045846371, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
       propertyPath: m_Name
       value: NyangStone_Empty_Image
-      objectReference: {fileID: 0}
-    - target: {fileID: 2502198208045846371, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443356565210718739, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 3520677862898574326, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -8.35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
+--- !u!114 &789766518711151773 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6654987578583140271, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
+  m_PrefabInstance: {fileID: 6246091943610395442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38cb63b8802e78443a52d4964225e16c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5003147851953689585 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1423229777458165955, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
-  m_PrefabInstance: {fileID: 6246091943610395442}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8365167498074694737 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2502198208045846371, guid: 2426e4436e9fb4348b0b6e941a46aa78, type: 3}
   m_PrefabInstance: {fileID: 6246091943610395442}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6712655865969821513
@@ -7539,7 +7497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42acae0b47ba5534e8de3e7a9551efca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nyangStoneEmptyImage: {fileID: 8365167498074694737}
+  _nyangStoneEmptyImage: {fileID: 789766518711151773}
   _baseScreenController: {fileID: 0}
   _panel: {fileID: 0}
   _getImageList: {fileID: 4289199051972236853}
