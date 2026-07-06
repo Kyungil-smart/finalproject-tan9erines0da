@@ -26,6 +26,8 @@ public class CommentWordButton : MonoBehaviour
     [Header("Appearance")]
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _selectedSprite;
+    [SerializeField] private Color _normalColor = Color.white;
+    [SerializeField] private Color _selectedColor = Color.white;
 
     private string _word;
     private CommentZoneManager _manager;
@@ -55,7 +57,10 @@ public class CommentWordButton : MonoBehaviour
         _isSelected = selected;
         _deleteBtnRoot.SetActive(selected);
         if (_buttonImage != null)
+        {
             _buttonImage.sprite = selected ? _selectedSprite : _normalSprite;
+            _buttonImage.color = selected ? _selectedColor : _normalColor;
+        }
     }
 
     private void OnClick()
