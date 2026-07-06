@@ -2309,6 +2309,7 @@ MonoBehaviour:
   _rawStickerPrefab: {fileID: 1475799359933010638, guid: df1cc7490b2012d40b1ed7e3e9582d76, type: 3}
   _bgImage: {fileID: 7921831420081312929}
   _shaderController: {fileID: 8878114224883921810}
+  _frameOverlay: {fileID: 0}
 --- !u!114 &5431262429171789214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2487,7 +2488,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6329484784240536972
 MonoBehaviour:
   m_ObjectHideFlags: 0
