@@ -165,6 +165,9 @@ public class SNS_UI_Controller : BaseScreenController
     {
         Debug.Log("클릭 성공");
 
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         // 팝업을 닫는다.
         _editCancelPopup.SetActive(false);
         // 스티커 터치 제어를 위한 코드

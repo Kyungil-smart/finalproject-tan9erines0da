@@ -20,6 +20,9 @@ public class EditCancelSetFalse : MonoBehaviour
 
     private void SetActiveFalse()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _editCancelPopup.SetActive(false);
         if (TouchInputHandler.Instance.OnEditCancel == true)
         {
