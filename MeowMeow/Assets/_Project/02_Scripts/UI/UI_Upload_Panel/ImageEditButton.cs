@@ -7,7 +7,7 @@ public class ImageEditButton : MonoBehaviour
 {
     private Button _button;
     [Header("냥냥스톤 부족 팝업 참조")]
-    [SerializeField]private GameObject _nyangStoneEmptyImage;
+    [SerializeField]private StickerLimitTweenAni _nyangStoneEmptyImage;
     [Header("화면전환 참조")]
     [SerializeField]private BaseScreenController _baseScreenController;
     [SerializeField]private UIPanel _panel;
@@ -39,13 +39,10 @@ public class ImageEditButton : MonoBehaviour
         {
             if (LocalDataManager.Instance.NyangNyangStone <= 0)
             {
-                if (_nyangStoneEmptyImage.activeSelf) return;
-
                 // 효과음
                 SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
-                _nyangStoneEmptyImage.SetActive(true);
-                Invoke(nameof(CloseNyangStonePopup), 0.5f);
+                _nyangStoneEmptyImage.PlayAnimation();
                 return;
             }
             _baseScreenController.RequestScreenChange(_panel);
@@ -55,10 +52,5 @@ public class ImageEditButton : MonoBehaviour
         {
             _baseScreenController.RequestScreenChange(_panel);
         }
-    }
-
-    private void CloseNyangStonePopup()
-    {
-        _nyangStoneEmptyImage.SetActive(false);
     }
 }
