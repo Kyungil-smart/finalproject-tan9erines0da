@@ -262,6 +262,10 @@ PrefabInstance:
       propertyPath: _uiController
       value: 
       objectReference: {fileID: 389156666477936609}
+    - target: {fileID: 8073471715687679844, guid: 1a357245cce9b5f4cba016a51bc08a99, type: 3}
+      propertyPath: _commentPanelPresenter
+      value: 
+      objectReference: {fileID: 873989746}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -983,7 +987,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1332.02}
+  m_AnchoredPosition: {x: 0, y: -1296.02}
   m_SizeDelta: {x: 1000, y: 70}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &405908537
@@ -1617,7 +1621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3837510476486812884, guid: 4c0abf8d5383c5046ae9b42549d632a7, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5798063317370465849, guid: 4c0abf8d5383c5046ae9b42549d632a7, type: 3}
       propertyPath: m_Color.a
@@ -2148,6 +2152,17 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &873989746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2200000000000000001, guid: 4c0abf8d5383c5046ae9b42549d632a7, type: 3}
+  m_PrefabInstance: {fileID: 633463238}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186f192cfe6c78e49828ad5d55d30b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &912234796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6304,6 +6319,10 @@ PrefabInstance:
     - target: {fileID: 4971463253594222169, guid: 1e30d7bd6161198439ac4d1ee82b2620, type: 3}
       propertyPath: m_Name
       value: SoundManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5792734517830096873, guid: 1e30d7bd6161198439ac4d1ee82b2620, type: 3}
+      propertyPath: IsBGM_On
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11276,7 +11295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 60, y: 0}
+  m_AnchoredPosition: {x: 21.5, y: 0}
   m_SizeDelta: {x: 88, y: 64}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2357313578641873524
@@ -13291,7 +13310,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4761811034861808836, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
       propertyPath: m_fontStyle
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4761811034861808836, guid: 280bff716a5c01a40b68f2b225a05a41, type: 3}
       propertyPath: m_sharedMaterial
@@ -15995,7 +16014,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -231.47998}
+  m_SizeDelta: {x: 0, y: -267.47998}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4204509875469803958
 CanvasRenderer:
@@ -18445,7 +18464,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 40, y: -196.01}
-  m_SizeDelta: {x: 900, y: 36.01}
+  m_SizeDelta: {x: 900, y: 0.01}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5340664225013406966
 MonoBehaviour:
@@ -21712,7 +21731,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -25095,7 +25114,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -1100}
-  m_SizeDelta: {x: 1000, y: 232.01999}
+  m_SizeDelta: {x: 1000, y: 196.01999}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &8961316862381814249
 RectTransform:
