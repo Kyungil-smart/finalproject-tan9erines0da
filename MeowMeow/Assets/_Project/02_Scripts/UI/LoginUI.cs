@@ -10,6 +10,7 @@ public class LoginUI : MonoBehaviour
 {
     [SerializeField] private Button _loginButton;
     [SerializeField] private Button _logoutButton;
+    [SerializeField] private Button _startButton;
     [SerializeField] private TextMeshProUGUI _statusText;
 
     private bool _isProcessing;
@@ -67,6 +68,7 @@ public class LoginUI : MonoBehaviour
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
         await InitUserData();
+        _startButton.interactable = true;
     }
 
     private async void OnLoginClicked()
@@ -105,6 +107,7 @@ public class LoginUI : MonoBehaviour
         UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
         await InitUserData();
+        _startButton.interactable = true;
     }
 
     private void OnLogoutClicked()
@@ -113,6 +116,7 @@ public class LoginUI : MonoBehaviour
         UnityAuthService.SignOut();
         GoogleSignInService.SignOut();
         UpdateStatus("로그아웃");
+        _startButton.interactable = false;
     }
 
     private static string GetDisplayName(FirebaseUser user)

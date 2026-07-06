@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6555002089535990838, guid: fbf31b712ae25d744a6953716a2809f6, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8958419818819361937, guid: fbf31b712ae25d744a6953716a2809f6, type: 3}
       propertyPath: m_SizeDelta.x
@@ -706,6 +706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loginButton: {fileID: 658269868}
   _logoutButton: {fileID: 221990647}
+  _startButton: {fileID: 974226564}
   _statusText: {fileID: 927621449}
 --- !u!114 &820922098
 MonoBehaviour:
@@ -1005,7 +1006,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 974226565}
   m_OnClick:
     m_PersistentCalls:
