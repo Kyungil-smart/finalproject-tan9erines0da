@@ -2422,7 +2422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7469532509401391155
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2432,7 +2432,7 @@ RectTransform:
   m_GameObject: {fileID: 8691177184288509388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1000000000000000002}
@@ -2539,3 +2539,4 @@ MonoBehaviour:
   _uiController: {fileID: 0}
   _profilePanel: {fileID: 0}
   _uploadButton: {fileID: 4052472006874600737}
+  _commentPanelPresenter: {fileID: 0}
