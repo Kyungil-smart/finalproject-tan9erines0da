@@ -106,9 +106,14 @@ public class LocalUserDataManager : MonoBehaviour
 
         if (currencyDTO == null)
         {
-            this.PublishLog("재화 널 발생");
             currencyDTO = new();
         }
+
+        DateTime actualUtcTime = currencyDTO.ServerTime == DateTime.MinValue
+        ? DateTime.UtcNow : currencyDTO.ServerTime;
+
+        TimeManager.Instance.SetVerifiedTime(actualUtcTime);
+
         NyangNyangStone = currencyDTO.NyangNyangStone;
 
         if (string.IsNullOrWhiteSpace(currencyDTO.LastDate))
