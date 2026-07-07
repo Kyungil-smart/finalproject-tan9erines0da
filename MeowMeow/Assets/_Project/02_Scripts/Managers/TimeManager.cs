@@ -11,19 +11,31 @@ public class TimeManager : MonoBehaviour
 
     public event Action OnOClock;
 
-    private CancellationTokenSource _cts;
+    private DateTime _verifiedServerTime;
 
-    private string _currentDate;
-    public string CurrentDate => _currentDate;
+    private bool _isTimerRunning = false;
 
-    public Task InitializationTask => _initTcs.Task;
-    private TaskCompletionSource<bool> _initTcs =
-        new TaskCompletionSource<bool>();
+    public string CurrentDate =>
+        _verifiedServerTime.ToString("yyyy-MM-dd");
+
+    public void SetVerifiedTime(DateTime serverUtcTime)
+    {
+        // 파이어스토어 메타데이터는 UTC 기준이므로 
+        // 한국 시간(KST)으로 전환
+        _verifiedServerTime = serverUtcTime.AddHours(9);
+
+        Debug.Log($"[TimeManager] 서버 시간 주입 완료: " +
+            $"{_verifiedServerTime:yyyy-MM-dd HH:mm:ss}");
+
+        if (!_isTimerRunning)
+        {
+            StartCoroutine(CoMidnightScheduler());
+        }
+    }
 
     private void Awake()
     {
         SetSingleton();
-        _cts = new CancellationTokenSource();
     }
     private void SetSingleton()
     {
@@ -37,34 +49,34 @@ public class TimeManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    void Start()
+
+    // 00시를 기다리는 코루틴
+    private IEnumerator CoMidnightScheduler()
     {
-        StartSchedulingAsync(_cts.Token);
-    }
-    async void StartSchedulingAsync(CancellationToken token)
-    {
-        try
+        _isTimerRunning = true;
+
+        while (true)
         {
-            // 토큰을 통해 취소될때까지 반복
-            while (!token.IsCancellationRequested)
+            // 다음 자정(00:00:00)까지 남은 시간 계산
+            float delaySeconds = GetSecondsUntilOClock(_verifiedServerTime);
+            float elapsed = 0f;
+
+            // 계산된 대기 시간만큼 루프
+            while (elapsed < delaySeconds)
             {
-                // 현재 시간 가져오기
-                DateTime severTime = await NtpTimeFetcher.GetNetworkTimeAsync(token);
-                _currentDate = severTime.Date.ToString();
+                yield return null;
 
-                // 다음 시간까지 남은 시간 계산
-                float delay = GetSecondsUntilOClock(severTime);
+                float deltaTime = Time.unscaledDeltaTime;
+                elapsed += deltaTime;
 
-                _initTcs.TrySetResult(true);
-
-                // 다음 시간까지 대기
-                await Task.Delay(TimeSpan.FromSeconds(delay), token);
-
-                // 이벤트 인보크
-                OnOClock?.Invoke();
+                _verifiedServerTime = _verifiedServerTime.AddSeconds(deltaTime);
             }
+
+            // 자정에 도달하면 등록된 이벤트를 실행
+            Debug.Log($"[TimeManager] 자정이 된 것으로 판단하여 이벤트를 실행합니다.");
+            OnOClock?.Invoke();
+            yield return null;
         }
-        catch (OperationCanceledException) { }
     }
 
     // 초기화 시간까지 남은 시간을 계산하는 함수
@@ -72,11 +84,5 @@ public class TimeManager : MonoBehaviour
     {
         float remaining = (float)(now.Date.AddDays(1) - now).TotalSeconds;
         return Mathf.Max(1f, remaining);
-    }
-
-    void OnDestroy()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
     }
 }

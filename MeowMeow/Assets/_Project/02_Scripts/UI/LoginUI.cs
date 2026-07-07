@@ -151,28 +151,6 @@ public class LoginUI : MonoBehaviour
             SNSPostManager.Instance.LoadLocalData();
         }
 
-        // 1. 서버 시간 확인
-        try
-        {
-            UpdateStatus($"서버 시간 확인 중...");
-            using (var timeoutCts = new CancellationTokenSource(
-                TimeSpan.FromSeconds(10)))
-            {
-                var delayTask = Task.Delay(-1, timeoutCts.Token);
-                var initTask = TimeManager.Instance.InitializationTask;
-                var completedTask = await Task.WhenAny(initTask, delayTask);
-
-                if (completedTask == delayTask)
-                {
-                    throw new TimeoutException("서버 시간 동기화 시간 초과!");
-                }
-                await initTask; 
-            }
-        }
-        catch (Exception ex)
-        {
-            throw new Exception($"[서버 시간 확인 실패] {ex.Message}", ex);
-        }
 
         // 2. 유저 정보 로드 검사
         if (LocalUserDataManager.Instance != null)
