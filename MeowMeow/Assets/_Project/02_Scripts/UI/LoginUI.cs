@@ -188,6 +188,16 @@ public class LoginUI : MonoBehaviour
         {
             GatchaDataManager.Instance.OnDailyReset();
             LocalFeedStorage.GetRandomSix();
+            // CurrencyDTO의 LastDate 날짜 갱신
+            try
+            {
+                UpdateStatus("날짜를 갱신 하였습니다.");
+                await LocalUserDataManager.Instance.UpdateLastDate(NowDateTime);
+            }
+            catch
+            {
+                UpdateStatus("네트워크가 불안정 합니다.");
+            }
         }
 
         try

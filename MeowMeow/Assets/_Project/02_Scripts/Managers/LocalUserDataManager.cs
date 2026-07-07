@@ -83,6 +83,10 @@ public class LocalUserDataManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
     }
 
+    /// <summary>
+    /// 최초 로그인시에만 한번 호출해 주세요.(FireStore에 CurrencyDTO 데이터를 생성/저장합니다.)
+    /// </summary>
+    /// <returns></returns>
     public async Task SetUserData()
     {
         CurrencyDTO currencyDTO = new CurrencyDTO
@@ -94,18 +98,7 @@ public class LocalUserDataManager : MonoBehaviour
         await FireStoreManager.DocumentType(DataType.CurrencyData).SetAsync(currencyDTO);
     }
 
-    // FireStore에서 NyangNyangStone을 갱신합니다.
-    private async Task UpdateCurrencyAsync(int amount)
-    {
-        Dictionary<string, object> updates = new Dictionary<string, object>
-      {
-            { "NyangNyangStone", FieldValue.Increment(amount) }
-      };
-
-        await FireStoreManager.DocumentType(DataType.CurrencyData).UpdateAsync<CurrencyDTO>(updates, true);
-    }
-
-    // FireStore 재화 로컬에 반영
+    // FireStore 재화 로컬에 반영 및 날짜 반영
     public async Task LoadUserData()
     {
         CurrencyDTO currencyDTO;
@@ -118,12 +111,41 @@ public class LocalUserDataManager : MonoBehaviour
         }
         NyangNyangStone = currencyDTO.NyangNyangStone;
 
-        if (currencyDTO.LastDate == null || string.IsNullOrWhiteSpace(currencyDTO.LastDate))
+        if (string.IsNullOrWhiteSpace(currencyDTO.LastDate))
         {
             _lastDate = TimeManager.Instance.CurrentDate;
-            
             await SetUserData();
         }
+        else
+        {
+            _lastDate = currencyDTO.LastDate;
+        }
+    }
+
+    /// <summary>
+    /// FireStore에서 LastDate를 갱신합니다.
+    /// </summary>
+    /// <param name="currentDate">오늘 날짜를 넣어줍니다.</param>
+    /// <returns></returns>
+    public async Task UpdateLastDate(string currentDate)
+    {
+        Dictionary<string, object> updates = new Dictionary<string, object>
+      {
+            { "LastDate", currentDate }
+      };
+
+        await FireStoreManager.DocumentType(DataType.CurrencyData).UpdateAsync<CurrencyDTO>(updates, true);
+    }
+
+    // FireStore에서 NyangNyangStone을 갱신합니다.
+    private async Task UpdateCurrencyAsync(int amount)
+    {
+        Dictionary<string, object> updates = new Dictionary<string, object>
+      {
+            { "NyangNyangStone", FieldValue.Increment(amount) }
+      };
+
+        await FireStoreManager.DocumentType(DataType.CurrencyData).UpdateAsync<CurrencyDTO>(updates, true);
     }
 
     // 재화 증가 + 서버 저장
