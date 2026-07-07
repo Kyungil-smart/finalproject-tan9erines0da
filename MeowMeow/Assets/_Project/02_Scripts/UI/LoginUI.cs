@@ -10,6 +10,7 @@ public class LoginUI : MonoBehaviour
 {
     [SerializeField] private Button _loginButton;
     [SerializeField] private Button _logoutButton;
+    [SerializeField] private Button _startButton;
     [SerializeField] private TextMeshProUGUI _statusText;
 
     private bool _isProcessing;
@@ -64,9 +65,11 @@ public class LoginUI : MonoBehaviour
         UpdateStatus("세션 복원...");
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
-        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
         await InitUserData();
+        _startButton.interactable = true;
+
+        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
     }
 
     private async void OnLoginClicked()
@@ -102,9 +105,10 @@ public class LoginUI : MonoBehaviour
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
 
-        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
-
         await InitUserData();
+        _startButton.interactable = true;
+
+        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
     }
 
     private void OnLogoutClicked()
@@ -113,6 +117,7 @@ public class LoginUI : MonoBehaviour
         UnityAuthService.SignOut();
         GoogleSignInService.SignOut();
         UpdateStatus("로그아웃");
+        _startButton.interactable = false;
     }
 
     private static string GetDisplayName(FirebaseUser user)
@@ -130,24 +135,50 @@ public class LoginUI : MonoBehaviour
     // 로그인 확인후 실행되는 유저관련 데이터 초기화 함수
     private async Task InitUserData()
     {
+        UpdateStatus("로컬 저장 기록 확인 중...");
+
         // 유저가 작성한 포스트 확보
         if (SNSPostManager.Instance != null)
         {
             SNSPostManager.Instance.LoadLocalData();
         }
-        
-        await TimeManager.Instance.InitializationTask;
+
+        try
+        {
+            UpdateStatus($"서버 시간 확인 중...");
+            await TimeManager.Instance.InitializationTask;
+        }
+        catch
+        {
+            UpdateStatus("서버 시간을 가져올 수 없습니다...");
+        }
         
         // 유저 보유 재화 확보
         if (LocalUserDataManager.Instance != null)
         {
-            await LocalUserDataManager.Instance.LoadUserData();
+            try
+            {
+                UpdateStatus("유저 정보 확인 중...");
+                await LocalUserDataManager.Instance.LoadUserData();
+            }
+            catch
+            {
+                UpdateStatus("유저 정보를 확인 할 수 없습니다");
+            }
         }
         
 
         FirebaseUser user = BackendManager.Auth.CurrentUser;
 
-        await GatchaDataManager.Instance.Get_GatchaDTO();
+        try
+        {
+            UpdateStatus("시즌 콘텐츠 데이터 확인 중 ...");
+            await GatchaDataManager.Instance.Get_GatchaDTO();
+        }
+        catch
+        {
+            UpdateStatus("시즌 콘텐츠 데이터를 업데이트 할 수 없습니다.");
+        }
 
         // 날짜 바뀌는거 코드
         string NowDateTime = TimeManager.Instance.CurrentDate;
@@ -159,7 +190,15 @@ public class LoginUI : MonoBehaviour
             LocalFeedStorage.GetRandomSix();
         }
 
-        await GatchaDataManager.Instance.IsCompensation();
+        try
+        {
+            UpdateStatus("출석 보상 확인 중");
+            await GatchaDataManager.Instance.IsCompensation();
+        }
+        catch
+        {
+            UpdateStatus("출석 보상 확인 실패...");
+        }
         
 
 
@@ -173,7 +212,15 @@ public class LoginUI : MonoBehaviour
         else
         {
             // 로컬에 데이터가 존재하지 않을 때
-            await SNSPostManager.Instance.RefreshRandomFeedsAsync();
+            try
+            {
+                UpdateStatus("피드 정보 초기화...");
+                await SNSPostManager.Instance.RefreshRandomFeedsAsync();
+            }
+            catch
+            {
+                UpdateStatus("피드 초기화 실패");
+            }
         }
 
         // 자정이벤트 등록
