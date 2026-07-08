@@ -30,12 +30,32 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
     [SerializeField]private GameObject NoContent_Popup;
 
+    [Header("Next Button")]
+    [SerializeField] private CanvasGroup _nextButtonCanvasGroup;
+    private const float NextButtonDisabledAlpha = 0.7f;
+    private const float NextButtonEnabledAlpha = 1f;
+
+    void OnEnable()
+    {
+        CommentZoneManager.OnContentChanged += UpdateNextButtonAlpha;
+        UpdateNextButtonAlpha();
+    }
+
     // 여기서 초기화하면 되돌아왔을 때 입력했던 코멘트/해시태그가 사라지기 때문에 SNS_UI_Controller에서 ClearPanelContext()를 호출한다.
     void OnDisable()
     {
+        CommentZoneManager.OnContentChanged -= UpdateNextButtonAlpha;
         NoContent_Popup.SetActive(false);
     }
-    
+
+    private void UpdateNextButtonAlpha()
+    {
+        if (_nextButtonCanvasGroup == null) return;
+
+        bool hasComment = _commentZoneManager != null && _commentZoneManager.HasWords;
+        _nextButtonCanvasGroup.alpha = hasComment ? NextButtonEnabledAlpha : NextButtonDisabledAlpha;
+    }
+
     public void RequestContext()
     {
         if (SubscribeManager.instance == null)
