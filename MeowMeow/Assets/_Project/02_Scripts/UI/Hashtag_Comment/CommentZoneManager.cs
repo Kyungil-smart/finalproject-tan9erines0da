@@ -14,6 +14,8 @@ public class CommentZoneManager : MonoBehaviour
     // 선택 상태가 바뀔 때 발행. DeselectOverlay / HashtagSelectPanel 이 구독한다.
     public static event Action OnSelectionChanged;
 
+    public static event Action OnContentChanged;
+
     [Header("References")]
     [SerializeField] private Transform _content;
     [SerializeField] private TextMeshProUGUI _countText;
@@ -35,6 +37,8 @@ public class CommentZoneManager : MonoBehaviour
     private readonly Dictionary<string, int> _wordCounts = new Dictionary<string, int>();
 
     public bool HasSelection => _selectedButton != null;
+
+    public bool HasWords => _wordCounts.Count > 0;
 
     private void Awake() => Instance = this;
 
@@ -69,8 +73,8 @@ public class CommentZoneManager : MonoBehaviour
 
         _wordCounts[word] = count + 1;
         _totalChars += word.Length;
-        UpdateCountText();
         CreateWordButton(word);
+        UpdateCountText();
         return true;
     }
 
@@ -167,10 +171,13 @@ public class CommentZoneManager : MonoBehaviour
 
     private void UpdateCountText()
     {
-        if (_countText == null) return;
-        _countText.text = $"{_totalChars}/{_maxChars}";
-        _countText.color = _totalChars == 0   ? new Color32(85, 31, 52, 255)
-                         : _totalChars <= 45  ? new Color32(114, 29, 144, 255)
-                                              : new Color32(229, 0, 242, 255);
+        if (_countText != null)
+        {
+            _countText.text = $"{_totalChars}/{_maxChars}";
+            _countText.color = _totalChars == 0   ? new Color32(85, 31, 52, 255)
+                             : _totalChars <= 45  ? new Color32(114, 29, 144, 255)
+                                                  : new Color32(229, 0, 242, 255);
+        }
+        OnContentChanged?.Invoke();
     }
 }

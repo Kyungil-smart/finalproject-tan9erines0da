@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 6074269114241091960}
   - component: {fileID: 422715621524971022}
   - component: {fileID: 821048102541362875}
+  - component: {fileID: 7418529082404825099}
   m_Layer: 5
   m_Name: Next_Button
   m_TagString: Untagged
@@ -581,6 +582,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &7418529082404825099
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845684597125218101}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2085488557897940191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,6 +3394,7 @@ MonoBehaviour:
   - {fileID: 4832818138443972116}
   - {fileID: 8588924629898983609}
   NoContent_Popup: {fileID: 0}
+  _nextButtonCanvasGroup: {fileID: 7418529082404825099}
 --- !u!225 &2200000000000000002
 CanvasGroup:
   m_ObjectHideFlags: 0
