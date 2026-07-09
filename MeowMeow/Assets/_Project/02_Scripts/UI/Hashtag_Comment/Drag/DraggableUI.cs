@@ -16,6 +16,8 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     // 드래그 시작 전 오브젝트의 원래 하이어라키 순서(Sibling Index)를 저장
     private int _originalSiblingIndex;
+    // 복사본의 현재 하이어라키 순서(Sibling Index)를 저장
+    private int currentPlaceholderIndex;
 
     private void Awake()
     {
@@ -35,10 +37,10 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         originalParent = transform.parent;
 
+        CreatePlaceholder();
+
         // 드래그 시작 시 현재 오브젝트의 하이어라키 순서 저장
         _originalSiblingIndex = transform.GetSiblingIndex();
-
-        CreatePlaceholder();
 
         transform.SetParent(rootCanvas.transform);
         transform.SetAsLastSibling();
@@ -60,6 +62,8 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
            CommentManager.Instance._scrollActiveArea,
            eventData.position))
         {
+            // 복사본의 현재 하이어라키 순서(Sibling Index)를 저장
+            currentPlaceholderIndex = placeholder.transform.GetSiblingIndex();
             CancelDrag();
             return;
         }
@@ -108,8 +112,9 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         _dragCanvas = null;
 
         transform.SetParent(originalParent);
-        // 드래그 시작 전 저장한 원래 하이어라키 순서로 복원
-        transform.SetSiblingIndex(_originalSiblingIndex);
+        // 복사본의 현재 하이어라키 순서에 따라 드래그 시작 전 저장한 원래 하이어라키 순서로 복원
+        if (currentPlaceholderIndex >= _originalSiblingIndex) transform.SetSiblingIndex(_originalSiblingIndex-1);
+        else transform.SetSiblingIndex(_originalSiblingIndex);
 
         Destroy(placeholder);
         placeholder = null;
