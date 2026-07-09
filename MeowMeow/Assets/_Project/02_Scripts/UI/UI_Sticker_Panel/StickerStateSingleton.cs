@@ -124,6 +124,11 @@ public class StickerStateSingleton : MonoBehaviour
     // 스티커 삭제버튼을 끄기 위한 이벤트 액션
     public event Action StickerDelButtonOff;
 
+    // 스마트폰 동시 터치로 스티커 동시 생성 방지를 위한 마커
+    private bool _isClicking;
+    // 스마트폰 터치중에 스티커 생성 막는 로직
+    public bool _isTouching;
+
     private void Awake()
     {
         Init();
@@ -299,6 +304,24 @@ public class StickerStateSingleton : MonoBehaviour
         _stickerToToggle.Clear();
         _toggleList.Clear();
         _stickerToDelButton.Clear();
+    }
+    #endregion
+
+    #region 스티커 동시 생성을 막기 위한 함수
+    public bool TryClickSticker()
+    {
+        if (_isClicking) return false;
+
+        _isClicking = true;
+
+        Invoke(nameof(ResetClick), 0.1f);
+
+        return true;
+    }
+
+    private void ResetClick()
+    {
+        _isClicking = false;
     }
     #endregion
 }
