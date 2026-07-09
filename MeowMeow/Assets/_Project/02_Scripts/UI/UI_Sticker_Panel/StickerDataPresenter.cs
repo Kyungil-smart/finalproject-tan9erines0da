@@ -71,23 +71,33 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
         List<StickerTransformData> currentStickers =
             new List<StickerTransformData>();
 
-        // _stickerIndexes 딕셔너리 순회
-        var activeStickers = _stickerState.StickerIndexes;
+        // 순서를 보장하는 토글 리스트 기반으로 순서 확보, 
+        var orderedToggles = _stickerState.ToggleList;
+        var toggleToStickerDic = _stickerState.ToggleToSticker;
+        var stickerIndexesDic = _stickerState.StickerIndexes;
 
-        foreach (var kvp in activeStickers)
+        foreach (Toggle toggle in orderedToggles)
         {
-            GameObject stickerObj = kvp.Key;
-            int stickerIndex = kvp.Value;
+            if (toggle == null) continue;
+
+            // 토글을 매개로 매칭되는 스티커 오브젝트 확보
+            if (!toggleToStickerDic.TryGetValue(toggle, out GameObject stickerObj))
+                continue;
 
             if (stickerObj == null) continue;
 
+            // 스티커의 인덱스 번호 확보
+            if (!stickerIndexesDic.TryGetValue(stickerObj, out int stickerIndex))
+                continue;
+
             RectTransform stickerRect = stickerObj.GetComponent<RectTransform>();
+            if (stickerRect == null) continue;
 
             // 부모 Rect 비례 상대 좌표 연산
             Vector2 relPos = stickerRect.ToRelPos(_bgRect);
             float relScale = stickerRect.ToRelScale(_bgRect);
 
-            // 타입 변환 오차 제어를 염두에 둔 값 주입 (double 디바이스 호환)
+            // 데이터 가공
             StickerTransformData data = new StickerTransformData
             {
                 StickerId = stickerIndex,
@@ -112,6 +122,9 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
         if (_snapshot.Stickers == null || _snapshot.Stickers.Count == 0) return;
         if (_stickerState == null) return;
 
+        // 스티커 패널 활성화
+        gameObject.SetActive(true);
+
         // 기존 스티커 초기화
         _stickerState.AllClearSticker();
 
@@ -124,6 +137,9 @@ public class StickerDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
             int lastIndex = _stickerState.ToggleList.Count - 1;
             Toggle lastToggle = _stickerState.ToggleList[lastIndex];
             GameObject spawnedSticker = _stickerState.ToggleToSticker[lastToggle];
+
+            // 토글 선택해제
+            lastToggle.isOn = false;
 
             // 3. 생성된 스티커의 트랜스폼을 스냅샷 저장 수치로 재배치합니다.
             RectTransform rect = spawnedSticker.GetComponent<RectTransform>();

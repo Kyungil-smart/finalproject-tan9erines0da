@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1482382646753724639}
   - component: {fileID: 8200853945696914049}
   - component: {fileID: 2030260598993075504}
+  - component: {fileID: 3788801044052456058}
+  - component: {fileID: 5356160152813190188}
   m_Layer: 0
   m_Name: BackendManager
   m_TagString: Untagged
@@ -60,21 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091d7c77fd5a2384da9cc1c042e28d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data:
-    <ImageIndex>k__BackingField: 0
-    <ShaderProperty>k__BackingField:
-      <Brightness>k__BackingField: 0
-      <Contrast>k__BackingField: 0
-      <Saturation>k__BackingField: 0
-      <Temperature>k__BackingField: 0
-    <Comment>k__BackingField: 
-    <Stickers>k__BackingField: []
-    <Hashtags>k__BackingField: []
-    <RandomId>k__BackingField: 0
   TestList: []
   m_Data:
   - {fileID: 11400000, guid: 6d281463d7428c142b19341643ec8a5c, type: 2}
   - {fileID: 11400000, guid: b30b1efb91a08df46bc7ebaf74e0ec2e, type: 2}
+  - {fileID: 11400000, guid: 05251f185d12f6f49972d6b719d0ce6b, type: 2}
 --- !u!114 &1482382646753724639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneName: SampleScene
-  _sceneIndex: 1
+  _sceneIndex: 2
 --- !u!114 &8200853945696914049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +102,53 @@ MonoBehaviour:
   m_GameObject: {fileID: 7948890395797757019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e79af9a3a4e4a04b9fbe6042bb3caa9, type: 3}
+  m_Script: {fileID: 11500000, guid: d42d2e1498bebd14d9cbff00fc50b1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   NyangNyangStoneTMP: {fileID: 0}
+--- !u!114 &3788801044052456058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948890395797757019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7b83d98352763a4b850b3729a2991e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LogicList:
+  - {fileID: 11400000, guid: 8510188b5b5bc5d46b951457b1b57a66, type: 2}
+  - {fileID: 11400000, guid: 4f68dc5e5bebfdf44825933ebb8437bf, type: 2}
+  - {fileID: 11400000, guid: 50895106b21725c4fa57aab4a2d96086, type: 2}
+  - {fileID: 11400000, guid: 5002bb5866c7a6b4aaf7f89ff1b44c1f, type: 2}
+  - {fileID: 11400000, guid: 0d6a745815be9d746b258f0e8a9400b6, type: 2}
+  - {fileID: 11400000, guid: 8b9eede2a1c4068479b84d997bbcbfdc, type: 2}
+  - {fileID: 11400000, guid: d04ba77e4e07efd449eb92c6540b595d, type: 2}
+  - {fileID: 11400000, guid: e290686c435af0f4ba44643843195303, type: 2}
+  - {fileID: 11400000, guid: ca1c1f5ae956d9e49a977665500ca90a, type: 2}
+  - {fileID: 11400000, guid: fdd299619668b144db40d25e93d5a836, type: 2}
+  GatchaData:
+    <UID>k__BackingField: 
+    <OwnedTicketCount>k__BackingField: 0
+    <TodayAttendanceTicketCount>k__BackingField: 0
+    <TodayQuestTicketCount>k__BackingField: 0
+    <TotalGatchaCount>k__BackingField: 0
+    <ItemList>k__BackingField: 
+    <IsResetPerformed>k__BackingField: 0
+    <Grade_1>k__BackingField: 0
+    <Grade_2>k__BackingField: 0
+    <Grade_3>k__BackingField: 0
+--- !u!114 &5356160152813190188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7948890395797757019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb316d537d7f8484e9dbe30e57e06ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

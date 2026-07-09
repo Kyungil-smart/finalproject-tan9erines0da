@@ -6,44 +6,64 @@ using UnityEngine.EventSystems;
 public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private Transform originalParent;
-    private Transform canvas;
+    private Canvas rootCanvas;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
     private GameObject placeholder;
-    private GridLayoutGroup grid;
-
-    private const int COLUMN_COUNT = 3;
+    private Canvas _dragCanvas;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        canvas = FindObjectOfType<Canvas>().transform;
+        rootCanvas = GetComponentInParent<Canvas>().rootCanvas;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        var commentBtn = GetComponent<CommentWordButton>();
+        if (commentBtn != null && !commentBtn.IsSelected)
+        {
+            eventData.pointerDrag = null;
+            return;
+        }
+
         originalParent = transform.parent;
-        grid = originalParent.GetComponent<GridLayoutGroup>();
 
         CreatePlaceholder();
 
-        transform.SetParent(canvas);
+        transform.SetParent(rootCanvas.transform);
         transform.SetAsLastSibling();
+
+        // 씬 내 모든 Canvas보다 위에 렌더링되도록 오버라이드
+        _dragCanvas = gameObject.AddComponent<Canvas>();
+        _dragCanvas.overrideSorting = true;
+        _dragCanvas.sortingOrder = 20;
+        gameObject.AddComponent<GraphicRaycaster>();
 
         canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (placeholder == null) return;
         MoveDraggedObject(eventData);
         UpdatePlaceholderPosition(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (placeholder == null) return;
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
+        Destroy(GetComponent<GraphicRaycaster>());
+        Destroy(_dragCanvas);
+        _dragCanvas = null;
+
         transform.SetParent(originalParent);
         transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
 
@@ -54,53 +74,47 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     private void MoveDraggedObject(PointerEventData eventData)
     {
-        rectTransform.position = eventData.position;
+        RectTransformUtility.ScreenPointToWorldPointInRectangle(
+            rootCanvas.transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out Vector3 worldPos);
+        rectTransform.position = worldPos;
     }
 
     private void CreatePlaceholder()
     {
-        placeholder = new GameObject("Placeholder"); //GridLayoutGroup 안에서 "임시 자리" 역할을 할 오브젝트 생성, 드래그 중인 버튼이 빠져나간 위치를 유지하기 위해 사용
+        placeholder = Instantiate(gameObject, originalParent);
+        placeholder.name = "Placeholder";
 
-        placeholder.transform.SetParent(originalParent);
+        Destroy(placeholder.GetComponent<CommentWordButton>());
+        Destroy(placeholder.GetComponent<DraggableUI>());
+        Destroy(placeholder.GetComponent<Button>());
 
-        LayoutElement layout = placeholder.AddComponent<LayoutElement>();
+        CanvasGroup cg = placeholder.GetComponent<CanvasGroup>();
+        cg.alpha = 0.6f;
+        cg.blocksRaycasts = false;
+        cg.interactable = false;
 
-        RectTransform myRect = GetComponent<RectTransform>(); // 현재 드래그 중인 버튼의 RectTransform 가져오기
-
-        layout.preferredWidth = myRect.rect.width; // Placeholder 크기를 원본 버튼과 동일하게 설정 그래야 GridLayoutGroup이 같은 크기의 슬롯으로 취급함
-        layout.preferredHeight = myRect.rect.height;
-
-        layout.flexibleWidth = 0; // 크기 자동 확장 방지
-        layout.flexibleHeight = 0;
-
-        placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex()); // 원래 버튼이 있던 위치에 Placeholder 배치
+        placeholder.transform.SetSiblingIndex(transform.GetSiblingIndex());
     }
 
-    private void UpdatePlaceholderPosition(PointerEventData eventData) // 드래그 중 계속 호출되는 함수, Placeholder 위치 갱신용임
+    private void UpdatePlaceholderPosition(PointerEventData eventData)
     {
-        // Content 안의 모든 자식 오브젝트를 순회
         for (int i = 0; i < originalParent.childCount; i++)
         {
-            // 현재 검사 중인 자식 오브젝트 가져오기
             Transform child = originalParent.GetChild(i);
 
-            // Placeholder 자기 자신은 검사 대상에서 제외
             if (child.gameObject == placeholder)
                 continue;
 
-            // 현재 자식의 RectTransform 가져오기
             RectTransform rect = child as RectTransform;
 
-            // 현재 마우스가 해당 버튼(RectTransform)의 영역 안에 있는지 검사
             if (RectTransformUtility.RectangleContainsScreenPoint(
-                rect,                           // 검사할 UI 영역
-                eventData.position))            // 현재 마우스 위치
+                rect,
+                eventData.position))
             {
-                // 마우스가 올라간 버튼의 위치로 Placeholder 이동
-                // GridLayoutGroup이 자동으로 나머지 버튼들을 밀어냄
                 placeholder.transform.SetSiblingIndex(i);
-
-                // 위치를 찾았으므로 더 이상 검사할 필요 없음
                 break;
             }
         }

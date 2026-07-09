@@ -26,12 +26,15 @@ public class CommentWordButton : MonoBehaviour
     [Header("Appearance")]
     [SerializeField] private Sprite _normalSprite;
     [SerializeField] private Sprite _selectedSprite;
+    [SerializeField] private Color _normalColor = Color.white;
+    [SerializeField] private Color _selectedColor = Color.white;
 
     private string _word;
     private CommentZoneManager _manager;
     private bool _isSelected;
 
     public string Word => _word;
+    public bool IsSelected => _isSelected; // DraggableUI에서 드래그 허용 여부 판단에 사용
 
     private void Awake()
     {
@@ -54,11 +57,17 @@ public class CommentWordButton : MonoBehaviour
         _isSelected = selected;
         _deleteBtnRoot.SetActive(selected);
         if (_buttonImage != null)
+        {
             _buttonImage.sprite = selected ? _selectedSprite : _normalSprite;
+            _buttonImage.color = selected ? _selectedColor : _normalColor;
+        }
     }
 
     private void OnClick()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         if (_isSelected)
             _manager.DeselectAll();
         else
@@ -67,6 +76,9 @@ public class CommentWordButton : MonoBehaviour
 
     private void OnDeleteClicked()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Popup4b);
+
         _manager.RemoveWord(this);
     }
 }

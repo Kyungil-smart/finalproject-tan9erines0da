@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a49568361adb5548a28d7833ae9dbde, type: 3}
+  m_Name: HashtagSO_
+  m_EditorClassIdentifier: 
+  url: https://docs.google.com/spreadsheets/d/1tgJ4L5SWzK3PqqfZ85NwCGhHPd8nArlpQjWz-rcc5Y4/edit?gid=0#gid=0
+  gid: 0
+  genericType: Hashtag
+  m_Data:
+  - <uniqueId>k__BackingField: 60001
+    TagName: (Null)
+  - <uniqueId>k__BackingField: 60002
+    TagName: "#\uACE0\uC591\uC774"
+  - <uniqueId>k__BackingField: 60003
+    TagName: "#\uBB49\uCE58"
+  - <uniqueId>k__BackingField: 60004
+    TagName: "#\uC124\uD0D5"
+  - <uniqueId>k__BackingField: 60005
+    TagName: "#\uC790\uB791"
+  - <uniqueId>k__BackingField: 60006
+    TagName: "#\uADC0\uC5EC\uC6C0"
+  - <uniqueId>k__BackingField: 60007
+    TagName: "#\uD589\uBCF5"
+  - <uniqueId>k__BackingField: 60008
+    TagName: "#\uC2AC\uD514"
+  - <uniqueId>k__BackingField: 60009
+    TagName: "#\uC608\uC068"
+  - <uniqueId>k__BackingField: 60010
+    TagName: "#\uD654\uB0A8"
+  - <uniqueId>k__BackingField: 60011
+    TagName: "#\uC6B0\uC6B8"
+  - <uniqueId>k__BackingField: 60012
+    TagName: "#\uD3ED\uC2E0\uD3ED\uC2E0"
+  - <uniqueId>k__BackingField: 60013
+    TagName: "#\uC4F0\uB2F4\uC4F0\uB2F4"
+  - <uniqueId>k__BackingField: 60014
+    TagName: "#\uB098\uB978"
+  - <uniqueId>k__BackingField: 60015
+    TagName: "#\uB530\uB73B"
+  - <uniqueId>k__BackingField: 60016
+    TagName: "#\uB0E5\uB0E5\uC2A4\uD0C0"
+  - <uniqueId>k__BackingField: 60017
+    TagName: "#\uBCF4\uB4E4\uBCF4\uB4E4"
+  - <uniqueId>k__BackingField: 60018
+    TagName: "#\uC0AC\uB8CC"
+  - <uniqueId>k__BackingField: 60019
+    TagName: "#\uC7A5\uB09C\uAC10"
+  - <uniqueId>k__BackingField: 60020
+    TagName: "#\uC9D1\uC0AC"

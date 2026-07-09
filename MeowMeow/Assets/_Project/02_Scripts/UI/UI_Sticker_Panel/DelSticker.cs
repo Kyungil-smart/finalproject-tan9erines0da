@@ -35,6 +35,9 @@ public class DelSticker : MonoBehaviour
     // 스티커 삭제 버튼에 구독시킬 함수(스티커 삭제)
     private void OnClickDelSticker()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Popup4b);
+
         if (StickerStateSingleton.Instance == null) return;
 
         // 해당 스티커에 연결된 토글 가져오기

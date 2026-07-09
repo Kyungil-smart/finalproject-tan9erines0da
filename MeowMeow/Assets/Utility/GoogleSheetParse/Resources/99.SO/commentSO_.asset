@@ -1,0 +1,216 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f6bfd7e3d03e94f97e7f88ff8cbe1c, type: 3}
+  m_Name: commentSO_
+  m_EditorClassIdentifier: 
+  url: https://docs.google.com/spreadsheets/d/1tgJ4L5SWzK3PqqfZ85NwCGhHPd8nArlpQjWz-rcc5Y4/edit?gid=1991369938#gid=1991369938
+  gid: 1991369938
+  genericType: comment
+  m_Data:
+  - <uniqueId>k__BackingField: 90001
+    word: "\uACE0\uC591\uC774"
+    type: 1
+  - <uniqueId>k__BackingField: 90002
+    word: "\uC9D1\uC0AC"
+    type: 1
+  - <uniqueId>k__BackingField: 90003
+    word: "\uC8FC\uC778\uB2D8"
+    type: 1
+  - <uniqueId>k__BackingField: 90004
+    word: "\uBB49\uCE58"
+    type: 1
+  - <uniqueId>k__BackingField: 90005
+    word: "\uC124\uD0D5"
+    type: 1
+  - <uniqueId>k__BackingField: 90006
+    word: "\uB0E5\uB0E5\uC2A4\uD0C0"
+    type: 1
+  - <uniqueId>k__BackingField: 90007
+    word: "\uB098"
+    type: 1
+  - <uniqueId>k__BackingField: 90008
+    word: "\uC800"
+    type: 1
+  - <uniqueId>k__BackingField: 90009
+    word: "\uB108"
+    type: 1
+  - <uniqueId>k__BackingField: 90010
+    word: "\uC7E4"
+    type: 1
+  - <uniqueId>k__BackingField: 90011
+    word: "\uC598"
+    type: 1
+  - <uniqueId>k__BackingField: 90012
+    word: "\uC774\uAC70"
+    type: 1
+  - <uniqueId>k__BackingField: 90013
+    word: "\uC800\uAC70"
+    type: 1
+  - <uniqueId>k__BackingField: 91001
+    word: "\uC0AC\uB8CC"
+    type: 4
+  - <uniqueId>k__BackingField: 91002
+    word: "\uC7A5\uB09C\uAC10"
+    type: 4
+  - <uniqueId>k__BackingField: 91003
+    word: "\uC120\uBB3C"
+    type: 4
+  - <uniqueId>k__BackingField: 91004
+    word: "\uB0E5\uB0E5\uC2A4\uD1A4"
+    type: 4
+  - <uniqueId>k__BackingField: 92001
+    word: "\uC740 "
+    type: 2
+  - <uniqueId>k__BackingField: 92002
+    word: "\uB294 "
+    type: 2
+  - <uniqueId>k__BackingField: 92003
+    word: "\uC774 "
+    type: 2
+  - <uniqueId>k__BackingField: 92004
+    word: "\uAC00 "
+    type: 2
+  - <uniqueId>k__BackingField: 92005
+    word: "\uC744 "
+    type: 2
+  - <uniqueId>k__BackingField: 92006
+    word: "\uB97C "
+    type: 2
+  - <uniqueId>k__BackingField: 93001
+    word: "\uC790\uB791"
+    type: 0
+  - <uniqueId>k__BackingField: 93002
+    word: "\uC88B\uC544\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93003
+    word: "\uC2EB\uC5B4\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93004
+    word: "\uD544\uC694\uD574\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93005
+    word: "\uBD80\uB7EC\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93006
+    word: "\uACE0\uB9C8\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93007
+    word: "\uC26C\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93008
+    word: "\uC5B4\uB824\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93009
+    word: "\uBCC4\uB85C\uC5D0\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93010
+    word: "\uD6CC\uB96D\uD574\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93011
+    word: "\uBBF8\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93012
+    word: "\uC0AC\uB791\uD574\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93013
+    word: "\uC2AC\uD37C\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93014
+    word: "\uAE30\uBED0\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93015
+    word: "\uD589\uBCF5\uD574\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93016
+    word: "\uADC0\uC5EC\uC6CC\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93017
+    word: "\uC801\uC5B4\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93018
+    word: "\uB9CE\uC544\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 93019
+    word: "\uC9C8\uD22C\uB098\uC694 "
+    type: 0
+  - <uniqueId>k__BackingField: 94001
+    word: "\uC788\uC5B4\uC694 "
+    type: 6
+  - <uniqueId>k__BackingField: 94002
+    word: "\uC5C6\uC5B4\uC694 "
+    type: 6
+  - <uniqueId>k__BackingField: 94003
+    word: "\uD588\uC5B4\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 94004
+    word: "\uBABB \uD588\uC5B4\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95001
+    word: "\uC548 \uD588\uC5B4\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95002
+    word: "\uAC14\uC5B4\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95003
+    word: "\uC654\uC5B4\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95004
+    word: "\uB4E4\uC5B4\uAC00\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95005
+    word: "\uB098\uC640\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95006
+    word: "\uC548\uB098\uC640\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95007
+    word: "\uD574\uC694 "
+    type: 5
+  - <uniqueId>k__BackingField: 95008
+    word: "\uB531\uB531"
+    type: 3
+  - <uniqueId>k__BackingField: 95009
+    word: "\uD30D\uD30D"
+    type: 3
+  - <uniqueId>k__BackingField: 96001
+    word: "\uCD95\uCD95"
+    type: 3
+  - <uniqueId>k__BackingField: 96002
+    word: "\uB205\uB205"
+    type: 3
+  - <uniqueId>k__BackingField: 96003
+    word: "\uBC14\uC0AD\uBC14\uC0AD"
+    type: 3
+  - <uniqueId>k__BackingField: 96004
+    word: "\uB530\uB73B"
+    type: 3
+  - <uniqueId>k__BackingField: 96005
+    word: "\uC2DC\uC6D0"
+    type: 3
+  - <uniqueId>k__BackingField: 96006
+    word: "\uB9D0\uB791\uB9D0\uB791"
+    type: 3
+  - <uniqueId>k__BackingField: 96007
+    word: "\uC4F0\uB2F4\uC4F0\uB2F4"
+    type: 3
+  - <uniqueId>k__BackingField: 96008
+    word: "\uBCF4\uB4E4\uBCF4\uB4E4"
+    type: 3
+  - <uniqueId>k__BackingField: 96009
+    word: "\uBD80\uB4E4\uBD80\uB4E4"
+    type: 3
+  - <uniqueId>k__BackingField: 96010
+    word: "\uD3ED\uC2E0\uD3ED\uC2E0"
+    type: 3
+  - <uniqueId>k__BackingField: 96011
+    word: "\uB098\uB978"
+    type: 3

@@ -55,14 +55,18 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
     // 스티커 생선순 토글버튼에 구독할 스티커 선택 함수
     private void OnClickSelectSticker(bool isOn)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         if (StickerStateSingleton.Instance == null) return;
 
         if (!StickerStateSingleton.Instance.ToggleToSticker.TryGetValue(_toggle, out GameObject sticker)) return;
 
         if (isOn)
         {
-            // 해당 토글의 스티커를 선택 (TouchInteractor 스크립트가 붙어있어야 합니다.)
-            TouchInputHandler.Instance.CallObjectSelectedForToggle(sticker.GetComponent<TouchInteractor>());
+            // 토글 선택시 선택된 토글과 그 토글의 상태 저장
+            StickerStateSingleton.Instance.CurrentToggle = _toggle;
+            StickerStateSingleton.Instance.CurrentToggleState = true;
 
             // 토글 리스트를 순회하며 현재 눌린 토글이 아닌 버튼은 전부 끄는 코드
             foreach (Toggle toggle in StickerStateSingleton.Instance.ToggleList)
@@ -72,12 +76,16 @@ public class StickerPriorityButton : MonoBehaviour, IPointerDownHandler, IPointe
                     toggle.isOn = false;
                 }
             }
+
+            // 해당 토글의 스티커를 선택 (TouchInteractor 스크립트가 붙어있어야 합니다.)
+            TouchInputHandler.Instance.CallObjectSelectedForToggle(sticker.GetComponent<TouchInteractor>());
         }
         // 토글이 꺼지면 선택해제 및 삭제버튼 숨기기
         else
         {
             StickerStateSingleton.Instance.StickerToDelButton
                 [StickerStateSingleton.Instance.ToggleToSticker[_toggle]].gameObject.SetActive(false);
+            TouchInputHandler.Instance.CallOPScalerTargetNull();
         }
     }
     #endregion

@@ -8,9 +8,15 @@ public class SNS_UI_Controller : BaseScreenController
     [SerializeField]
     private GameObject _uiFrameObject;
 
+    [Header("인트로 판넬")]
+    [SerializeField]
+    UIPanel _introPanel;
     [Header("진입 시 기본으로 켤 1깊이 판넬")]
     [SerializeField]
     private UIPanel _defaultDepth1Panel;
+
+    [Header("이전 화면 팝업 참조")]
+    [SerializeField] GameObject _editCancelPopup;
 
     // 2깊이에서 원래 화면으로 빠져나올 때 돌아갈 1깊이 백업 변수
     private UIPanel _lastActiveDepth1Panel;
@@ -28,6 +34,9 @@ public class SNS_UI_Controller : BaseScreenController
     }
     protected override void ExecuteFirstOpen()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Player_Collect_Boxy_2);
+
         // 외부에 의해 특정 지정 타겟(SpecificTargetPanel)이 주입되었는지 검사
         if (SpecificTargetPanel != null)
         {
@@ -42,20 +51,25 @@ public class SNS_UI_Controller : BaseScreenController
                 _lastActiveDepth1Panel.gameObject.SetActive(true);
             }
         }
+        else if (_introPanel != null && _defaultDepth1Panel != null) 
+        {
+            CurrentActivePanel = _introPanel;
+            // 인트로 패널 오픈
+            CurrentActivePanel.OpenWithEnterAnimation(() =>
+            {
+                RequestScreenChange(_defaultDepth1Panel);
+            });
+        }
         else
         {
-            // 주입된 특수 타겟이 없다면 정석대로 기본 1깊이 판넬을 지정
             CurrentActivePanel = _defaultDepth1Panel;
+            CurrentActivePanel.OpenWithEnterAnimation(null);
         }
-
         // 1깊이가 최초 저장되는 타이밍 동기화
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
         {
             _lastActiveDepth1Panel = CurrentActivePanel;
         }
-
-        // 결정된 첫 메인 화면을 진입 애니메이션과 함께 오픈
-        CurrentActivePanel.OpenWithEnterAnimation(null);
     }
 
     protected override void ExecuteClose()
@@ -77,7 +91,7 @@ public class SNS_UI_Controller : BaseScreenController
                 clearable.ClearPanelContext();
             }
 
-            CurrentActivePanel.Close(null);
+            CurrentActivePanel.Close(null, true);
         }
 
         // 배경에 숨어서 Active 상태로 깔려있던 1깊이 화면도 함께 정리
@@ -138,6 +152,30 @@ public class SNS_UI_Controller : BaseScreenController
     /// </summary>
     public void ClickNavigateBackDepth2Button()
     {
+        _editCancelPopup.SetActive(true);
+        // 스티커 터치 제어를 위한 코드
+        TouchInputHandler.Instance.OnEditCancel = true;
+    }
+
+    /// <summary>
+    /// 2깊이 편집 단계에서 '이전 단계로' 버튼을 눌렀을 때 
+    /// 데이터를 저장하지 않고 완벽하게 직전 단계로 롤백하는 후진 함수
+    /// </summary>
+    public void ClickBackDepth2Button()
+    {
+        Debug.Log("클릭 성공");
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
+        // 팝업을 닫는다.
+        _editCancelPopup.SetActive(false);
+        // 스티커 터치 제어를 위한 코드
+        if (TouchInputHandler.Instance.OnEditCancel == true)
+        {
+            TouchInputHandler.Instance.OnEditCancel = false;
+        }
+
         // 스택에 돌아갈 기록이 남아있는지 검사
         if (_uiHistory == null || _uiHistory.Count == 0)
         {
@@ -147,6 +185,11 @@ public class SNS_UI_Controller : BaseScreenController
         }
 
         if (CurrentActivePanel == null || CurrentActivePanel.IsTransitioning) return;
+
+        // ISNSPanelClearable 구현 패널(Comment)은 뒤로가기 전 초기화한다.
+        // Preview 등 미구현 패널은 null 반환으로 자동 스킵됨
+        var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+        clearable?.ClearPanelContext();
 
         // 현재 패널의 SubmitContext()를 호출하지 않고 화면을 닫음으로써
         // 이번 단계에서 유저가 수정한 구조체 스냅샷 데이터는 공중분해됩니다.
@@ -174,9 +217,12 @@ public class SNS_UI_Controller : BaseScreenController
     // 1깊이 타겟으로의 화면 전환 연산을 전담하는 내부 함수
     private void ProcessNavigateToDepth1(UIPanel targetPanel)
     {
-        // 기존에 보던 화면이 2깊이 장막이었던 경우
+        // 기존에 보던 화면이 2깊이인 경우
         if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2)
         {
+            var clearable = CurrentActivePanel.GetComponentInChildren<ISNSPanelClearable>();
+            clearable?.ClearPanelContext();
+
             CurrentActivePanel.Close(() =>
             {
                 // 배경에 깔려있던 이전 1깊이를 끄고 새로운 1깊이를 수평 오픈
@@ -205,25 +251,27 @@ public class SNS_UI_Controller : BaseScreenController
     // 2깊이 타겟으로의 화면 전환 연산을 전담하는 내부 함수
     private void ProcessNavigateToDepth2(UIPanel targetPanel)
     {
-        // 1깊이를 보다가 2깊이로 처음 진입하는 핵심 분기 상황
-        if (CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth1)
+        // 닫기 연출 시 배경 처리를 위한 업로드 캔버스 체크
+        var currentTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
+
+        if (currentTween != null)
         {
-            // 보던 1깊이를 끄지(Close) 않고 대피만 시킨 후 2깊이를 위에 얹음
-            _lastActiveDepth1Panel = CurrentActivePanel;
-            CurrentActivePanel = targetPanel;
-            RefreshPanelData(CurrentActivePanel);
-            CurrentActivePanel.OpenWithEnterAnimation(null);
+            currentTween.SetupBackground(targetPanel);
         }
-        // 이미 2깊이를 보던 중 다른 2깊이 탭으로 이동하는 상황 (4번 ➔ 5번)
-        else
+
+        var targetTween = targetPanel.GetComponent<UploadCanvasTweenAni>();
+
+        if(targetTween != null)
         {
-            CurrentActivePanel.Close(() =>
-            {
-                CurrentActivePanel = targetPanel;
-                RefreshPanelData(CurrentActivePanel);
-                CurrentActivePanel.OpenWithTabChangeAnimation(null);
-            });
+            targetTween.SetupBackground(CurrentActivePanel);
         }
+
+        RefreshPanelData(targetPanel);
+        // 닫기 연출 실행 및 다음 화면의 열기 연출
+        CurrentActivePanel.Close(null);
+
+        CurrentActivePanel = targetPanel;
+        CurrentActivePanel.OpenWithTabChangeAnimation(null);
     }
 
     /// <summary>
@@ -232,22 +280,32 @@ public class SNS_UI_Controller : BaseScreenController
     /// </summary>
     public void ClickCloseDepth2Button()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         // 현재 화면이 2깊이가 맞고 돌아갈 배경 1깊이가 안전하게 존재할 때만 구동
         if (CurrentActivePanel != null &&
             CurrentActivePanel.PanelDepth == UIPanel.UIDepth.Depth2 &&
             _lastActiveDepth1Panel != null)
         {
             var clearable = CurrentActivePanel.GetComponent<ISNSPanelClearable>();
-            clearable.ClearPanelContext();
-
+            if (clearable != null)
+            {
+                clearable.ClearPanelContext();
+            }
+            // 연출 분기
+            var customTween = CurrentActivePanel.GetComponent<UploadCanvasTweenAni>();
+            if(customTween != null)
+            {
+                customTween.SetupBackground(_lastActiveDepth1Panel);
+            }
             // 2깊이 장막을 걷어내는 무조건적인 클로즈 연출 실행
             CurrentActivePanel.Close(() =>
             {
                 // 숨겨져 있던 직전 1깊이를 다시 현재 활성 판넬로 지정
                 CurrentActivePanel = _lastActiveDepth1Panel;
 
-                // 이미 화면에 켜진 상태(Active=true)였으므로 
-                // 수평 전환용 연출만 산뜻하게 얹어줌
+                // 1깊이 화면을 다시 열어줌
                 CurrentActivePanel.OpenWithTabChangeAnimation(null);
             });
         }

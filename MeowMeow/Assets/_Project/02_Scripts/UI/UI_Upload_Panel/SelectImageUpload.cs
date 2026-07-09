@@ -38,8 +38,12 @@ public class SelectImageUpload : MonoBehaviour
 
     private void OnClickImage()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Bubble_Single_1);
+
         _getImageList.OnPostIconImage(this);
         _getImageList.UpLoadImage(_Image.sprite);
+        _getImageList.IsSelectImage = true;
     }
 
     /// <summary>

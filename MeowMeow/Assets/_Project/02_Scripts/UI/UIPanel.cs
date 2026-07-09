@@ -47,21 +47,22 @@ public class UIPanel : MonoBehaviour
     /// <summary>
     /// 화면 패널을 비활성화하고 퇴장 애니메이션을 재생합니다.
     /// 기본적으로 진입 연출 부품의 PlayOut을 활용합니다.
+    /// isExit가 true이면 연출 없이 종료합니다.
     /// </summary>
-    public void Close(Action onComplete)
+    public void Close(Action onComplete, bool isExit = false)
     {
         if (IsTransitioning) return;
         IsTransitioning = true;
 
-        if (_enterAnimationEffect != null)
+        if (isExit || _enterAnimationEffect == null)
+        {
+            HandleCloseComplete(onComplete);
+        }
+        else
         {
             // 진입 연출 부품의 PlayOut(퇴장)을 호출
             _enterAnimationEffect.PlayOut(() =>
                 HandleCloseComplete(onComplete));
-        }
-        else
-        {
-            HandleCloseComplete(onComplete);
         }
     }
 

@@ -13,7 +13,12 @@ public class StoryUploadToggle : MonoBehaviour
     [SerializeField] private Image _image;
     [Header("Story_Upload_Toggle의 자식 UnCheckmark 오브젝트를 참조")]
     [SerializeField] private GameObject _unCheckmark;
-
+    [Header("Story_Upload_Toggle의 자식 Background 오브젝트를 참조")]
+    [SerializeField] private Image _backgroundImage;
+    [SerializeField] private Color _storyColor;
+    [SerializeField] private Color _uploadColor;
+    [Header("BottomPanel -> Upload_Folder_Scroll View -> Content -> 를 참조")]
+    [SerializeField] private GetImageList _getImageList;
 
     private Toggle _toggle;
 
@@ -25,7 +30,6 @@ public class StoryUploadToggle : MonoBehaviour
     private void OnEnable()
     {
         _toggle.onValueChanged.AddListener(OnStoryUploadToggle);
-        _storyUploadText.text = "스토리";
     }
 
     private void OnDisable()
@@ -35,16 +39,24 @@ public class StoryUploadToggle : MonoBehaviour
 
     private void OnStoryUploadToggle(bool isOn)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_UI_Button_Click_Settings_1);
+
         if (!isOn)
         {
+            _backgroundImage.color = _storyColor;
+
             _storyFolderScrollView.SetActive(true);
             _uploadFolderScrollView.SetActive(false);
             _unCheckmark.SetActive(true);
             _storyUploadText.text = "스토리";
             _image.sprite = null;
+            _getImageList.IsSelectImage = false;
         }
         else
         {
+            _backgroundImage.color = _uploadColor;
+
             _storyFolderScrollView.SetActive(false);
             _uploadFolderScrollView.SetActive(true);
             _unCheckmark.SetActive(false);

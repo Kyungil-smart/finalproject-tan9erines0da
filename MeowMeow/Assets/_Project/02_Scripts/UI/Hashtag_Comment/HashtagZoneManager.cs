@@ -44,6 +44,9 @@ public class HashtagZoneManager : MonoBehaviour
         if (_tagObjects.ContainsKey(id)) return false;
         if (_tagObjects.Count >= _maxTags) return false;
 
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         CreateTagButton(id, tagName);
         UpdateCountText();
         OnSelectionChanged?.Invoke();
@@ -54,6 +57,10 @@ public class HashtagZoneManager : MonoBehaviour
     public void RemoveHashtag(string id)
     {
         if (!_tagObjects.TryGetValue(id, out var go)) return;
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Popup4b);
+
         _tagObjects.Remove(id);
         Destroy(go);
         UpdateCountText();
@@ -94,7 +101,11 @@ public class HashtagZoneManager : MonoBehaviour
 
     private void UpdateCountText()
     {
-        if (_countText != null)
-            _countText.text = $"{_tagObjects.Count}/{_maxTags}";
+        if (_countText == null) return;
+        int count = _tagObjects.Count;
+        _countText.text = $"{count}/{_maxTags}";
+        _countText.color = count == 0  ? new Color32(85, 31, 52, 255)
+                         : count <= 3  ? new Color32(114, 29, 144, 255)
+                                       : new Color32(229, 0, 242, 255);
     }
 }

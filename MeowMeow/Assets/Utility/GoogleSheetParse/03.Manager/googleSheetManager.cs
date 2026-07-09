@@ -23,9 +23,21 @@ public class googleSheetManager : MonoBehaviour
         }
     }
 
+    private void AutoSetting()
+    {
+        m_Listdata.Clear();
+       var datas= Resources.LoadAll<BaseDataSO>("99.SO");
+        m_Listdata.AddRange(datas);
 
+#if UNITY_EDITOR
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+#endif
+    }
     public async void DataLoad()
     {
+        AutoSetting();
         List<Task> tasks = new List<Task>();
         foreach (var item in m_Listdata)
         {
