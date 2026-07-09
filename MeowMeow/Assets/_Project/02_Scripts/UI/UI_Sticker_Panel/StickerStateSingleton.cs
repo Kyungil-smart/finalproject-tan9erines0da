@@ -127,7 +127,7 @@ public class StickerStateSingleton : MonoBehaviour
     // 스마트폰 동시 터치로 스티커 동시 생성 방지를 위한 마커
     private bool _isClicking;
     // 스마트폰 터치중에 스티커 생성 막는 로직
-    public bool _isTouching;
+    public bool IsTouching;
 
     private void Awake()
     {
