@@ -14,6 +14,11 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private GameObject placeholder;
     private Canvas _dragCanvas;
 
+    // 드래그 시작 전 오브젝트의 원래 하이어라키 순서(Sibling Index)를 저장
+    private int _originalSiblingIndex;
+    // 복사본의 현재 하이어라키 순서(Sibling Index)를 저장
+    private int currentPlaceholderIndex;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -34,6 +39,9 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         CreatePlaceholder();
 
+        // 드래그 시작 시 현재 오브젝트의 하이어라키 순서 저장
+        _originalSiblingIndex = transform.GetSiblingIndex();
+
         transform.SetParent(rootCanvas.transform);
         transform.SetAsLastSibling();
 
@@ -49,12 +57,75 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnDrag(PointerEventData eventData)
     {
         if (placeholder == null) return;
+
+        if (!RectTransformUtility.RectangleContainsScreenPoint(
+           CommentManager.Instance._scrollActiveArea,
+           eventData.position))
+        {
+            // 복사본의 현재 하이어라키 순서(Sibling Index)를 저장
+            currentPlaceholderIndex = placeholder.transform.GetSiblingIndex();
+            CancelDrag();
+            return;
+        }
+
         MoveDraggedObject(eventData);
         UpdatePlaceholderPosition(eventData);
+        // 현재 드래그 위치를 기준으로 자동 스크롤 상태 갱신
+        UpdateAutoScroll(eventData);
+    }
+
+    // 드래그 위치에 따라 자동 스크롤 방향을 설정합니다.
+    private void UpdateAutoScroll(PointerEventData eventData)
+    {
+        // 드래그 위치가 위쪽 스크롤 영역에 있는 경우 위로 자동 스크롤
+        if (RectTransformUtility.RectangleContainsScreenPoint(
+        CommentManager.Instance._scrollUpArea,
+        eventData.position))
+        {
+            CommentManager.Instance.SetAutoScroll(true, true);
+        }
+        // 드래그 위치가 아래쪽 스크롤 영역에 있는 경우 아래로 자동 스크롤
+        else if (RectTransformUtility.RectangleContainsScreenPoint(
+            CommentManager.Instance._scrollDownArea,
+            eventData.position))
+        {
+            CommentManager.Instance.SetAutoScroll(true, false);
+        }
+        // 어느 영역에도 해당하지 않으면 자동 스크롤 중지
+        else
+        {
+            CommentManager.Instance.SetAutoScroll(false, false);
+        }
+    }
+
+    private void CancelDrag()
+    {
+        CommentManager.Instance.SetAutoScroll(false, false);
+
+        if (placeholder == null) return;
+
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
+        Destroy(GetComponent<GraphicRaycaster>());
+        Destroy(_dragCanvas);
+        _dragCanvas = null;
+
+        transform.SetParent(originalParent);
+        // 복사본의 현재 하이어라키 순서에 따라 드래그 시작 전 저장한 원래 하이어라키 순서로 복원
+        if (currentPlaceholderIndex >= _originalSiblingIndex) transform.SetSiblingIndex(_originalSiblingIndex-1);
+        else transform.SetSiblingIndex(_originalSiblingIndex);
+
+        Destroy(placeholder);
+        placeholder = null;
+
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        CommentManager.Instance.SetAutoScroll(false, false);
+
         if (placeholder == null) return;
 
         // 효과음
