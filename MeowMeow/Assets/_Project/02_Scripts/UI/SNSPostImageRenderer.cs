@@ -17,6 +17,10 @@ public class SNSPostImageRenderer : MonoBehaviour
     [Header("생명주기 문제로 인한 Null 해결을 위한 직접 참조")]
     [SerializeField] private Image _bgImage;
     [SerializeField] private UIImageShaderController _shaderController;
+
+    [Header("테두리 등 스티커보다 항상 위에 그려져야 하는 오버레이 (없으면 비워둠)")]
+    [SerializeField] private Transform _frameOverlay;
+
     private List<GameObject> _spawnedStickers = new List<GameObject>();
 
     private void Awake()
@@ -42,27 +46,36 @@ public class SNSPostImageRenderer : MonoBehaviour
         // 2. 스티커 레이어 청소 및 복원
         ClearStickers();
 
-        if (snapshot.Stickers == null || snapshot.Stickers.Count == 0) return;
-
-        RectTransform bgRect = _bgImage.rectTransform;
-
-        foreach (var data in snapshot.Stickers)
+        if (snapshot.Stickers != null && snapshot.Stickers.Count > 0)
         {
-            GameObject obj = Instantiate(
-                _rawStickerPrefab.gameObject, transform, false);
+            RectTransform bgRect = _bgImage.rectTransform;
 
-            Image img = obj.GetComponent<Image>();
-            img.sprite = _stickerDB.GetSprite(data.StickerId);
+            foreach (var data in snapshot.Stickers)
+            {
+                GameObject obj = Instantiate(
+                    _rawStickerPrefab.gameObject, transform, false);
 
-            RectTransform rect = obj.GetComponent<RectTransform>();
+                Image img = obj.GetComponent<Image>();
+                img.sprite = _stickerDB.GetSprite(data.StickerId);
 
-            Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
-            rect.RestorePos(savedPos, bgRect);
-            rect.RestoreScale((float)data.RelativeScale, bgRect);
-            rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
+                RectTransform rect = obj.GetComponent<RectTransform>();
 
-            _spawnedStickers.Add(obj);
+                Vector2 savedPos = new Vector2((float)data.RelativeX, (float)data.RelativeY);
+                rect.RestorePos(savedPos, bgRect);
+                rect.RestoreScale((float)data.RelativeScale, bgRect);
+                rect.localEulerAngles = new Vector3(0f, 0f, (float)data.Rotation);
+
+                // 가장자리에 걸친 스티커가 테두리 오버레이를 침범하지 않도록 항상 그 아래에 배치
+                if (_frameOverlay != null)
+                {
+                    rect.SetSiblingIndex(_frameOverlay.GetSiblingIndex());
+                }
+
+                _spawnedStickers.Add(obj);
+            }
         }
+
+       
 
         // 3. 셰이더 복원
         if (_shaderController != null)

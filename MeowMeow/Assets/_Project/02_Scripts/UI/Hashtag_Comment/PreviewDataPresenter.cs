@@ -17,17 +17,9 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
     [SerializeField] private BaseScreenController _uiController;
     [SerializeField] private UIPanel _profilePanel;
     [SerializeField] private Button _uploadButton;
+    [SerializeField] private CommentPanelPresenter _commentPanelPresenter;
 
     private SNSPostDTO _snapshot;
-
-    /// <summary>
-    /// UI 병합 씬에서 패널이 SetActive(true)로 켜지는 순간, 
-    /// 다른 작업자의 구조처럼 즉시 최신 DTO 컨텍스트를 서버 마스터로부터 요청합니다.
-    /// </summary>
-    private void OnEnable()
-    {
-        RequestContext();
-    }
 
     /// <summary>
     /// 전달받은 DTO 구조체를 바탕으로 복원합니다
@@ -54,6 +46,11 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
         }
         _uploadButton?.onClick.RemoveAllListeners();
         _uploadButton.onClick.AddListener(ExecuteUploadAndReturn);
+    }
+
+    private void OnEnable()
+    {
+        RequestContext();
     }
 
     public void RequestContext()
@@ -91,16 +88,23 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
 
         try
         {
+            Debug.Log("[Preview] 업로드 진행");
+
             // 2. 매니저에 업로드 지시 후 완료될 때까지 대기
             await SNSPostManager.Instance
                 .UploadAndCachePostAsync(_snapshot);
 
             Debug.Log("[Preview] 업로드 성공! 프로필로 전환합니다.");
 
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SnappyButton5);
+
             _snapshot = SNSPostDTO.CreateEmpty();
             
             SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
+
+            _commentPanelPresenter.ClearPanelContext();
 
             // 3. 컨트롤러에 타겟 패널을 쥐여주며 전환 요청합니다
             if (_uiController != null && _profilePanel != null)
@@ -109,13 +113,16 @@ public class PreviewDataPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSConte
             }
             else
             {
-                Debug.LogWarning("컨트롤러나 타겟 참조가 누락되었습니다.");
+                Debug.LogWarning("[Preview] 컨트롤러나 타겟 참조가 누락되었습니다.");
             }
         }
         catch (Exception ex)
         {
             // 4. 업로드 실패 시 패널을 닫지 않고 대기
-            Debug.LogError($"업로드 실패. 전환 중단: {ex.Message}");
+            Debug.LogError($"[Preview] 업로드 실패. 전환 중단: {ex.Message}");
+
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
         }
         finally
         {

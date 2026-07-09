@@ -83,6 +83,9 @@ public class ProfileUIPresenter : MonoBehaviour
     {
         SNSPostManager.Instance.SelectFeed(dto);
 
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_UI_Button_Click_Settings_Switch_1);
+
         if(_uiController != null && _feedDepth2Panel != null)
         {
             _uiController.RequestScreenChange(_feedDepth2Panel);

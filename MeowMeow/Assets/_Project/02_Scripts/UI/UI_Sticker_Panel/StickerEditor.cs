@@ -38,6 +38,9 @@ public class StickerEditor : MonoBehaviour
     // 스티커 생성버튼에 구독할 함수(스티커 생성)
     private void OnClickSetSticker()
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.Popup3);
+
         StickerStateSingleton.Instance.SetSticker(_myIndex);
     }
 }

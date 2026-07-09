@@ -1,6 +1,7 @@
 using Firebase.Auth;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class LoginUI : MonoBehaviour
 {
     [SerializeField] private Button _loginButton;
     [SerializeField] private Button _logoutButton;
+    [SerializeField] private Button _startButton;
     [SerializeField] private TextMeshProUGUI _statusText;
 
     private bool _isProcessing;
@@ -55,7 +57,7 @@ public class LoginUI : MonoBehaviour
         }
         catch (Exception e)
         {
-            UpdateStatus($"자동 로그인 실패: {e.Message}");
+            HandleInitFailure($"자동 로그인 실패: {e.Message}");
         }
     }
 
@@ -64,9 +66,11 @@ public class LoginUI : MonoBehaviour
         UpdateStatus("세션 복원...");
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
-        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
 
         await InitUserData();
+        _startButton.interactable = true;
+
+        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
     }
 
     private async void OnLoginClicked()
@@ -102,9 +106,10 @@ public class LoginUI : MonoBehaviour
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
 
-        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
-
         await InitUserData();
+        _startButton.interactable = true;
+
+        UpdateStatus($"환영합니다, {GetDisplayName(user)}님");
     }
 
     private void OnLogoutClicked()
@@ -113,8 +118,18 @@ public class LoginUI : MonoBehaviour
         UnityAuthService.SignOut();
         GoogleSignInService.SignOut();
         UpdateStatus("로그아웃");
+        _startButton.interactable = false;
     }
 
+    private void HandleInitFailure(string errorMessage)
+    {
+        Debug.LogError($"[InitBlock] {errorMessage}");
+
+        _startButton.interactable = false;
+
+        // 로그아웃 후 재로그인을 안내
+        UpdateStatus($"{errorMessage}\n오류가 지속되면 로그아웃 후 재로그인 해주세요.");
+    }
     private static string GetDisplayName(FirebaseUser user)
         => string.IsNullOrEmpty(user.DisplayName) ? user.Email : user.DisplayName;
 
@@ -130,40 +145,95 @@ public class LoginUI : MonoBehaviour
     // 로그인 확인후 실행되는 유저관련 데이터 초기화 함수
     private async Task InitUserData()
     {
-        // 유저가 작성한 포스트 확보
+        UpdateStatus("로컬 저장 기록 확인 중...");
         if (SNSPostManager.Instance != null)
         {
             SNSPostManager.Instance.LoadLocalData();
         }
-        
-        
-        // 유저 보유 재화 확보
-        if (LocalDataManager.Instance != null)
+
+
+        // 2. 유저 정보 로드 검사
+        if (LocalUserDataManager.Instance != null)
         {
-            await LocalDataManager.Instance.LoadNyangNyangStone();
+            try
+            {
+                UpdateStatus("유저 정보 확인 중...");
+                await LocalUserDataManager.Instance.LoadUserData();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"[유저 정보 로드 실패] {ex.Message}", ex);
+            }
         }
-        
 
         FirebaseUser user = BackendManager.Auth.CurrentUser;
-        
-        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
-        
-        // 유저 로컬 데이터에 랜덤피드 6개 확보
-        if (localFeedStorage.Count > 1)
+
+        // 3. 가챠 데이터 검사
+        try
         {
-            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, localFeedStorage);
+            UpdateStatus("시즌 콘텐츠 데이터 확인 중 ...");
+            await GatchaDataManager.Instance.Get_GatchaDTO();
         }
-        else
+        catch (Exception ex)
         {
-            // 로컬에 데이터가 존재하지 않을 때
-            var Listdata = await FireStoreManager.DocumentType(DataType.Posts).GetRandomSixData<FirestoreSNSPostDoc>();
-            var SNSList = new List<SNSPostDTO>();
-            foreach (var item in Listdata)
+            throw new Exception($"[시즌 데이터 확보 실패] {ex.Message}", ex);
+        }
+
+        // 4. 날짜 변경 및 갱신 프로세스
+        string NowDateTime = TimeManager.Instance.CurrentDate;
+        string LastDateTime = LocalUserDataManager.Instance.LastDate;
+
+        if (LastDateTime != NowDateTime)
+        {
+            GatchaDataManager.Instance.OnDailyReset();
+            LocalFeedStorage.GetRandomSix();
+            try
             {
-                SNSList.Add(item.ToStruct());
+                UpdateStatus("날짜를 갱신 하였습니다.");
+                await LocalUserDataManager.Instance.UpdateLastDate(NowDateTime);
             }
-            LocalFeedStorage.SavePosts(user.UserId, "RandomFeeds", SNSList);
-            //SubscribeManager.instance.Publish(SubscribeType.RandomSixData, SNSList);
+            catch (Exception ex)
+            {
+                throw new Exception($"[날짜 동기화 실패] {ex.Message}", ex);
+            }
+        }
+
+        // 5. 출석 보상 검사
+        try
+        {
+            UpdateStatus("출석 보상 확인 중");
+            await GatchaDataManager.Instance.IsCompensation();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"[출석 보상 판정 실패] {ex.Message}", ex);
+        }
+
+        // 6. 로컬 피드 스토리지 연산
+        var localFeedStorage = LocalFeedStorage.LoadPosts(user.UserId, "RandomFeeds");
+        if (localFeedStorage.Count <= 1)
+        {
+            try
+            {
+                UpdateStatus("피드 정보 초기화...");
+                await SNSPostManager.Instance.RefreshRandomFeedsAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"[피드 초기화 실패] {ex.Message}", ex);
+            }
+        }
+
+        // 7. 자정 이벤트 등록
+        if (TimeManager.Instance != null)
+        {
+            TimeManager.Instance.OnOClock -= GatchaDataManager.Instance.OnDailyReset;
+            TimeManager.Instance.OnOClock += GatchaDataManager.Instance.OnDailyReset;
+
+            TimeManager.Instance.OnOClock -= LocalFeedStorage.GetRandomSix;
+            TimeManager.Instance.OnOClock += LocalFeedStorage.GetRandomSix;
         }
     }
+
+    
 }

@@ -1,14 +1,11 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-/// <summary>
-/// Comment 씬의 데이터 흐름 조율자.
-/// 구 CommentDataPresenter + CommentScenePublisher 를 하나로 통합.
-///
-/// OnEnable 시 최신 DTO 를 요청해 미리보기를 복원하고,
-/// 완료 버튼에서 SubmitContext() 를 호출해 수정된 DTO 를 중앙 저장소에 밀어 넣는다.
-/// </summary>
-public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver
+// Comment 씬의 데이터 흐름 조율자.
+// OnEnable 시 최신 DTO를 요청해 미리보기를 복원하고,
+// 완료 버튼에서 SubmitContext()를 호출해 수정된 DTO를 중앙 저장소에 밀어 넣는다.
+public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSContextReceiver, ISNSPanelClearable
 {
     [Header("Zone References")]
     [SerializeField] private CommentZoneManager _commentZoneManager;
@@ -17,12 +14,47 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
     [Header("Preview")]
     [SerializeField] private SNSPostImageRenderer _postImageRenderer;
 
+    [Header("Navigation")]
+    [SerializeField] private BaseScreenController _screenController;
+    [SerializeField] private UIPanel _previewPanel;
+
+    [Header("Zoom Overlay")]
+    [SerializeField] private CGImageZoomOverlay _zoomOverlay;
+
+    [Header("Category Buttons")]
+    [SerializeField] private CategoryButton[] _categoryButtons;
+
     private SNSPostDTO _snapshot;
 
-    private void OnEnable() => RequestContext();
-    private void OnDisable() => ResetAll();
 
     // ── ISNSPanelPresenter ───────────────────────────────────────────────
+    [SerializeField]private GameObject NoContent_Popup;
+
+    [Header("Next Button")]
+    [SerializeField] private CanvasGroup _nextButtonCanvasGroup;
+    private const float NextButtonDisabledAlpha = 0.7f;
+    private const float NextButtonEnabledAlpha = 1f;
+
+    void OnEnable()
+    {
+        CommentZoneManager.OnContentChanged += UpdateNextButtonAlpha;
+        UpdateNextButtonAlpha();
+    }
+
+    // 여기서 초기화하면 되돌아왔을 때 입력했던 코멘트/해시태그가 사라지기 때문에 SNS_UI_Controller에서 ClearPanelContext()를 호출한다.
+    void OnDisable()
+    {
+        CommentZoneManager.OnContentChanged -= UpdateNextButtonAlpha;
+        NoContent_Popup.SetActive(false);
+    }
+
+    private void UpdateNextButtonAlpha()
+    {
+        if (_nextButtonCanvasGroup == null) return;
+
+        bool hasComment = _commentZoneManager != null && _commentZoneManager.HasWords;
+        _nextButtonCanvasGroup.alpha = hasComment ? NextButtonEnabledAlpha : NextButtonDisabledAlpha;
+    }
 
     public void RequestContext()
     {
@@ -51,10 +83,36 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
         _hashtagZoneManager?.ClearAll();
     }
 
-    /// <summary>
-    /// 완료 버튼에 연결한다.
-    /// Comment_Zone / Hashtag_Zone 의 현재 값을 DTO 에 기록하고 중앙 저장소를 갱신한다.
-    /// </summary>
+    // ISNSPanelClearable — 패널 전환/종료 시 SNS_UI_Controller가 호출한다.
+    public void ClearPanelContext()
+    {
+        _zoomOverlay?.Close();
+        if (_categoryButtons != null)
+            foreach (var btn in _categoryButtons) btn.Reset();
+        ResetAll();
+    }
+
+    // CG_Image 버튼에 연결한다.
+    public void OpenZoomOverlay() => _zoomOverlay?.Open(_snapshot);
+
+    // 다음 버튼에 연결한다.
+    // 코멘트가 비어 있으면 팝업을 띄우고 이동을 차단한다.
+    public void PlzAddComment()
+    {
+        bool hasComment = _commentZoneManager != null && _commentZoneManager.GetWords().Count > 0;
+
+        if (!hasComment)
+        {
+            _commentZoneManager?.ShowNoContentPopup();
+            return;
+        }
+
+        _screenController?.RequestScreenChange(_previewPanel);
+    }
+
+    // 완료 버튼에 연결한다. Comment_Zone / Hashtag_Zone 값을 DTO에 기록하고 중앙 저장소를 갱신한다.
+    // ResetAll은 호출하지 않는다 — Preview에서 돌아올 때 코멘트가 유지되어야 하며,
+    // 패널 닫힘 시 ClearPanelContext()가 별도로 초기화를 담당한다.
     public void SubmitContext()
     {
         if (SubscribeManager.instance == null) return;
@@ -64,7 +122,5 @@ public class CommentPanelPresenter : MonoBehaviour, ISNSPanelPresenter, ISNSCont
 
         SubscribeManager.instance.Publish<SNSPostDTO>(
             SubscribeType.Update_PostModelData, _snapshot);
-
-        ResetAll();
     }
 }

@@ -14,6 +14,8 @@ public class CommentZoneManager : MonoBehaviour
     // 선택 상태가 바뀔 때 발행. DeselectOverlay / HashtagSelectPanel 이 구독한다.
     public static event Action OnSelectionChanged;
 
+    public static event Action OnContentChanged;
+
     [Header("References")]
     [SerializeField] private Transform _content;
     [SerializeField] private TextMeshProUGUI _countText;
@@ -21,11 +23,22 @@ public class CommentZoneManager : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private int _maxChars = 50;
+    [SerializeField] private int _maxSameWord = 3; // 동일 단어 최대 배치 횟수
+
+    [Header("Popups")]
+    [SerializeField] private StickerLimitTweenAni _wordLimitPopup;  // 동일 단어 제한 초과 시 표시할 팝업
+    [SerializeField] private StickerLimitTweenAni _charLimitPopup;  // 글자수 제한 초과 시 표시할 팝업
+    [SerializeField] private StickerLimitTweenAni _noContentPopup;  // 코멘트·해시태그 둘 다 없을 때 표시할 팝업
 
     private int _totalChars;
     private CommentWordButton _selectedButton;
 
+    // 단어별 현재 배치 횟수를 추적한다.
+    private readonly Dictionary<string, int> _wordCounts = new Dictionary<string, int>();
+
     public bool HasSelection => _selectedButton != null;
+
+    public bool HasWords => _wordCounts.Count > 0;
 
     private void Awake() => Instance = this;
 
@@ -33,14 +46,45 @@ public class CommentZoneManager : MonoBehaviour
 
     public bool TryAddWord(string word)
     {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_Pop_Mouth_High_Sharp_1);
+
         word = word.Trim();
         if (word.Length == 0) return false;
-        if (_totalChars + word.Length > _maxChars) return false;
+        if (_totalChars + word.Length > _maxChars)
+        {
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
 
+            _charLimitPopup?.PlayAnimation();
+            return false;
+        }
+
+        // 동일 단어가 이미 최대 횟수만큼 배치됐으면 팝업 표시 후 차단
+        _wordCounts.TryGetValue(word, out int count);
+        if (count >= _maxSameWord)
+        {
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
+            _wordLimitPopup?.PlayAnimation();
+            return false;
+        }
+
+        _wordCounts[word] = count + 1;
         _totalChars += word.Length;
-        UpdateCountText();
         CreateWordButton(word);
+        UpdateCountText();
         return true;
+    }
+
+    // 콘텐츠 없음 팝업을 표시한다. PlzAddComment()에서 호출한다.
+    public void ShowNoContentPopup()
+    {
+        // 효과음
+        SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+
+        _noContentPopup?.PlayAnimation();
     }
 
     // 특정 버튼을 선택 상태로 전환한다.
@@ -63,11 +107,17 @@ public class CommentZoneManager : MonoBehaviour
         OnSelectionChanged?.Invoke();
     }
 
-    // 버튼을 제거하고 글자수를 갱신한다.
+    // 버튼을 제거하고 글자수 및 단어 카운트를 갱신한다.
     public void RemoveWord(CommentWordButton button)
     {
         _totalChars -= button.Word.Length;
         if (_totalChars < 0) _totalChars = 0;
+
+        if (_wordCounts.TryGetValue(button.Word, out int count))
+        {
+            if (count <= 1) _wordCounts.Remove(button.Word);
+            else _wordCounts[button.Word] = count - 1;
+        }
 
         if (_selectedButton == button)
         {
@@ -106,6 +156,7 @@ public class CommentZoneManager : MonoBehaviour
             Destroy(child.gameObject);
 
         _totalChars = 0;
+        _wordCounts.Clear();
         _selectedButton = null;
         OnSelectionChanged?.Invoke();
         UpdateCountText();
@@ -121,6 +172,12 @@ public class CommentZoneManager : MonoBehaviour
     private void UpdateCountText()
     {
         if (_countText != null)
+        {
             _countText.text = $"{_totalChars}/{_maxChars}";
+            _countText.color = _totalChars == 0   ? new Color32(85, 31, 52, 255)
+                             : _totalChars <= 45  ? new Color32(114, 29, 144, 255)
+                                                  : new Color32(229, 0, 242, 255);
+        }
+        OnContentChanged?.Invoke();
     }
 }

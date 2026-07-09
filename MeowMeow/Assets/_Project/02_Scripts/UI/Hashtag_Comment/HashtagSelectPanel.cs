@@ -9,11 +9,7 @@ public class HashtagSelectPanel : MonoBehaviour
     [SerializeField] private Transform _content;
     [SerializeField] private GameObject _buttonPrefab;
 
-    [Header("Button Style")]
-    [SerializeField] private Color _normalColor;
-    [SerializeField] private Color _selectedColor;
-
-    private readonly Dictionary<string, Image> _buttonImages = new Dictionary<string, Image>();
+    private readonly Dictionary<string, HashtagSelectButton> _buttonViews = new Dictionary<string, HashtagSelectButton>();
 
     private async void Start()
     {
@@ -50,9 +46,9 @@ public class HashtagSelectPanel : MonoBehaviour
         var go = Instantiate(_buttonPrefab, _content);
         go.name = tagName;
 
-        var img = go.GetComponent<Image>();
-        img.color = _normalColor;
-        _buttonImages[id] = img;
+        var view = go.GetComponent<HashtagSelectButton>();
+        view.SetSelected(false);
+        _buttonViews[id] = view;
 
         go.GetComponentInChildren<TextMeshProUGUI>().text = tagName;
         go.GetComponent<Button>().onClick.AddListener(() => OnButtonClick(id, tagName));
@@ -72,11 +68,9 @@ public class HashtagSelectPanel : MonoBehaviour
     {
         if (HashtagZoneManager.Instance == null) return;
 
-        foreach (var kvp in _buttonImages)
+        foreach (var kvp in _buttonViews)
         {
-            kvp.Value.color = HashtagZoneManager.Instance.IsSelected(kvp.Key)
-                ? _selectedColor
-                : _normalColor;
+            kvp.Value.SetSelected(HashtagZoneManager.Instance.IsSelected(kvp.Key));
         }
     }
 }

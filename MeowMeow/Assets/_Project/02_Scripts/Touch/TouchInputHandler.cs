@@ -55,7 +55,10 @@ public class TouchInputHandler : MonoBehaviour
     private bool _isPinchConfirmed;
 
     // 스티커 위를 터치 했는지 판별을 위해 개인적으로 추가(스티커 드래그, 확대/축소, 회전용)
-    public bool _isTouchingSticker;
+    // $$$$
+    //public bool _isTouchingSticker;
+    // EditCancelPopup이 활성화 되있는지 판별하기 위한 마커
+    public bool OnEditCancel;
 
     // 디버그 마커
     private GameObject _debugFirstMarker;
@@ -64,6 +67,8 @@ public class TouchInputHandler : MonoBehaviour
     public event Action<TouchInteractor> OnObjectSelected;
     // 토글버튼 선택으로 스티커 선택되게 개인적으로 추가
     public event Action<TouchInteractor> OnObjectSelectedForToggle;
+    // ObjectPinchScaler의 타겟을 null로 바꾸기 위해 사용하는 이벤트 액션
+    public event Action OPScalerTargetNull;
     public event Action OnSelectionCleared;
     public event Action OnDragStarted;
     public event Action<Vector2> OnDragDelta;
@@ -137,8 +142,9 @@ public class TouchInputHandler : MonoBehaviour
     {
         //_isPrimaryOnUI = IsPointerOverUI();
         //if (_isPrimaryOnUI) return;
-        
-        _isTouchingSticker = false;
+
+        // $$$$
+        //_isTouchingSticker = false;
 
         Vector2 touchPos = _inputActions.Touch.PrimaryTouchPosition.ReadValue<Vector2>();
 
@@ -148,14 +154,15 @@ public class TouchInputHandler : MonoBehaviour
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
-        foreach (RaycastResult result in results)
-        {
-            if (result.gameObject.GetComponent<TouchInteractor>() != null)
-            {
-                _isTouchingSticker = true;
-                break;
-            }
-        }
+        // $$$$
+        //foreach (RaycastResult result in results)
+        //{
+        //    if (result.gameObject.GetComponent<TouchInteractor>() != null)
+        //    {
+        //        _isTouchingSticker = true;
+        //        break;
+        //    }
+        //}
 
         _isPrimaryTouching = true;
         _isDragConfirmed = false;
@@ -259,6 +266,8 @@ public class TouchInputHandler : MonoBehaviour
     // 오브젝트 선택---------------------------------
     private void TrySelectObject(Vector2 screenPos)
     {
+        if (OnEditCancel == true) return;
+
         PointerEventData eventData = new PointerEventData(EventSystem.current);
         eventData.position = screenPos;
 
@@ -418,6 +427,13 @@ public class TouchInputHandler : MonoBehaviour
     public void CallObjectSelectedForToggle(TouchInteractor obj)
     {
         OnObjectSelectedForToggle?.Invoke(obj);
+    }
+    /// <summary>
+    ///  ObjectPinchScaler의 타겟을 null로 바꾸기 위한 이벤트 함수
+    /// </summary>
+    public void CallOPScalerTargetNull()
+    {
+        OPScalerTargetNull?.Invoke();
     }
     #endregion
 }

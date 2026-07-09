@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d13b684f0f999fd458fa0552a84d4dd0, type: 3}
+  m_Name: PreviewPopupTableSO_
+  m_EditorClassIdentifier: 
+  url: https://docs.google.com/spreadsheets/d/1pF7gAs7_zpwh5ZR45ECY452fyZ7cWi_6ziZZwOzuJOE/edit?gid=203108593#gid=203108593
+  gid: 203108593
+  genericType: PreviewPopupTable
+  m_Data:
+  - <uniqueId>k__BackingField: 50001
+    m_Name: "\uBCF5\uACE0\uD48D \uAE30\uB984\uB09C\uB85C"
+    m_Resource: Season_Prize01
+    m_Description: "\uAE30\uB984\uC744 \uC5F0\uB8CC\uB85C \uC791\uB3D9\uD558\uB294
+      \uB09C\uB85C\uC785\uB2C8\uB2E4.\n\uB09C\uB85C \uC704\uC5D0 \uB3C4\uC2DC\uB77D\uD1B5\uC744
+      \uC62C\uB824\uB450\uBA74 \uB530\uB73B\uD574\uC9C0\uB294 \uAE30\uB2A5\uB3C4
+      \uD3EC\uD568\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
+  - <uniqueId>k__BackingField: 50002
+    m_Name: "\uBCF5\uACE0\uD48D \uCC45\uC0C1\uACFC \uC758\uC790"
+    m_Resource: Season_Prize02
+    m_Description: "\uD559\uAD50\uC5D0\uC11C \uC790\uC8FC \uBCFC \uC218 \uC788\uB358
+      \uCC45\uC0C1\uACFC \uC758\uC790\uC785\uB2C8\uB2E4.\n\uCC45\uC0C1 \uC548\uC5D0\uB294
+      \uD544\uAE30\uAD6C\uB098 \uD770 \uC6B0\uC720\uB97C \uB123\uC5B4\uB450\uBA74
+      \uC88B\uC744 \uAC83 \uAC19\uC2B5\uB2C8\uB2E4."
+  - <uniqueId>k__BackingField: 50003
+    m_Name: "\uBAA8\uC790\uB97C \uC4F4 \uBB49\uCE58"
+    m_Resource: Season_Profile
+    m_Description: "\uBAA8\uC790\uB97C \uC4F0\uACE0\uC788\uB294 \uBB49\uCE58\uC758
+      \uC0AC\uC9C4\uC785\uB2C8\uB2E4.\n\uBB49\uCE58\uAC00 \uBAA8\uC790\uB97C \uBC97\uC5B4\uBC84\uB9AC\uAE30
+      \uC804\uC5D0 \uCC0D\uC740 \uADC0\uD55C \uC0AC\uC9C4\uC785\uB2C8\uB2E4."

@@ -4,13 +4,6 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Image))]
 public class UIImageShaderController : MonoBehaviour
 {
-    // 테스트 용도의 변수입니다 API를 통해서만 프로퍼티 수정
-    [Header("테스트 프로퍼티")]
-    [SerializeField][Range(-1f,1f)] float _brightness =0f;
-    [SerializeField][Range(0f,2f)] float _contrast =1f;
-    [SerializeField][Range(0f, 2f)] float _Saturation =1f;
-    [SerializeField][Range(0f,1f)] float _temperature =0.5f;
-
     // 셰이더 내부에 정의된 프로퍼티 네이밍 상수를 ID로 캐싱
     private static readonly int IdBrightness     = Shader.PropertyToID("_Brightness");
     private static readonly int IdContrast       = Shader.PropertyToID("_Contrast");

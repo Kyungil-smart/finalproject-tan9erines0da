@@ -13,6 +13,9 @@ public class StickerStateSingleton : MonoBehaviour
     [Header("Sticker_Count_Text를 참조")]
     [SerializeField] private TextMeshProUGUI _stickerCountText;
 
+    [Header("Sticker_Limit_Reached를 참조")]
+    [SerializeField] private StickerLimitTweenAni _stickerLimitTweenAni;
+
     // 현재 스티커 개수
     private int _currentCount;
     public int CurrentCount
@@ -30,6 +33,11 @@ public class StickerStateSingleton : MonoBehaviour
     {
         get => _maxStickerCount;
     }
+
+    // 스티커 제한 상황에서 스티커 생성 버튼 클릭시
+    // 마지막으로 선택된 토글 버튼을 저장하기 위한 토글 버튼 변수
+    public Toggle CurrentToggle { get; set; }
+    public bool CurrentToggleState { get; set; }
     #endregion
 
     #region 스티커 생성 관련 참조할 변수들
@@ -149,17 +157,18 @@ public class StickerStateSingleton : MonoBehaviour
     {
         if (CurrentCount >= MaxStickerCount)
         {
-            // 최대 개수 초과 시 마지막 스티커 선택 유지
-            if (_toggleList.Count > 0)
+            // 스티커 최대치에서 스티커 생성버튼 클릭시 스티커 선택 마지막 상황 유지
+            if (CurrentToggle != null)
             {
-                Toggle lastToggle = _toggleList[_toggleList.Count - 1];
-
-                lastToggle.isOn = false;
-                lastToggle.isOn = true;
+                CurrentToggle.isOn = CurrentToggleState;
             }
 
+            // 효과음
+            SoundManager.Instance.Invoke(AudioType.SFX_UI_Error);
+            _stickerLimitTweenAni.PlayAnimation();
             return;
         }
+
         // 스티커 생성
         GameObject sticker = Instantiate(_stickerImage.gameObject, _targetImage.transform);
         StickerDelOff stickerDelOff = sticker.GetComponent<StickerDelOff>();
@@ -186,6 +195,13 @@ public class StickerStateSingleton : MonoBehaviour
 
         // 스티커 생선순 토글버튼 생성 
         Toggle priorityToggle = Instantiate(_stickerToggle, _content);
+
+        // 스티커 생성시 스티커 최대치 직후에 스티커 생성 버튼 눌렀을때를 위한 토글 버튼 백업
+        if (_currentCount == 4)
+        {
+            CurrentToggle = priorityToggle;
+            CurrentToggleState = true;
+        }
 
         // 각 자료구조에 데이터 저장
         _toggleList.Add(priorityToggle);

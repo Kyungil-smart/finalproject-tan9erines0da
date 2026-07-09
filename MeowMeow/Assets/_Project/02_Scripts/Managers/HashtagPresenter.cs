@@ -21,19 +21,17 @@ public class HashtagPresenter : MonoBehaviour
 
     private void Start()
     {
-        if (SNSPostManager.Instance != null)
-        {
-            RefreshGrid();
-            SNSPostManager.Instance.OnMyPostHistoryUpdated -= RefreshGrid;
-            SNSPostManager.Instance.OnMyPostHistoryUpdated += RefreshGrid;
-        }
+        RefreshGrid();
     }
 
     private void OnEnable()
     {
-        RefreshGrid();
         if (SNSPostManager.Instance != null)
+        {
+            SNSPostManager.Instance.OnMyPostHistoryUpdated -= RefreshGrid;
             SNSPostManager.Instance.OnMyPostHistoryUpdated += RefreshGrid;
+        }
+        RefreshGrid();
     }
     private void OnDisable()
     {

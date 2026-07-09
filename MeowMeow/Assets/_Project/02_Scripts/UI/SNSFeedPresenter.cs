@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class SNSFeedPresenter : MonoBehaviour,
     [SerializeField]
     private TextMeshProUGUI _hashtagText;
     [SerializeField]
-    private UnityEngine.UI.ScrollRect _scrollView;
+    private ScrollRect _scrollView;
 
     [Header("가상 댓글 생성 관련")]
     [SerializeField]
@@ -27,44 +28,69 @@ public class SNSFeedPresenter : MonoBehaviour,
     private List<GameObject> _spawnedComments =
         new List<GameObject>();
 
+    // 오브젝트 비활성화 체크 플래그
+    private bool _needsLayoutRebuild = false;
+
     /// <summary>
     /// 전역 매니져의 현재 DTO를 기반으로 복원을 수행합니다.
     /// </summary>
     public void RequestContext()
     {
-        if (SNSPostManager.Instance == null) return;
+        if(SNSPostManager.Instance == null) return;
 
-        // 전역 매니져부터 DTO 획득
         SNSPostDTO snapshot = SNSPostManager.Instance.CurrentSelectedFeed;
 
-        // 1. 이미지 및 상단 본문 복원
-        if (_imageRenderer != null)
-            _imageRenderer.RenderPreview(snapshot);
+        // 1. 이미지 및 상단 본문 복원 
+        if (_imageRenderer != null) _imageRenderer.RenderPreview(snapshot);
+        if (_commentText != null) _commentText.text = snapshot.Comment;
 
-        if (_commentText != null)
-            _commentText.text = snapshot.Comment;
-
-        // 2. 해시태그 복원 문자열 가공
         if (_hashtagText != null && snapshot.Hashtags != null)
         {
-            _hashtagText.text =
-                string.Join(" ", snapshot.Hashtags);
+            _hashtagText.text = string.Join(" ", snapshot.Hashtags);
         }
 
-        // 3. 가상 댓글 생성 엔진 구동
+        // 2. 가상 댓글 생성 
         BuildFakeComments(snapshot);
 
-
-        // 4. 스크롤 위치를 무조건 최상단(1.0f)으로 리셋
-        if (_scrollView != null)
+        // 3. 현재 오브젝트가 켜져 있는지 확인
+        if (gameObject.activeInHierarchy)
         {
-            _scrollView.verticalNormalizedPosition = 1f;
+            // 이미 켜져 있다면 즉시 정렬
+            ExecuteLayoutRefresh();
         }
+        else
+        {
+            // 꺼져 있다면 OnEnable 시점에 정렬
+            _needsLayoutRebuild = true;
+        }
+    }
+    void OnEnable()
+    {
+        if (_needsLayoutRebuild) ExecuteLayoutRefresh();
+    }
 
-        // 5. 동적으로 생성된 댓글들의 레이아웃 높이 재계산
+    /// <summary>
+    /// 레이아웃을 강제로 재계산하고 스크롤을 리셋하는 정렬 함수
+    /// </summary>
+    private void ExecuteLayoutRefresh()
+    {
+        // 플래그 초기화
+        _needsLayoutRebuild = false;
+
+        // 캔버스 재계산
+        Canvas.ForceUpdateCanvases();
+
+        // 스크롤 뷰 재계산
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_scrollView.content);
+
         if (_commentContainer is RectTransform rect)
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+        }
+
+        if (_scrollView != null)
+        {
+            _scrollView.verticalNormalizedPosition = 1f;
         }
     }
 
@@ -73,20 +99,22 @@ public class SNSFeedPresenter : MonoBehaviour,
     /// </summary>
     public void ClearPanelContext()
     {
-        string stackTrace = System.Environment.StackTrace;
+        _needsLayoutRebuild = false;
 
-        // 생성된 가상 댓글 오브젝트 완전 파괴
-        foreach (var obj in _spawnedComments)
+        // 삭제 및 분리
+        for (int i = _spawnedComments.Count - 1; i >= 0; i--)
         {
-            if (obj != null) Destroy(obj);
+            if (_spawnedComments[i] != null)
+            {
+                GameObject target = _spawnedComments[i];
+                target.transform.SetParent(null);
+                DestroyImmediate(target);
+            }
         }
         _spawnedComments.Clear();
 
-        // 텍스트 컴포넌트 백지화
-        if (_commentText != null)
-            _commentText.text = string.Empty;
-        if (_hashtagText != null)
-            _hashtagText.text = string.Empty;
+        if (_commentText != null) _commentText.text = string.Empty;
+        if (_hashtagText != null) _hashtagText.text = string.Empty;
     }
 
     /// <summary>
@@ -114,6 +142,10 @@ public class SNSFeedPresenter : MonoBehaviour,
         List<daesgeul> pool = new List<daesgeul>();
         HashSet<string> tagIds = new HashSet<string>();
 
+        // NULL id 필수 포함
+        tagIds.Add("60001");
+        
+        // 태그 아이디 풀에 설정된 해시태그 id 주입
         foreach (var tag in tagSO.m_Data)
         {
             if (snapshot.Hashtags.Contains(tag.TagName))
@@ -121,10 +153,11 @@ public class SNSFeedPresenter : MonoBehaviour,
                 tagIds.Add(tag.uniqueId);
             }
         }
-
+        // 태그 아이디 풀 기준으로 코멘트 순회후 추가
         foreach (var com in comSO.m_Data)
         {
             string depId = com.dependent_ID.ToString();
+            
             if (tagIds.Contains(depId))
             {
                 pool.Add(com);
@@ -133,6 +166,15 @@ public class SNSFeedPresenter : MonoBehaviour,
 
         if (pool.Count == 0)
             pool = new List<daesgeul>(comSO.m_Data);
+
+        // 댓글 풀 셔플
+        for (int i = 0;  i < pool.Count; i++)
+        {
+            int rnd = Random.Range(i, pool.Count);
+            var temp = pool[i];
+            pool[i] = pool[rnd];
+            pool[rnd] = temp;
+        }
 
         // 2) 중복 없는 유저 배정을 위한 유저 리스트 셔플
         List<VirtualUserProfile> users =
@@ -146,8 +188,9 @@ public class SNSFeedPresenter : MonoBehaviour,
             users[rnd] = temp;
         }
 
-        // 3) 최대 6개의 가상 댓글 인스턴스화 및 데이터 주입
-        int count = Mathf.Min(6, users.Count);
+        // 3) 최대 4개의 가상 댓글 인스턴스화 및 데이터 주입
+        int maxCount = Mathf.Min(users.Count, pool.Count);
+        int count = Mathf.Min(4, maxCount);
         for (int i = 0; i < count; i++)
         {
             GameObject item = Instantiate(
@@ -160,8 +203,8 @@ public class SNSFeedPresenter : MonoBehaviour,
             if (script != null)
             {
                 VirtualUserProfile u = users[i];
-                int idx = Random.Range(0, pool.Count);
-                string text = pool[idx].sentence;
+                
+                string text = pool[i].sentence;
 
                 script.SetData(u.UserName, text);
             }

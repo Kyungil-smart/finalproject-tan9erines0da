@@ -8,13 +8,23 @@ public class StickerDelFollow : MonoBehaviour
     private RectTransform _myRect;
 
     // 스티커 삭제버튼 생성위치(이 위치에서 스티커와 거리를 두며 따라갑니다.)
-    private Vector2 _offset = new Vector2(110f, 450f);
+    private Vector2 _offset = new Vector2(90f, 135f);
 
     private void LateUpdate()
     {
         if (_targetRect == null) return;
 
-        _myRect.anchoredPosition = _targetRect.anchoredPosition + _offset;
+        _myRect.anchoredPosition = GetDeleteButtonPosition();
+    }
+
+    private Vector2 GetDeleteButtonPosition()
+    {
+        float width = _targetRect.rect.width * (_targetRect.localScale.x - 1f);
+        float height = _targetRect.rect.height * (_targetRect.localScale.y - 1f);
+
+        return _targetRect.anchoredPosition
+               + _offset
+               + new Vector2(width * 0.5f, height * 0.5f);
     }
 
     /// <summary>
