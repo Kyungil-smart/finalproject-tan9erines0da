@@ -51,10 +51,35 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         if (placeholder == null) return;
         MoveDraggedObject(eventData);
         UpdatePlaceholderPosition(eventData);
+        UpdateAutoScroll(eventData);
+    }
+
+    private void UpdateAutoScroll(PointerEventData eventData)
+    {
+        Debug.Log("업데이트 오토 스크롤");
+
+        if (RectTransformUtility.RectangleContainsScreenPoint(
+        CommentManager.Instance._scrollUpArea,
+        eventData.position))
+        {
+            CommentManager.Instance.SetAutoScroll(true, true);
+        }
+        else if (RectTransformUtility.RectangleContainsScreenPoint(
+            CommentManager.Instance._scrollDownArea,
+            eventData.position))
+        {
+            CommentManager.Instance.SetAutoScroll(true, false);
+        }
+        else
+        {
+            CommentManager.Instance.SetAutoScroll(false, false);
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        CommentManager.Instance.SetAutoScroll(false, false);
+
         if (placeholder == null) return;
 
         // 효과음
