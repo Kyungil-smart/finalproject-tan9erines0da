@@ -14,6 +14,8 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private GameObject placeholder;
     private Canvas _dragCanvas;
 
+    private int _originalSiblingIndex;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -32,6 +34,8 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
         originalParent = transform.parent;
 
+        _originalSiblingIndex = transform.GetSiblingIndex();
+
         CreatePlaceholder();
 
         transform.SetParent(rootCanvas.transform);
@@ -49,6 +53,15 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnDrag(PointerEventData eventData)
     {
         if (placeholder == null) return;
+
+        if (!RectTransformUtility.RectangleContainsScreenPoint(
+           CommentManager.Instance._scrollActiveArea,
+           eventData.position))
+        {
+            CancelDrag();
+            return;
+        }
+
         MoveDraggedObject(eventData);
         UpdatePlaceholderPosition(eventData);
         UpdateAutoScroll(eventData);
@@ -74,6 +87,25 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             CommentManager.Instance.SetAutoScroll(false, false);
         }
+    }
+
+    private void CancelDrag()
+    {
+        CommentManager.Instance.SetAutoScroll(false, false);
+
+        if (placeholder == null) return;
+
+        Destroy(GetComponent<GraphicRaycaster>());
+        Destroy(_dragCanvas);
+        _dragCanvas = null;
+
+        transform.SetParent(originalParent);
+        transform.SetSiblingIndex(_originalSiblingIndex);
+
+        Destroy(placeholder);
+        placeholder = null;
+
+        canvasGroup.blocksRaycasts = true;
     }
 
     public void OnEndDrag(PointerEventData eventData)

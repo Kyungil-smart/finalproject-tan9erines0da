@@ -7,11 +7,12 @@ public class CommentManager : MonoBehaviour
 {
     public static CommentManager Instance { get; private set; }
 
-    [SerializeField] public ScrollRect _scrollRect;
-    [SerializeField] public float _scrollspeed = 1f;
+    public ScrollRect _scrollRect;
+    public float _scrollspeed = 1f;
 
-    [SerializeField] public RectTransform _scrollUpArea;
-    [SerializeField] public RectTransform _scrollDownArea;
+    public RectTransform _scrollUpArea;
+    public RectTransform _scrollDownArea;
+    public RectTransform _scrollActiveArea;
 
     private bool _isAutoScrolling;
     private bool _scrollUp;
