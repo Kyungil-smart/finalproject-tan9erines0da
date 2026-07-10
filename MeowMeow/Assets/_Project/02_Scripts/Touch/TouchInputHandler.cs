@@ -146,7 +146,7 @@ public class TouchInputHandler : MonoBehaviour
         // $$$$
         //_isTouchingSticker = false;
 
-        StickerStateSingleton.Instance.IsTouching = true;
+        if (StickerStateSingleton.Instance != null) StickerStateSingleton.Instance.IsTouching = true;
 
         Vector2 touchPos = _inputActions.Touch.PrimaryTouchPosition.ReadValue<Vector2>();
 
@@ -173,7 +173,7 @@ public class TouchInputHandler : MonoBehaviour
 
     private void OnPrimaryTouchEnd(InputAction.CallbackContext context)
     {
-        StickerStateSingleton.Instance.IsTouching = false;
+        if (StickerStateSingleton.Instance != null) StickerStateSingleton.Instance.IsTouching = false;
 
         // 드래그 중이었으면 관성용 마지막 delta 전달
         if (_isDragConfirmed)
