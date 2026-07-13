@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Gatcha_Get_SO", menuName = "GatchaSO/01_Gatcha_Get_SO")]
 public class Gatcha_Get_SO :BaseGatcha
 {
-     
-   
     public override void Init(GatchaDataManager manager)
     {
         this.Owner = manager;

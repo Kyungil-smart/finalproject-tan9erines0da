@@ -106,6 +106,20 @@ public class LoginUI : MonoBehaviour
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
 
+        // 백엔드 매니져에 유저 정보 갱신 시간 확보를 위한 딜래이
+        int timeoutCheck = 0;
+        while (BackendManager.Auth.CurrentUser == null && timeoutCheck < 100)
+        {
+            timeoutCheck++;
+            await Task.Yield(); // 1프레임 대기 및 연산 양보
+        }
+
+        // 유저정보 바인딩 실패 예외처리
+        if (BackendManager.Auth.CurrentUser == null)
+        {
+            throw new Exception("Firebase 인증 바인딩 지연 에러");
+        }
+
         await InitUserData();
         _startButton.interactable = true;
 
