@@ -3147,7 +3147,19 @@ PrefabInstance:
       value: -69.5
       objectReference: {fileID: 0}
     - target: {fileID: 1864019546988323031, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 1864019546988323031, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864019546988323031, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 1864019546988323031, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1864788500502046020, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
@@ -4047,7 +4059,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6269279767561676062, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 6269279767561676062, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6269279767561676062, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 6269279767561676062, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6527032353186901156, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
@@ -4411,7 +4435,19 @@ PrefabInstance:
       value: 169
       objectReference: {fileID: 0}
     - target: {fileID: 7821001039497059914, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 7821001039497059914, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7821001039497059914, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 7821001039497059914, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7886676585624545867, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
@@ -4479,7 +4515,19 @@ PrefabInstance:
       value: -575
       objectReference: {fileID: 0}
     - target: {fileID: 8203237284947855996, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 8203237284947855996, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203237284947855996, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 8203237284947855996, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8379569875315221139, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
@@ -4487,7 +4535,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8391885424676463571, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 8391885424676463571, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8391885424676463571, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 8391885424676463571, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8414612853547690633, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
@@ -4579,7 +4639,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9118523498843522074, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6cda118402e696347a542d565045b654, type: 2}
+    - target: {fileID: 9118523498843522074, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
       propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9118523498843522074, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b47c73d0dc55ce741ad09dd227ffa8ed, type: 2}
+    - target: {fileID: 9118523498843522074, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9133248394503465938, guid: 7127c4296a659ae4b8e0bfc3c7ed87eb, type: 3}
