@@ -19,7 +19,7 @@ public static class GoogleSignInService
             Credential credential = GoogleAuthProvider.GetCredential(idToken, null);
             
             FirebaseUser user = await BackendManager.Auth.SignInWithCredentialAsync(credential);  
-            Debug.Log($"GoogleSignInService: Android Credential Manager 로그인 완료 - UID={user.UserId}");  
+            Debug.Log($"[GoogleSignInService]: Android Credential Manager 로그인 완료 - UID={user.UserId}");  
             return user;
 #elif UNITY_IOS && !UNITY_EDITOR
             // iOS 환경에서의 로그인  
@@ -31,7 +31,7 @@ public static class GoogleSignInService
         }
         catch (Exception e)
         {
-            Debug.LogError($"GoogleSignInService: 로그인 실패 - {e.Message}");
+            Debug.LogError($"[GoogleSignInService]: 로그인 실패 - {e.Message}");
             throw;
         }
     }

@@ -181,9 +181,9 @@ public class GatchaContentPresenter : MonoBehaviour
                 // 한정 보상 팝업 이미지를 한번 초기화 후 등수에 맞게 적용
                 _seasonPrizeLine.sprite = null;
                 _seasonPrizeLine.sprite = PopupSpriteCacheManager.Instance.GetPopupSprite(_PopupGatcha.RewardResource);
+                _limitedRewardText.text = "한정 보상 획득!";
                 await data.PlayAnimation();//한정 보상 팝업 연출
                 _limitedRewardButton.interactable = true;// 한정 보상 팝업 버튼 활성화
-                _limitedRewardText.text = "한정 보상 획득!";
 
                 // 한정 보상 팝업 버튼 함수에서 불러오기 위해 백업
                 _catStampTweenAni = LinitedBlock.GetComponentInChildren<CatStampTweenAni>(true);

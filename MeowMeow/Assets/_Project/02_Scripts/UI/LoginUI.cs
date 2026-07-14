@@ -61,6 +61,7 @@ public class LoginUI : MonoBehaviour
         }
     }
 
+    // 자동 로그인 흐름
     private async Task RestoreSessionAsync(FirebaseUser user)
     {
         UpdateStatus("세션 복원...");
@@ -94,6 +95,7 @@ public class LoginUI : MonoBehaviour
         }
     }
 
+    // 수동 로그인 흐름
     private async Task PerformLoginAsync()
     {
         UpdateStatus("UGS 초기화...");
@@ -105,6 +107,8 @@ public class LoginUI : MonoBehaviour
         UpdateStatus("UGS 인증 시도...");
         string firebaseIdToken = await user.TokenAsync(false);
         await UnityAuthService.SignInWithGoogleAsync(firebaseIdToken);
+
+        FireStoreManager.Instance.InitF_M();
 
         await InitUserData();
         _startButton.interactable = true;
